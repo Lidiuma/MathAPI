@@ -6,7 +6,7 @@ import java.util.function.UnaryOperator;
 public interface RealPoint<
         N,
         P extends RealPoint<N, P, V>,
-        V extends Vector<V, N>> extends Point<N, P, V> {
+        V extends Vector<N, V>> extends Point<N, P, V> {
 
     N distance(P point);
 

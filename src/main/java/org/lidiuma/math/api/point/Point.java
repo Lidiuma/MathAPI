@@ -6,7 +6,7 @@ import org.lidiuma.math.api.vector.Vector;
 public interface Point<
         N,
         P extends Point<N, P, V>,
-        V extends Vector<V, N>> extends UnaryTuple<N> {
+        V extends Vector<N, V>> extends UnaryTuple<N> {
 
     P translate(V vector);
 
