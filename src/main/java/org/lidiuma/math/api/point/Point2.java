@@ -17,5 +17,17 @@
 package org.lidiuma.math.api.point;
 
 import org.lidiuma.math.api.tuple.UnaryTuple2;
+import org.lidiuma.math.api.vector.Vector2;
 
-public interface Point2<N> extends UnaryTuple2<N> {}
+public interface Point2<N,
+        P extends Point2<N, P, V>,
+        V extends Vector2<N, V>> extends Point<N, P, V>, UnaryTuple2<N> {
+
+    interface F32 extends Point2<Float, F32, Vector2.F32> {}
+
+    interface F64 extends Point2<Double, F64, Vector2.F64> {}
+
+    interface I32 extends Point2<Integer, I32, Vector2.I32> {}
+
+    interface I64 extends Point2<Long, I64, Vector2.I64> {}
+}

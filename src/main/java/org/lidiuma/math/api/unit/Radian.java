@@ -12,4 +12,8 @@ public interface Radian<N> {
     N toDegree();
 
     N toTurn();
+
+    interface F32 extends Radian<Float> {}
+
+    interface F64 extends Radian<Double> {}
 }
