@@ -1,10 +1,10 @@
 package org.lidiuma.math.api.shape;
 
-public interface Rectangle<T, P> {
+public interface Rectangle<N, P> {
 
     P pos();
 
-    T width();
+    N width();
 
-    T height();
+    N height();
 }

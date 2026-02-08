@@ -1,8 +1,8 @@
 package org.lidiuma.math.api.shape;
 
-public interface Sphere<T, P> {
+public interface Sphere<N, P> {
 
     P center();
 
-    T radius();
+    N radius();
 }

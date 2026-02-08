@@ -1,12 +1,12 @@
 package org.lidiuma.math.api.shape;
 
-public interface Cuboid<T, P> {
+public interface Cuboid<N, P> {
 
     P pos();
 
-    T width();
+    N width();
 
-    T height();
+    N height();
 
-    T length();
+    N length();
 }

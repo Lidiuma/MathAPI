@@ -1,15 +1,15 @@
 package org.lidiuma.math.api.unit;
 
-public interface Radian<T> {
+public interface Radian<N> {
 
     /*
     Implementations should implement factory methods to create the Radiant instance from at least ALL units present here.
     For example, I have the instance toDegree(), I must implement the static fromDegree().
      */
 
-    T value();
+    N value();
 
-    T toDegree();
+    N toDegree();
 
-    T toTurn();
+    N toTurn();
 }

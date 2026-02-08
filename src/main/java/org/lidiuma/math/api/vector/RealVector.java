@@ -2,7 +2,7 @@ package org.lidiuma.math.api.vector;
 
 import java.util.function.UnaryOperator;
 
-public interface RealVector<V extends RealVector<V, N>, N> extends Vector<V, N> {
+public interface RealVector<N, V extends RealVector<N, V>> extends Vector<N, V> {
 
     V ceil();
 

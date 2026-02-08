@@ -20,9 +20,9 @@ import org.lidiuma.math.api.tuple.UnaryTuple3;
 import org.lidiuma.math.api.unit.Radian;
 
 public interface Vector3<
-        V extends Vector3<V, N, A>,
         N,
-        A extends Radian<N>> extends Vector<V, N>, UnaryTuple3<N> {
+        V extends Vector3<N, V, A>,
+        A extends Radian<N>> extends Vector<N, V>, UnaryTuple3<N> {
 
     V cross(V vector);
 

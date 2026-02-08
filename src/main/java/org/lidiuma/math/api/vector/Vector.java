@@ -17,10 +17,9 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.Numeric;
-
 import java.util.function.UnaryOperator;
 
-public interface Vector<V extends Vector<V, N>, N> extends Numeric<V>, UnaryOperator<V> {
+public interface Vector<N, V extends Vector<N, V>> extends Numeric<V>, UnaryOperator<N> {
 
     /// Sums the components of the vector together.
     N sum();

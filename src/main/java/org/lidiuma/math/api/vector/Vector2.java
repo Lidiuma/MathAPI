@@ -20,9 +20,9 @@ import org.lidiuma.math.api.tuple.UnaryTuple2;
 import org.lidiuma.math.api.unit.Radian;
 
 public interface Vector2<
-        V extends Vector2<V, N, A>,
         N,
-        A extends Radian<N>> extends Vector<V, N>, UnaryTuple2<N> {
+        V extends Vector2<N, V, A>,
+        A extends Radian<N>> extends Vector<N, V>, UnaryTuple2<N> {
 
     V rotate(A radian);
 
