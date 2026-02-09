@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape;
+package org.lidiuma.math.api.shape.sphere;
 
-public interface Cuboid<N, P> {
+public interface Sphere<N, P> {
 
-    P pos();
+    P center();
 
-    N width();
-
-    N height();
-
-    N length();
+    N radius();
 }

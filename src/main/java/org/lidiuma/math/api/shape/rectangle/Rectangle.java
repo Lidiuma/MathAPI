@@ -14,11 +14,13 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape;
+package org.lidiuma.math.api.shape.rectangle;
 
-public interface Sphere<N, P> {
+public interface Rectangle<N, P> {
 
-    P center();
+    P pos();
 
-    N radius();
+    N width();
+
+    N height();
 }

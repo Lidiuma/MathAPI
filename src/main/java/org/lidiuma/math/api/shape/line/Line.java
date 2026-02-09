@@ -14,9 +14,14 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape;
+package org.lidiuma.math.api.shape.line;
 
-public interface Line<P> {
+import org.lidiuma.math.api.point.Point;
+import org.lidiuma.math.api.vector.Vector;
+
+public interface Line<N,
+        P extends Point<N, P, V>,
+        V extends Vector<N, V>> {
 
     P start();
 
