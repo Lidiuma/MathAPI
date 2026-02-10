@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.unit;
+package org.lidiuma.math.api.rotation;
 
-public interface Radian<N> {
+public interface Angle<N> {
 
     /*
     Implementations should implement factory methods to create the Radiant instance from at least ALL units present here.
     For example, I have the instance toDegree(), I must implement the static fromDegree().
      */
 
-    N value();
+    N toRadian();
 
     N toDegree();
 
     N toTurn();
 
-    interface F32 extends Radian<Float> {}
+    @Deprecated
+    interface F32 extends Angle<Float> {}
 
-    interface F64 extends Radian<Double> {}
+    @Deprecated
+    interface F64 extends Angle<Double> {}
 }

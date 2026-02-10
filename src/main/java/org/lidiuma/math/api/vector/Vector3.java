@@ -17,7 +17,7 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple3;
-import org.lidiuma.math.api.unit.Radian;
+import org.lidiuma.math.api.rotation.Angle;
 
 public interface Vector3<N, V extends Vector3<N, V>> extends Vector<N, V>, UnaryTuple3<N> {
 
@@ -25,14 +25,14 @@ public interface Vector3<N, V extends Vector3<N, V>> extends Vector<N, V>, Unary
 
     interface Real<N,
             V extends Real<N, V, A>,
-            A extends Radian<N>> extends Vector3<N, V> {
+            A extends Angle<N>> extends Vector3<N, V> {
 
         V rotate(V axis, A angle);
     }
 
-    interface F32 extends Real<Float, F32, Radian.F32> {}
+    interface F32 extends Real<Float, F32, Angle.F32> {}
 
-    interface F64 extends Real<Double, F64, Radian.F64> {}
+    interface F64 extends Real<Double, F64, Angle.F64> {}
 
     interface I32 extends Vector3<Integer, I32> {}
 
