@@ -17,8 +17,9 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.vector.impl.FVector;
 
-public interface FVector2<N> extends Vector2<N, FVector2<N>>, FVector<N, FVector2<N>> {
+public interface FVector2<N> extends Vector2<N>, FVector<N, FVector2<N>> {
 
     FVector2<N> rotate(Angle<N> radian);
 

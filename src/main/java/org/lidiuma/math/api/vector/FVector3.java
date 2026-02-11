@@ -17,8 +17,9 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.vector.impl.FVector;
 
-public interface FVector3<N> extends Vector3<N, FVector3<N>>, FVector<N, FVector3<N>> {
+public interface FVector3<N> extends Vector3<N>, FVector<N, FVector3<N>> {
 
-    FVector3<N> rotate(Vector3<N, ?> axis, Angle<N> angle);
+    FVector3<N> rotate(FVector3<N> axis, Angle<N> angle);
 }

@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.geometry.point.impl;
 
-import org.lidiuma.math.api.tuple.UnaryTuple3;
+import org.lidiuma.math.api.tuple.UnaryTuple;
 import org.lidiuma.math.api.vector.impl.Vector;
 
-public interface Vector3<N> extends Vector<N, Vector3<N>>, UnaryTuple3<N> {
+public interface Point<N,
+        P extends Point<N, P, V>,
+        V extends Vector<N, V>> extends UnaryTuple<N> {
 
-    Vector3<N> cross(Vector3<N> vector);
+    P translate(V vector);
+
+    V subtract(P point);
+
+    N distance2(P point);
+
+    P clamp(N min, N max);
 }

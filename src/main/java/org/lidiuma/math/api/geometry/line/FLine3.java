@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.geometry.line;
 
-import org.lidiuma.math.api.tuple.UnaryTuple3;
-import org.lidiuma.math.api.vector.impl.Vector;
+import org.lidiuma.math.api.geometry.line.impl.FLine;
+import org.lidiuma.math.api.geometry.point.FPoint3;
+import org.lidiuma.math.api.vector.FVector3;
 
-public interface Vector3<N> extends Vector<N, Vector3<N>>, UnaryTuple3<N> {
-
-    Vector3<N> cross(Vector3<N> vector);
-}
+public interface FLine3<N> extends Line3<N>, FLine<N, FPoint3<N>, FVector3<N>> {}

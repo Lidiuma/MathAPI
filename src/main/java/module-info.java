@@ -7,4 +7,5 @@ module lidiuma.math.api {
     exports org.lidiuma.math.api.geometry.point;
     exports org.lidiuma.math.api.geometry.sphere;
     exports org.lidiuma.math.api.geometry.rectangle;
+    // Do NOT export `impl` packages.
 }

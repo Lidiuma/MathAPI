@@ -17,8 +17,9 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple2;
+import org.lidiuma.math.api.vector.impl.Vector;
 
-public interface Vector2<N, V extends Vector2<N, V>> extends Vector<N, V>, UnaryTuple2<N> {
+public interface Vector2<N> extends Vector<N, Vector2<N>>, UnaryTuple2<N> {
 
-    N cross(V vector);
+    N cross(Vector2<N> vector);
 }

@@ -16,14 +16,8 @@
 
 package org.lidiuma.math.api.geometry.line;
 
-import org.lidiuma.math.api.geometry.point.Point;
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.geometry.line.impl.FLine;
+import org.lidiuma.math.api.geometry.point.FPoint1;
+import org.lidiuma.math.api.vector.FVector1;
 
-public interface Line<N,
-        P extends Point<N, P, V>,
-        V extends Vector<N, V>> {
-
-    P start();
-
-    P end();
-}
+public interface FLine1<N> extends Line1<N>, FLine<N, FPoint1<N>, FVector1<N>> {}

@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.geometry.point.impl;
 
-import org.lidiuma.math.api.vector.FVector;
+import org.lidiuma.math.api.vector.impl.FVector;
 import java.util.function.UnaryOperator;
 
-public interface FPoint<
-        N,
+public interface FPoint<N,
         P extends FPoint<N, P, V>,
-        V extends FVector<N, V>> extends Point<N, P, V> {
+        V extends FVector<N, V>> {
 
     N distance(P point);
 

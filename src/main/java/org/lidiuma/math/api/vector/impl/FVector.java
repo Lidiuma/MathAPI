@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.vector.impl;
 
 import java.util.function.UnaryOperator;
 
-public interface FVector<N, V extends FVector<N, V>> extends Vector<N, V> {
+public interface FVector<N, V extends FVector<N, V>> /* Cannot extend Vector without breaking things */ {
 
     V ceil();
 

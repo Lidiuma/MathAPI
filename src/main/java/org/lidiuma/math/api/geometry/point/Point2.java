@@ -16,10 +16,9 @@
 
 package org.lidiuma.math.api.geometry.point;
 
+import org.lidiuma.math.api.geometry.point.impl.Point;
 import org.lidiuma.math.api.tuple.UnaryTuple2;
 import org.lidiuma.math.api.vector.Vector2;
 
-public interface Point2<N,
-        P extends Point2<N, P, V>,
-        V extends Vector2<N, V>> extends Point<N, P, V>, UnaryTuple2<N> {
+public interface Point2<N> extends Point<N, Point2<N>, Vector2<N>>, UnaryTuple2<N> {
 }

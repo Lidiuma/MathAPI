@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.vector.impl;
 
 import org.lidiuma.math.api.tuple.UnaryTuple;
 

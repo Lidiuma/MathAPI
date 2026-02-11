@@ -14,21 +14,14 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.geometry.line.impl;
 
-import org.lidiuma.math.api.tuple.UnaryTuple;
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.geometry.point.impl.FPoint;
+import org.lidiuma.math.api.vector.impl.FVector;
 
-public interface Point<
-        N,
-        P extends Point<N, P, V>,
-        V extends Vector<N, V>> extends UnaryTuple<N> {
+public interface FLine<N, P extends FPoint<N, P, V>, V extends FVector<N, V>> {
 
-    P translate(V vector);
+    P start();
 
-    V subtract(P point);
-
-    N distance2(P point);
-
-    P clamp(N min, N max);
+    P end();
 }

@@ -16,5 +16,7 @@
 
 package org.lidiuma.math.api.vector;
 
-public interface FVector4<N> extends Vector4<N, FVector4<N>>, FVector<N, FVector4<N>> {
+import org.lidiuma.math.api.vector.impl.FVector;
+
+public interface FVector4<N> extends Vector4<N>, FVector<N, FVector4<N>> {
 }
