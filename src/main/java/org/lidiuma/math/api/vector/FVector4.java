@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.tuple;
+package org.lidiuma.math.api.vector;
 
-public interface Double2 extends UnaryTuple2<Double> {}
+public interface FVector4<N> extends Vector4<N, FVector4<N>>, FVector<N, FVector4<N>> {
+}

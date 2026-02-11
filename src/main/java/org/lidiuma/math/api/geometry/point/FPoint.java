@@ -14,8 +14,19 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.tuple;
+package org.lidiuma.math.api.geometry.point;
 
-/// If you have a use case for this, please write me via email.
-/// Added for consistency.
-public interface Integer1 extends UnaryTuple1<Integer> {}
+import org.lidiuma.math.api.vector.FVector;
+import java.util.function.UnaryOperator;
+
+public interface FPoint<
+        N,
+        P extends FPoint<N, P, V>,
+        V extends FVector<N, V>> extends Point<N, P, V> {
+
+    N distance(P point);
+
+    N lerp(P target, N alpha);
+
+    N interpolate(P target, N alpha, UnaryOperator<N> interpolator);
+}

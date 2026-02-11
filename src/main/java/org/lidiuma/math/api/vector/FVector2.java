@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.tuple;
+package org.lidiuma.math.api.vector;
 
-public interface Long2 extends UnaryTuple2<Long> {}
+import org.lidiuma.math.api.rotation.Angle;
+
+public interface FVector2<N> extends Vector2<N, FVector2<N>>, FVector<N, FVector2<N>> {
+
+    FVector2<N> rotate(Angle<N> radian);
+
+    Angle<N> angle();
+}

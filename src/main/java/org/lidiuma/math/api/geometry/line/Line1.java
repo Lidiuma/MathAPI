@@ -22,12 +22,4 @@ import org.lidiuma.math.api.vector.Vector1;
 public interface Line1<N,
         P extends Point1<N, P, V>,
         V extends Vector1<N, V>> extends Line<N, P, V> {
-
-    interface F32 extends Line1<Float, Point1.F32, Vector1.F32> {}
-
-    interface F64 extends Line1<Double, Point1.F64, Vector1.F64> {}
-
-    interface I32 extends Line1<Integer, Point1.I32, Vector1.I32> {}
-
-    interface I64 extends Line1<Long, Point1.I64, Vector1.I64> {}
 }

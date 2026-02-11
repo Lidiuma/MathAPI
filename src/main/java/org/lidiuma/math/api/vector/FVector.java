@@ -14,19 +14,41 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.vector.Vector;
 import java.util.function.UnaryOperator;
 
-public interface RealPoint<
-        N,
-        P extends RealPoint<N, P, V>,
-        V extends Vector<N, V>> extends Point<N, P, V> {
+public interface FVector<N, V extends FVector<N, V>> extends Vector<N, V> {
 
-    N distance(P point);
+    V ceil();
 
-    N lerp(P target, N alpha);
+    V floor();
 
-    N interpolate(P target, N alpha, UnaryOperator<N> interpolator);
+    N length();
+
+    V withLength(N length);
+
+    V withLength2(N length2);
+
+    V limit(N limit);
+
+    V limit2(N limit2);
+
+    V normalize();
+
+    N distance(V vector);
+
+    V lerp(V target, N alpha);
+
+    V interpolate(V target, N alpha, UnaryOperator<N> interpolator);
+
+    boolean isUnit(N epsilon);
+
+    boolean isCollinear(V vector, N epsilon);
+
+    boolean isPerpendicular(V vector, N epsilon);
+
+    boolean epsilonEquals(V vector, N epsilon);
+
+    boolean isZero(N epsilon);
 }

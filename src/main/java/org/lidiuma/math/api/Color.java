@@ -16,9 +16,9 @@
 
 package org.lidiuma.math.api;
 
-import org.lidiuma.math.api.tuple.Double4;
+import org.lidiuma.math.api.tuple.UnaryTuple4;
 
-public interface Color extends Double4 {
+public interface Color extends UnaryTuple4<Double> {
 
     double red();
 

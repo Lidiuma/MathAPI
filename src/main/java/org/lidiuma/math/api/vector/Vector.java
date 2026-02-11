@@ -16,9 +16,9 @@
 
 package org.lidiuma.math.api.vector;
 
-import java.util.function.UnaryOperator;
+import org.lidiuma.math.api.tuple.UnaryTuple;
 
-public interface Vector<N, V extends Vector<N, V>> extends UnaryOperator<N> {
+public interface Vector<N, V extends Vector<N, V>> extends UnaryTuple<N> {
 
     /// Sums the components of the vector together.
     N sum();

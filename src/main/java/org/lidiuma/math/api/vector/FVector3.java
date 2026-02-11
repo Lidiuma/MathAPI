@@ -16,39 +16,9 @@
 
 package org.lidiuma.math.api.vector;
 
-import java.util.function.UnaryOperator;
+import org.lidiuma.math.api.rotation.Angle;
 
-public interface RealVector<N, V extends RealVector<N, V>> extends Vector<N, V> {
+public interface FVector3<N> extends Vector3<N, FVector3<N>>, FVector<N, FVector3<N>> {
 
-    V ceil();
-
-    V floor();
-
-    N length();
-
-    V withLength(N length);
-
-    V withLength2(N length2);
-
-    V limit(N limit);
-
-    V limit2(N limit2);
-
-    V normalize();
-
-    N distance(V vector);
-
-    V lerp(V target, N alpha);
-
-    V interpolate(V target, N alpha, UnaryOperator<N> interpolator);
-
-    boolean isUnit(N epsilon);
-
-    boolean isCollinear(V vector, N epsilon);
-
-    boolean isPerpendicular(V vector, N epsilon);
-
-    boolean epsilonEquals(V vector, N epsilon);
-
-    boolean isZero(N epsilon);
+    FVector3<N> rotate(Vector3<N, ?> axis, Angle<N> angle);
 }
