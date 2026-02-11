@@ -16,15 +16,30 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.Numeric;
 import java.util.function.UnaryOperator;
 
-public interface Vector<N, V extends Vector<N, V>> extends Numeric<V>, UnaryOperator<N> {
+public interface Vector<N, V extends Vector<N, V>> extends UnaryOperator<N> {
 
     /// Sums the components of the vector together.
     N sum();
 
+    N add(V other);
+
+    N sub(V other);
+
+    N mul(V other);
+
     V mul(N scalar);
+
+    N div(N other);
+
+    boolean lt(N other);
+
+    boolean ltEq(N other);
+
+    boolean gt(N other);
+
+    boolean gtEq(N other);
 
     V abs();
 
