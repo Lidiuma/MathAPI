@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.line;
+package org.lidiuma.math.api.geometry.line;
 
-import org.lidiuma.math.api.point.Point;
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.geometry.point.Point4;
+import org.lidiuma.math.api.vector.Vector4;
 
-public interface Line<N,
-        P extends Point<N, P, V>,
-        V extends Vector<N, V>> {
+public interface Line4<N,
+        P extends Point4<N, P, V>,
+        V extends Vector4<N, V>> extends Line<N, P, V> {
 
-    P start();
+    interface F32 extends Line4<Float, Point4.F32, Vector4.F32> {}
 
-    P end();
+    interface F64 extends Line4<Double, Point4.F64, Vector4.F64> {}
+
+    interface I32 extends Line4<Integer, Point4.I32, Vector4.I32> {}
+
+    interface I64 extends Line4<Long, Point4.I64, Vector4.I64> {}
 }

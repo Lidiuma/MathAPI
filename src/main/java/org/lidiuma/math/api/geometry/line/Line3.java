@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.line;
+package org.lidiuma.math.api.geometry.line;
 
-import org.lidiuma.math.api.point.Point3;
+import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.vector.Vector3;
 
 public interface Line3<N,

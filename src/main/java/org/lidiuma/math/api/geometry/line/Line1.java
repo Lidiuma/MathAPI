@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.point;
+package org.lidiuma.math.api.geometry.line;
 
-import org.lidiuma.math.api.vector.Vector;
-import java.util.function.UnaryOperator;
+import org.lidiuma.math.api.geometry.point.Point1;
+import org.lidiuma.math.api.vector.Vector1;
 
-public interface RealPoint<
-        N,
-        P extends RealPoint<N, P, V>,
-        V extends Vector<N, V>> extends Point<N, P, V> {
+public interface Line1<N,
+        P extends Point1<N, P, V>,
+        V extends Vector1<N, V>> extends Line<N, P, V> {
 
-    N distance(P point);
+    interface F32 extends Line1<Float, Point1.F32, Vector1.F32> {}
 
-    N lerp(P target, N alpha);
+    interface F64 extends Line1<Double, Point1.F64, Vector1.F64> {}
 
-    N interpolate(P target, N alpha, UnaryOperator<N> interpolator);
+    interface I32 extends Line1<Integer, Point1.I32, Vector1.I32> {}
+
+    interface I64 extends Line1<Long, Point1.I64, Vector1.I64> {}
 }

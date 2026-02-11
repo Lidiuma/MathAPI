@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.line;
+package org.lidiuma.math.api.geometry.point;
 
-import org.lidiuma.math.api.point.Point1;
-import org.lidiuma.math.api.vector.Vector1;
+import org.lidiuma.math.api.tuple.UnaryTuple4;
+import org.lidiuma.math.api.vector.Vector4;
 
-public interface Line1<N,
-        P extends Point1<N, P, V>,
-        V extends Vector1<N, V>> extends Line<N, P, V> {
+public interface Point4<N,
+        P extends Point4<N, P, V>,
+        V extends Vector4<N, V>> extends Point<N, P, V>, UnaryTuple4<N> {
 
-    interface F32 extends Line1<Float, Point1.F32, Vector1.F32> {}
+    interface F32 extends Point4<Float, F32, Vector4.F32> {}
 
-    interface F64 extends Line1<Double, Point1.F64, Vector1.F64> {}
+    interface F64 extends Point4<Double, F64, Vector4.F64> {}
 
-    interface I32 extends Line1<Integer, Point1.I32, Vector1.I32> {}
+    interface I32 extends Point4<Integer, I32, Vector4.I32> {}
 
-    interface I64 extends Line1<Long, Point1.I64, Vector1.I64> {}
+    interface I64 extends Point4<Long, I64, Vector4.I64> {}
 }

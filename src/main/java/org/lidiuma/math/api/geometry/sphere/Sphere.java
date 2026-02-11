@@ -14,20 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.point;
+package org.lidiuma.math.api.geometry.sphere;
 
-import org.lidiuma.math.api.tuple.UnaryTuple4;
-import org.lidiuma.math.api.vector.Vector4;
+public interface Sphere<N, P> {
 
-public interface Point4<N,
-        P extends Point4<N, P, V>,
-        V extends Vector4<N, V>> extends Point<N, P, V>, UnaryTuple4<N> {
+    P center();
 
-    interface F32 extends Point4<Float, F32, Vector4.F32> {}
-
-    interface F64 extends Point4<Double, F64, Vector4.F64> {}
-
-    interface I32 extends Point4<Integer, I32, Vector4.I32> {}
-
-    interface I64 extends Point4<Long, I64, Vector4.I64> {}
+    N radius();
 }

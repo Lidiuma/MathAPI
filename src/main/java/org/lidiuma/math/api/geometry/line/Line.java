@@ -14,11 +14,16 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.sphere;
+package org.lidiuma.math.api.geometry.line;
 
-public interface Sphere<N, P> {
+import org.lidiuma.math.api.geometry.point.Point;
+import org.lidiuma.math.api.vector.Vector;
 
-    P center();
+public interface Line<N,
+        P extends Point<N, P, V>,
+        V extends Vector<N, V>> {
 
-    N radius();
+    P start();
+
+    P end();
 }

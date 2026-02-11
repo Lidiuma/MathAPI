@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.rectangle;
+package org.lidiuma.math.api.geometry.point;
 
-public interface Cuboid<N, P> {
+import org.lidiuma.math.api.tuple.UnaryTuple1;
+import org.lidiuma.math.api.vector.Vector1;
 
-    P pos();
+public interface Point1<N,
+        P extends Point1<N, P, V>,
+        V extends Vector1<N, V>> extends Point<N, P, V>, UnaryTuple1<N> {
 
-    N width();
+    interface F32 extends Point1<Float, F32, Vector1.F32> {}
 
-    N height();
+    interface F64 extends Point1<Double, F64, Vector1.F64> {}
 
-    N length();
+    interface I32 extends Point1<Integer, I32, Vector1.I32> {}
+
+    interface I64 extends Point1<Long, I64, Vector1.I64> {}
 }

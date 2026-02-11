@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.point;
+package org.lidiuma.math.api.geometry.point;
 
-import org.lidiuma.math.api.tuple.UnaryTuple2;
-import org.lidiuma.math.api.vector.Vector2;
+import org.lidiuma.math.api.tuple.UnaryTuple;
+import org.lidiuma.math.api.vector.Vector;
 
-public interface Point2<N,
-        P extends Point2<N, P, V>,
-        V extends Vector2<N, V>> extends Point<N, P, V>, UnaryTuple2<N> {
+public interface Point<
+        N,
+        P extends Point<N, P, V>,
+        V extends Vector<N, V>> extends UnaryTuple<N> {
 
-    interface F32 extends Point2<Float, F32, Vector2.F32> {}
+    P translate(V vector);
 
-    interface F64 extends Point2<Double, F64, Vector2.F64> {}
+    V subtract(P point);
 
-    interface I32 extends Point2<Integer, I32, Vector2.I32> {}
+    N distance2(P point);
 
-    interface I64 extends Point2<Long, I64, Vector2.I64> {}
+    P clamp(N min, N max);
 }
