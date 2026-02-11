@@ -23,23 +23,23 @@ public interface Vector<N, V extends Vector<N, V>> extends UnaryOperator<N> {
     /// Sums the components of the vector together.
     N sum();
 
-    N add(V other);
+    V add(V other);
 
-    N sub(V other);
+    V sub(V other);
 
-    N mul(V other);
+    V mul(V other);
 
     V mul(N scalar);
 
-    N div(N other);
+    V div(V other);
 
-    boolean lt(N other);
+    boolean lt(V other);
 
-    boolean ltEq(N other);
+    boolean ltEq(V other);
 
-    boolean gt(N other);
+    boolean gt(V other);
 
-    boolean gtEq(N other);
+    boolean gtEq(V other);
 
     V abs();
 
