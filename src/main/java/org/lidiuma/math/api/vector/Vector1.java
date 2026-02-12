@@ -17,13 +17,12 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple1;
-import org.lidiuma.math.api.vector.impl.Vector;
 
-public interface Vector1<N> extends Vector<N, Vector1<N>>, UnaryTuple1<N> {
+public interface Vector1<N, F> extends Vector<N, F, Vector1<N, F>, Vector1<F, F>>, UnaryTuple1<N> {
 
     // In 1D integers vector will always have an integer length.
-    N length();
+    N length1();
 
     // In 1D integers vector will always have an integer distance.
-    N distance(Vector1<N> vector);
+    N distance(Vector1<N, F> vector);
 }

@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.line.impl;
+package org.lidiuma.math.api.geometry.line;
 
-import org.lidiuma.math.api.geometry.point.impl.FPoint;
-import org.lidiuma.math.api.vector.impl.FVector;
+import org.lidiuma.math.api.geometry.point.Point;
+import org.lidiuma.math.api.vector.Vector;
 
-public interface FLine<N, P extends FPoint<N, P, V>, V extends FVector<N, V>> {
+public interface Line<
+        N, F,
+        P extends Point<N, F, P, PF, V, VF>, PF extends Point<F, F, PF, PF, VF, VF>,
+        V extends Vector<N, F, V, VF>, VF extends Vector<F, F, VF, VF>> {
 
     P start();
 

@@ -14,48 +14,30 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector.impl;
+package org.lidiuma.math.api.geometry.point;
 
 import org.lidiuma.math.api.tuple.UnaryTuple;
+import org.lidiuma.math.api.vector.Vector;
+import java.util.function.UnaryOperator;
 
-public interface Vector<N, V extends Vector<N, V>> extends UnaryTuple<N> {
+public interface Point<
+        N, F,
+        P extends Point<N, F, P, PF, V, VF>, PF extends Point<F, F, PF, PF, VF, VF>,
+        V extends Vector<N, F, V, VF>, VF extends Vector<F, F, VF, VF>> extends UnaryTuple<N> {
 
-    /// Sums the components of the vector together.
-    N sum();
+    P translate(V vector);
 
-    V add(V other);
+    V subtract(P point);
 
-    V sub(V other);
+    N distance2(P point);
 
-    V mul(V other);
+    P clamp(N min, N max);
 
-    V mul(N scalar);
+    /* ========== Decimal-Only Operations ========== */
 
-    V div(V other);
+    F distance(PF point);
 
-    boolean lt(V other);
+    F lerp(PF target, F alpha);
 
-    boolean ltEq(V other);
-
-    boolean gt(V other);
-
-    boolean gtEq(V other);
-
-    V abs();
-
-    V max(V other);
-
-    V min(V other);
-
-    N distance2(V vector);
-
-    N length2();
-
-    N dot(V vector);
-
-    V clamp(N min, N max);
-
-    boolean hasSameDirection(V vector);
-
-    boolean hasOppositeDirection(V vector);
+    F interpolate(PF target, F alpha, UnaryOperator<F> interpolator);
 }
