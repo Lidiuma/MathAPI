@@ -16,13 +16,13 @@
 
 package org.lidiuma.math.api.geometry.rectangle;
 
-public interface Cuboid<N, P> {
+import org.lidiuma.math.api.geometry.point.Point2;
+
+public interface Rectangle2<N, F, P extends Point2<N, F>> {
 
     P pos();
 
     N width();
 
     N height();
-
-    N length();
 }

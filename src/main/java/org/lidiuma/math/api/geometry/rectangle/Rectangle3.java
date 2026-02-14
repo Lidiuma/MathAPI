@@ -16,11 +16,15 @@
 
 package org.lidiuma.math.api.geometry.rectangle;
 
-public interface Rectangle<N, P> {
+import org.lidiuma.math.api.geometry.point.Point3;
+
+public interface Rectangle3<N, F, P extends Point3<N, F>> {
 
     P pos();
 
     N width();
 
     N height();
+
+    N length();
 }
