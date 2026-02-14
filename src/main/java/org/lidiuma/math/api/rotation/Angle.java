@@ -28,10 +28,4 @@ public interface Angle<N> {
     N toDegree();
 
     N toTurn();
-
-    @Deprecated
-    interface F32 extends Angle<Float> {}
-
-    @Deprecated
-    interface F64 extends Angle<Double> {}
 }

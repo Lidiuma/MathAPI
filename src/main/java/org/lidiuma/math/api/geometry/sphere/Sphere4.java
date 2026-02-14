@@ -16,15 +16,8 @@
 
 package org.lidiuma.math.api.geometry.sphere;
 
-import org.lidiuma.math.api.geometry.point.Point;
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.geometry.point.Point4;
+import org.lidiuma.math.api.vector.Vector4;
 
-public interface Sphere<
-        N, F,
-        P extends Point<N, F, P, PF, V, VF>, PF extends Point<F, F, PF, PF, VF, VF>,
-        V extends Vector<N, F, V, VF>, VF extends Vector<F, F, VF, VF>> {
-
-    P center();
-
-    N radius();
+public interface Sphere4<N, F> extends Sphere<N, F, Point4<N, F>, Point4<F, F>, Vector4<N, F>, Vector4<F, F>> {
 }
