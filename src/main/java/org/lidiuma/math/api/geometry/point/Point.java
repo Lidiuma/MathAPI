@@ -20,10 +20,7 @@ import org.lidiuma.math.api.tuple.UnaryTuple;
 import org.lidiuma.math.api.vector.Vector;
 import java.util.function.UnaryOperator;
 
-public interface Point<
-        N, F,
-        P extends Point<N, F, P, PF, V, VF>, PF extends Point<F, F, PF, PF, VF, VF>,
-        V extends Vector<N, F, V, VF>, VF extends Vector<F, F, VF, VF>> extends UnaryTuple<N> {
+public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends UnaryTuple<N> {
 
     P translate(V vector);
 
@@ -35,9 +32,9 @@ public interface Point<
 
     /* ========== Decimal-Only Operations ========== */
 
-    F distance(PF point);
+    N distance(P point);
 
-    F lerp(PF target, F alpha);
+    N lerp(P target, N alpha);
 
-    F interpolate(PF target, F alpha, UnaryOperator<F> interpolator);
+    N interpolate(P target, N alpha, UnaryOperator<N> interpolator);
 }

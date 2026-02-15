@@ -19,11 +19,7 @@ package org.lidiuma.math.api.vector;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 import java.util.function.UnaryOperator;
 
-public interface Vector<
-        N,
-        F,
-        V extends Vector<N, F, V, VF>,
-        VF extends Vector<F, F, VF, VF>> extends UnaryTuple<N> {
+public interface Vector<N, V extends Vector<N, V>> extends UnaryTuple<N> {
 
     /// Sums the components of the vector together.
     N sum();
@@ -66,35 +62,35 @@ public interface Vector<
 
     /* ========== Decimal-Only Operations ========== */
 
-    VF ceil();
+    V ceil();
 
-    VF floor();
+    V floor();
 
-    F length();
+    N length();
 
-    VF withLength(F length);
+    V withLength(N length);
 
-    VF withLength2(F length2);
+    V withLength2(N length2);
 
-    VF limit(F limit);
+    V limit(N limit);
 
-    VF limit2(F limit2);
+    V limit2(N limit2);
 
-    VF normalize();
+    V normalize();
 
-    F distance(VF vector);
+    N distance(V vector);
 
-    F lerp(VF target, F alpha);
+    N lerp(V target, N alpha);
 
-    F interpolate(VF target, F alpha, UnaryOperator<F> interpolator);
+    N interpolate(V target, N alpha, UnaryOperator<N> interpolator);
 
-    boolean isUnit(F epsilon);
+    boolean isUnit(N epsilon);
 
-    boolean isCollinear(VF vector, F epsilon);
+    boolean isCollinear(V vector, N epsilon);
 
-    boolean isPerpendicular(VF vector, F epsilon);
+    boolean isPerpendicular(V vector, N epsilon);
 
-    boolean epsilonEquals(VF vector, F epsilon);
+    boolean epsilonEquals(V vector, N epsilon);
 
-    boolean isZero(F epsilon);
+    boolean isZero(N epsilon);
 }

@@ -18,7 +18,7 @@ package org.lidiuma.math.api.geometry.rectangle;
 
 import org.lidiuma.math.api.geometry.point.Point2;
 
-public interface Rectangle2<N, F, P extends Point2<N, F>> {
+public interface Rectangle2<N, P extends Point2<N>> {
 
     P pos();
 

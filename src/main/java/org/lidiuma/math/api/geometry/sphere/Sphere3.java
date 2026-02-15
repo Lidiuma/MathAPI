@@ -18,5 +18,5 @@ package org.lidiuma.math.api.geometry.sphere;
 
 import org.lidiuma.math.api.geometry.point.Point3;
 
-public interface Sphere3<N, F> extends Sphere<N, F, Point3<N, F>> {
+public interface Sphere3<N> extends Sphere<N, Point3<N>> {
 }

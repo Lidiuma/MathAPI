@@ -18,7 +18,7 @@ package org.lidiuma.math.api.geometry.sphere;
 
 import org.lidiuma.math.api.geometry.point.Point;
 
-public interface Sphere<N, F, P extends Point<N, F, P, ?, ?, ?>> {
+public interface Sphere<N, P extends Point<N, P, ?>> {
 
     P center();
 

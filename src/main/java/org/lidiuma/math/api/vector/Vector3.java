@@ -19,11 +19,11 @@ package org.lidiuma.math.api.vector;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.tuple.UnaryTuple3;
 
-public interface Vector3<N, F> extends Vector<N, F, Vector3<N, F>, Vector3<F, F>>, UnaryTuple3<N> {
+public interface Vector3<N> extends Vector<N, Vector3<N>>, UnaryTuple3<N> {
 
-    Vector3<N, F> cross(Vector3<N, F> vector);
+    Vector3<N> cross(Vector3<N> vector);
 
     /* ========== Decimal-Only Operations ========== */
 
-    Vector3<N, F> rotate(Vector3<N, F> axis, Angle<N> angle);
+    Vector3<N> rotate(Vector3<N> axis, Angle<N> angle);
 }

@@ -18,5 +18,5 @@ package org.lidiuma.math.api.geometry.line;
 
 import org.lidiuma.math.api.geometry.point.Point3;
 
-public interface Line3<N, F> extends Line<N, F, Point3<N, F>> {
+public interface Line3<N> extends Line<N, Point3<N>> {
 }
