@@ -17,12 +17,15 @@
 package org.lidiuma.math.api.geometry.rectangle;
 
 import org.lidiuma.math.api.geometry.point.Point2;
+import org.lidiuma.math.api.vector.Vector2;
 
-public interface Rectangle2<N, P extends Point2<N>> {
+public interface Rectangle2<N> extends Rectangle<N, Point2<N>, Vector2<N>> {
 
-    P pos();
+    default N width() {
+        return size().x();
+    }
 
-    N width();
-
-    N height();
+    default N height() {
+        return size().y();
+    }
 }

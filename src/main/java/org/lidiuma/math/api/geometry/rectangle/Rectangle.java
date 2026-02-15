@@ -16,20 +16,16 @@
 
 package org.lidiuma.math.api.geometry.rectangle;
 
-import org.lidiuma.math.api.geometry.point.Point3;
-import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.geometry.point.Point;
+import org.lidiuma.math.api.vector.Vector;
 
-public interface Rectangle3<N> extends Rectangle<N, Point3<N>, Vector3<N>> {
+public interface Rectangle<N, P extends Point<N, P, V>, V extends Vector<N, V>> {
 
-    default N width() {
-        return size().x();
-    }
+    /// The lower-left corner of the rectangle.
+    P origin();
 
-    default N height() {
-        return size().y();
-    }
+    P center();
 
-    default N length() {
-        return size().z();
-    }
+    /// The dimensions of the rectangle.
+    V size();
 }

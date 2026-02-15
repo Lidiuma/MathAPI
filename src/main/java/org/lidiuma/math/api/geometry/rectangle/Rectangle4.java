@@ -16,17 +16,24 @@
 
 package org.lidiuma.math.api.geometry.rectangle;
 
-import org.lidiuma.math.api.geometry.point.Point2;
+import org.lidiuma.math.api.geometry.point.Point4;
+import org.lidiuma.math.api.vector.Vector4;
 
-public interface Rectangle4<N, P extends Point2<N>> {
+public interface Rectangle4<N> extends Rectangle<N, Point4<N>, Vector4<N>> {
 
-    P pos();
+    default N width() {
+        return size().y();
+    }
 
-    N width();
+    default N height() {
+        return size().z();
+    }
 
-    N height();
+    default N length() {
+        return size().x();
+    }
 
-    N length();
-
-    N depth();
+    default N depth() {
+        return size().w();
+    }
 }
