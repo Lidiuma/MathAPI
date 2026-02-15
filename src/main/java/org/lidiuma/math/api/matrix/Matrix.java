@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2026 Xasmedy
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.lidiuma.math.api.matrix;
+
+/// Generic Matrix interface having common methods.
+/// @param <M> is the matrix implementation.
+/// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
+public interface Matrix<N, M extends Matrix<N, M>> {
+
+    /// @return [Matrix#rows()] multiplied by [Matrix#columns()].
+    int size();
+
+    int rows();
+
+    int columns();
+
+    /// @return the total number of bytes required to store this matrix.
+    /// @implNote The size is calculated as `size(`{@link N}`) * `{@link #size()}.
+    long byteSize();
+
+    /// @return this matrix with each element added by the other matrix.
+    M add(M other);
+
+    /// @return this matrix with each element subtracted by the other matrix.
+    M sub(M other);
+
+    /// Scalar Matrix Multiplication.
+    /// @return this matrix with each element multiplied by the scalar.
+    M mul(N scalar);
+
+    /// Post-Multiples `this` matrix with the `other` matrix.\
+    /// Results in `A := AB`.
+    /// @return the multiplied matrix.
+    /// @apiNote Order is important! `this * other != other * this`
+    M mul(M other);
+
+    /// Pre-Multiples the `other` matrix with `this` matrix.\
+    /// Results in `A := BA`.
+    /// @return the multiplied matrix.
+    /// @apiNote Order is important! `other * this != this * other`
+    M preMul(M other);
+
+    /// @return the transposed version of this matrix.
+    M transpose();
+
+    /// @return The determinant of this matrix.
+    N determinant();
+
+    /// Inverts this matrix given that the determinant is != 0.
+    /// @return This matrix for the purpose of chaining operations.
+    /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
+    M invert() throws ArithmeticException;
+
+    /// @return true if the matrix is a singular matrix.
+    boolean isSingular();
+
+    /// @return a matrix with the translational part removed (set to 0) and transposed.
+    M toNormalMatrix();
+}
