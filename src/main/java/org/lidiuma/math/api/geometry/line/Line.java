@@ -16,9 +16,10 @@
 
 package org.lidiuma.math.api.geometry.line;
 
+import org.lidiuma.math.api.NativeLayout;
 import org.lidiuma.math.api.geometry.point.Point;
 
-public interface Line<N, P extends Point<N, P, ?>> {
+public interface Line<N, P extends Point<N, P, ?>> extends NativeLayout {
 
     P start();
 

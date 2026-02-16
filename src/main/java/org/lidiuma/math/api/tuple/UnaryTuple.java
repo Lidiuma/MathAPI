@@ -16,7 +16,9 @@
 
 package org.lidiuma.math.api.tuple;
 
-public interface UnaryTuple<N> {
+import org.lidiuma.math.api.NativeLayout;
+
+public interface UnaryTuple<N> extends NativeLayout {
 
     /// @return The amount of elements this tuple has.
     int dimension();

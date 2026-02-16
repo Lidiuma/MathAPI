@@ -16,10 +16,11 @@
 
 package org.lidiuma.math.api.geometry.rectangle;
 
+import org.lidiuma.math.api.NativeLayout;
 import org.lidiuma.math.api.geometry.point.Point;
 import org.lidiuma.math.api.vector.Vector;
 
-public interface Rectangle<N, P extends Point<N, P, V>, V extends Vector<N, V>> {
+public interface Rectangle<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends NativeLayout {
 
     /// The lower-left corner of the rectangle.
     P origin();

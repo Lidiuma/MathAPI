@@ -16,10 +16,12 @@
 
 package org.lidiuma.math.api.matrix;
 
+import org.lidiuma.math.api.NativeLayout;
+
 /// Generic Matrix interface having common methods.
 /// @param <M> is the matrix implementation.
 /// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
-public interface Matrix<N, M extends Matrix<N, M>> {
+public interface Matrix<N, M extends Matrix<N, M>> extends NativeLayout {
 
     /// @return [Matrix#rows()] multiplied by [Matrix#columns()].
     int size();
