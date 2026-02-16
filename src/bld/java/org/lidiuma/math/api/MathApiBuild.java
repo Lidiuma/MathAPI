@@ -12,12 +12,12 @@ public final class MathApiBuild extends Project {
         pkg = "org.lidiuma.math.api";
         name = "MathApi";
         version = version(0,1,0);
-        javaRelease = 17;
+        javaRelease = 25;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         new MathApiBuild().start(args);
     }
 }
