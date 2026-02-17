@@ -30,10 +30,6 @@ public interface Matrix<N, M extends Matrix<N, M>> extends NativeLayout {
 
     int columns();
 
-    /// @return the total number of bytes required to store this matrix.
-    /// @implNote The size is calculated as `size(`{@link N}`) * `{@link #size()}.
-    long byteSize();
-
     /// @return this matrix with each element added by the other matrix.
     M add(M other);
 
