@@ -46,12 +46,6 @@ public interface Matrix<N, M extends Matrix<N, M>> extends NativeLayout {
     /// @apiNote Order is important! `this * other != other * this`
     M mul(M other);
 
-    /// Pre-Multiples the `other` matrix with `this` matrix.\
-    /// Results in `A := BA`.
-    /// @return the multiplied matrix.
-    /// @apiNote Order is important! `other * this != this * other`
-    M preMul(M other);
-
     /// @return the transposed version of this matrix.
     M transpose();
 

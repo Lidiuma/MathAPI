@@ -43,13 +43,6 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
      */
     Quaternion<N> mul(N scalar);
 
-    /// Returns the Hamilton product of `other` and `this` quaternion.
-    ///
-    /// @param other the quaternion to multiply.
-    /// @return a new quaternion equal to `other * this`
-    /// @apiNote Order is important! `other * this != this * other`
-    Quaternion<N> preMul(Quaternion<N> other);
-
     /// Returns the power of `quaternion^alpha`.
     /// @param alpha The exponent.
     Quaternion<N> pow(N alpha);
