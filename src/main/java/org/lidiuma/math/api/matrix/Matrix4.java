@@ -92,9 +92,6 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     /// @return the scale components along each axis.
     Vector3<N> scale();
 
-    /// @return the 3x3 part of this matrix as a matrix3.
-    Matrix3<N> asMatrix3();
-
     /// Transforms a 3D position vector using the affine part of this matrix.
     /// @return the transformed vector.
     Vector3<N> transform(Vector3<N> vector);
@@ -121,18 +118,6 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     /// @apiNote Includes rotation, translation, scale, and perspective; output is divided by W.
     Vector3<N> project(Vector3<N> vector);
 
-    /// Rotates a 3D direction vector using the 3×3 part of this matrix.
-    /// @apiNote Translation and perspective components are ignored.
-    Vector3<N> rotate(Vector3<N> vector);
-
-    /// Applies the inverse rotation of this matrix to a 3D vector, undoing {@link #rotate(Vector3)}.
-    /// @apiNote Translation and perspective components are ignored. Non-uniform scale in the 3×3 submatrix may affect results.
-    Vector3<N> unrotate(Vector3<N> vector);
-
     /// Applies the inverse affine transformation of this matrix to a 3D vector.
     Vector3<N> untransform(Vector3<N> vector);
-
-    /// Copies the 4x3 upper-left matrix into the array.
-    /// @apiNote The layout is column-major order.
-    void toMatrix4x3Array(N[] out);
 }

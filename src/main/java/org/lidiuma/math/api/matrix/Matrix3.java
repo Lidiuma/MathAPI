@@ -55,13 +55,18 @@ public interface Matrix3<N> extends Matrix<N, Matrix3<N>> {
     N m21();
     N m22();
 
+    /// Applies a 3D rotation to this matrix using a quaternion.
+    Matrix3<N> rotate(Quaternion<N> quaternion);
+
     /// Transforms a 3D position vector using this matrix.
     /// @return the transformed vector.
     Vector3<N> transform(Vector3<N> vector);
 
-    /// Applies a 3D rotation to this matrix using a quaternion.
-    Matrix3<N> rotate(Quaternion<N> quaternion);
+    /// Rotates a 3D vector.
+    default Vector3<N> rotate(Vector3<N> vector) {
+        return transform(vector);
+    }
 
-    /// Applies the inverse rotation of this matrix to a 3D vector.
+    /// Applies the inverse rotation of this matrix to a 3D vector, undoing {@link #rotate(Vector3)}.
     Vector3<N> unrotate(Vector3<N> vector);
 }
