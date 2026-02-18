@@ -16,6 +16,8 @@
 
 package org.lidiuma.math.api.matrix;
 
+import org.lidiuma.math.api.geometry.point.Point3;
+import org.lidiuma.math.api.geometry.point.Point4;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.vector.Vector3;
@@ -67,18 +69,41 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     N m32();
     N m33();
 
-    Vector4<N> transform(Vector4<N> vector);
+    /// Transforms a 4D vector using this matrix, ignoring perspective and translation.
+    /// Only rotation, scale, and shear affect the result.
+    /// @return the transformed direction.
+    Vector4<N> transform(Vector4<N> vector); // TODO Maybe move to Matrix4x3?
 
-    /// Transforms a 3D position vector ignoring prospective.
-    /// @return the transformed vector.
-    Vector3<N> transform(Vector3<N> vector);
+    /// Transforms a 4D point using this matrix, ignoring perspective.
+    /// Translation, rotation, and scale apply.
+    /// @return the transformed point.
+    Point4<N> transform(Point4<N> point); // TODO Maybe move to Matrix4x3?
 
-    /// Applies the inverse affine transformation of this matrix to a 3D vector.
-    Vector3<N> untransform(Vector3<N> vector);
+    /// Transforms a 3D vector using this matrix, ignoring perspective and translation.
+    /// Only rotation, scale, and shear affect the result.
+    /// @return the transformed direction.
+    Vector3<N> transform(Vector3<N> vector); // TODO Maybe move to Matrix4x3?
 
-    /// Projects a 3D position vector using this matrix and performs a perspective divide.
-    /// @apiNote Includes rotation, translation, scale, and perspective; output is divided by W.
-    Vector3<N> project(Vector3<N> vector);
+    /// Transforms a 3D point using this matrix, ignoring perspective.
+    /// Translation, rotation, and scale apply.
+    /// @return the transformed point.
+    Point3<N> transform(Point3<N> point); // TODO Maybe move to Matrix4x3?
+
+    /// Applies the inverse affine transformation of this matrix to a 3D direction vector.
+    /// Inverse of {@link #transform(Vector3)}.
+    Vector3<N> untransform(Vector3<N> vector); // TODO Maybe move to Matrix4x3?
+
+    /// Applies the inverse affine transformation of this matrix to a 3D point.
+    /// Inverse of {@link #transform(Point3)}.
+    Point3<N> untransform(Point3<N> vector); // TODO Maybe move to Matrix4x3?
+
+    // TODO Add untransform() for 4D
+
+    /// Projects a 3D point using this matrix and performs a perspective divide.
+    /// Translation, rotation, scale, and perspective are applied.
+    /// @apiNote Output is divided by the W component.
+    /// @return the projected point.
+    Point3<N> project(Point3<N> point);
 
     /// @return a new matrix with the rotation around the given axis applied.
     Matrix4<N> rotateAround(Vector3<N> axis, Angle<N> angle);
