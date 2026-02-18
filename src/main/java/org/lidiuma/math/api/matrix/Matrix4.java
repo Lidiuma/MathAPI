@@ -84,33 +84,21 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     /// @return a new matrix representing the average transform of the input matrices.
     Matrix4<N> average(Matrix4<N>[] matrices, N[] weights);
 
-    /// @return the translation part of this matrix.
-    Vector3<N> translation();
-
-    /// @return the rotation part of this matrix.
-    Quaternion<N> rotation();
-
-    /// @return the scale components along each axis.
-    Vector3<N> scale();
-
     Vector4<N> transform(Vector4<N> vector);
 
     /// Transforms a 3D position vector ignoring prospective.
     /// @return the transformed vector.
     Vector3<N> transform(Vector3<N> vector);
 
+    /// Applies the inverse affine transformation of this matrix to a 3D vector.
+    Vector3<N> untransform(Vector3<N> vector);
+
     /// Projects a 3D position vector using this matrix and performs a perspective divide.
     /// @apiNote Includes rotation, translation, scale, and perspective; output is divided by W.
     Vector3<N> project(Vector3<N> vector);
 
-    /// @return a new matrix with the translation applied.
-    Matrix4<N> translate(Vector3<N> translation);
-
     /// @return a new matrix with the rotation around the given axis applied.
     Matrix4<N> rotateAround(Vector3<N> axis, Angle<N> angle);
-
-    /// @return a new matrix with the given rotation applied.
-    Matrix4<N> rotate(Quaternion<N> rotation);
 
     /// @return a new matrix that rotates the direction of `v1` to align with `v2`.
     Matrix4<N> rotateBetween(Vector3<N> v1, Vector3<N> v2);
@@ -121,6 +109,18 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     /// @return a new matrix with the given scale applied.
     Matrix4<N> scale(Vector3<N> scale);
 
-    /// Applies the inverse affine transformation of this matrix to a 3D vector.
-    Vector3<N> untransform(Vector3<N> vector);
+    /// @return a new matrix with the translation applied.
+    Matrix4<N> translate(Vector3<N> translation);
+
+    /// @return a new matrix with the given rotation applied.
+    Matrix4<N> rotate(Quaternion<N> rotation);
+
+    /// @return the scale components along each axis.
+    Vector3<N> scale();
+
+    /// @return the translation part of this matrix.
+    Vector3<N> translation();
+
+    /// @return the rotation part of this matrix.
+    Quaternion<N> rotation();
 }
