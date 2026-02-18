@@ -16,9 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.Quaternion;
-import org.lidiuma.math.api.vector.Vector2;
 import org.lidiuma.math.api.vector.Vector3;
 
 /// Immutable Matrix3x3 always using post-multiplication.
@@ -69,49 +67,9 @@ public interface Matrix3<N> extends Matrix<N, Matrix3<N>> {
     /// @return the transformed vector.
     Vector3<N> transform(Vector3<N> vector);
 
-    /// Transforms a 2D position vector using the affine part of this matrix.
-    /// @return the transformed vector.
-    Vector2<N> transform(Vector2<N> vector);
-
     /// Applies a 3D rotation to this matrix using a quaternion.
     Matrix3<N> rotate(Quaternion<N> quaternion);
 
     /// Applies the inverse rotation of this matrix to a 3D vector.
     Vector3<N> unrotate(Vector3<N> vector);
-
-    /// Optimized multiplication for affine matrices.
-    /// @apiNote Both this and the {@code other} matrix are assumed to be affine.
-    Matrix3<N> affineMul(Matrix3<N> other);
-
-    /// @return the determinant of an affine matrix.
-    N affineDeterminant();
-
-    /// Inverts this matrix given that the determinant is != 0.
-    /// @return This matrix for the purpose of chaining operations.
-    /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
-    Matrix3<N> affineInvert();
-
-    /// @return true if the affine matrix is a singular matrix.
-    boolean isAffineSingular();
-
-    /// @return a new affine matrix with the translation applied.
-    Matrix3<N> affineTranslate(Vector2<N> translation);
-
-    /// @return a new affine matrix with the given rotation applied.
-    Matrix3<N> affineRotate(Angle<N> angle);
-
-    /// @return a new affine matrix with the given shearing applied.
-    Matrix3<N> affineShear(Vector2<N> shear);
-
-    /// @return a new affine matrix with the given scaling applied.
-    Matrix3<N> affineScale(Vector2<N> scale);
-
-    /// @return the scaling component from this affine matrix.
-    Vector2<N> affineScale();
-
-    /// @return the rotation component from this affine matrix as an angle.
-    Angle<N> rotation();
-
-    /// @return the translation component from this affine matrix.
-    Vector2<N> translation();
 }
