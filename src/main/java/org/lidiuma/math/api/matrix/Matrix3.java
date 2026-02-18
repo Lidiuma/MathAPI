@@ -21,14 +21,6 @@ import org.lidiuma.math.api.vector.Vector3;
 
 /// Immutable Matrix3x3 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
-///
-/// Methods starting with `affine` provide optimization for matrices that have has last row the constant values `[0, 0, 1]`:
-///
-/// |   |   |    |
-/// |:-:|:-:|:--:|
-/// | a | b | tx |
-/// | c | d | ty |
-/// | 0 | 0 |  1 |
 public interface Matrix3<N> extends Matrix<N, Matrix3<N>> {
 
     int SIZE = 9;
