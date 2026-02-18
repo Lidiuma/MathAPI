@@ -19,6 +19,7 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.vector.Vector4;
 
 /// Immutable Matrix4x4 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
@@ -92,9 +93,15 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     /// @return the scale components along each axis.
     Vector3<N> scale();
 
-    /// Transforms a 3D position vector using the affine part of this matrix.
+    Vector4<N> transform(Vector4<N> vector);
+
+    /// Transforms a 3D position vector ignoring prospective.
     /// @return the transformed vector.
     Vector3<N> transform(Vector3<N> vector);
+
+    /// Projects a 3D position vector using this matrix and performs a perspective divide.
+    /// @apiNote Includes rotation, translation, scale, and perspective; output is divided by W.
+    Vector3<N> project(Vector3<N> vector);
 
     /// @return a new matrix with the translation applied.
     Matrix4<N> translate(Vector3<N> translation);
@@ -113,10 +120,6 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
 
     /// @return a new matrix with the given scale applied.
     Matrix4<N> scale(Vector3<N> scale);
-
-    /// Projects a 3D position vector using this matrix and performs a perspective divide.
-    /// @apiNote Includes rotation, translation, scale, and perspective; output is divided by W.
-    Vector3<N> project(Vector3<N> vector);
 
     /// Applies the inverse affine transformation of this matrix to a 3D vector.
     Vector3<N> untransform(Vector3<N> vector);
