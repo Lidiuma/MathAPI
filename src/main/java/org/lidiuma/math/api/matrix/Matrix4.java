@@ -67,23 +67,6 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     N m32();
     N m33();
 
-    /// Linearly interpolates between this matrix and the other matrix mixing by alpha.
-    /// @param alpha the alpha value in the range `[0,1]`.
-    Matrix4<N> lerp(Matrix4<N> other, N alpha);
-
-    /// Averages this matrix with another, using lerp for translation/scale and slerp for rotation.
-    /// @param other The other matrix.
-    /// @param weight Weight for this transform (other's weight is `1 - weight`)
-    Matrix4<N> average(Matrix4<N> other, N weight);
-
-    /// Averages an array of matrices using the same weight.
-    /// @return a new matrix representing the average transform of the input matrices.
-    Matrix4<N> average(Matrix4<N>[] matrices);
-
-    /// Averages an array of matrices using the provided weights.
-    /// @return a new matrix representing the average transform of the input matrices.
-    Matrix4<N> average(Matrix4<N>[] matrices, N[] weights);
-
     Vector4<N> transform(Vector4<N> vector);
 
     /// Transforms a 3D position vector ignoring prospective.
@@ -105,6 +88,15 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
 
     /// @return a new matrix that rotates to align the forward direction with `direction` and up vector with `up`.
     Matrix4<N> rotateToDirection(Vector3<N> direction, Vector3<N> up);
+
+    /// Linearly interpolates between this matrix and the other matrix mixing by alpha.
+    /// @param alpha the alpha value in the range `[0,1]`.
+    Matrix4<N> lerp(Matrix4<N> other, N alpha);
+
+    /// Averages this matrix with another, using lerp for translation/scale and slerp for rotation.
+    /// @param other The other matrix.
+    /// @param weight Weight for this transform (other's weight is `1 - weight`)
+    Matrix4<N> average(Matrix4<N> other, N weight);
 
     /// @return a new matrix with the given scale applied.
     Matrix4<N> scale(Vector3<N> scale);
