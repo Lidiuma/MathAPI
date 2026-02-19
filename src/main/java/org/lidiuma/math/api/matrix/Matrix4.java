@@ -17,11 +17,10 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.geometry.point.Point3;
-import org.lidiuma.math.api.geometry.point.Point4;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.Quaternion;
+import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
-import org.lidiuma.math.api.vector.Vector4;
 
 /// Immutable Matrix4x4 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
@@ -69,33 +68,18 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>> {
     N m32();
     N m33();
 
-    /// Transforms a 4D vector using this matrix, ignoring perspective and translation.
-    /// Only rotation, scale, and shear affect the result.
-    /// @return the transformed direction.
-    Vector4<N> transform(Vector4<N> vector); // TODO Maybe move to Matrix4x3?
+    /// Transforms a 4D value using this matrix.
+    /// @return the transformed value.
+    UnaryTuple4<N> transform(UnaryTuple4<N> vector);
 
-    /// Transforms a 4D point using this matrix, ignoring perspective.
+    /// Transforms a 3D vector using this matrix, ignoring translation (w=0).
+    /// @return the transformed direction.
+    Vector3<N> transform(Vector3<N> vector);
+
+    /// Transforms a 3D point using this matrix (w = 1).
     /// Translation, rotation, and scale apply.
     /// @return the transformed point.
-    Point4<N> transform(Point4<N> point); // TODO Maybe move to Matrix4x3?
-
-    /// Transforms a 3D vector using this matrix, ignoring perspective and translation.
-    /// Only rotation, scale, and shear affect the result.
-    /// @return the transformed direction.
-    Vector3<N> transform(Vector3<N> vector); // TODO Maybe move to Matrix4x3?
-
-    /// Transforms a 3D point using this matrix, ignoring perspective.
-    /// Translation, rotation, and scale apply.
-    /// @return the transformed point.
-    Point3<N> transform(Point3<N> point); // TODO Maybe move to Matrix4x3?
-
-    /// Applies the inverse affine transformation of this matrix to a 3D direction vector.
-    /// Inverse of {@link #transform(Vector3)}.
-    Vector3<N> untransform(Vector3<N> vector); // TODO Maybe move to Matrix4x3?
-
-    /// Applies the inverse affine transformation of this matrix to a 3D point.
-    /// Inverse of {@link #transform(Point3)}.
-    Point3<N> untransform(Point3<N> vector); // TODO Maybe move to Matrix4x3?
+    Point3<N> transform(Point3<N> point);
 
     // TODO Add untransform() for 4D
 
