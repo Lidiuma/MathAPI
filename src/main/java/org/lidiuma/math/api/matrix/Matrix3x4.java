@@ -19,7 +19,7 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.vector.Vector3;
 
-public interface Matrix3x4<N> extends Matrix<N, Matrix3x4<N>> {
+public interface Matrix3x4<N> extends Matrix<N, Matrix3x4<N>, Vector3<N>> {
 
     int SIZE = 12;
 

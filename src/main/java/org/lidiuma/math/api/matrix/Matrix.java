@@ -17,11 +17,12 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.NativeLayout;
+import org.lidiuma.math.api.vector.Vector;
 
 /// Generic Matrix interface having common methods.
 /// @param <M> is the matrix implementation.
 /// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
-public interface Matrix<N, M extends Matrix<N, M>> extends NativeLayout {
+public interface Matrix<N, M extends Matrix<N, M, V>, V extends Vector<N, V>> extends NativeLayout {
 
     /// @return [Matrix#rows()] multiplied by [Matrix#columns()].
     int size();
@@ -36,20 +37,23 @@ public interface Matrix<N, M extends Matrix<N, M>> extends NativeLayout {
     /// @return this matrix with each element subtracted by the other matrix.
     M sub(M other);
 
-    /// Scalar Matrix Multiplication.
-    /// @return this matrix with each element multiplied by the scalar.
-    M mul(N scalar);
-
     /// Post-Multiples `this` matrix with the `other` matrix.\
     /// Results in `A := AB`.
     /// @return the multiplied matrix.
     /// @apiNote Order is important! `this * other != other * this`
     M mul(M other);
 
+    /// Scalar Matrix Multiplication.
+    /// @return this matrix with each element multiplied by the scalar.
+    M mul(N scalar);
+
+    /// Post-Multiples `this` matrix with the provided vector.
+    V mul(V vector);
+
     /// @return the transposed version of this matrix.
     M transpose();
 
-    /// @return The determinant of this matrix.
+    /// @return The determinant of this squared matrix.
     N determinant();
 
     /// Inverts this matrix given that the determinant is != 0.
@@ -57,7 +61,7 @@ public interface Matrix<N, M extends Matrix<N, M>> extends NativeLayout {
     /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
     M invert() throws ArithmeticException;
 
-    /// @return true if the matrix is a singular matrix.
+    /// @return true if the matrix is a singular squared matrix.
     boolean isSingular();
 
     /// @return a matrix with the translational part removed (set to 0) and transposed.

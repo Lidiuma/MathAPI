@@ -19,7 +19,7 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
 
-public interface Matrix2<N> extends Matrix<N, Matrix2<N>> {
+public interface Matrix2<N> extends Matrix<N, Matrix2<N>, Vector2<N>> {
 
     int SIZE = 4;
 
