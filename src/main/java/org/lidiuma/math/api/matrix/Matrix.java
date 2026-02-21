@@ -17,12 +17,14 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.NativeLayout;
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.tuple.UnaryTuple;
+import java.util.function.Function;
 
-/// Generic Matrix interface having common methods.
+/// Generic Matrix interface.
+/// @apiNote All operations use post-multiplication.
 /// @param <M> is the matrix implementation.
 /// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
-public interface Matrix<N, M extends Matrix<N, M, V>, V extends Vector<N, V>> extends NativeLayout {
+public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> extends NativeLayout {
 
     /// @return [Matrix#rows()] multiplied by [Matrix#columns()].
     int size();
@@ -37,7 +39,7 @@ public interface Matrix<N, M extends Matrix<N, M, V>, V extends Vector<N, V>> ex
     /// @return this matrix with each element subtracted by the other matrix.
     M sub(M other);
 
-    /// Post-Multiples `this` matrix with the `other` matrix.\
+    /// Multiples `this` matrix with the `other` matrix.\
     /// Results in `A := AB`.
     /// @return the multiplied matrix.
     /// @apiNote Order is important! `this * other != other * this`
@@ -47,8 +49,11 @@ public interface Matrix<N, M extends Matrix<N, M, V>, V extends Vector<N, V>> ex
     /// @return this matrix with each element multiplied by the scalar.
     M mul(N scalar);
 
-    /// Post-Multiples `this` matrix with the provided vector.
-    V mul(V vector);
+    /// Multiples `this` matrix with the provided tuple.
+    T mul(T tuple);
+
+    /// Multiples `this` matrix with the provided tuple, and maps the result to the wanted type.
+    <O extends T> O mul(T tuple, Function<T, O> mapper);
 
     /// @return the transposed version of this matrix.
     M transpose();

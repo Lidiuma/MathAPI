@@ -21,12 +21,11 @@ import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
-import org.lidiuma.math.api.vector.Vector4;
 
 /// Immutable Matrix4x4 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
 @SuppressWarnings("unused")
-public interface Matrix4<N> extends Matrix<N, Matrix4<N>, Vector4<N>> {
+public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
 
     int SIZE = 16;
     int M00 = 0, M01 = 4, M02 =  8, M03 = 12;

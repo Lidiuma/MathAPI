@@ -17,11 +17,12 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.rotation.Quaternion;
+import org.lidiuma.math.api.tuple.UnaryTuple3;
 import org.lidiuma.math.api.vector.Vector3;
 
 /// Immutable Matrix3x3 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
-public interface Matrix3<N> extends Matrix<N, Matrix3<N>, Vector3<N>> {
+public interface Matrix3<N> extends Matrix<N, Matrix3<N>, UnaryTuple3<N>> {
 
     int SIZE = 9;
     int M00 = 0, M01 = 3, M02 = 6;
