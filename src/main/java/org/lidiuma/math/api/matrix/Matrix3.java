@@ -67,11 +67,4 @@ public interface Matrix3<N> extends Matrix<N, Matrix3<N>, UnaryTuple3<N>> {
 
     /// Applies a 3D rotation to this matrix using a quaternion.
     Matrix3<N> rotate(Quaternion<N> quaternion);
-
-    /// Rotates a 3D vector.
-    /// @implNote it's the same as calling mul().
-    Vector3<N> rotate(Vector3<N> vector); // TODO Remove this method? It does not make sense to have it
-
-    /// Applies the inverse rotation of this matrix to a 3D vector, undoing {@link #rotate(Vector3)}.
-    Vector3<N> unrotate(Vector3<N> vector); // TODO Remove this method? It does not make sense to have it
 }

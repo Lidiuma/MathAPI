@@ -76,8 +76,6 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
     /// Multiplies `this` matrix with the provided [Vector3] treated as a [Vector4] with [Vector4#w()] = 0.
     Vector3<N> mul(Vector3<N> vector);
 
-    // TODO Add untransform() for 4D
-
     /// Projects a 3D point using this matrix and performs a perspective divide.
     /// Translation, rotation, scale, and perspective are applied.
     /// @apiNote Output is divided by the W component.

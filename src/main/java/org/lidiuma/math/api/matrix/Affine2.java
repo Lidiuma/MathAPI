@@ -38,7 +38,7 @@ public interface Affine2<N> extends Matrix3<N> {
     Vector2<N> translation();
 
     /// @return the angle calculated from the rotation component of this matrix.
-    Angle<N> rotationAngle();
+    Angle<N> rotation();
 
     /// @return the shearing component of this matrix.
     Vector2<N> shear();
