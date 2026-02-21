@@ -16,11 +16,8 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.geometry.point.Point2;
-import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
-import org.lidiuma.math.api.vector.Vector3;
 
 public interface Affine2<N> extends Matrix3<N> {
 
@@ -35,12 +32,6 @@ public interface Affine2<N> extends Matrix3<N> {
     /// @return Always returns 1.
     @Override
     N m22();
-
-    /// Multiplies `this` matrix with the provided [Point2] treated as a [Point3] with [Point3#z()] = 1.
-    Point2<N> mul(Point2<N> point);
-
-    /// Multiplies `this` matrix with the provided [Vector2] treated as a [Vector3] with [Vector3#z()] = 0.
-    Vector2<N> mul(Vector2<N> vector);
 
     /// @return a new affine matrix with the translation applied.
     Affine2<N> translate(Vector2<N> translation);

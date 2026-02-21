@@ -16,8 +16,11 @@
 
 package org.lidiuma.math.api.matrix;
 
+import org.lidiuma.math.api.geometry.point.Point2;
+import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.tuple.UnaryTuple3;
+import org.lidiuma.math.api.vector.Vector2;
 import org.lidiuma.math.api.vector.Vector3;
 
 /// Immutable Matrix3x3 always using post-multiplication.
@@ -56,20 +59,19 @@ public interface Matrix3<N> extends Matrix<N, Matrix3<N>, UnaryTuple3<N>> {
     N m21();
     N m22();
 
+    /// Multiplies `this` matrix with the provided [Point2] treated as a [Point3] with [Point3#z()] = 1.
+    Point2<N> mul(Point2<N> point);
+
+    /// Multiplies `this` matrix with the provided [Vector2] treated as a [Vector3] with [Vector3#z()] = 0.
+    Vector2<N> mul(Vector2<N> vector);
+
     /// Applies a 3D rotation to this matrix using a quaternion.
     Matrix3<N> rotate(Quaternion<N> quaternion);
 
-    /// Transforms a 3D vector using this matrix.
-    /// @return the transformed vector.
-    Vector3<N> transform(Vector3<N> vector);
-
-    // TODO Add untransform()
-
     /// Rotates a 3D vector.
-    default Vector3<N> rotate(Vector3<N> vector) {
-        return transform(vector);
-    }
+    /// @implNote it's the same as calling mul().
+    Vector3<N> rotate(Vector3<N> vector); // TODO Remove this method? It does not make sense to have it
 
     /// Applies the inverse rotation of this matrix to a 3D vector, undoing {@link #rotate(Vector3)}.
-    Vector3<N> unrotate(Vector3<N> vector);
+    Vector3<N> unrotate(Vector3<N> vector); // TODO Remove this method? It does not make sense to have it
 }
