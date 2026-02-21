@@ -17,10 +17,12 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.geometry.point.Point3;
+import org.lidiuma.math.api.geometry.point.Point4;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.vector.Vector4;
 
 /// Immutable Matrix4x4 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
@@ -68,18 +70,11 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
     N m32();
     N m33();
 
-    /// Transforms a 4D value using this matrix.
-    /// @return the transformed value.
-    UnaryTuple4<N> transform(UnaryTuple4<N> vector);
+    /// Multiplies `this` matrix with the provided [Point3] treated as a [Point4] with [Point4#w()] = 1.
+    Point3<N> mul(Point3<N> point);
 
-    /// Transforms a 3D vector using this matrix, ignoring translation (w=0).
-    /// @return the transformed direction.
-    Vector3<N> transform(Vector3<N> vector);
-
-    /// Transforms a 3D point using this matrix (w = 1).
-    /// Translation, rotation, and scale apply.
-    /// @return the transformed point.
-    Point3<N> transform(Point3<N> point);
+    /// Multiplies `this` matrix with the provided [Vector3] treated as a [Vector4] with [Vector4#w()] = 0.
+    Vector3<N> mul(Vector3<N> vector);
 
     // TODO Add untransform() for 4D
 
@@ -115,13 +110,4 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
 
     /// @return a new matrix with the given rotation applied.
     Matrix4<N> rotate(Quaternion<N> rotation);
-
-    /// @return the scale components along each axis.
-    Vector3<N> scale();
-
-    /// @return the translation part of this matrix.
-    Vector3<N> translation();
-
-    /// @return the rotation part of this matrix.
-    Quaternion<N> rotation();
 }
