@@ -19,6 +19,7 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
 
+/// Specialized [Matrix3] for 2D operations.
 public interface Affine2<N> extends Matrix3<N> {
 
     /// @return Always returns 0.
@@ -33,15 +34,15 @@ public interface Affine2<N> extends Matrix3<N> {
     @Override
     N m22();
 
-    /// @return the translation component from this affine matrix.
+    /// @return the translation component of this matrix.
     Vector2<N> translation();
 
-    /// @return the rotation component from this affine matrix as an angle.
-    Angle<N> rotation();
+    /// @return the angle calculated from the rotation component of this matrix.
+    Angle<N> rotationAngle();
 
-    /// @return the scaling component from this affine matrix.
-    Vector2<N> scale();
-
-    /// @return the shearing component from this affine matrix.
+    /// @return the shearing component of this matrix.
     Vector2<N> shear();
+
+    /// @return the scaling component of this matrix.
+    Vector2<N> scale();
 }

@@ -19,39 +19,24 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.vector.Vector3;
 
-public interface Matrix3x4<N> extends Matrix<N, Matrix3x4<N>, Vector3<N>> {
+/// Specialized [Matrix4] for 3D operations.
+public interface Affine3<N> extends Matrix4<N> {
 
-    int SIZE = 12;
-
+    /// @return Always returns 0.
     @Override
-    default int size() {
-        return SIZE;
-    }
+    N m30();
 
+    /// @return Always returns 0.
     @Override
-    default int rows() {
-        return 3;
-    }
+    N m31();
 
+    /// @return Always returns 0.
     @Override
-    default int columns() {
-        return 4;
-    }
+    N m32();
 
-    N m00();
-    N m01();
-    N m02();
-    N m03();
-
-    N m10();
-    N m11();
-    N m12();
-    N m13();
-
-    N m20();
-    N m21();
-    N m22();
-    N m23();
+    /// @return Always returns 1.
+    @Override
+    N m33();
 
     /// Transforms a 3D vector using this matrix, ignoring perspective and translation (w = 0).
     /// Only rotation, scale, and shear affect the result.
