@@ -20,6 +20,7 @@ import org.lidiuma.math.api.NativeLayout;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 import java.util.function.Function;
 
+// TODO Have a different interface for non-squared matrices? Where rows != columns.
 /// Generic Matrix interface.
 /// @apiNote All operations use post-multiplication.
 /// @param <M> is the matrix implementation.

@@ -33,18 +33,6 @@ public interface Affine2<N> extends Matrix3<N> {
     @Override
     N m22();
 
-    /// @return a new affine matrix with the translation applied.
-    Affine2<N> translate(Vector2<N> translation);
-
-    /// @return a new affine matrix with the given rotation applied.
-    Affine2<N> rotate(Angle<N> angle);
-
-    /// @return a new affine matrix with the given shearing applied.
-    Affine2<N> shear(Vector2<N> shear);
-
-    /// @return a new affine matrix with the given scaling applied.
-    Affine2<N> scale(Vector2<N> scale);
-
     /// @return the translation component from this affine matrix.
     Vector2<N> translation();
 
@@ -53,4 +41,7 @@ public interface Affine2<N> extends Matrix3<N> {
 
     /// @return the scaling component from this affine matrix.
     Vector2<N> scale();
+
+    /// @return the shearing component from this affine matrix.
+    Vector2<N> shear();
 }
