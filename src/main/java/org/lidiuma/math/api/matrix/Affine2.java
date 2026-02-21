@@ -19,38 +19,35 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
 
-public interface Matrix2x3<N> extends Matrix2<N> {
+public interface Affine2<N> extends Matrix3<N> {
 
-    int SIZE = 6;
-
+    /// @return Always returns 0.
     @Override
-    default int size() {
-        return SIZE;
-    }
+    N m20();
 
+    /// @return Always returns 0.
     @Override
-    default int columns() {
-        return 3;
-    }
+    N m21();
 
-    N m02();
-    N m12();
+    /// @return Always returns 1.
+    @Override
+    N m22();
 
     /// Transforms a 2D position vector using the affine part of this matrix.
     /// @return the transformed vector.
     Vector2<N> transform(Vector2<N> vector); // TODO Rename to mul()
 
     /// @return a new affine matrix with the translation applied.
-    Matrix2x3<N> translate(Vector2<N> translation);
+    Affine2<N> translate(Vector2<N> translation);
 
     /// @return a new affine matrix with the given rotation applied.
-    Matrix2x3<N> rotate(Angle<N> angle);
+    Affine2<N> rotate(Angle<N> angle);
 
     /// @return a new affine matrix with the given shearing applied.
-    Matrix2x3<N> shear(Vector2<N> shear);
+    Affine2<N> shear(Vector2<N> shear);
 
     /// @return a new affine matrix with the given scaling applied.
-    Matrix2x3<N> scale(Vector2<N> scale);
+    Affine2<N> scale(Vector2<N> scale);
 
     /// @return the translation component from this affine matrix.
     Vector2<N> translation();
