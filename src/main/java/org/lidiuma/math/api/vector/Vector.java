@@ -92,5 +92,9 @@ public interface Vector<N, V extends Vector<N, V>> extends UnaryTuple<N> {
 
     boolean epsilonEquals(V vector, N epsilon);
 
+    /// @return true if all the components of the vector are equal to the provided value within the epsilon.
+    boolean epsilonEquals(N value, N epsilon);
+
+    /// @return true if all the components of the vector are zero within the epsilon.
     boolean isZero(N epsilon);
 }
