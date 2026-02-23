@@ -24,7 +24,7 @@ import org.lidiuma.math.api.vector.Vector3;
 
 /// Immutable Matrix3x3 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
-public interface Matrix3<N> extends Matrix<N, Matrix3<N>, UnaryTuple3<N>> {
+public interface Matrix3<N> extends SquareMatrix<N, Matrix3<N>, UnaryTuple3<N>> {
 
     int SIZE = 9;
 

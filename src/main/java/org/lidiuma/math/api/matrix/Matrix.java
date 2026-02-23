@@ -20,11 +20,11 @@ import org.lidiuma.math.api.NativeLayout;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 import java.util.function.Function;
 
-// TODO Have a different interface for non-squared matrices? Where rows != columns.
 /// Generic Matrix interface.
 /// @apiNote All operations use post-multiplication.
 /// @param <M> is the matrix implementation.
 /// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
+/// @param <T> The UnaryTuple representing Vector-like classes to allow Vector multiplication with this Matrix.
 public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> extends NativeLayout {
 
     /// @return [Matrix#rows()] multiplied by [Matrix#columns()].
@@ -58,18 +58,4 @@ public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> e
 
     /// @return the transposed version of this matrix.
     M transpose();
-
-    /// @return The determinant of this squared matrix.
-    N determinant();
-
-    /// Inverts this matrix given that the determinant is != 0.
-    /// @return This matrix for the purpose of chaining operations.
-    /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
-    M invert() throws ArithmeticException;
-
-    /// @return true if the matrix is a singular squared matrix.
-    boolean isSingular();
-
-    /// @return a matrix with the translational part removed (set to 0) and transposed.
-    M toNormalMatrix();
 }

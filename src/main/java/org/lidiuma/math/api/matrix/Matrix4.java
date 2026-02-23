@@ -25,7 +25,7 @@ import org.lidiuma.math.api.vector.Vector4;
 /// Immutable Matrix4x4 always using post-multiplication.
 /// Internal indexing is row-major, while external raw output is column-major.
 @SuppressWarnings("unused")
-public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
+public interface Matrix4<N> extends SquareMatrix<N, Matrix4<N>, UnaryTuple4<N>> {
 
     int SIZE = 16;
 

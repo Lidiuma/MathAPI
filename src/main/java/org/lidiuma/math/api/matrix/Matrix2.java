@@ -18,7 +18,7 @@ package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.tuple.UnaryTuple2;
 
-public interface Matrix2<N> extends Matrix<N, Matrix2<N>, UnaryTuple2<N>> {
+public interface Matrix2<N> extends SquareMatrix<N, Matrix2<N>, UnaryTuple2<N>> {
 
     int SIZE = 4;
 
