@@ -18,31 +18,40 @@ package org.lidiuma.math.api;
 
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 
+/// Generic Color interface that is able to represent a wide range of colors.
 public interface Color extends UnaryTuple4<Double> {
 
+    /// @return The red channel, usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).
     double red();
 
+    /// @return The green channel, usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).
     double green();
 
+    /// @return The blue channel, usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).
     double blue();
 
+    /// @return The alpha channel, usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).
     double alpha();
 
+    /// The same as [#red()].
     @Override
     default Double x() {
         return red();
     }
 
+    /// The same as [#green()].
     @Override
     default Double y() {
         return green();
     }
 
+    /// The same as [#blue()].
     @Override
     default Double z() {
         return blue();
     }
 
+    /// The same as [#alpha()].
     @Override
     default Double w() {
         return alpha();
