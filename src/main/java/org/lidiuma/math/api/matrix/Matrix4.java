@@ -28,10 +28,6 @@ import org.lidiuma.math.api.vector.Vector4;
 public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
 
     int SIZE = 16;
-    int M00 = 0, M01 = 4, M02 =  8, M03 = 12;
-    int M10 = 1, M11 = 5, M12 =  9, M13 = 13;
-    int M20 = 2, M21 = 6, M22 = 10, M23 = 14;
-    int M30 = 3, M31 = 7, M32 = 11, M33 = 15;
 
     @Override
     default int size() {
@@ -73,8 +69,4 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
 
     /// Multiplies `this` matrix with the provided [Vector3] treated as a [Vector4] with [Vector4#w()] = 0.
     Vector3<N> mul(Vector3<N> vector);
-
-    /// Multiplies a 3D point using this matrix and performs a perspective divide using the `w` component.
-    /// @return the projected point.
-    Point3<N> project(Point3<N> point); // TODO Remove and let a Camera class manage this?
 }

@@ -27,9 +27,6 @@ import org.lidiuma.math.api.vector.Vector3;
 public interface Matrix3<N> extends Matrix<N, Matrix3<N>, UnaryTuple3<N>> {
 
     int SIZE = 9;
-    int M00 = 0, M01 = 3, M02 = 6;
-    int M10 = 1, M11 = 4, M12 = 7;
-    int M20 = 2, M21 = 5, M22 = 8;
 
     @Override
     default int size() {
