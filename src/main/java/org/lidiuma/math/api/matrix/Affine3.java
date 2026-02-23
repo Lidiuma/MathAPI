@@ -38,11 +38,23 @@ public interface Affine3<N> extends Matrix4<N> {
     @Override
     N m33();
 
+    /// Linearly interpolates between this matrix and the other matrix mixing by alpha.
+    /// @param alpha the alpha value in the range `[0,1]`.
+    Affine3<N> lerp(Affine3<N> other, N alpha);
+
+    /// Averages this matrix with another, using lerp for translation/scale and slerp for rotation.
+    /// @param other The other matrix.
+    /// @param weight Weight for this transform (other's weight is `1 - weight`)
+    Affine3<N> average(Affine3<N> other, N weight);
+
     /// @return the translation part of this matrix.
     Vector3<N> translation();
 
     /// @return the rotation part of this matrix.
     Quaternion<N> rotation();
+
+    /// @return the shearing component of this matrix.
+    Vector3<N> shear();
 
     /// @return the scale components along each axis.
     Vector3<N> scale();

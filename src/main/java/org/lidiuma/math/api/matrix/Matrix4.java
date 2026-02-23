@@ -18,8 +18,6 @@ package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.geometry.point.Point4;
-import org.lidiuma.math.api.rotation.Angle;
-import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
 import org.lidiuma.math.api.vector.Vector4;
@@ -76,36 +74,7 @@ public interface Matrix4<N> extends Matrix<N, Matrix4<N>, UnaryTuple4<N>> {
     /// Multiplies `this` matrix with the provided [Vector3] treated as a [Vector4] with [Vector4#w()] = 0.
     Vector3<N> mul(Vector3<N> vector);
 
-    /// Projects a 3D point using this matrix and performs a perspective divide.
-    /// Translation, rotation, scale, and perspective are applied.
-    /// @apiNote Output is divided by the W component.
+    /// Multiplies a 3D point using this matrix and performs a perspective divide using the `w` component.
     /// @return the projected point.
-    Point3<N> project(Point3<N> point);
-
-    /// @return a new matrix with the rotation around the given axis applied.
-    Matrix4<N> rotateAround(Vector3<N> axis, Angle<N> angle);
-
-    /// @return a new matrix that rotates the direction of `v1` to align with `v2`.
-    Matrix4<N> rotateBetween(Vector3<N> v1, Vector3<N> v2);
-
-    /// @return a new matrix that rotates to align the forward direction with `direction` and up vector with `up`.
-    Matrix4<N> rotateToDirection(Vector3<N> direction, Vector3<N> up);
-
-    /// Linearly interpolates between this matrix and the other matrix mixing by alpha.
-    /// @param alpha the alpha value in the range `[0,1]`.
-    Matrix4<N> lerp(Matrix4<N> other, N alpha);
-
-    /// Averages this matrix with another, using lerp for translation/scale and slerp for rotation.
-    /// @param other The other matrix.
-    /// @param weight Weight for this transform (other's weight is `1 - weight`)
-    Matrix4<N> average(Matrix4<N> other, N weight);
-
-    /// @return a new matrix with the given scale applied.
-    Matrix4<N> scale(Vector3<N> scale);
-
-    /// @return a new matrix with the translation applied.
-    Matrix4<N> translate(Vector3<N> translation);
-
-    /// @return a new matrix with the given rotation applied.
-    Matrix4<N> rotate(Quaternion<N> rotation);
+    Point3<N> project(Point3<N> point); // TODO Remove and let a Camera class manage this?
 }

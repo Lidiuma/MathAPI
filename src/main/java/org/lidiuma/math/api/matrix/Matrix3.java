@@ -18,7 +18,6 @@ package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.geometry.point.Point2;
 import org.lidiuma.math.api.geometry.point.Point3;
-import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.tuple.UnaryTuple3;
 import org.lidiuma.math.api.vector.Vector2;
 import org.lidiuma.math.api.vector.Vector3;
@@ -64,7 +63,4 @@ public interface Matrix3<N> extends Matrix<N, Matrix3<N>, UnaryTuple3<N>> {
 
     /// Multiplies `this` matrix with the provided [Vector2] treated as a [Vector3] with [Vector3#z()] = 0.
     Vector2<N> mul(Vector2<N> vector);
-
-    /// Applies a 3D rotation to this matrix using a quaternion.
-    Matrix3<N> rotate(Quaternion<N> quaternion);
 }

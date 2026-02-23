@@ -34,6 +34,15 @@ public interface Affine2<N> extends Matrix3<N> {
     @Override
     N m22();
 
+    /// Linearly interpolates between this matrix and the other matrix mixing by alpha.
+    /// @param alpha the alpha value in the range `[0,1]`.
+    Affine2<N> lerp(Affine2<N> other, N alpha);
+
+    /// Averages this matrix with another, using lerp for translation/scale and slerp for rotation.
+    /// @param other The other matrix.
+    /// @param weight Weight for this transform (other's weight is `1 - weight`)
+    Affine2<N> average(Affine2<N> other, N weight);
+
     /// @return the translation component of this matrix.
     Vector2<N> translation();
 
