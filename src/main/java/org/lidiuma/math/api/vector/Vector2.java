@@ -25,7 +25,7 @@ public interface Vector2<N> extends Vector<N, Vector2<N>>, UnaryTuple2<N> {
 
     /* ========== Decimal-Only Operations ========== */
 
-    Vector2<N> rotate(Angle<N> radian);
+    Vector2<N> rotate(Angle<N> angle);
 
     Angle<N> angle();
 }

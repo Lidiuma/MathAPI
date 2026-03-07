@@ -79,21 +79,21 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
      */
     GimbalPole gimbalPole();
 
-    /// Returns the roll (rotation around the z-axis) in radians.
+    /// Returns the roll (rotation around the z-axis) angle.
     ///
-    /// @return the roll in radians, between -π and +π.
+    /// @return the roll, between -π and +π.
     /// @apiNote The quaternion should be normalized for correct results.
     Angle<N> roll();
 
-    /// Returns the pitch (rotation around the x-axis) in radians.
+    /// Returns the pitch (rotation around the x-axis) angle.
     ///
-    /// @return the pitch in radians, between -(π/2) and +(π/2).
+    /// @return the pitch, between -(π/2) and +(π/2).
     /// @apiNote The quaternion should be normalized for correct results.
     Angle<N> pitch();
 
-    /// Returns the yaw (rotation around the y-axis) in radians.
+    /// Returns the yaw (rotation around the y-axis) angle.
     ///
-    /// @return the yaw in radians, between -π and +π.
+    /// @return the yaw, between -π and +π.
     /// @apiNote The quaternion should be normalized for correct results.
     ///  When the quaternion is in a Gimbal-lock configuration, the yaw is set to zero by convention.
     Angle<N> yaw();
@@ -121,7 +121,7 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @apiNote The quaternion is normalized internally.
     AxisAngle<N> axisAngle();
 
-    /// @return the rotation angle of this quaternion in radians.
+    /// @return the rotation angle of this quaternion.
     /// @apiNote The quaternion is normalized internally.
     Angle<N> angle();
 
@@ -137,10 +137,10 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     SwingTwist<N> swingTwist(Vector3<N> axis);
 
     /**
-     * Get the angle in radians of the rotation around the specified axis. The axis must be normalized.
+     * Get the angle of the rotation around the specified axis. The axis must be normalized.
      *
      * @param axis the normalized axis for which to get the angle
-     * @return the angle in radians of the rotation around the specified axis
+     * @return the angle of the rotation around the specified axis
      */
     Angle<N> angleAround(Vector3<N> axis);
 

@@ -20,12 +20,12 @@ public interface Angle<N> {
 
     /*
     Implementations should implement factory methods to create the Radiant instance from at least ALL units present here.
-    For example, I have the instance toDegree(), I must implement the static fromDegree().
+    For example, I have the instance method `degree`, I must implement the static fromDegree().
      */
 
-    N toRadian();
+    N radian();
 
-    N toDegree();
+    N degree();
 
-    N toTurn();
+    N turn();
 }

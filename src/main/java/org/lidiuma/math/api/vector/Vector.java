@@ -62,6 +62,8 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
 
     /* ========== Decimal-Only Operations ========== */
 
+    N distance(V vector);
+
     V ceil();
 
     V floor();
@@ -72,13 +74,11 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
 
     V withLength2(N length2);
 
-    V limit(N limit);
+    V withLimit(N limit);
 
-    V limit2(N limit2);
+    V withLimit2(N limit2);
 
-    V normalize();
-
-    N distance(V vector);
+    V normalized();
 
     boolean isUnit(N epsilon);
 
