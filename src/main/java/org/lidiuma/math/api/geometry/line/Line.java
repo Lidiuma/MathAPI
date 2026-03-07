@@ -17,10 +17,21 @@
 package org.lidiuma.math.api.geometry.line;
 
 import org.lidiuma.math.api.geometry.point.Point;
+import java.util.function.UnaryOperator;
 
 public interface Line<N, P extends Point<N, P, ?>> {
 
     P start();
 
     P end();
+
+    default P interpolate(N alpha, UnaryOperator<N> easing) {
+        return start().interpolate(end(), alpha, easing);
+    }
+
+    /// Linearly interpolates between `this` and `target`.
+    /// @param alpha the alpha value in the range `[0,1]`.
+    default P lerp(N alpha) {
+        return interpolate(alpha, UnaryOperator.identity());
+    }
 }

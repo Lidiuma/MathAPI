@@ -16,11 +16,11 @@
 
 package org.lidiuma.math.api.geometry.point;
 
+import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 import org.lidiuma.math.api.vector.Vector;
-import java.util.function.UnaryOperator;
 
-public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends UnaryTuple<N> {
+public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends Interpolatable<P, N>, UnaryTuple<N> {
 
     P translate(V vector);
 
@@ -33,8 +33,4 @@ public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> exte
     /* ========== Decimal-Only Operations ========== */
 
     N distance(P point);
-
-    N lerp(P target, N alpha);
-
-    N interpolate(P target, N alpha, UnaryOperator<N> interpolator);
 }
