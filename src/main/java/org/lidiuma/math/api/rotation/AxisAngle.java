@@ -16,10 +16,9 @@
 
 package org.lidiuma.math.api.rotation;
 
-import org.lidiuma.math.api.NativeLayout;
 import org.lidiuma.math.api.vector.Vector3;
 
-public interface AxisAngle<N> extends NativeLayout {
+public interface AxisAngle<N> {
 
     Vector3<N> axis();
 

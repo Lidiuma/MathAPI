@@ -16,7 +16,6 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.NativeLayout;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 import java.util.function.Function;
 
@@ -25,7 +24,7 @@ import java.util.function.Function;
 /// @param <M> is the matrix implementation.
 /// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
 /// @param <T> The UnaryTuple representing Vector-like classes to allow Vector multiplication with this Matrix.
-public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> extends NativeLayout {
+public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> {
 
     /// @return [Matrix#rows()] multiplied by [Matrix#columns()].
     int size();

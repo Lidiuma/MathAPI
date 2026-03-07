@@ -16,9 +16,7 @@
 
 package org.lidiuma.math.api.rotation;
 
-import org.lidiuma.math.api.NativeLayout;
-
-public interface SwingTwist<N> extends NativeLayout {
+public interface SwingTwist<N> {
 
     Quaternion<N> swing();
 

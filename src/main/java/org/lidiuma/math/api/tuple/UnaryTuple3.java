@@ -16,15 +16,9 @@
 
 package org.lidiuma.math.api.tuple;
 
-import java.lang.foreign.MemoryLayout;
-
 public interface UnaryTuple3<N> extends UnaryTuple2<N> {
 
     N z();
-
-    /// Struct layout with the `x`, `y`, and `z` fields.
-    @Override
-    MemoryLayout memoryLayout();
 
     @Override
     default int dimension() {
