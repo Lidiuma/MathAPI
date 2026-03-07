@@ -16,10 +16,10 @@
 
 package org.lidiuma.math.api.vector;
 
+import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.tuple.UnaryTuple;
-import java.util.function.UnaryOperator;
 
-public interface Vector<N, V extends Vector<N, V>> extends UnaryTuple<N> {
+public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>, UnaryTuple<N> {
 
     /// Sums the components of the vector together.
     N sum();
@@ -79,10 +79,6 @@ public interface Vector<N, V extends Vector<N, V>> extends UnaryTuple<N> {
     V normalize();
 
     N distance(V vector);
-
-    N lerp(V target, N alpha);
-
-    N interpolate(V target, N alpha, UnaryOperator<N> interpolator);
 
     boolean isUnit(N epsilon);
 
