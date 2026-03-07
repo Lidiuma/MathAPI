@@ -7,9 +7,9 @@ The objective for this project is to provide a lingua franca for different libra
 allowing any implementations that respects the API to be used anywhere, facilitating development.
 
 ## Java Version
-**Java 25**\
-Such high version because I wanted to include FFM, since converting the objects to native memory is really useful for C bindings and frameworks.\
-There might be a chance I'm able to backport this to 17, but take this as a far-stretched possibility.
+**Java 17**
+###### I think that anybody making a new Java project should not even think about using Java 11 or lower.
+I decided for this version since I want to have at least a few of the minimum Modern Java features, and because I want to modularize this project.
 
 ## Current Work
 The current objective is to gather as much feedback as possible and have the first early access release.\
