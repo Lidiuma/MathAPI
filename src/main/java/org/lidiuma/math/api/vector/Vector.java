@@ -21,76 +21,116 @@ import org.lidiuma.math.api.tuple.UnaryTuple;
 
 public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>, UnaryTuple<N> {
 
-    /// Sums the components of the vector together.
+    /// @return the sum of the vector's components.
     N sum();
 
+    /// @return the component-wise addition of `this` and `other`.
     V add(V other);
 
+    /// @return the component-wise subtraction of `this` and `other`.
     V sub(V other);
 
+    /// @return the component-wise multiplication of `this` and `other`.
     V mul(V other);
 
+    /// @return a vector with `this` vector components multiplied by the provided scalar.
     V mul(N scalar);
 
+    /// @return the component-wise division of `this` and `other`.
     V div(V other);
 
+    /// @return true if all the components of `this` are less than the corresponding components of `other`.
     boolean lt(V other);
 
+    /// @return true if all the components of `this` are less than or equal to the corresponding components of `other`.
     boolean ltEq(V other);
 
+    /// @return true if all the components of `this` are greater than the corresponding components of `other`.
     boolean gt(V other);
 
+    /// @return true if all the components of `this` are greater than or equal to the corresponding components of `other`.
     boolean gtEq(V other);
 
+    /// @return a vector containing the absolute value of each component of `this` vector.
     V abs();
 
+    /// @return a vector containing the component-wise maximum between `this` and `other`.
+    /// ```java
+    /// var x = max(this.x(), other.x());
+    /// var y = max(this.y(), other.y());
+    /// ...
+    /// return vector(x, y, ...);
+    /// ```
     V max(V other);
 
+    /// @return a vector containing the component-wise minimum between `this` and `other`.
+    /// ```java
+    /// var x = min(this.x(), other.x());
+    /// var y = min(this.y(), other.y());
+    /// ...
+    /// return vector(x, y, ...);
+    /// ```
     V min(V other);
 
-    N distance2(V vector);
-
-    N length2();
-
-    N dot(V vector);
-
+    /// @return a vector with each component clamped between `min` and `max`.
     V clamp(N min, N max);
 
-    boolean hasSameDirection(V vector);
+    /// @return the Euclidean distance squared between `this` and `other`.
+    N distance2(V other);
 
-    boolean hasOppositeDirection(V vector);
+    /// @return the magnitude squared of `this` vector.
+    N length2();
+
+    /// @return the dot product of `this` and `other`.
+    N dot(V other);
+
+    /// @return true if `this` vector points in the same direction as `other` within `epsilon`.
+    boolean hasSameDirection(V other, N epsilon);
+
+    /// @return true if `this` vector is perpendicular to `other` within `epsilon`.
+    boolean isPerpendicular(V other, N epsilon);
+
+    /// @return true if `this` vector points in the opposite direction of `other` within `epsilon`.
+    boolean hasOppositeDirection(V other, N epsilon);
+
+    /// @return true if `this` vector is component-wise equal to `other` within `epsilon`.
+    boolean epsilonEquals(V other, N epsilon);
+
+    /// @return true if all components of `this` vector are equal to the provided value within epsilon.
+    boolean epsilonEquals(N value, N epsilon);
+
+    /// @return true if `this` vector is collinear with `other` within `epsilon`.
+    boolean isCollinear(V other, N epsilon);
 
     /* ========== Decimal-Only Operations ========== */
 
-    N distance(V vector);
+    /// @return the Euclidean distance between `this` and `other`.
+    N distance(V other);
 
+    /// @return a vector with each component rounded up to the nearest integer.
     V ceil();
 
+    /// @return a vector with each component rounded down to the nearest integer.
     V floor();
 
+    /// @return the length (magnitude) of `this` vector.
     N length();
 
+    /// @return a vector with the same direction as `this` vector but scaled to the provided `length` (magnitude).
     V withLength(N length);
 
+    /// @return a vector with the same direction as `this` vector but scaled to the provided `length` (magnitude) squared.
     V withLength2(N length2);
 
+    /// @return a vector with its length (magnitude) limited to `limit`.
     V withLimit(N limit);
 
+    /// @return a vector with its length (magnitude) squared limited to `limit` squared.
     V withLimit2(N limit2);
 
+    /// @return a normalized vector with length 1 in the same direction as `this` vector.
     V normalized();
 
+    /// @return true if `this` vector has a length of 1 within `epsilon`.
     boolean isUnit(N epsilon);
-
-    boolean isCollinear(V vector, N epsilon);
-
-    boolean isPerpendicular(V vector, N epsilon);
-
-    boolean epsilonEquals(V vector, N epsilon);
-
-    /// @return true if all the components of the vector are equal to the provided value within the epsilon.
-    boolean epsilonEquals(N value, N epsilon);
-
-    /// @return true if all the components of the vector are zero within the epsilon.
-    boolean isZero(N epsilon);
 }
