@@ -9,6 +9,7 @@ import rife.bld.publish.PublishScm;
 import java.util.List;
 import static java.lang.String.format;
 import static rife.bld.dependencies.Repository.*;
+import static rife.bld.dependencies.Scope.compile;
 
 public final class MathApiBuild extends Project {
 
@@ -23,6 +24,8 @@ public final class MathApiBuild extends Project {
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
+
+        scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
     }
 
     static void main(String[] args) {

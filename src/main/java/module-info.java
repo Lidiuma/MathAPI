@@ -1,4 +1,8 @@
+import org.jspecify.annotations.NullMarked;
+
+@NullMarked
 module lidiuma.math.api {
+    requires org.jspecify;
     exports org.lidiuma.math.api;
     exports org.lidiuma.math.api.tuple;
     exports org.lidiuma.math.api.rotation;
@@ -7,5 +11,4 @@ module lidiuma.math.api {
     exports org.lidiuma.math.api.geometry.point;
     exports org.lidiuma.math.api.geometry.sphere;
     exports org.lidiuma.math.api.geometry.rectangle;
-    // Do NOT export `impl` packages.
 }
