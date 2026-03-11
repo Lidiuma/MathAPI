@@ -62,7 +62,7 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
      *
      * @return the quaternion for chaining
      */
-    Quaternion<N> normalize();
+    Quaternion<N> normalized();
 
     /**
      * Get the dot product between this and the other quaternion (commutative).
@@ -99,7 +99,7 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     Angle<N> yaw();
 
     /// @return The conjugated quaternion
-    Quaternion<N> conjugate();
+    Quaternion<N> conjugated();
 
     /// Rotates the given vector using this quaternion.
     ///

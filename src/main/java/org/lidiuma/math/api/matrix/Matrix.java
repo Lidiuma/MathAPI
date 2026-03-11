@@ -57,5 +57,5 @@ public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> e
     <O extends T> O mul(T tuple, Function<T, O> mapper);
 
     /// @return the transposed version of this matrix.
-    M transpose();
+    M transposed();
 }

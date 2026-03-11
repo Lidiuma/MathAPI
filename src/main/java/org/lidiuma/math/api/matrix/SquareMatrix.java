@@ -27,7 +27,7 @@ public interface SquareMatrix<N, M extends SquareMatrix<N, M, T>, T extends Unar
     /// Inverts this matrix given that the determinant is != 0.
     /// @return This matrix for the purpose of chaining operations.
     /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
-    M invert() throws ArithmeticException;
+    M inverted() throws ArithmeticException;
 
     /// @return a matrix with the translational part removed (set to 0) and transposed.
     M toNormalMatrix();
