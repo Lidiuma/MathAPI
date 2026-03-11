@@ -35,48 +35,27 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @apiNote Order is important! `this * other != other * this`
     Quaternion<N> mul(Quaternion<N> other);
 
-    /**
-     * Multiplies the components of this quaternion with the given scalar.
-     *
-     * @param scalar the scalar.
-     * @return this quaternion for chaining.
-     */
+    /// Multiplies this quaternion with the given scalar.
     Quaternion<N> mul(N scalar);
 
     /// Returns the power of `quaternion^alpha`.
     /// @param alpha The exponent.
     Quaternion<N> pow(N alpha);
 
-    /**
-     * @return the Euclidean length of this quaternion.
-     */
+    /// @return the Euclidean length of this quaternion.
     N length();
 
-    /**
-     * @return the length of this quaternion without square root
-     */
+    /// @return the Euclidean length squared of this quaternion.
     N length2();
 
-    /**
-     * Normalizes this quaternion to unit length
-     *
-     * @return the quaternion for chaining
-     */
+    /// @return the normalized quaternion with length of 1.
     Quaternion<N> normalized();
 
-    /**
-     * Get the dot product between this and the other quaternion (commutative).
-     *
-     * @param other the other quaternion.
-     * @return the dot product of this and the other quaternion.
-     */
+    /// @return the dot product of this and the other quaternion.
+    /// @apiNote The operation is commutative.
     N dot(Quaternion<N> other);
 
-    /**
-     * Gets the pole of the gimbal lock, if any.
-     *
-     * @return {@link GimbalPole#NORTH}, {@link GimbalPole#SOUTH}, or {@link GimbalPole#NONE}
-     */
+    /// @return {@link GimbalPole#NORTH} or {@link GimbalPole#SOUTH} if the gimbal-lock is present, otherwise {@link GimbalPole#NONE}.
     GimbalPole gimbalPole();
 
     /// Returns the roll (rotation around the z-axis) angle.
@@ -136,17 +115,10 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @apiNote The axis is normalized internally.
     SwingTwist<N> swingTwist(Vector3<N> axis);
 
-    /**
-     * Get the angle of the rotation around the specified axis. The axis must be normalized.
-     *
-     * @param axis the normalized axis for which to get the angle
-     * @return the angle of the rotation around the specified axis
-     */
+    /// @return the rotation angle around the given axis.
+    /// @apiNote The axis is normalized internally.
     Angle<N> angleAround(Vector3<N> axis);
 
-    /**
-     * @param epsilon allowed deviation from exact identity
-     * @return true if this quaternion is approximately identity
-     */
+    /// @return true if this quaternion is an identity quaternion within epsilon.
     boolean isIdentity(N epsilon);
 }
