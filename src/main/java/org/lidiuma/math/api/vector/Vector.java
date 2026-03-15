@@ -40,6 +40,10 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return the component-wise division of `this` and `other`.
     V div(V other);
 
+    /// @return a vector with all its components negated.
+    /// Equivalent to multiplying this vector by the scalar `-1`.
+    V negated();
+
     /// @return true if all the components of `this` are less than the corresponding components of `other`.
     boolean lt(V other);
 

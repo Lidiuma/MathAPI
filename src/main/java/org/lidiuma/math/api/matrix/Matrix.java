@@ -43,7 +43,7 @@ public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> e
     /// Multiples `this` matrix with the `other` matrix.\
     /// Results in `A := AB`.
     /// @return the multiplied matrix.
-    /// @apiNote Order is important! `this * other != other * this`
+    /// @apiNote Matrix multiplication is **not** commutative; `this * other != other * this`.
     M mul(M other);
 
     /// Scalar Matrix Multiplication.

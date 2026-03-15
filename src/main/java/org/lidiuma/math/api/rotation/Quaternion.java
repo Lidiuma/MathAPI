@@ -23,20 +23,51 @@ import org.lidiuma.math.api.vector.Vector3;
 /// @apiNote Most operations assume the quaternion is normalized.
 public interface Quaternion<N> extends UnaryTuple4<N> {
 
+    /// @return the component-wise addition of `this` and `other`.
+    Quaternion<N> add(Quaternion<N> other);
+
+    /// @return the component-wise subtraction of `this` and `other`.
+    Quaternion<N> sub(Quaternion<N> other);
+
     /// Returns the Hamilton product of `this` quaternion and `other`.\
     /// Can be used to compose the rotations of two quaternions.
     ///
     /// @param other the quaternion to multiply.
     /// @return a new quaternion equal to `this * other`
-    /// @apiNote Order is important! `this * other != other * this`
+    /// @apiNote Quaternion multiplication is **not** commutative; `this * other != other * this`.
     Quaternion<N> mul(Quaternion<N> other);
 
     /// Multiplies this quaternion with the given scalar.
+    /// @return the multiplied quaternion.
     Quaternion<N> mul(N scalar);
 
-    /// Returns the power of `quaternion^alpha`.
+    /// Divides `this` quaternion by `other`.
+    /// This is equivalent to `this * other⁻¹`.
+    /// @param other the quaternion divisor.
+    /// @return a new quaternion equal to `this / other`.
+    /// @apiNote Quaternion division is **not** commutative; `this / other != other / this`.
+    Quaternion<N> div(Quaternion<N> other);
+
+    /// @return the exponential of this quaternion.
+    /// @apiNote If this quaternion is not normalized,
+    /// the resulting quaternion will include a scale but will no longer represent a pure rotation.
+    Quaternion<N> exp();
+
+    /// @return the logarithm of this quaternion.
+    /// @apiNote If this quaternion is not normalized,
+    /// the resulting quaternion will include a scale but will no longer represent a pure rotation.
+    Quaternion<N> log();
+
     /// @param alpha The exponent.
+    /// @return this quaternion raised to the power of `alpha`.
+    /// @apiNote If this quaternion is not normalized,
+    /// the resulting quaternion will include a scale but will no longer represent a pure rotation.
     Quaternion<N> pow(N alpha);
+
+    /// @return a quaternion with all its components negated.
+    /// Equivalent to multiplying this quaternion by the scalar `-1`.
+    /// @apiNote This quaternion and its negation represent the same rotation.
+    Quaternion<N> negated();
 
     /// @return the Euclidean length of this quaternion.
     N length();
