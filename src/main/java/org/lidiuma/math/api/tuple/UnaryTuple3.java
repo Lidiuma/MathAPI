@@ -16,6 +16,7 @@
 
 package org.lidiuma.math.api.tuple;
 
+/// Generic Tuple interface with three components.
 public interface UnaryTuple3<N> extends UnaryTuple2<N> {
 
     N z();

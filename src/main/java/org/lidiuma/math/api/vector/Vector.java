@@ -20,6 +20,7 @@ import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 import java.util.function.Supplier;
 
+/// Generic Vector interface.
 public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>, UnaryTuple<N> {
 
     /// @return the sum of the vector's components.

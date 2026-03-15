@@ -18,7 +18,7 @@ package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
-/// Matrix specialization where the rows are equal to the columns.
+/// Matrix specialization where rows and columns are equal.
 public interface SquareMatrix<N, M extends SquareMatrix<N, M, T>, T extends UnaryTuple<N>> extends Matrix<N, M, T> {
 
     /// @return The determinant of this squared matrix.

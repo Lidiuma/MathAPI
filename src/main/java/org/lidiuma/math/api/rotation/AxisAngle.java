@@ -18,9 +18,14 @@ package org.lidiuma.math.api.rotation;
 
 import org.lidiuma.math.api.vector.Vector3;
 
+/// Generic interface representing a rotation as an axis[Vector3] and an [angle][Angle].
+/// The rotation is around the given [axis][Vector3] by the specified [angle][Angle].
+/// @apiNote The axis is typically expected to be normalized.
 public interface AxisAngle<N> {
 
+    /// @return the normalized rotation axis.
     Vector3<N> axis();
 
+    /// @return the rotation angle around the axis.
     Angle<N> angle();
 }

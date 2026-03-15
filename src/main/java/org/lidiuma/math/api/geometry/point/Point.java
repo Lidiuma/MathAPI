@@ -20,6 +20,8 @@ import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 import org.lidiuma.math.api.vector.Vector;
 
+// TODO Improve docs
+/// Generic Point interface that represents a point in world coordinates.
 public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends Interpolatable<P, N>, UnaryTuple<N> {
 
     P add(V vector);

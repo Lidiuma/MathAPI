@@ -19,6 +19,7 @@ package org.lidiuma.math.api.vector;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.tuple.UnaryTuple2;
 
+/// Generic Vector 2D interface.
 public interface Vector2<N> extends Vector<N, Vector2<N>>, UnaryTuple2<N> {
 
     N cross(Vector2<N> vector);

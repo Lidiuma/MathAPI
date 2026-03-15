@@ -18,6 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple1;
 
+/// Generic Vector 1D interface.
 public interface Vector1<N> extends Vector<N, Vector1<N>>, UnaryTuple1<N> {
 
     // In 1D integers vector will always have an integer length.

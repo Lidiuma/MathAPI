@@ -19,7 +19,7 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
 
-/// Specialized [Matrix3] for 2D operations.
+/// Specialized [Matrix3] interface for 2D operations.
 public interface Affine2<N> extends Matrix3<N> {
 
     /// @return Always returns 0.

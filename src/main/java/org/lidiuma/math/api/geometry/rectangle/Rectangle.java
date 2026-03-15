@@ -19,11 +19,13 @@ package org.lidiuma.math.api.geometry.rectangle;
 import org.lidiuma.math.api.geometry.point.Point;
 import org.lidiuma.math.api.vector.Vector;
 
+/// Generic Rectangle interface.
 public interface Rectangle<N, P extends Point<N, P, V>, V extends Vector<N, V>> {
 
-    /// The lower-left corner of the rectangle.
+    /// @return thw lower-left corner point of the rectangle.
     P origin();
 
+    /// @return the center of the rectangle.
     P center();
 
     /// The dimensions of the rectangle.

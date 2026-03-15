@@ -16,6 +16,7 @@
 
 package org.lidiuma.math.api.tuple;
 
+/// Generic Tuple interface.
 public interface UnaryTuple<N> {
 
     /// @return The amount of elements this tuple has.

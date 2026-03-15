@@ -16,16 +16,15 @@
 
 package org.lidiuma.math.api.rotation;
 
+/// Generic Angle interface, representing an angle in multiple units.
 public interface Angle<N> {
 
-    /*
-    Implementations should implement factory methods to create the Radiant instance from at least ALL units present here.
-    For example, I have the instance method `degree`, I must implement the static fromDegree().
-     */
-
+    /// @return the angle in radians.
     N radian();
 
+    /// @return the angle in degrees.
     N degree();
 
+    /// @return the angle in turns. (1 turn = 360 degrees)
     N turn();
 }

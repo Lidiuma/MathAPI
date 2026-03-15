@@ -18,5 +18,6 @@ package org.lidiuma.math.api.geometry.line;
 
 import org.lidiuma.math.api.geometry.point.Point2;
 
+/// Generic Line 2D interface.
 public interface Line2<N> extends Line<N, Point2<N>> {
 }

@@ -19,7 +19,7 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.vector.Vector3;
 
-/// Specialized [Matrix4] for 3D operations.
+/// Specialized [Matrix4] interface for 3D operations.
 public interface Affine3<N> extends Matrix4<N> {
 
     /// @return Always returns 0.

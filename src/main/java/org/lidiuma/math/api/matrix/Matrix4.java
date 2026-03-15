@@ -22,8 +22,7 @@ import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
 import org.lidiuma.math.api.vector.Vector4;
 
-/// Immutable Matrix4x4 always using post-multiplication.
-/// Internal indexing is row-major, while external raw output is column-major.
+/// Generic Matrix4 interface.
 @SuppressWarnings("unused")
 public interface Matrix4<N> extends SquareMatrix<N, Matrix4<N>, UnaryTuple4<N>> {
 
@@ -64,9 +63,9 @@ public interface Matrix4<N> extends SquareMatrix<N, Matrix4<N>, UnaryTuple4<N>> 
     N m32();
     N m33();
 
-    /// Multiplies `this` matrix with the provided [Point3] treated as a [Point4] with [Point4#w()] = 1.
+    /// Multiplies `this` matrix by the provided [Point3] treated as a [Point4] with [Point4#w()]` = 1`.
     Point3<N> mul(Point3<N> point);
 
-    /// Multiplies `this` matrix with the provided [Vector3] treated as a [Vector4] with [Vector4#w()] = 0.
+    /// Multiplies `this` matrix by the provided [Vector3] treated as a [Vector4] with [Vector4#w()]` = 0`.
     Vector3<N> mul(Vector3<N> vector);
 }

@@ -18,5 +18,6 @@ package org.lidiuma.math.api.geometry.line;
 
 import org.lidiuma.math.api.geometry.point.Point4;
 
+/// Generic Line 4D interface.
 public interface Line4<N> extends Line<N, Point4<N>> {
 }

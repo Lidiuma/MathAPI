@@ -18,5 +18,6 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 
+/// Generic Vector 4D interface.
 public interface Vector4<N> extends Vector<N, Vector4<N>>, UnaryTuple4<N> {
 }

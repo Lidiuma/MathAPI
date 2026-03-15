@@ -16,6 +16,8 @@
 
 package org.lidiuma.math.api.rotation;
 
+// TODO Improve docs
+/// Generic interface containing a swing and twist [Quaternion].
 public interface SwingTwist<N> {
 
     Quaternion<N> swing();

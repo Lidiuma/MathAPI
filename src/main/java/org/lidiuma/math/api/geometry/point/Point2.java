@@ -19,5 +19,6 @@ package org.lidiuma.math.api.geometry.point;
 import org.lidiuma.math.api.tuple.UnaryTuple2;
 import org.lidiuma.math.api.vector.Vector2;
 
+/// Generic Point 2D interface.
 public interface Point2<N> extends Point<N, Point2<N>, Vector2<N>>, UnaryTuple2<N> {
 }

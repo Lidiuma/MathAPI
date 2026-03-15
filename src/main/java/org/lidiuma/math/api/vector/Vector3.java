@@ -19,6 +19,7 @@ package org.lidiuma.math.api.vector;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.tuple.UnaryTuple3;
 
+/// Generic Vector 3D interface.
 public interface Vector3<N> extends Vector<N, Vector3<N>>, UnaryTuple3<N> {
 
     Vector3<N> cross(Vector3<N> vector);

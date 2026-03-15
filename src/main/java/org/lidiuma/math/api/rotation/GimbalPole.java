@@ -16,6 +16,8 @@
 
 package org.lidiuma.math.api.rotation;
 
+// TODO Move inside quaternion since quaternion-related?
+// TODO Add docs
 public enum GimbalPole {
 
     NORTH(1),

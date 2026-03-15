@@ -18,6 +18,8 @@ package org.lidiuma.math.api.geometry.triangle;
 
 import org.lidiuma.math.api.geometry.point.Point;
 
+/// Generic Triangle interface.\
+/// Diagram to illustrate the relative position of the points:
 /// ```
 ///   A
 ///  / \

@@ -19,5 +19,6 @@ package org.lidiuma.math.api.geometry.point;
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector4;
 
+/// Generic Point 4D interface.
 public interface Point4<N> extends Point<N, Point4<N>, Vector4<N>>, UnaryTuple4<N> {
 }

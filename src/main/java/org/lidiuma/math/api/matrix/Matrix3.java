@@ -22,8 +22,7 @@ import org.lidiuma.math.api.tuple.UnaryTuple3;
 import org.lidiuma.math.api.vector.Vector2;
 import org.lidiuma.math.api.vector.Vector3;
 
-/// Immutable Matrix3x3 always using post-multiplication.
-/// Internal indexing is row-major, while external raw output is column-major.
+/// Generic Matrix3 interface.
 public interface Matrix3<N> extends SquareMatrix<N, Matrix3<N>, UnaryTuple3<N>> {
 
     int SIZE = 9;
@@ -55,9 +54,9 @@ public interface Matrix3<N> extends SquareMatrix<N, Matrix3<N>, UnaryTuple3<N>> 
     N m21();
     N m22();
 
-    /// Multiplies `this` matrix with the provided [Point2] treated as a [Point3] with [Point3#z()] = 1.
+    /// Multiplies `this` matrix by the provided [Point2] treated as a [Point3] with [Point3#z()]` = 1`.
     Point2<N> mul(Point2<N> point);
 
-    /// Multiplies `this` matrix with the provided [Vector2] treated as a [Vector3] with [Vector3#z()] = 0.
+    /// Multiplies `this` matrix by the provided [Vector2] treated as a [Vector3] with [Vector3#z()]` = 0`.
     Vector2<N> mul(Vector2<N> vector);
 }
