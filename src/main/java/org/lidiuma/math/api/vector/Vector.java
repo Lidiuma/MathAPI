@@ -18,6 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.tuple.UnaryTuple;
+import java.util.function.Supplier;
 
 public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>, UnaryTuple<N> {
 
@@ -110,6 +111,16 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return a vector with its length squared limited to `limit` squared.
     V withLimit2(N limit2);
 
-    /// @return a normalized vector with length 1 in the same direction as `this` vector.
+    /// @return a normalized vector with length 1 in the same direction as `this`.
+    /// @apiNote This vector should be non-zero, otherwise division by zero occurs.
+    /// To handle this case [#normalized(N, Supplier)] can be used.
     V normalized();
+
+    /// Similar to [#normalized()] but when the length of `this` vector is close to or zero,
+    /// the value provided by the supplier is returned.
+    /// @param epsilon threshold below which the vector is considered zero-length.
+    /// @param supplier the factory for the fallback vector.
+    /// @return a normalized vector with length 1 in the same direction as `this`,
+    /// or the fallback vector if below epsilon.
+    <T extends V> T normalized(N epsilon, Supplier<T> supplier);
 }
