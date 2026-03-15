@@ -21,9 +21,6 @@ import org.lidiuma.math.api.vector.Vector3;
 
 public interface Quaternion<N> extends UnaryTuple4<N> {
 
-    /// Adds the components of the two quaternion together.
-    Quaternion<N> add(Quaternion<N> other);
-
     /// Returns the Hamilton product of `this` quaternion and `other`.
     ///
     /// @param other the quaternion to multiply.
