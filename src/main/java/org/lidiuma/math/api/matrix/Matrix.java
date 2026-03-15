@@ -27,33 +27,37 @@ import java.util.function.Function;
 /// @param <T> The UnaryTuple representing Vector-like classes to allow Vector multiplication with this Matrix.
 public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> extends Interpolatable<M, N> {
 
-    /// @return [Matrix#rows()] multiplied by [Matrix#columns()].
+    /// @return the total number of components, equal to [#rows()]` * `[#columns()].
     int size();
 
     int rows();
 
     int columns();
 
-    /// @return this matrix with each element added by the other matrix.
+    /// @return the component-wise addition of `this` and `other`.
     M add(M other);
 
-    /// @return this matrix with each element subtracted by the other matrix.
+    /// @return the component-wise subtraction of `this` and `other`.
     M sub(M other);
 
-    /// Multiples `this` matrix with the `other` matrix.\
-    /// Results in `A := AB`.
-    /// @return the multiplied matrix.
+    /// Multiplies `this` matrix by `other`.
+    /// @return a new matrix equal to `this * other`.
     /// @apiNote Matrix multiplication is **not** commutative; `this * other != other * this`.
     M mul(M other);
 
-    /// Scalar Matrix Multiplication.
-    /// @return this matrix with each element multiplied by the scalar.
+    /// @return a new matrix with each component multiplied by the provided scalar.
     M mul(N scalar);
 
-    /// Multiples `this` matrix with the provided tuple.
+    /// Divides `this` matrix by `other`.
+    /// This is equivalent to `this * other⁻¹`.
+    /// @return a new matrix equal to `this / other`.
+    /// @apiNote Matrix division is **not** commutative; `this / other != other / this`.
+    M div(M other);
+
+    /// Multiplies `this` matrix by the provided tuple.
     T mul(T tuple);
 
-    /// Multiples `this` matrix with the provided tuple, and maps the result to the wanted type.
+    /// Multiplies `this` matrix by the provided tuple, and maps the result to the wanted type.
     <O extends T> O mul(T tuple, Function<T, O> mapper);
 
     /// @return the transposed version of this matrix.

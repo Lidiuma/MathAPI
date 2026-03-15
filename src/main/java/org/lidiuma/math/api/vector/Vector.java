@@ -34,7 +34,7 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return the component-wise multiplication of `this` and `other`.
     V mul(V other);
 
-    /// @return a vector with `this` vector components multiplied by the provided scalar.
+    /// @return a vector with each component multiplied by the provided scalar.
     V mul(N scalar);
 
     /// @return the component-wise division of `this` and `other`.

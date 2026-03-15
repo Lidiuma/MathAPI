@@ -37,7 +37,7 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @apiNote Quaternion multiplication is **not** commutative; `this * other != other * this`.
     Quaternion<N> mul(Quaternion<N> other);
 
-    /// Multiplies this quaternion with the given scalar.
+    /// Multiplies this quaternion by the given scalar.
     /// @return the multiplied quaternion.
     Quaternion<N> mul(N scalar);
 
