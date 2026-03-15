@@ -18,12 +18,8 @@ package org.lidiuma.math.api.rotation;
 
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
-import org.lidiuma.math.api.vector.Vector4;
 
 public interface Quaternion<N> extends UnaryTuple4<N> {
-
-    /// Returns a [Vector4<N>] representation of this quaternion.
-    Vector4<N> v4();
 
     /// Adds the components of the two quaternion together.
     Quaternion<N> add(Quaternion<N> other);
@@ -49,6 +45,7 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     N length2();
 
     /// @return the normalized quaternion with length of 1.
+    /// @apiNote This quaternion should be non-zero, otherwise division by zero occurs.
     Quaternion<N> normalized();
 
     /// @return the dot product of this and the other quaternion.
@@ -58,50 +55,56 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @return {@link GimbalPole#NORTH} or {@link GimbalPole#SOUTH} if the gimbal-lock is present, otherwise {@link GimbalPole#NONE}.
     GimbalPole gimbalPole();
 
-    /// Returns the roll (rotation around the z-axis) angle.
-    ///
-    /// @return the roll, between -π and +π.
-    /// @apiNote The quaternion should be normalized for correct results.
+    /// @return the roll (rotation around the z-axis) angle between -π and +π.
+    /// @apiNote This quaternion should be normalized for correct results.
     Angle<N> roll();
 
-    /// Returns the pitch (rotation around the x-axis) angle.
-    ///
-    /// @return the pitch, between -(π/2) and +(π/2).
-    /// @apiNote The quaternion should be normalized for correct results.
+    /// @return the pitch (rotation around the x-axis) angle between -(π/2) and +(π/2).
+    /// @apiNote This quaternion should be normalized for correct results.
     Angle<N> pitch();
 
-    /// Returns the yaw (rotation around the y-axis) angle.
-    ///
-    /// @return the yaw, between -π and +π.
-    /// @apiNote The quaternion should be normalized for correct results.
-    ///  When the quaternion is in a Gimbal-lock configuration, the yaw is set to zero by convention.
+    /// @return the yaw (rotation around the y-axis) angle between -π and +π.
+    /// When the quaternion is in a Gimbal-lock configuration, the yaw is set to zero by convention.
+    /// @apiNote This quaternion should be normalized for correct results.
     Angle<N> yaw();
 
-    /// @return The conjugated quaternion
+    /// @return The conjugated quaternion.
     Quaternion<N> conjugated();
+
+    /// @return the inverse of this quaternion.
+    /// @apiNote This quaternion should be non-zero, otherwise division by zero occurs.
+    Quaternion<N> inverted();
 
     /// Rotates the given vector using this quaternion.
     ///
-    /// @param v3 the vector to rotate
+    /// @param v3 the vector to rotate.
     /// @return a new rotated vector.
-    /// @apiNote The quaternion is normalized internally.
+    /// @apiNote This quaternion should be normalized for correct results.\
+    /// If not normalized, the result will be rotated and uniformly
+    /// scaled by the squared length of the quaternion.
     Vector3<N> rotate(Vector3<N> v3);
 
-    /// Spherical interpolation between this quaternion and the other quaternion.
-    /// @param end the other quaternion.
+    /// Unrotates the given vector using this quaternion.
+    ///
+    /// @param v3 the vector to unrotate.
+    /// @return a new unrotated vector.
+    /// @apiNote This quaternion should be normalized for correct results.\
+    /// If not normalized, the result will be unrotated and uniformly
+    /// scaled by the squared length of the quaternion.
+    Vector3<N> unrotate(Vector3<N> v3);
+
+    /// Spherical interpolation between this normalized quaternion and the other normalized quaternion.
+    /// @param end the other normalized quaternion.
     /// @param alpha value in the range of `[0,1]`.
     /// @param epsilon threshold to switch between lerp and full slerp at small angles.
-    /// @return the interpolated quaternion.
-    /// @apiNote The quaternions are normalized internally.
+    /// @return the interpolated normalized quaternion.
     Quaternion<N> slerp(Quaternion<N> end, N alpha, N epsilon);
 
-    /// Returns the axis-angle representation of this quaternion's rotation.
-    /// @return {@link AxisAngle} containing both the axis (as a unit vector) and the angle.
-    /// @apiNote The quaternion is normalized internally.
+    /// Returns the axis-angle representation of this normalized quaternion's rotation.
+    /// @return {@link AxisAngle} containing both the normalized axis and the angle.
     AxisAngle<N> axisAngle();
 
-    /// @return the rotation angle of this quaternion.
-    /// @apiNote The quaternion is normalized internally.
+    /// @return the rotation angle of this normalized quaternion.
     Angle<N> angle();
 
     /// Gets the swing rotation and twist rotation for the specified axis.
@@ -112,10 +115,11 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     ///
     /// @param axis of which to get the swing and twist rotation.
     /// @return the `swing` and `twist` pair.
-    /// @apiNote The axis is normalized internally.
+    /// @apiNote The quaternion and the axis should be normalized for correct results.
     SwingTwist<N> swingTwist(Vector3<N> axis);
 
+    /// @param axis the non-zero normalized rotation axis.
     /// @return the rotation angle around the given axis.
-    /// @apiNote The axis is normalized internally.
+    /// @apiNote This quaternion should be normalized for correct results and the axis must be non-zero, otherwise a zero square root occurs.
     Angle<N> angleAround(Vector3<N> axis);
 }
