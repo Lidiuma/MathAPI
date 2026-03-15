@@ -19,9 +19,12 @@ package org.lidiuma.math.api.rotation;
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
 
+/// Generic Quaternion interface.
+/// @apiNote Most operations assume the quaternion is normalized.
 public interface Quaternion<N> extends UnaryTuple4<N> {
 
-    /// Returns the Hamilton product of `this` quaternion and `other`.
+    /// Returns the Hamilton product of `this` quaternion and `other`.\
+    /// Can be used to compose the rotations of two quaternions.
     ///
     /// @param other the quaternion to multiply.
     /// @return a new quaternion equal to `this * other`
