@@ -118,7 +118,4 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @return the rotation angle around the given axis.
     /// @apiNote The axis is normalized internally.
     Angle<N> angleAround(Vector3<N> axis);
-
-    /// @return true if this quaternion is an identity quaternion within epsilon.
-    boolean isIdentity(N epsilon);
 }

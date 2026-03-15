@@ -84,24 +84,6 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return the dot product of `this` and `other`.
     N dot(V other);
 
-    /// @return true if `this` vector points in the same direction as `other` within `epsilon`.
-    boolean hasSameDirection(V other, N epsilon);
-
-    /// @return true if `this` vector is perpendicular to `other` within `epsilon`.
-    boolean isPerpendicular(V other, N epsilon);
-
-    /// @return true if `this` vector points in the opposite direction of `other` within `epsilon`.
-    boolean hasOppositeDirection(V other, N epsilon);
-
-    /// @return true if `this` vector is component-wise equal to `other` within `epsilon`.
-    boolean epsilonEquals(V other, N epsilon);
-
-    /// @return true if all components of `this` vector are equal to the provided value within epsilon.
-    boolean epsilonEquals(N value, N epsilon);
-
-    /// @return true if `this` vector is collinear with `other` within `epsilon`.
-    boolean isCollinear(V other, N epsilon);
-
     /* ========== Decimal-Only Operations ========== */
 
     /// @return the Euclidean distance between `this` and `other`.
@@ -113,24 +95,21 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return a vector with each component rounded down to the nearest integer.
     V floor();
 
-    /// @return the length (magnitude) of `this` vector.
+    /// @return the length of `this` vector.
     N length();
 
-    /// @return a vector with the same direction as `this` vector but scaled to the provided `length` (magnitude).
+    /// @return a vector with the same direction as `this` vector but scaled to the provided `length`.
     V withLength(N length);
 
-    /// @return a vector with the same direction as `this` vector but scaled to the provided `length` (magnitude) squared.
+    /// @return a vector with the same direction as `this` vector but scaled to the provided `length` squared.
     V withLength2(N length2);
 
-    /// @return a vector with its length (magnitude) limited to `limit`.
+    /// @return a vector with its length limited to `limit`.
     V withLimit(N limit);
 
-    /// @return a vector with its length (magnitude) squared limited to `limit` squared.
+    /// @return a vector with its length squared limited to `limit` squared.
     V withLimit2(N limit2);
 
     /// @return a normalized vector with length 1 in the same direction as `this` vector.
     V normalized();
-
-    /// @return true if `this` vector has a length of 1 within `epsilon`.
-    boolean isUnit(N epsilon);
 }

@@ -22,10 +22,16 @@ public interface UnaryTuple<N> {
     int dimension();
 
     /// Gets the component of the tuple at the specified index.\
-    /// Taking `Tuple2` as an example:
+    /// Taking [UnaryTuple2] as an example:
     /// - Index `0` returns `x()`
     /// - Index `1` returns `y()`
-    /// - While index `2` throws {@link IndexOutOfBoundsException}.
+    /// - While any other number throws {@link IndexOutOfBoundsException}.
     /// @return the component at the provided index.
     N component(int index) throws IndexOutOfBoundsException;
+
+    /// @return true if all the components of `this` tuple are equal to the provided `value` within `epsilon`.
+    boolean componentEquals(N value, N epsilon);
+
+    /// @return true if `this` tuple is component-wise equal to `other` within `epsilon`.
+    boolean equals(UnaryTuple<N> other, N epsilon);
 }

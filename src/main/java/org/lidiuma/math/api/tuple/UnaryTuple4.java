@@ -20,13 +20,21 @@ public interface UnaryTuple4<N> extends UnaryTuple3<N> {
 
     N w();
 
+    /// @return 4.
     @Override
     default int dimension() {
         return 4;
     }
 
+    /// Gets the component of the tuple at the specified index.
+    /// - Index `0` returns `x()`
+    /// - Index `1` returns `y()`
+    /// - Index `2` returns `z()`
+    /// - Index `3` returns `w()`
+    /// - While any other number throws {@link IndexOutOfBoundsException}.
+    /// @return the component at the provided index.
     @Override
-    default N component(int index) {
+    default N component(int index) throws IndexOutOfBoundsException {
         return switch (index) {
             case 0 -> x();
             case 1 -> y();

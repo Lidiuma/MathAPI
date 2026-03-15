@@ -20,13 +20,18 @@ public interface UnaryTuple1<N> extends UnaryTuple<N> {
 
     N x();
 
+    /// @return 1.
     @Override
     default int dimension() {
         return 1;
     }
 
+    /// Gets the component of the tuple at the specified index.
+    /// - Index `0` returns `x()`
+    /// - While any other number throws {@link IndexOutOfBoundsException}.
+    /// @return the component at the provided index.
     @Override
-    default N component(int index) {
+    default N component(int index) throws IndexOutOfBoundsException {
         if (index != 0) throw new IndexOutOfBoundsException("Could not get component at index " + index + " since the dimension is " + dimension() + ".");
         return x();
     }

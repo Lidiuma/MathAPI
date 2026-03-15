@@ -22,9 +22,9 @@ import org.lidiuma.math.api.vector.Vector;
 
 public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends Interpolatable<P, N>, UnaryTuple<N> {
 
-    P translate(V vector);
+    P add(V vector);
 
-    V subtract(P point);
+    V sub(P point);
 
     N distance2(P point);
 
