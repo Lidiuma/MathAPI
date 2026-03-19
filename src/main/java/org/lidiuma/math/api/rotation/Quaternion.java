@@ -69,42 +69,33 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @apiNote This quaternion and its negation represent the same rotation.
     Quaternion<N> negated();
 
-    /// @return the Euclidean length of this quaternion.
-    N length();
-
-    /// @return the Euclidean length squared of this quaternion.
-    N length2();
-
-    /// @return the normalized quaternion with length of 1.
-    /// @apiNote This quaternion should be non-zero, otherwise division by zero occurs.
-    Quaternion<N> normalized();
-
-    /// @return the dot product of this and the other quaternion.
-    /// @apiNote The operation is commutative.
-    N dot(Quaternion<N> other);
-
-    /// @return {@link GimbalPole#NORTH} or {@link GimbalPole#SOUTH} if the gimbal-lock is present, otherwise {@link GimbalPole#NONE}.
-    GimbalPole gimbalPole();
-
-    /// @return the roll (rotation around the z-axis) angle between -π and +π.
-    /// @apiNote This quaternion should be normalized for correct results.
-    Angle<N> roll();
-
-    /// @return the pitch (rotation around the x-axis) angle between -(π/2) and +(π/2).
-    /// @apiNote This quaternion should be normalized for correct results.
-    Angle<N> pitch();
-
-    /// @return the yaw (rotation around the y-axis) angle between -π and +π.
-    /// When the quaternion is in a Gimbal-lock configuration, the yaw is set to zero by convention.
-    /// @apiNote This quaternion should be normalized for correct results.
-    Angle<N> yaw();
-
     /// @return The conjugated quaternion.
     Quaternion<N> conjugated();
 
     /// @return the inverse of this quaternion.
     /// @apiNote This quaternion should be non-zero, otherwise division by zero occurs.
     Quaternion<N> inverted();
+
+    /// @return the Euclidean length of this quaternion.
+    N length();
+
+    /// @return the Euclidean length squared of this quaternion.
+    N length2();
+
+    /// @return the dot product of this and the other quaternion.
+    /// @apiNote The operation is commutative.
+    N dot(Quaternion<N> other);
+
+    /// @return the normalized quaternion with length of 1.
+    /// @apiNote This quaternion should be non-zero, otherwise division by zero occurs.
+    Quaternion<N> normalized();
+
+    /// Spherical interpolation between this normalized quaternion and the other normalized quaternion.
+    /// @param end the other normalized quaternion.
+    /// @param alpha value in the range of `[0,1]`.
+    /// @param epsilon threshold to switch between lerp and full slerp at small angles.
+    /// @return the interpolated normalized quaternion.
+    Quaternion<N> slerp(Quaternion<N> end, N alpha, N epsilon);
 
     /// Rotates the given vector using this quaternion.
     ///
@@ -124,12 +115,21 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// scaled by the squared length of the quaternion.
     Vector3<N> unrotate(Vector3<N> v3);
 
-    /// Spherical interpolation between this normalized quaternion and the other normalized quaternion.
-    /// @param end the other normalized quaternion.
-    /// @param alpha value in the range of `[0,1]`.
-    /// @param epsilon threshold to switch between lerp and full slerp at small angles.
-    /// @return the interpolated normalized quaternion.
-    Quaternion<N> slerp(Quaternion<N> end, N alpha, N epsilon);
+    /// @return the roll (rotation around the z-axis) angle between -π and +π.
+    /// @apiNote This quaternion should be normalized for correct results.
+    Angle<N> roll();
+
+    /// @return the pitch (rotation around the x-axis) angle between -(π/2) and +(π/2).
+    /// @apiNote This quaternion should be normalized for correct results.
+    Angle<N> pitch();
+
+    /// When the quaternion is in a Gimbal-lock configuration, the yaw is set to zero by convention.
+    /// @return the yaw (rotation around the y-axis) angle between -π and +π.
+    /// @apiNote This quaternion should be normalized for correct results.
+    Angle<N> yaw();
+
+    /// @return {@link GimbalPole#NORTH} or {@link GimbalPole#SOUTH} if the gimbal-lock is present, otherwise {@link GimbalPole#NONE}.
+    GimbalPole gimbalPole();
 
     /// Returns the axis-angle representation of this normalized quaternion's rotation.
     /// @return {@link AxisAngle} containing both the normalized axis and the angle.
