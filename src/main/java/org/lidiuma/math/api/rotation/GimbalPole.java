@@ -16,12 +16,17 @@
 
 package org.lidiuma.math.api.rotation;
 
-// TODO Move inside quaternion since quaternion-related?
-// TODO Add docs
+/// Represents the Gimbal-lock pole of a quaternion when converted to Euler angles.
+///
+/// Gimbal lock occurs when the pitch reaches `±90°`, causing a loss of one degree of freedom.
+/// In this state, yaw and roll become coupled.
 public enum GimbalPole {
 
+    /// Positive Gimbal-lock pole (+90° pitch).
     NORTH(1),
+    /// Negative Gimbal=lock pole (-90° pitch).
     SOUTH(-1),
+    /// No Gimbal-lock present.
     NONE(0);
 
     private final int sign;
@@ -30,6 +35,10 @@ public enum GimbalPole {
         this.sign = sign;
     }
 
+    /// Returns the pole sign:
+    /// - `+1` for [#NORTH]
+    /// - `-1` for [#SOUTH]
+    /// - `0` for [#NONE]
     public int sign() {
         return sign;
     }

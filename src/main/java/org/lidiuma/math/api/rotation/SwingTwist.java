@@ -16,11 +16,18 @@
 
 package org.lidiuma.math.api.rotation;
 
-// TODO Improve docs
-/// Generic interface containing a swing and twist [Quaternion].
+/// Represents the swing-twist decomposition of a rotation.
+///
+/// A rotation can be decomposed into:
+/// - a *twist* rotation around a given axis.
+/// - a *swing* rotation that moves the axis into place.
+///
+/// The original quaternion can be reconstructed by doing `swing * twist`.
 public interface SwingTwist<N> {
 
+    /// @return the normalized swing component of the rotation.
     Quaternion<N> swing();
 
+    /// @return the normalized twist component of the rotation.
     Quaternion<N> twist();
 }
