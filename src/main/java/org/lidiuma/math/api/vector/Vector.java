@@ -87,7 +87,9 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return the magnitude squared of `this` vector.
     N length2();
 
-    /// @return the dot product of `this` and `other`.
+    /// Returns the dot product of `this` vector and the `other` vector.\
+    /// The magnitude of the result is equal to `length() * other.length() * cos(theta)`, where theta is the angle between them.
+    /// @return the dot product.
     N dot(V other);
 
     /* ========== Decimal-Only Operations ========== */

@@ -16,7 +16,8 @@
 
 package org.lidiuma.math.api.geometry;
 
-/// Generic Sphere interface that uses local coordinates.
+/// Generic Sphere interface.
+/// @apiNote The point is not provided to allow the sphere to be re-used with different points.
 public non-sealed interface Sphere<N> extends Shape {
 
     /// @return the radius of the sphere.

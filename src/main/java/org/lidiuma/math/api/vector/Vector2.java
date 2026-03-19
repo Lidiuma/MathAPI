@@ -22,11 +22,16 @@ import org.lidiuma.math.api.tuple.UnaryTuple2;
 /// Generic Vector 2D interface.
 public interface Vector2<N> extends Vector<N, Vector2<N>>, UnaryTuple2<N> {
 
-    N cross(Vector2<N> vector);
+    /// Returns the 2D cross product of `this` vector and the `other` vector.\
+    /// The result is equivalent to the Z component of the 3D cross product.
+    /// @return the scalar result of the cross product.
+    N cross(Vector2<N> other);
 
     /* ========== Decimal-Only Operations ========== */
 
+    /// @return this vector rotated by the given angle.
     Vector2<N> rotate(Angle<N> angle);
 
+    /// @return the angle between this vector and the positive X axis, the angle is measured counterclockwise.
     Angle<N> angle();
 }
