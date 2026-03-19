@@ -16,12 +16,13 @@
 
 package org.lidiuma.math.api.rotation;
 
+import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 import org.lidiuma.math.api.vector.Vector3;
 
 /// Generic Quaternion interface.
 /// @apiNote Most operations assume the quaternion is normalized.
-public interface Quaternion<N> extends UnaryTuple4<N> {
+public interface Quaternion<N> extends UnaryTuple4<N>, Interpolatable<Quaternion<N>, N> {
 
     /// @return the component-wise addition of `this` and `other`.
     Quaternion<N> add(Quaternion<N> other);
@@ -96,6 +97,16 @@ public interface Quaternion<N> extends UnaryTuple4<N> {
     /// @param epsilon threshold to switch between lerp and full slerp at small angles.
     /// @return the interpolated normalized quaternion.
     Quaternion<N> slerp(Quaternion<N> end, N alpha, N epsilon);
+
+    /// Normalized linearly interpolation between `this` and `target`.
+    ///
+    /// Performs a linear interpolation followed by normalization.
+    /// This is a faster approximation of slerp and does not produce constant angular velocity.
+    ///
+    /// @param target the value to interpolate towards.
+    /// @param alpha the interpolation factor, typically in the range `[0, 1]`.
+    /// @return the new linearly interpolated and normalized quaternion between `this` and the `target`.
+    Quaternion<N> nlerp(Quaternion<N> target, N alpha);
 
     /// Rotates the given vector using this quaternion.
     ///
