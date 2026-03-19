@@ -81,6 +81,9 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return a vector with each component clamped between `min` and `max`.
     V clamp(N min, N max);
 
+    /// @return a vector with a component-wise clamp between `min` and `max`.
+    V clamp(V min, V max);
+
     /// @return the Euclidean distance squared between `this` and `other`.
     N distance2(V other);
 

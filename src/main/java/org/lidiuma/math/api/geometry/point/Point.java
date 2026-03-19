@@ -40,6 +40,9 @@ public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> exte
     /// @return a point with each component clamped between `min` and `max`.
     P clamp(N min, N max);
 
+    /// @return a point with a component-wise clamp between `min` and `max`.
+    V clamp(V min, V max);
+
     /* ========== Decimal-Only Operations ========== */
 
     /// @return the Euclidean distance between `this` and `other`.
