@@ -17,17 +17,10 @@
 package org.lidiuma.math.api.geometry.rectangle;
 
 import org.lidiuma.math.api.geometry.Shape;
-import org.lidiuma.math.api.geometry.point.Point;
 import org.lidiuma.math.api.vector.Vector;
 
-/// Generic Rectangle interface.
-public non-sealed interface Rectangle<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends Shape {
-
-    /// @return thw lower-left corner point of the rectangle.
-    P origin();
-
-    /// @return the center of the rectangle.
-    P center();
+/// Generic Rectangle interface that uses local coordinates.
+public non-sealed interface Rectangle<N, V extends Vector<N, V>> extends Shape {
 
     /// The dimensions of the rectangle.
     V size();

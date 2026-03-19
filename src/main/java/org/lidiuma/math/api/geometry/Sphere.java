@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.sphere;
+package org.lidiuma.math.api.geometry;
 
-import org.lidiuma.math.api.geometry.point.Point4;
+/// Generic Sphere interface that uses local coordinates.
+public non-sealed interface Sphere<N> extends Shape {
 
-public interface Sphere4<N> extends Sphere<N, Point4<N>> {
+    /// @return the radius of the sphere.
+    N radius();
 }

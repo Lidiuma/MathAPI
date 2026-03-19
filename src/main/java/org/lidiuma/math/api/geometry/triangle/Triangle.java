@@ -17,23 +17,29 @@
 package org.lidiuma.math.api.geometry.triangle;
 
 import org.lidiuma.math.api.geometry.Shape;
-import org.lidiuma.math.api.geometry.point.Point;
+import org.lidiuma.math.api.vector.Vector;
 
-/// Generic Triangle interface.\
+/// Generic Triangle interface.
+///
+/// The triangle uses local coordinates, with `A` being the `origin`.
+///
 /// Diagram to illustrate the relative position of the points:
 /// ```
-///   A
-///  / \
-/// B - C
+///   |
+///   | B
+///   |/ \
+/// --A---C----
+///   |
+/// A = (0,0)
 ///```
-public non-sealed interface Triangle<N, P extends Point<N, P, ?>> extends Shape {
+public non-sealed interface Triangle<N, V extends Vector<N, V>> extends Shape {
 
-    /// Top Vertex.
-    P pointA();
+    /// @return the `origin `[Vector] which is always **zero**.
+    V a();
 
-    /// Bottom-Left Vertex.
-    P pointB();
+    /// @return the [Vector] starting from the `origin` pointing towards `B`.
+    V b();
 
-    /// Bottom-Right Vertex.
-    P pointC();
+    /// @return the [Vector] starting from the `origin` pointing towards `C`.
+    V c();
 }

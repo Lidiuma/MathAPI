@@ -17,7 +17,6 @@
 package org.lidiuma.math.api.geometry;
 
 import org.lidiuma.math.api.geometry.rectangle.Rectangle;
-import org.lidiuma.math.api.geometry.sphere.Sphere;
 import org.lidiuma.math.api.geometry.triangle.Triangle;
 
 public sealed interface Shape permits Rectangle, Sphere, Triangle {
