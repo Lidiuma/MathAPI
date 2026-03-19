@@ -16,9 +16,10 @@
 
 package org.lidiuma.math.api.geometry.sphere;
 
+import org.lidiuma.math.api.geometry.Shape;
 import org.lidiuma.math.api.geometry.point.Point;
 
-public interface Sphere<N, P extends Point<N, P, ?>> {
+public non-sealed interface Sphere<N, P extends Point<N, P, ?>> extends Shape {
 
     P center();
 

@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.rectangle;
+package org.lidiuma.math.api.geometry;
 
-import org.lidiuma.math.api.geometry.Shape;
-import org.lidiuma.math.api.geometry.point.Point;
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.geometry.rectangle.Rectangle;
+import org.lidiuma.math.api.geometry.sphere.Sphere;
+import org.lidiuma.math.api.geometry.triangle.Triangle;
 
-/// Generic Rectangle interface.
-public non-sealed interface Rectangle<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends Shape {
-
-    /// @return thw lower-left corner point of the rectangle.
-    P origin();
-
-    /// @return the center of the rectangle.
-    P center();
-
-    /// The dimensions of the rectangle.
-    V size();
+public sealed interface Shape permits Rectangle, Sphere, Triangle {
 }

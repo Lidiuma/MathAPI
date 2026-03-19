@@ -16,6 +16,7 @@
 
 package org.lidiuma.math.api.geometry.triangle;
 
+import org.lidiuma.math.api.geometry.Shape;
 import org.lidiuma.math.api.geometry.point.Point;
 
 /// Generic Triangle interface.\
@@ -25,7 +26,7 @@ import org.lidiuma.math.api.geometry.point.Point;
 ///  / \
 /// B - C
 ///```
-public interface Triangle<N, P extends Point<N, P, ?>> {
+public non-sealed interface Triangle<N, P extends Point<N, P, ?>> extends Shape {
 
     /// Top Vertex.
     P pointA();
