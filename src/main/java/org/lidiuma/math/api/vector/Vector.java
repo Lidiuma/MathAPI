@@ -123,7 +123,7 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
 
     /// @return a normalized vector with length 1 in the same direction as `this`.
     /// @apiNote This vector should be non-zero, otherwise division by zero occurs.
-    /// To handle this case [#normalized(N, Supplier)] can be used.
+    /// To handle this case [#normalized(java.lang.Object, java.util.function.Supplier)] can be used.
     V normalized();
 
     /// Similar to [#normalized()] but when the length of `this` vector is close to or zero,
