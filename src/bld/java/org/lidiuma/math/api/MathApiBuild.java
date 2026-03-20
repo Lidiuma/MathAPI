@@ -1,6 +1,7 @@
 package org.lidiuma.math.api;
 
 import rife.bld.Project;
+import rife.bld.operations.JavadocOperation;
 import rife.bld.operations.PublishOperation;
 import rife.bld.publish.PublishDeveloper;
 import rife.bld.publish.PublishInfo;
@@ -8,6 +9,7 @@ import rife.bld.publish.PublishLicense;
 import rife.bld.publish.PublishScm;
 import java.util.List;
 import static java.lang.String.format;
+import static org.lidiuma.math.api.Util.addAttributesToJar;
 import static rife.bld.dependencies.Repository.*;
 import static rife.bld.dependencies.Scope.compile;
 
@@ -26,6 +28,9 @@ public final class MathApiBuild extends Project {
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
 
         scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
+
+        addAttributesToJar(jarOperation(), version());
+        addAttributesToJar(jarSourcesOperation(), version());
     }
 
     public static void main(String[] args) {
@@ -77,5 +82,13 @@ public final class MathApiBuild extends Project {
                 property("sonatype.password")
         )).info(publishInfo());
         return op;
+    }
+
+    @Override
+    public JavadocOperation javadocOperation() {
+        final var options = super.javadocOperation().javadocOptions();
+        options.tag("apiNote", "a", "API Note:");
+        options.tag("implNote", "a", "Implementation Note:");
+        return super.javadocOperation();
     }
 }
