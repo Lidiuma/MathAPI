@@ -28,7 +28,7 @@ public final class MathApiBuild extends Project {
         scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
     }
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         new MathApiBuild().start(args);
     }
 
