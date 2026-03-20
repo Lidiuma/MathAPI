@@ -20,7 +20,7 @@ public final class MathApiBuild extends Project {
         module = "lidiuma.math.api";
         pkg = "org.lidiuma.math.api";
         name = "MathAPI";
-        version = snapshot(0,1,0);
+        version = snapshot(1,0,0);
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
