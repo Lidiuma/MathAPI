@@ -37,6 +37,12 @@ public final class MathApiBuild extends Project {
         new MathApiBuild().start(args);
     }
 
+    private void patchPublishJSpecify() {
+        // Gradle does not support Maven 4 new types, so I'm forced to patch the type, making it `jar` instead of `modular-jar`.
+        scope(compile).clear();
+        scope(compile).include(dependency("org.jspecify", "jspecify", version(1, 0, 0)));
+    }
+
     private PublishInfo publishInfo() {
 
         final String org = "lidiuma";
@@ -75,9 +81,15 @@ public final class MathApiBuild extends Project {
     }
 
     @Override
+    public void publish() throws Exception {
+        patchPublishJSpecify();
+        super.publish();
+    }
+
+    @Override
     public PublishOperation publishOperation() {
         final var op = super.publishOperation();
-        op.repositories(CENTRAL_RELEASES.withCredentials(
+        op.repositories(CENTRAL_SNAPSHOTS.withCredentials(
                 property("sonatype.username"),
                 property("sonatype.password")
         )).info(publishInfo());
