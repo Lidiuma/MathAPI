@@ -21,4 +21,7 @@ import org.lidiuma.math.api.vector.Vector2;
 
 /// Generic Point 2D interface.
 public interface Point2<N> extends Point<N, Point2<N>, Vector2<N>>, UnaryTuple2<N> {
+
+    /// @return a point with a component-wise clamp between `min` and `max`.
+    Point2<N> clamp(UnaryTuple2<N> min, UnaryTuple2<N> max);
 }

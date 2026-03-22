@@ -22,6 +22,9 @@ import org.lidiuma.math.api.tuple.UnaryTuple3;
 /// Generic Vector 3D interface.
 public interface Vector3<N> extends Vector<N, Vector3<N>>, UnaryTuple3<N> {
 
+    /// @return a vector with a component-wise clamp between `min` and `max`.
+    Vector3<N> clamp(UnaryTuple3<N> min, UnaryTuple3<N> max);
+
     /// Returns the cross product between `this` vector and the `other` vector.\
     /// The magnitude of the result is equal to `length() * other.length() * sin(theta)`, where theta is the angle between them.
     ///

@@ -39,7 +39,7 @@ public interface Color<N> extends Interpolatable<Color<N>, N>, UnaryTuple4<N> {
     Color<N> clamp(N min, N max);
 
     /// @return a color with a component-wise clamp between `min` and `max`.
-    Color<N> clamp(Color<N> min, Color<N> max);
+    Color<N> clamp(UnaryTuple4<N> min, UnaryTuple4<N> max);
 
     /// The same as [#red()].
     @Override

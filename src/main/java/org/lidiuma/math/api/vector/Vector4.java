@@ -20,4 +20,7 @@ import org.lidiuma.math.api.tuple.UnaryTuple4;
 
 /// Generic Vector 4D interface.
 public interface Vector4<N> extends Vector<N, Vector4<N>>, UnaryTuple4<N> {
+
+    /// @return a vector with a component-wise clamp between `min` and `max`.
+    Vector4<N> clamp(UnaryTuple4<N> min, UnaryTuple4<N> max);
 }
