@@ -19,7 +19,6 @@ package org.lidiuma.math.api;
 import rife.bld.NamedFile;
 import rife.bld.dependencies.Version;
 import rife.bld.operations.JarOperation;
-
 import java.nio.file.Path;
 import java.time.Clock;
 import java.time.ZonedDateTime;
@@ -28,6 +27,9 @@ import java.util.Map;
 import java.util.jar.Attributes;
 
 public final class Util {
+
+    public static String GITHUB_DOMAIN = "github.com";
+    public static String GITHUB_URL = "https://" + GITHUB_DOMAIN;
 
     public static String nowUTC() {
         final var format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
