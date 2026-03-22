@@ -82,10 +82,10 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     V clamp(N min, N max);
 
     /// @return the Euclidean distance squared between `this` and `other`.
-    N distance2(V other);
+    N distanceSquared(V other);
 
     /// @return the magnitude squared of `this` vector.
-    N length2();
+    N lengthSquared();
 
     /// Returns the dot product of `this` vector and the `other` vector.\
     /// The magnitude of the result is equal to `length() * other.length() * cos(theta)`, where theta is the angle between them.
@@ -110,13 +110,13 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     V withLength(N length);
 
     /// @return a vector with the same direction as `this` vector but scaled to the provided `length` squared.
-    V withLength2(N length2);
+    V withLengthSquared(N lengthSquared);
 
     /// @return a vector with its length limited to `limit`.
     V withLimit(N limit);
 
     /// @return a vector with its length squared limited to `limit` squared.
-    V withLimit2(N limit2);
+    V withLimitSquared(N limitSquared);
 
     /// @return a normalized vector with length 1 in the same direction as `this`.
     /// @apiNote This vector should be non-zero, otherwise division by zero occurs.

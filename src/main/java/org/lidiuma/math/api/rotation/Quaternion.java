@@ -81,7 +81,7 @@ public interface Quaternion<N> extends UnaryTuple4<N>, Interpolatable<Quaternion
     N length();
 
     /// @return the Euclidean length squared of this quaternion.
-    N length2();
+    N lengthSquared();
 
     /// @return the dot product of this and the other quaternion.
     /// @apiNote The operation is commutative.

@@ -38,7 +38,7 @@ public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> exte
     P clamp(N min, N max);
 
     /// @return the Euclidean distance squared between `this` and `other`.
-    N distance2(P other);
+    N distanceSquared(P other);
 
     /* ========== Decimal-Only Operations ========== */
 
