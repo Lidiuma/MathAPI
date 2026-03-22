@@ -32,7 +32,4 @@ public interface UnaryTuple<N> {
 
     /// @return true if all the components of `this` tuple are equal to the provided `value` within `epsilon`.
     boolean componentEquals(N value, N epsilon);
-
-    /// @return true if `this` tuple is component-wise equal to `other` within `epsilon`.
-    boolean equals(UnaryTuple<N> other, N epsilon);
 }
