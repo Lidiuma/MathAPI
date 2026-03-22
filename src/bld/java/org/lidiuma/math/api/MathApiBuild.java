@@ -58,7 +58,7 @@ public final class MathApiBuild extends Project {
 
         return new PublishInfo()
                 .groupId("org.lidiuma.math")
-                .artifactId("api")
+                .artifactId("math-api")
                 .version(version())
                 .name("Math API")
                 .description("Standard Math API for Libraries and Frameworks")
