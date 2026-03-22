@@ -64,8 +64,8 @@ public interface Matrix4<N> extends SquareMatrix<N, Matrix4<N>, UnaryTuple4<N>> 
     N m33();
 
     /// Multiplies `this` matrix by the provided [Point3] treated as a [Point4] with [Point4#w()]` = 1`.
-    Point3<N> mul(Point3<N> point);
+    Point3<N> multiply(Point3<N> point);
 
     /// Multiplies `this` matrix by the provided [Vector3] treated as a [Vector4] with [Vector4#w()]` = 0`.
-    Vector3<N> mul(Vector3<N> vector);
+    Vector3<N> multiply(Vector3<N> vector);
 }

@@ -55,8 +55,8 @@ public interface Matrix3<N> extends SquareMatrix<N, Matrix3<N>, UnaryTuple3<N>> 
     N m22();
 
     /// Multiplies `this` matrix by the provided [Point2] treated as a [Point3] with [Point3#z()]` = 1`.
-    Point2<N> mul(Point2<N> point);
+    Point2<N> multiply(Point2<N> point);
 
     /// Multiplies `this` matrix by the provided [Vector2] treated as a [Vector3] with [Vector3#z()]` = 0`.
-    Vector2<N> mul(Vector2<N> vector);
+    Vector2<N> multiply(Vector2<N> vector);
 }

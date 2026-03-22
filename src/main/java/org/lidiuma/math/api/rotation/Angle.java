@@ -16,7 +16,7 @@
 
 package org.lidiuma.math.api.rotation;
 
-/// Generic Angle interface, representing an angle in multiple units.
+/// This interface represent an angle in a unit-agnostic way as long as the internal value can be converted to the wanted units.
 public interface Angle<N> {
 
     /// @return the angle in radians.

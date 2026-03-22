@@ -28,7 +28,7 @@ public interface Quaternion<N> extends UnaryTuple4<N>, Interpolatable<Quaternion
     Quaternion<N> add(Quaternion<N> other);
 
     /// @return the component-wise subtraction of `this` and `other`.
-    Quaternion<N> sub(Quaternion<N> other);
+    Quaternion<N> subtract(Quaternion<N> other);
 
     /// Returns the Hamilton product of `this` quaternion and `other`.\
     /// Can be used to compose the rotations of two quaternions.
@@ -36,18 +36,18 @@ public interface Quaternion<N> extends UnaryTuple4<N>, Interpolatable<Quaternion
     /// @param other the quaternion to multiply.
     /// @return a new quaternion equal to `this * other`
     /// @apiNote Quaternion multiplication is **not** commutative; `this * other != other * this`.
-    Quaternion<N> mul(Quaternion<N> other);
+    Quaternion<N> multiply(Quaternion<N> other);
 
     /// Multiplies this quaternion by the given scalar.
     /// @return the multiplied quaternion.
-    Quaternion<N> mul(N scalar);
+    Quaternion<N> multiply(N scalar);
 
     /// Divides `this` quaternion by `other`.
     /// This is equivalent to `this * other⁻¹`.
     /// @param other the quaternion divisor.
     /// @return a new quaternion equal to `this / other`.
     /// @apiNote Quaternion division is **not** commutative; `this / other != other / this`.
-    Quaternion<N> div(Quaternion<N> other);
+    Quaternion<N> divide(Quaternion<N> other);
 
     /// @return the exponential of this quaternion.
     /// @apiNote If this quaternion is not normalized,

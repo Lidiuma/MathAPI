@@ -30,32 +30,32 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     V add(V other);
 
     /// @return the component-wise subtraction of `this` and `other`.
-    V sub(V other);
+    V subtract(V other);
 
-    /// @return the component-wise multiplication of `this` and `other`.
-    V mul(V other);
+    /// @return the Hadamard (component-wise) multiplication of `this` and `other`.
+    V multiply(V other);
 
     /// @return a vector with each component multiplied by the provided scalar.
-    V mul(N scalar);
+    V multiply(N scalar);
 
     /// @return the component-wise division of `this` and `other`.
-    V div(V other);
+    V divide(V other);
 
     /// @return a vector with all its components negated.
     /// Equivalent to multiplying this vector by the scalar `-1`.
     V negated();
 
     /// @return true if all the components of `this` are less than the corresponding components of `other`.
-    boolean lt(V other);
+    boolean lessThan(V other);
 
     /// @return true if all the components of `this` are less than or equal to the corresponding components of `other`.
-    boolean ltEq(V other);
+    boolean lessThanEqual(V other);
 
     /// @return true if all the components of `this` are greater than the corresponding components of `other`.
-    boolean gt(V other);
+    boolean greaterThan(V other);
 
     /// @return true if all the components of `this` are greater than or equal to the corresponding components of `other`.
-    boolean gtEq(V other);
+    boolean greaterThanEqual(V other);
 
     /// @return a vector containing the absolute value of each component of `this` vector.
     V abs();

@@ -32,16 +32,16 @@ public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> exte
 
     /// Calculates the vector offset between `other` and `this` point.
     /// @return a vector representing the offset `this - other`.
-    V sub(P other);
-
-    /// @return the Euclidean distance squared between `this` and `other`.
-    N distance2(P other);
+    V subtract(P other);
 
     /// @return a point with each component clamped between `min` and `max`.
     P clamp(N min, N max);
 
     /// @return a point with a component-wise clamp between `min` and `max`.
-    V clamp(V min, V max);
+    V clamp(V min, V max); // TODO BUG, why am I clamping a vector?
+
+    /// @return the Euclidean distance squared between `this` and `other`.
+    N distance2(P other);
 
     /* ========== Decimal-Only Operations ========== */
 

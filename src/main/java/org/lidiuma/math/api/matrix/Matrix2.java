@@ -49,8 +49,8 @@ public interface Matrix2<N> extends SquareMatrix<N, Matrix2<N>, UnaryTuple2<N>> 
     N m11();
 
     /// Multiplies `this` matrix by the provided [Point1] treated as a [Point2] with [Point2#y()]` = 1`.
-    Point1<N> mul(Point1<N> point);
+    Point1<N> multiply(Point1<N> point);
 
     /// Multiplies `this` matrix by the provided [Vector1] treated as a [Vector2] with [Vector2#y()]` = 0`.
-    Vector1<N> mul(Vector1<N> vector);
+    Vector1<N> multiply(Vector1<N> vector);
 }

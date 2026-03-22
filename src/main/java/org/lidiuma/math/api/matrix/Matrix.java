@@ -38,27 +38,27 @@ public interface Matrix<N, M extends Matrix<N, M, T>, T extends UnaryTuple<N>> e
     M add(M other);
 
     /// @return the component-wise subtraction of `this` and `other`.
-    M sub(M other);
+    M subtract(M other);
 
     /// Multiplies `this` matrix by `other`.
     /// @return a new matrix equal to `this * other`.
     /// @apiNote Matrix multiplication is **not** commutative; `this * other != other * this`.
-    M mul(M other);
+    M multiply(M other);
 
     /// @return a new matrix with each component multiplied by the provided scalar.
-    M mul(N scalar);
+    M multiply(N scalar);
 
     /// Divides `this` matrix by `other`.
     /// This is equivalent to `this * other⁻¹`.
     /// @return a new matrix equal to `this / other`.
     /// @apiNote Matrix division is **not** commutative; `this / other != other / this`.
-    M div(M other);
+    M divide(M other);
 
     /// Multiplies `this` matrix by the provided tuple.
-    T mul(T tuple);
+    T multiply(T tuple);
 
     /// Multiplies `this` matrix by the provided tuple, and maps the result to the wanted type.
-    <O extends T> O mul(T tuple, Function<T, O> mapper);
+    <O extends T> O multiply(T tuple, Function<T, O> mapper);
 
     /// @return the transposed version of this matrix.
     M transposed();
