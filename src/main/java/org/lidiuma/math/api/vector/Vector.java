@@ -23,9 +23,6 @@ import java.util.function.Supplier;
 /// Generic Vector interface.
 public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>, UnaryTuple<N> {
 
-    /// @return the sum of the vector's components.
-    N sum();
-
     /// @return the component-wise addition of `this` and `other`.
     V add(V other);
 
