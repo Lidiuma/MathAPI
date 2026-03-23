@@ -17,9 +17,13 @@
 package org.lidiuma.math.api.tuple;
 
 /// Generic Tuple interface with two components.
-public interface UnaryTuple2<N> extends UnaryTuple1<N> {
+public interface UnaryTuple2<N> extends UnaryTuple<N> {
+
+    N x();
 
     N y();
+
+    UnaryTuple1<N> withoutY();
 
     /// @return true if `this` tuple is component-wise equal to `other` within `epsilon`.
     boolean equals(UnaryTuple2<N> other, N epsilon);
