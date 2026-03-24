@@ -27,6 +27,8 @@ public interface UnaryTuple4<N> extends UnaryTuple<N> {
 
     N w();
 
+    /// Returns all the components of this tuple without the w component.
+    /// @return a lower dimension tuple without the w component.
     UnaryTuple3<N> withoutW();
 
     /// @return true if `this` tuple is component-wise equal to `other` within `epsilon`.
