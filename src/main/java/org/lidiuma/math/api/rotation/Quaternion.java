@@ -92,11 +92,12 @@ public interface Quaternion<N> extends UnaryTuple4<N>, Interpolatable<Quaternion
     Quaternion<N> normalized();
 
     /// Spherical interpolation between this normalized quaternion and the other normalized quaternion.
+    ///
+    /// At small angles, to avoid numerical instability, the slerp will switch to a [#nlerp].
     /// @param end the other normalized quaternion.
     /// @param alpha value in the range of `[0,1]`.
-    /// @param epsilon threshold to switch between lerp and full slerp at small angles.
     /// @return the interpolated normalized quaternion.
-    Quaternion<N> slerp(Quaternion<N> end, N alpha, N epsilon);
+    Quaternion<N> slerp(Quaternion<N> end, N alpha);
 
     /// Normalized linearly interpolation between `this` and `target`.
     ///
