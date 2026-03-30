@@ -78,6 +78,12 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// @return a vector with each component clamped between `min` and `max`.
     V clamp(N min, N max);
 
+    /// Returns the signum function for each component; zero if the component is zero,
+    /// +1 if the component is greater than zero, -1 if the component is less than zero.
+    /// @see Math#signum(float)
+    /// @return a vector with the signum function applied to each component.
+    V signum();
+
     /// @return the Euclidean distance squared between `this` and `other`.
     N distanceSquared(V other);
 
