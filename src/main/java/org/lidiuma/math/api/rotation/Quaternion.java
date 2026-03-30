@@ -89,7 +89,14 @@ public interface Quaternion<N> extends UnaryTuple4<N>, Interpolatable<Quaternion
 
     /// @return the normalized quaternion with length of 1.
     /// @apiNote This quaternion should be non-zero, otherwise division by zero occurs.
+    /// To handle this case [#normalized(Quaternion)] can be used.
     Quaternion<N> normalized();
+
+    /// Similar to [#normalized()] but when the length of `this` quaternion is close to or is zero,
+    /// the `orElse` quaternion is returned.
+    /// @param orElse the value to use when the quaternion is close to zero.
+    /// @return a normalized quaternion with length 1, or the `orElse` quaternion.
+    <T extends Quaternion<N>> T normalized(T orElse);
 
     /// Spherical interpolation between this normalized quaternion and the other normalized quaternion.
     ///

@@ -128,7 +128,6 @@ public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>,
     /// Similar to [#normalized()] but when the length of `this` vector is close to or is zero,
     /// the `orElse` vector is returned.
     /// @param orElse the value to use when the vector is close to zero.
-    /// @return a normalized vector with length 1 in the same direction as `this`,
-    /// or the `orElse` vector.
+    /// @return a normalized vector with length 1 in the same direction as `this`, or the `orElse` vector.
     <T extends V> T normalized(T orElse);
 }
