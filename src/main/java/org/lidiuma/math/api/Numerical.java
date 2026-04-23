@@ -14,12 +14,25 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api;
 
-import org.lidiuma.math.api.Interpolatable;
-import org.lidiuma.math.api.tuple.UnaryTuple;
+public interface Numerical<T> {
 
-/// Generic Vector interface.
-@Deprecated // TODO Once I convert Interpolatable and check UnaryTuple, I can remove this class.
-public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>, UnaryTuple<N> {
+    /// Addition operation, same as `+`.
+    T add(T addend, T augend);
+
+    /// Subtraction operation, same as `-`.
+    T subtract(T minuend, T subtrahend);
+
+    /// Multiplication operation, same as `*`.
+    T multiply(T multiplier, T multiplicand);
+
+    /// Division operation, same as `/`.
+    T divide(T dividend, T divisor);
+
+    /// Remainder operation, same as `%`.
+    T remainder(T dividend, T divisor);
+
+    /// Negation operation, same as `-` or multiplying by a scalar `-1`.
+    T negated(T operand);
 }

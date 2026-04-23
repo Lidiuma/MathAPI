@@ -22,7 +22,7 @@ import java.util.function.UnaryOperator;
 /// @param <T> the type of the object being interpolated.
 /// @param <N> the numeric type used for interpolation.
 @FunctionalInterface
-public interface Interpolatable<T, N> {
+public interface Interpolatable<T, N> { // TODO Make this a type-class.
 
     /// Interpolates between `this` and `target`.
     /// @param target the value to interpolate towards.
