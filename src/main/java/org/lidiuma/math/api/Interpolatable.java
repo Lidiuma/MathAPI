@@ -18,24 +18,26 @@ package org.lidiuma.math.api;
 
 import java.util.function.UnaryOperator;
 
-/// Generic interface representing an object that can be interpolated.
+/// Indicates a type that supports interpolation.
 /// @param <T> the type of the object being interpolated.
-/// @param <N> the numeric type used for interpolation.
+/// @param <N> the numeric type used for the interpolation.
 @FunctionalInterface
-public interface Interpolatable<T, N> { // TODO Make this a type-class.
+public interface Interpolatable<T, N> {
 
-    /// Interpolates between `this` and `target`.
-    /// @param target the value to interpolate towards.
+    /// Interpolates between `start` and `end`.
+    /// @param start the value to interpolate from.
+    /// @param end the value to interpolate towards.
     /// @param alpha the interpolation factor, typically in the range `[0, 1]`.
     /// @param easing a function to adjust the interpolation curve ([identity][UnaryOperator#identity()] for linear).
     /// @return the new interpolated value between `this` and the `target`.
-    T interpolate(T target, N alpha, UnaryOperator<N> easing);
+    T interpolate(T start, T end, N alpha, UnaryOperator<N> easing);
 
     /// Linearly interpolates between `this` and `target`.
-    /// @param target the value to interpolate towards.
+    /// @param start the value to interpolate from.
+    /// @param end the value to interpolate towards.
     /// @param alpha the interpolation factor, typically in the range `[0, 1]`.
     /// @return the new linearly interpolated value between `this` and the `target`.
-    default T lerp(T target, N alpha) {
-        return interpolate(target, alpha, UnaryOperator.identity());
+    default T lerp(T start, T end, N alpha) {
+        return interpolate(start, end, alpha, UnaryOperator.identity());
     }
 }

@@ -18,7 +18,10 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
-public interface FloatingVectorArithmetic<N, V extends UnaryTuple<N>> extends VectorArithmetic<N, V> {
+public interface FloatingVectorArithmetic<
+        N,
+        V extends U,
+        U extends UnaryTuple<N>> extends VectorArithmetic<N, V, U> {
 
     /// @return the Euclidean distance between `this` and `other`.
     N distance(V start, V end);

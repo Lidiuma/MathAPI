@@ -16,10 +16,9 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
 /// Generic Vector interface.
-@Deprecated // TODO Once I convert Interpolatable and check UnaryTuple, I can remove this class.
-public interface Vector<N, V extends Vector<N, V>> extends Interpolatable<V, N>, UnaryTuple<N> {
+@Deprecated // TODO Might keep this as a marker interface or multi-dimension vector class.
+public interface Vector<N, V extends Vector<N, V>> extends UnaryTuple<N> {
 }

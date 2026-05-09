@@ -16,6 +16,7 @@
 
 package org.lidiuma.math.api;
 
+/// Indicates a type that supports basic arithmetic operations.
 public interface Numerical<T> {
 
     /// Addition operation, same as `+`.
