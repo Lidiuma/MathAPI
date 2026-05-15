@@ -24,7 +24,7 @@ import org.lidiuma.math.api.vector.Vector;
 /// @param <N> the numeric type.
 /// @param <P> the type of the specialized Point dimension.
 /// @param <V> the associated Vector type used for arithmetic operations.
-public interface Point<N, P extends Point<N, P, V>, V extends Vector<N, V>> extends Interpolatable<P, N>, UnaryTuple<N> {
+public interface Point<N, P extends Point<N, P, V>, V extends Vector<N>> extends Interpolatable<P, N>, UnaryTuple<N> {
 
     /// Translates the point by an offset vector.
     /// @return the translated point by `this + vector`.

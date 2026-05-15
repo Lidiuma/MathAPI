@@ -21,12 +21,12 @@ import org.lidiuma.math.api.Numerical;
 import org.lidiuma.math.api.Orderable;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
-public interface VectorArithmetic<
+public interface VectorOps<
         N,
         V extends U,
         U extends UnaryTuple<N>> extends Numerical<V>, Interpolatable<V, N>, Orderable<V> {
 
-    V valueOf(U unaryTuple);
+    V of(U unaryTuple);
 
     /// @return a vector with all it's components set to 0.
     V zero();

@@ -16,26 +16,8 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.tuple.UnaryTuple3;
 
 /// Generic Vector 3D interface.
-public interface Vector3<N> extends Vector<N, Vector3<N>>, UnaryTuple3<N> {
-
-    /// @return a vector with a component-wise clamp between `min` and `max`.
-    Vector3<N> clamp(UnaryTuple3<N> min, UnaryTuple3<N> max);
-
-    /// Returns the cross product between `this` vector and the `other` vector.\
-    /// The magnitude of the result is equal to `length() * other.length() * sin(theta)`, where theta is the angle between them.
-    ///
-    /// @return a vector perpendicular to both `this` and `other`.
-    /// @apiNote the cross product is anti-commutative; `this.cross(other) = -other.cross(this)`.
-    Vector3<N> cross(Vector3<N> other);
-
-    /* ========== Decimal-Only Operations ========== */
-
-    /// @param axis the non-zero normalized axis of rotation.
-    /// @param angle the rotation angle.
-    /// @return a vector rotated around the given axis by the provided angle.
-    Vector3<N> rotate(Vector3<N> axis, Angle<N> angle);
+public interface Vector3<N> extends Vector<N>, UnaryTuple3<N> {
 }

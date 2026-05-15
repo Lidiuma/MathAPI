@@ -32,7 +32,7 @@ import org.lidiuma.math.api.vector.Vector;
 ///   |
 /// A = (0,0)
 ///```
-public non-sealed interface Triangle<N, V extends Vector<N, V>> extends Shape {
+public non-sealed interface Triangle<N, V extends Vector<N>> extends Shape {
 
     /// @return the `origin `[Vector] which is always **zero**.
     V a();

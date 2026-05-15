@@ -16,25 +16,8 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.tuple.UnaryTuple2;
 
 /// Generic Vector 2D interface.
-public interface Vector2<N> extends Vector<N, Vector2<N>>, UnaryTuple2<N> {
-
-    /// @return a vector with a component-wise clamp between `min` and `max`.
-    Vector2<N> clamp(UnaryTuple2<N> min, UnaryTuple2<N> max);
-
-    /// Returns the 2D cross product of `this` vector and the `other` vector.\
-    /// The result is equivalent to the Z component of the 3D cross product.
-    /// @return the scalar result of the cross product.
-    N cross(Vector2<N> other);
-
-    /* ========== Decimal-Only Operations ========== */
-
-    /// @return this vector rotated by the given angle.
-    Vector2<N> rotate(Angle<N> angle);
-
-    /// @return the angle between this vector and the positive X axis, the angle is measured counterclockwise.
-    Angle<N> angle();
+public interface Vector2<N> extends Vector<N>, UnaryTuple2<N> {
 }

@@ -19,14 +19,5 @@ package org.lidiuma.math.api.vector;
 import org.lidiuma.math.api.tuple.UnaryTuple1;
 
 /// Generic Vector 1D interface.
-public interface Vector1<N> extends Vector<N, Vector1<N>>, UnaryTuple1<N> {
-
-    /// @return a vector with a component-wise clamp between `min` and `max`.
-    Vector1<N> clamp(UnaryTuple1<N> min, UnaryTuple1<N> max);
-
-    @Override
-    N length(); // In 1D integers vector will always have an integer length.
-
-    @Override
-    N distance(Vector1<N> vector); // In 1D integers vector will always have an integer distance.
+public interface Vector1<N> extends Vector<N>, UnaryTuple1<N> {
 }

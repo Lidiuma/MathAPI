@@ -16,8 +16,14 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.tuple.UnaryTuple;
+import org.lidiuma.math.api.tuple.UnaryTuple3;
 
-/// Generic Vector interface.
-public interface Vector<N> extends UnaryTuple<N> {
+public interface Vector3Ops<N> extends VectorOps<N, Vector3<N>, UnaryTuple3<N>> {
+
+    /// Returns the cross product between `first` vector and the `other` vector.\
+    /// The magnitude of the result is equal to `length() * other.length() * sin(theta)`, where theta is the angle between them.
+    ///
+    /// @return a vector perpendicular to both `first` and `other`.
+    /// @apiNote the cross product is anti-commutative; `cross(first, other) = cross(-other, first)`.
+    Vector3<N> cross(Vector3<N> first, Vector3<N> second);
 }

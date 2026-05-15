@@ -16,8 +16,13 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.tuple.UnaryTuple;
+import org.lidiuma.math.api.rotation.Angle;
 
-/// Generic Vector interface.
-public interface Vector<N> extends UnaryTuple<N> {
+public interface Vector2FOps<N> extends Vector2Ops<N> {
+
+    /// @return this vector rotated by the given angle.
+    Vector2<N> rotate(Vector2<N> vector, Angle<N> angle);
+
+    /// @return the angle between this vector and the positive X axis, the angle is measured counterclockwise.
+    Angle<N> angle(Vector2<N> vector);
 }

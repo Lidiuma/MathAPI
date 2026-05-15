@@ -16,8 +16,13 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.tuple.UnaryTuple;
+import org.lidiuma.math.api.rotation.Angle;
 
-/// Generic Vector interface.
-public interface Vector<N> extends UnaryTuple<N> {
+public interface Vector3FOps<N> extends Vector3Ops<N> {
+
+    // TODO A matrix/quaternion is the replacement for this
+    /// @param axis the non-zero normalized axis of rotation.
+    /// @param angle the rotation angle.
+    /// @return a vector rotated around the given axis by the provided angle.
+    Vector3<N> rotate(Vector3<N> vector, Vector3<N> axis, Angle<N> angle);
 }

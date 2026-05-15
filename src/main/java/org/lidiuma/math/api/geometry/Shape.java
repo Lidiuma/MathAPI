@@ -19,5 +19,6 @@ package org.lidiuma.math.api.geometry;
 import org.lidiuma.math.api.geometry.rectangle.Rectangle;
 import org.lidiuma.math.api.geometry.triangle.Triangle;
 
+// TODO Deprecate? This only limits extensions
 public sealed interface Shape permits Rectangle, Sphere, Triangle {
 }
