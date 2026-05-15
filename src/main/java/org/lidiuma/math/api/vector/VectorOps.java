@@ -16,6 +16,7 @@
 
 package org.lidiuma.math.api.vector;
 
+import org.lidiuma.math.api.Clampable;
 import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.Numerical;
 import org.lidiuma.math.api.Orderable;
@@ -24,7 +25,7 @@ import org.lidiuma.math.api.tuple.UnaryTuple;
 public interface VectorOps<
         N,
         V extends U,
-        U extends UnaryTuple<N>> extends Numerical<V>, Interpolatable<V, N>, Orderable<V> {
+        U extends UnaryTuple<N>> extends Numerical<V>, Orderable<V>, Interpolatable<V, N>, Clampable<V> {
 
     V of(U unaryTuple);
 
@@ -36,12 +37,6 @@ public interface VectorOps<
 
     /// @return a vector containing the absolute value of each component of `this` vector.
     V abs(V vector);
-
-    /// @return a vector with each component clamped between `min` and `max`.
-    V clamp(V vector, N min, N max);
-
-    /// @return a vector with a component-wise clamp between `min` and `max`.
-    V clamp(V vector, U min, U max);
 
     /// Returns the signum function for each component; zero if the component is zero,
     /// +1 if the component is greater than zero, -1 if the component is less than zero.
