@@ -16,12 +16,12 @@
 
 package org.lidiuma.math.api.vector;
 
-public interface Vector3Ops<N> extends VectorOps<N, Vector3<N>> {
+public interface Vector3Ops<N, V> extends VectorOps<N, V> {
 
     /// Returns the cross product between `first` vector and the `other` vector.\
     /// The magnitude of the result is equal to `length() * other.length() * sin(theta)`, where theta is the angle between them.
     ///
     /// @return a vector perpendicular to both `first` and `other`.
     /// @apiNote the cross product is anti-commutative; `cross(first, other) = cross(-other, first)`.
-    Vector3<N> cross(Vector3<N> first, Vector3<N> second);
+    V cross(V first, V second);
 }

@@ -16,11 +16,11 @@
 
 package org.lidiuma.math.api.vector;
 
-public interface Vector1Ops<N> extends VectorOps<N, Vector1<N>> {
+public interface Vector1Ops<N, V> extends VectorOps<N, V> {
 
     // In 1D integers vector will always have an integer length.
-    N length(Vector1<N> vector);
+    N length(V vector);
 
     // In 1D integers vector will always have an integer distance.
-    N distance(Vector1<N> first, Vector1<N> second);
+    N distance(V first, V second);
 }

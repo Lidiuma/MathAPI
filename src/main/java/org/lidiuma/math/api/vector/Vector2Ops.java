@@ -16,10 +16,10 @@
 
 package org.lidiuma.math.api.vector;
 
-public interface Vector2Ops<N> extends VectorOps<N, Vector2<N>> {
+public interface Vector2Ops<N, V> extends VectorOps<N, V> {
 
     /// Returns the 2D cross product of `first` vector and the `second` vector.\
     /// The result is equivalent to the Z component of the 3D cross product.
     /// @return the scalar result of the cross product.
-    N cross(Vector2<N> first, Vector2<N> second);
+    N cross(V first, V second);
 }
