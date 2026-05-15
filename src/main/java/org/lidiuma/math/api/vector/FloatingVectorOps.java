@@ -19,7 +19,7 @@ package org.lidiuma.math.api.vector;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
-public interface VectorFOps<
+public interface FloatingVectorOps<
         N,
         V extends U,
         U extends UnaryTuple<N>> extends VectorOps<N, V, U> {
