@@ -17,12 +17,8 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.rotation.Angle;
-import org.lidiuma.math.api.tuple.UnaryTuple;
 
-public interface FloatingVectorOps<
-        N,
-        V extends U,
-        U extends UnaryTuple<N>> extends VectorOps<N, V, U> {
+public interface FloatingVectorOps<N, V> extends VectorOps<N, V> {
 
     /// @return the angle between the `first` vector and the `second` vector.
     Angle<N> angle(V first, V second);

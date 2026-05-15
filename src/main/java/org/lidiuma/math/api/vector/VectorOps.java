@@ -20,18 +20,14 @@ import org.lidiuma.math.api.Clampable;
 import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.Numerical;
 import org.lidiuma.math.api.Orderable;
-import org.lidiuma.math.api.tuple.UnaryTuple;
 
-public interface VectorOps<
-        N,
-        V extends U,
-        U extends UnaryTuple<N>> extends Numerical<V>, Orderable<V>, Interpolatable<V, N>, Clampable<V> {
+public interface VectorOps<N, V> extends Numerical<V>, Orderable<V>, Interpolatable<V, N>, Clampable<V> {
 
-    V of(U unaryTuple);
-
+    // TODO Is this annoying for SIMD implementations?
     /// @return a vector with all it's components set to 0.
     V zero();
 
+    // TODO Is this annoying for SIMD implementations?
     /// @return a vector with all it's components set to 1.
     V one();
 
@@ -68,7 +64,7 @@ public interface VectorOps<
     V multiply(V multiplier, V multiplicand);
 
     /// @return a vector with each component multiplied by the provided scalar.
-    V multiply(V multiplier, N scalar);
+    V multiplyScalar(V multiplier, N scalar);
 
     /// @return the component-wise division of `this` and `other`.
     @Override

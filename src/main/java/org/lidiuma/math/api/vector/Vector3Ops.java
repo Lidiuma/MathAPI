@@ -16,9 +16,7 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.tuple.UnaryTuple3;
-
-public interface Vector3Ops<N> extends VectorOps<N, Vector3<N>, UnaryTuple3<N>> {
+public interface Vector3Ops<N> extends VectorOps<N, Vector3<N>> {
 
     /// Returns the cross product between `first` vector and the `other` vector.\
     /// The magnitude of the result is equal to `length() * other.length() * sin(theta)`, where theta is the angle between them.

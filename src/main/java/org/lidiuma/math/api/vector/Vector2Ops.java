@@ -16,9 +16,7 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.tuple.UnaryTuple2;
-
-public interface Vector2Ops<N> extends VectorOps<N, Vector2<N>, UnaryTuple2<N>> {
+public interface Vector2Ops<N> extends VectorOps<N, Vector2<N>> {
 
     /// Returns the 2D cross product of `first` vector and the `second` vector.\
     /// The result is equivalent to the Z component of the 3D cross product.
