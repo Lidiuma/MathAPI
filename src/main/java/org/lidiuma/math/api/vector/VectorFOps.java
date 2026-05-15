@@ -16,12 +16,16 @@
 
 package org.lidiuma.math.api.vector;
 
+import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
 public interface VectorFOps<
         N,
         V extends U,
         U extends UnaryTuple<N>> extends VectorOps<N, V, U> {
+
+    /// @return the angle between the `first` vector and the `second` vector.
+    Angle<N> angle(V first, V second);
 
     /// @return the Euclidean distance between `this` and `other`.
     N distance(V start, V end);

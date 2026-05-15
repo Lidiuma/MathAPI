@@ -20,9 +20,7 @@ import org.lidiuma.math.api.rotation.Angle;
 
 public interface Vector2FOps<N> extends Vector2Ops<N> {
 
+    // TODO Remove and use a matrix instead?
     /// @return this vector rotated by the given angle.
     Vector2<N> rotate(Vector2<N> vector, Angle<N> angle);
-
-    /// @return the angle between this vector and the positive X axis, the angle is measured counterclockwise.
-    Angle<N> angle(Vector2<N> vector);
 }
