@@ -35,6 +35,7 @@ public interface Color<N> extends Interpolatable<Color<N>, N>, UnaryTuple4<N> {
     /// @return The alpha channel, usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).
     N alpha();
 
+    // TODO Use new clampable and make a ColorOps type-class.
     /// @return a color with each component clamped between `min` and `max`.
     Color<N> clamp(N min, N max);
 

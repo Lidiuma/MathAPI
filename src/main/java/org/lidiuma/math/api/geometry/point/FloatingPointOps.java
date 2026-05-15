@@ -16,9 +16,8 @@
 
 package org.lidiuma.math.api.geometry.point;
 
-import org.lidiuma.math.api.tuple.UnaryTuple;
+public interface FloatingPointOps<N, P, V> extends PointOps<N, P, V> {
 
-/// Generic Point interface representing a position.
-/// @param <N> the numeric type.
-public interface Point<N> extends UnaryTuple<N> {
+    /// @return the Euclidean distance between `first` and `second`.
+    N distance(P first, P second);
 }

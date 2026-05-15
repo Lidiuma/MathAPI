@@ -17,10 +17,9 @@
 package org.lidiuma.math.api.geometry.point;
 
 import org.lidiuma.math.api.tuple.UnaryTuple1;
-import org.lidiuma.math.api.vector.Vector1;
 
 /// Generic Point 1D interface.
-public interface Point1<N> extends Point<N, Point1<N>, Vector1<N>>, UnaryTuple1<N> {
+public interface Point1<N> extends Point<N>, UnaryTuple1<N> {
 
     /// @return a point with a component-wise clamp between `min` and `max`.
     Point1<N> clamp(UnaryTuple1<N> min, UnaryTuple1<N> max);
