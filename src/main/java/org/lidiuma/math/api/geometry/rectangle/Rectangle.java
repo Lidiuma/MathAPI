@@ -16,12 +16,11 @@
 
 package org.lidiuma.math.api.geometry.rectangle;
 
-import org.lidiuma.math.api.geometry.Shape;
 import org.lidiuma.math.api.vector.Vector;
 
 /// Generic Rectangle interface.
 /// @apiNote The point is not provided to allow the rectangle to be re-used with different points.
-public non-sealed interface Rectangle<N, V extends Vector<N>> extends Shape {
+public interface Rectangle<N, V extends Vector<N>> {
 
     /// The dimensions of the rectangle.
     V size();

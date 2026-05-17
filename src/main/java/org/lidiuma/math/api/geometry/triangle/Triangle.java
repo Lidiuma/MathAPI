@@ -16,7 +16,6 @@
 
 package org.lidiuma.math.api.geometry.triangle;
 
-import org.lidiuma.math.api.geometry.Shape;
 import org.lidiuma.math.api.vector.Vector;
 
 /// Generic Triangle interface.
@@ -32,7 +31,7 @@ import org.lidiuma.math.api.vector.Vector;
 ///   |
 /// A = (0,0)
 ///```
-public non-sealed interface Triangle<N, V extends Vector<N>> extends Shape {
+public interface Triangle<N, V extends Vector<N>> {
 
     /// @return the `origin `[Vector] which is always **zero**.
     V a();

@@ -18,7 +18,7 @@ package org.lidiuma.math.api.geometry;
 
 /// Generic Sphere interface.
 /// @apiNote The point is not provided to allow the sphere to be re-used with different points.
-public non-sealed interface Sphere<N> extends Shape { // TODO Rename to Radius?
+public interface Sphere<N> { // TODO Rename to Radius?
 
     /// @return the radius of the sphere.
     N radius();
