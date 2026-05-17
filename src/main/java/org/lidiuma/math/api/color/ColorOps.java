@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry;
+package org.lidiuma.math.api.color;
 
-/// Generic Sphere interface.
-/// @apiNote The point is not provided to allow the sphere to be re-used with different points.
-public interface Sphere<N> { // TODO Rename to Radius?
+import org.lidiuma.math.api.Clampable;
+import org.lidiuma.math.api.Interpolatable;
 
-    /// @return the radius of the sphere.
-    N radius();
+public interface ColorOps<C, N> extends Interpolatable<C, N>, Clampable<C> {
 }
