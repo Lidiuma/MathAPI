@@ -21,7 +21,7 @@ import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.Numerical;
 import org.lidiuma.math.api.Orderable;
 
-public interface VectorOps<N, V> extends Numerical<V>, Orderable<V>, Interpolatable<V, N>, Clampable<V> {
+public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderable<V>, Interpolatable<V, N>, Clampable<V> {
 
     // TODO Is this annoying for SIMD implementations?
     /// @return a vector with all it's components set to 0.

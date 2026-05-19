@@ -19,5 +19,5 @@ package org.lidiuma.math.api.color;
 import org.lidiuma.math.api.Clampable;
 import org.lidiuma.math.api.Interpolatable;
 
-public interface ColorOps<C, N> extends Interpolatable<C, N>, Clampable<C> {
+public interface ColorOps<C extends Color<N>, N> extends Interpolatable<C, N>, Clampable<C> {
 }

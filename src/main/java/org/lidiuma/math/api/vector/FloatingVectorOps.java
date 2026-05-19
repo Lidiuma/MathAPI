@@ -18,7 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.rotation.Angle;
 
-public interface FloatingVectorOps<N, V> extends VectorOps<N, V> {
+public interface FloatingVectorOps<V extends Vector<N>, N> extends VectorOps<V, N> {
 
     /// @return the angle between the `first` vector and the `second` vector.
     Angle<N> angle(V first, V second);

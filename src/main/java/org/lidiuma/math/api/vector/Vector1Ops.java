@@ -16,7 +16,7 @@
 
 package org.lidiuma.math.api.vector;
 
-public interface Vector1Ops<N, V> extends VectorOps<N, V> {
+public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
 
     // In 1D integers vector will always have an integer length.
     N length(V vector);
