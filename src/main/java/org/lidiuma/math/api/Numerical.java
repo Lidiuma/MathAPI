@@ -20,19 +20,19 @@ package org.lidiuma.math.api;
 public interface Numerical<T> {
 
     /// Addition operation, same as `+`.
-    T add(T addend, T augend);
+    T add(T left, T right);
 
     /// Subtraction operation, same as `-`.
-    T subtract(T minuend, T subtrahend);
+    T subtract(T left, T right);
 
     /// Multiplication operation, same as `*`.
-    T multiply(T multiplier, T multiplicand);
+    T multiply(T left, T right);
 
     /// Division operation, same as `/`.
-    T divide(T dividend, T divisor);
+    T divide(T left, T right);
 
     /// Remainder operation, same as `%`.
-    T remainder(T dividend, T divisor);
+    T remainder(T left, T right);
 
     /// Negation operation, same as `-` or multiplying by a scalar `-1`.
     T negated(T operand);

@@ -53,25 +53,25 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
 
     /// @return the component-wise addition of `this` and `other`.
     @Override
-    V add(V addend, V augend);
+    V add(V left, V right);
 
     /// @return the component-wise subtraction of `this` and `other`.
     @Override
-    V subtract(V minuend, V subtrahend);
+    V subtract(V left, V right);
 
     /// @return the Hadamard (component-wise) multiplication of `this` and `other`.
     @Override
-    V multiply(V multiplier, V multiplicand);
+    V multiply(V left, V right);
 
     /// @return a vector with each component multiplied by the provided scalar.
     V multiplyScalar(V multiplier, N scalar);
 
     /// @return the component-wise division of `this` and `other`.
     @Override
-    V divide(V dividend, V divisor);
+    V divide(V left, V right);
 
     @Override
-    V remainder(V dividend, V divisor);
+    V remainder(V left, V right);
 
     /// @return a vector with all its components negated.
     /// Equivalent to multiplying this vector by the scalar `-1`.
