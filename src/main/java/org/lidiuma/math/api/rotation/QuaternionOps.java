@@ -36,32 +36,6 @@ public interface QuaternionOps<
 
     Q fromEulerAngle(A yaw, A pitch, A roll);
 
-    /// @return the component-wise addition of the `left` and `right`.
-    @Override
-    Q add(Q left, Q right);
-
-    /// @return the component-wise subtraction of `left` and `right`.
-    @Override
-    Q subtract(Q left, Q right);
-
-    /// Returns the Hamilton product of the `left` and `right`.\
-    /// Can be used to compose the rotations of two quaternions.
-    /// @return a new quaternion equal to `left * right`
-    /// @apiNote Quaternion multiplication is **not** commutative; `left * right != right * left`.
-    @Override
-    Q multiply(Q left, Q right);
-
-    /// Multiplies `quaternion` by the given `scalar`.
-    /// @return the multiplied quaternion.
-    Q multiply(Q quaternion, N scalar);
-
-    /// Divides `left` quaternion by `right`.
-    /// This is equivalent to `left * right⁻¹`.
-    /// @return a new quaternion equal to `left / right`.
-    /// @apiNote Quaternion division is **not** commutative; `left / right != right / left`.
-    @Override
-    Q divide(Q left, Q right);
-
     /// @return the exponential of `quaternion`.
     /// @apiNote If `quaternion` is not normalized,
     /// the resulting quaternion will include a scale but will no longer represent a pure rotation.
@@ -77,12 +51,6 @@ public interface QuaternionOps<
     /// @apiNote If `quaternion` is not normalized,
     /// the resulting quaternion will include a scale but will no longer represent a pure rotation.
     Q pow(Q quaternion, N alpha);
-
-    /// @return a quaternion with all its components negated.
-    /// Equivalent to multiplying `quaternion` by the scalar `-1`.
-    /// @apiNote The quaternion and its negation represent the same rotation.
-    @Override
-    Q negated(Q quaternion);
 
     /// @return The conjugated quaternion.
     Q conjugated(Q quaternion);
@@ -171,4 +139,36 @@ public interface QuaternionOps<
     /// @apiNote The `quaternion` should be normalized for correct results and the axis must be non-zero,
     /// otherwise a zero square root occurs.
     A angleAround(Q quaternion, V axis);
+
+    /// Multiplies `quaternion` by the given `scalar`.
+    /// @return the multiplied quaternion.
+    Q multiply(Q quaternion, N scalar);
+
+    /// @return the component-wise addition of the `left` and `right`.
+    @Override
+    Q add(Q left, Q right);
+
+    /// @return the component-wise subtraction of `left` and `right`.
+    @Override
+    Q subtract(Q left, Q right);
+
+    /// Returns the Hamilton product of the `left` and `right`.\
+    /// Can be used to compose the rotations of two quaternions.
+    /// @return a new quaternion equal to `left * right`
+    /// @apiNote Quaternion multiplication is **not** commutative; `left * right != right * left`.
+    @Override
+    Q multiply(Q left, Q right);
+
+    /// Divides `left` quaternion by `right`.
+    /// This is equivalent to `left * right⁻¹`.
+    /// @return a new quaternion equal to `left / right`.
+    /// @apiNote Quaternion division is **not** commutative; `left / right != right / left`.
+    @Override
+    Q divide(Q left, Q right);
+
+    /// @return a quaternion with all its components negated.
+    /// Equivalent to multiplying `quaternion` by the scalar `-1`.
+    /// @apiNote The quaternion and its negation represent the same rotation.
+    @Override
+    Q negated(Q quaternion);
 }

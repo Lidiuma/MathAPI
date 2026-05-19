@@ -43,6 +43,9 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     /// @return the dot product.
     N dot(V first, V second);
 
+    /// @return a vector with each component multiplied by the provided scalar.
+    V multiply(V multiplier, N scalar);
+
     /// @return the component-wise addition of `this` and `other`.
     @Override
     V add(V left, V right);
@@ -54,9 +57,6 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     /// @return the Hadamard (component-wise) multiplication of `this` and `other`.
     @Override
     V multiply(V left, V right);
-
-    /// @return a vector with each component multiplied by the provided scalar.
-    V multiplyScalar(V multiplier, N scalar);
 
     /// @return the component-wise division of `this` and `other`.
     @Override
