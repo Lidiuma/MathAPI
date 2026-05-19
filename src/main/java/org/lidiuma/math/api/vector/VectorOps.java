@@ -23,7 +23,7 @@ import org.lidiuma.math.api.Orderable;
 
 public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderable<V>, Interpolatable<V, N>, Clampable<V> {
 
-    /// @return a vector containing the absolute value of each component of `this` vector.
+    /// @return a vector containing the absolute value of each component of `vector`.
     V abs(V vector);
 
     /// Returns the signum function for each component; zero if the component is zero,
@@ -32,36 +32,36 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     /// @return a vector with the signum function applied to each component.
     V signum(V vector);
 
-    /// @return the Euclidean distance squared between `this` and `other`.
-    N distanceSquared(V first, V second);
+    /// @return the Euclidean distance squared between `a` and `b`.
+    N distanceSquared(V a, V b);
 
-    /// @return the magnitude squared of `this` vector.
+    /// @return the magnitude squared of `vector`.
     N lengthSquared(V vector);
 
-    /// Returns the dot product of `this` vector and the `other` vector.\
-    /// The magnitude of the result is equal to `length() * other.length() * cos(theta)`, where theta is the angle between them.
+    /// Returns the dot product between `left` and `right` vector.\
+    /// The magnitude of the result is equal to `length(left) * length(right) * cos(theta)`, where theta is the angle between them.
     /// @return the dot product.
-    N dot(V first, V second);
+    N dot(V left, V right);
 
     /// @return a vector with each component multiplied by the provided scalar.
-    V multiply(V multiplier, N scalar);
+    V multiply(V vector, N scalar);
 
     /// @return a vector with each component clamped between `min` and `max`.
     V clamp(V point, N min, N max);
 
-    /// @return the component-wise addition of `this` and `other`.
+    /// @return the component-wise addition of `left` and `right`.
     @Override
     V add(V left, V right);
 
-    /// @return the component-wise subtraction of `this` and `other`.
+    /// @return the component-wise subtraction of `left` and `right`.
     @Override
     V subtract(V left, V right);
 
-    /// @return the Hadamard (component-wise) multiplication of `this` and `other`.
+    /// @return the Hadamard (component-wise) multiplication of `left` and `right`.
     @Override
     V multiply(V left, V right);
 
-    /// @return the component-wise division of `this` and `other`.
+    /// @return the component-wise division of `left` and `right`.
     @Override
     V divide(V left, V right);
 
@@ -69,9 +69,9 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     V remainder(V left, V right);
 
     /// @return a vector with all its components negated.
-    /// Equivalent to multiplying this vector by the scalar `-1`.
+    /// Equivalent to multiplying `vector` by the scalar `-1`.
     @Override
-    V negated(V operand);
+    V negated(V vector);
 
     /// @return true if all the components of `first` are less than the corresponding components of `second`.
     @Override
@@ -91,8 +91,8 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
 
     /// @return a vector containing the component-wise minimum between `first` and `second`.
     /// ```java
-    /// var x = min(this.x(), other.x());
-    /// var y = min(this.y(), other.y());
+    /// var x = min(left.x(), right.x());
+    /// var y = min(left.y(), right.y());
     /// ...
     /// return vector(x, y, ...);
     /// ```
@@ -101,11 +101,17 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
 
     /// @return a vector containing the component-wise maximum between `first` and `second`.
     /// ```java
-    /// var x = max(this.x(), other.x());
-    /// var y = max(this.y(), other.y());
+    /// var x = max(left.x(), right.x());
+    /// var y = max(left.y(), right.y());
     /// ...
     /// return vector(x, y, ...);
     /// ```
     @Override
     V max(V left, V right);
+
+    /// @return the [Numerical] witness for [N].
+    /// @deprecated Java will eventually provide a mechanism in the language to get the Numerical witness of [N].\
+    /// By providing it now, I can reduce massively the time needed to implement the APIs.
+    @Deprecated // not for removal until the language provides an alternative.
+    Numerical<N> numericalWitness();
 }
