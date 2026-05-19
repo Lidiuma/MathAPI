@@ -53,7 +53,7 @@ public interface QuaternionOps<
 
     /// Multiplies this quaternion by the given scalar.
     /// @return the multiplied quaternion.
-    Q multiplyScalar(N scalar);
+    Q multiply(Q quaternion, N scalar);
 
     /// Divides `dividend` quaternion by `divisor`.
     /// This is equivalent to `dividend * divisor⁻¹`.
