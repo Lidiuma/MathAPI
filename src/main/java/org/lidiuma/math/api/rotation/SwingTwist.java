@@ -23,11 +23,11 @@ package org.lidiuma.math.api.rotation;
 /// - a *swing* rotation that moves the axis into place.
 ///
 /// The original quaternion can be reconstructed by doing `swing * twist`.
-public interface SwingTwist<N> {
+public interface SwingTwist<Q extends Quaternion<N>, N> {
 
     /// @return the normalized swing component of the rotation.
-    Quaternion<N> swing();
+    Q swing();
 
     /// @return the normalized twist component of the rotation.
-    Quaternion<N> twist();
+    Q twist();
 }

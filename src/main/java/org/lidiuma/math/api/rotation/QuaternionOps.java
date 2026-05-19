@@ -24,7 +24,17 @@ import org.lidiuma.math.api.vector.Vector3;
 /// Most operations assume the quaternion [Q] is normalized.
 /// @param <N> The quaternion component type.
 /// @param <Q> The quaternion.
-public interface QuaternionOps<N, Q> extends Numerical<Q>, Interpolatable<Q, N> {
+public interface QuaternionOps<
+        Q extends Quaternion<N>,
+        V extends Vector3<N>,
+        A extends Angle<N>,
+        N> extends Numerical<Q>, Interpolatable<Q, N> {
+
+    Q identity();
+
+    Q fromAxisAngle(V axis, A angle);
+
+    Q fromEulerAngle(A yaw, A pitch, A roll);
 
     /// @return the component-wise addition of the `addend` and `augend`.
     @Override
@@ -122,44 +132,28 @@ public interface QuaternionOps<N, Q> extends Numerical<Q>, Interpolatable<Q, N> 
 
     /// Rotates the given vector using this quaternion.
     ///
-    /// @param v3 the vector to rotate.
+    /// @param vector the vector to rotate.
     /// @return a new rotated vector.
     /// @apiNote This quaternion should be normalized for correct results.\
     /// If not normalized, the result will be rotated and uniformly
     /// scaled by the squared length of the quaternion.
-    Vector3<N> rotate(Q quaternion, Vector3<N> v3);
+    V rotate(Q quaternion, V vector);
 
     /// Unrotates the given vector using this quaternion.
     ///
-    /// @param v3 the vector to unrotate.
+    /// @param vector the vector to unrotate.
     /// @return a new unrotated vector.
     /// @apiNote This quaternion should be normalized for correct results.\
     /// If not normalized, the result will be unrotated and uniformly
     /// scaled by the squared length of the quaternion.
-    Vector3<N> unrotate(Q quaternion, Vector3<N> v3);
-
-    /// @return the roll (rotation around the z-axis) angle between -π and +π.
-    /// @apiNote This quaternion should be normalized for correct results.
-    Angle<N> roll(Q quaternion);
-
-    /// @return the pitch (rotation around the x-axis) angle between -(π/2) and +(π/2).
-    /// @apiNote This quaternion should be normalized for correct results.
-    Angle<N> pitch(Q quaternion);
-
-    /// When the quaternion is in a Gimbal-lock configuration, the yaw is set to zero by convention.
-    /// @return the yaw (rotation around the y-axis) angle between -π and +π.
-    /// @apiNote This quaternion should be normalized for correct results.
-    Angle<N> yaw(Q quaternion);
-
-    /// @return {@link GimbalPole#NORTH} or {@link GimbalPole#SOUTH} if the gimbal-lock is present, otherwise {@link GimbalPole#NONE}.
-    GimbalPole gimbalPole(Q quaternion);
+    V unrotate(Q quaternion, V vector);
 
     /// Returns the axis-angle representation of this normalized quaternion's rotation.
     /// @return {@link AxisAngle} containing both the normalized axis and the angle.
-    AxisAngle<N> axisAngle(Q quaternion);
+    AxisAngle<V, A, N> axisAngle(Q quaternion);
 
     /// @return the rotation angle of this normalized quaternion.
-    Angle<N> angle(Q quaternion);
+    A angle(Q quaternion);
 
     /// Gets the swing rotation and twist rotation for the specified axis.
     /// - The twist rotation represents the rotation around the specified axis.
@@ -170,10 +164,10 @@ public interface QuaternionOps<N, Q> extends Numerical<Q>, Interpolatable<Q, N> 
     /// @param axis of which to get the swing and twist rotation.
     /// @return the `swing` and `twist` pair.
     /// @apiNote The quaternion and the axis should be normalized for correct results.
-    SwingTwist<N> swingTwist(Q quaternion, Vector3<N> axis);
+    SwingTwist<Q, N> swingTwist(Q quaternion, V axis);
 
     /// @param axis the non-zero normalized rotation axis.
     /// @return the rotation angle around the given axis.
     /// @apiNote This quaternion should be normalized for correct results and the axis must be non-zero, otherwise a zero square root occurs.
-    Angle<N> angleAround(Q quaternion, Vector3<N> axis);
+    A angleAround(Q quaternion, V axis);
 }
