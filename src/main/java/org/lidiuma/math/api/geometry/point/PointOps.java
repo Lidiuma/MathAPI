@@ -32,9 +32,9 @@ public interface PointOps<
     /// @return a vector representing the offset `minuend - subtrahend`.
     V subtract(P minuend, P subtrahend);
 
-    /// @return a point with each component clamped between `min` and `max`.
-    P clamp(P point, N min, N max); // TODO Replace with the clampable interface? (Probably)
-
     /// @return the Euclidean distance squared between `first` and `second`.
     N distanceSquared(P first, P second);
+
+    /// @return a point with each component clamped between `min` and `max`.
+    P clamp(P point, N min, N max);
 }
