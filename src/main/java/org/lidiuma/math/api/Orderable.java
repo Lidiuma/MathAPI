@@ -18,21 +18,21 @@ package org.lidiuma.math.api;
 
 public interface Orderable<T> {
 
-    /// @return true if `first` is less than `second`.
-    boolean lessThan(T first, T second);
+    /// @return true if `left` is less than `right`.
+    boolean lessThan(T left, T right);
 
-    /// @return true if `first` is less than or equal to `second`.
-    boolean lessThanEqual(T first, T second);
+    /// @return true if `left` is less than or equal to `right`.
+    boolean lessThanEqual(T left, T right);
 
-    /// @return true if `first` is greater than `second`.
-    boolean greaterThan(T first, T second);
+    /// @return true if `left` is greater than `right`.
+    boolean greaterThan(T left, T right);
 
-    /// @return true if `first` is greater than or equal to `second`.
-    boolean greaterThanEqual(T first, T second);
+    /// @return true if `left` is greater than or equal to `right`.
+    boolean greaterThanEqual(T left, T right);
 
-    /// @return the smaller number between `first` and `second`.
-    T min(T first, T second);
+    /// @return the smaller number between `left` and `right`.
+    T min(T left, T right);
 
-    /// @return the bigger number between `first` and `second`.
-    T max(T first, T second);
+    /// @return the bigger number between `left` and `right`.
+    T max(T left, T right);
 }

@@ -80,19 +80,19 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
 
     /// @return true if all the components of `first` are less than the corresponding components of `second`.
     @Override
-    boolean lessThan(V first, V second);
+    boolean lessThan(V left, V right);
 
     /// @return true if all the components of `first` are less than or equal to the corresponding components of `second`.
     @Override
-    boolean lessThanEqual(V first, V second);
+    boolean lessThanEqual(V left, V right);
 
     /// @return true if all the components of `first` are greater than the corresponding components of `second`.
     @Override
-    boolean greaterThan(V first, V second);
+    boolean greaterThan(V left, V right);
 
     /// @return true if all the components of `first` are greater than or equal to the corresponding components of `second`.
     @Override
-    boolean greaterThanEqual(V first, V second);
+    boolean greaterThanEqual(V left, V right);
 
     /// @return a vector containing the component-wise minimum between `first` and `second`.
     /// ```java
@@ -102,7 +102,7 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     /// return vector(x, y, ...);
     /// ```
     @Override
-    V min(V first, V second);
+    V min(V left, V right);
 
     /// @return a vector containing the component-wise maximum between `first` and `second`.
     /// ```java
@@ -112,5 +112,5 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     /// return vector(x, y, ...);
     /// ```
     @Override
-    V max(V first, V second);
+    V max(V left, V right);
 }
