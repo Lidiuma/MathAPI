@@ -19,7 +19,7 @@ package org.lidiuma.math.api.geometry.rectangle;
 import org.lidiuma.math.api.vector.Vector4;
 
 /// Generic Rectangle 4D interface.
-public interface Rectangle4<N> extends Rectangle<N, Vector4<N>> {
+public interface Rectangle4<N> extends Rectangle<Vector4<N>, N> {
 
     default N width() {
         return size().y();

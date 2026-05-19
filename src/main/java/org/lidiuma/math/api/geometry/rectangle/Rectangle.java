@@ -20,7 +20,7 @@ import org.lidiuma.math.api.vector.Vector;
 
 /// Generic Rectangle interface.
 /// @apiNote The point is not provided to allow the rectangle to be re-used with different points.
-public interface Rectangle<N, V extends Vector<N>> {
+public interface Rectangle<V extends Vector<N>, N> {
 
     /// The dimensions of the rectangle.
     V size();

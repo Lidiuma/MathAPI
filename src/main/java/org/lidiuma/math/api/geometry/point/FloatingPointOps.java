@@ -16,7 +16,12 @@
 
 package org.lidiuma.math.api.geometry.point;
 
-public interface FloatingPointOps<N, P, V> extends PointOps<N, P, V> {
+import org.lidiuma.math.api.vector.Vector;
+
+public interface FloatingPointOps<
+        P extends Point<N>,
+        V extends Vector<N>,
+        N> extends PointOps<P, V, N> {
 
     /// @return the Euclidean distance between `first` and `second`.
     N distance(P first, P second);

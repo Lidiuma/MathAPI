@@ -17,8 +17,12 @@
 package org.lidiuma.math.api.geometry.point;
 
 import org.lidiuma.math.api.Interpolatable;
+import org.lidiuma.math.api.vector.Vector;
 
-public interface PointOps<N, P, V> extends Interpolatable<P, N> {
+public interface PointOps<
+        P extends Point<N>,
+        V extends Vector<N>,
+        N> extends Interpolatable<P, N> {
 
     /// Translates the point by an offset vector.
     /// @return the translated point by `point + vector`.

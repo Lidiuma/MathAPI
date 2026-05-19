@@ -20,7 +20,4 @@ import org.lidiuma.math.api.tuple.UnaryTuple3;
 
 /// Generic Point 3D interface.
 public interface Point3<N> extends Point<N>, UnaryTuple3<N> {
-
-    /// @return a point with a component-wise clamp between `min` and `max`.
-    Point3<N> clamp(UnaryTuple3<N> min, UnaryTuple3<N> max);
 }

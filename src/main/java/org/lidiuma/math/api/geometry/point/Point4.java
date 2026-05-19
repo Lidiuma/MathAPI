@@ -20,7 +20,4 @@ import org.lidiuma.math.api.tuple.UnaryTuple4;
 
 /// Generic Point 4D interface.
 public interface Point4<N> extends Point<N>, UnaryTuple4<N> {
-
-    /// @return a point with a component-wise clamp between `min` and `max`.
-    Point4<N> clamp(UnaryTuple4<N> min, UnaryTuple4<N> max);
 }

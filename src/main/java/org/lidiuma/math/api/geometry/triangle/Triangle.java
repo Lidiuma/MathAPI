@@ -31,7 +31,7 @@ import org.lidiuma.math.api.vector.Vector;
 ///   |
 /// A = (0,0)
 ///```
-public interface Triangle<N, V extends Vector<N>> {
+public interface Triangle<V extends Vector<N>, N> {
 
     /// @return the `origin `[Vector] which is always **zero**.
     V a();
