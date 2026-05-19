@@ -18,10 +18,13 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.rotation.Angle;
 
-public interface FloatingVectorOps<V extends Vector<N>, N> extends VectorOps<V, N> {
+public interface FloatingVectorOps<
+        V extends Vector<N>,
+        A extends Angle<N>,
+        N> extends VectorOps<V, N> {
 
     /// @return the angle between the `first` vector and the `second` vector.
-    Angle<N> angle(V first, V second);
+    A angle(V first, V second);
 
     /// @return the Euclidean distance between `this` and `other`.
     N distance(V start, V end);
