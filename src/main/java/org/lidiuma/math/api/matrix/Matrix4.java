@@ -24,7 +24,7 @@ import org.lidiuma.math.api.vector.Vector4;
 
 /// Generic Matrix4 interface.
 @SuppressWarnings("unused")
-public interface Matrix4<N> extends SquareMatrix<N, Matrix4<N>, UnaryTuple4<N>> {
+public interface Matrix4<N> extends SquareMatrixOps<N, Matrix4<N>, UnaryTuple4<N>> {
 
     int SIZE = 16;
 

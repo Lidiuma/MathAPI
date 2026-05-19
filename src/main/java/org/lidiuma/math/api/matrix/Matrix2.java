@@ -23,7 +23,7 @@ import org.lidiuma.math.api.vector.Vector1;
 import org.lidiuma.math.api.vector.Vector2;
 
 /// Generic Matrix2 interface.
-public interface Matrix2<N> extends SquareMatrix<N, Matrix2<N>, UnaryTuple2<N>> {
+public interface Matrix2<N> extends SquareMatrixOps<N, Matrix2<N>, UnaryTuple2<N>> {
 
     int SIZE = 4;
 

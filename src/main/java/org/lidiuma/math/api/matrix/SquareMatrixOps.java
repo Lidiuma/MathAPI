@@ -19,19 +19,19 @@ package org.lidiuma.math.api.matrix;
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
 /// Matrix specialization where rows and columns are equal.
-public interface SquareMatrix<N, M extends SquareMatrix<N, M, T>, T extends UnaryTuple<N>> extends Matrix<N, M, T> {
+public interface SquareMatrixOps<M extends Matrix<M, T, N>, T extends UnaryTuple<N>, N> extends MatrixOps<M, N> {
 
-    /// @return The determinant of this squared matrix.
-    N determinant();
+    /// @return The determinant of the squared `matrix`.
+    N determinant(M matrix);
 
-    /// Inverts this matrix given that the determinant is != 0.
-    /// @return This matrix for the purpose of chaining operations.
+    /// Inverts `matrix`, given that the determinant is != 0.
+    /// @return The inverted matrix.
     /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
-    M inverted() throws ArithmeticException;
+    M inverted(M matrix) throws ArithmeticException;
 
     /// @return a matrix with the translational part removed (set to 0) and transposed.
-    M toNormalMatrix();
+    M toNormalMatrix(M matrix);
 
     /// @return true if the matrix is a singular squared matrix.
-    boolean isSingular();
+    boolean isSingular(M matrix);
 }
