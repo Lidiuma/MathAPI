@@ -62,10 +62,4 @@ public interface Matrix4<N> extends SquareMatrixOps<N, Matrix4<N>, UnaryTuple4<N
     N m31();
     N m32();
     N m33();
-
-    /// Multiplies `this` matrix by the provided [Point3] treated as a [Point4] with [Point4#w()]` = 1`.
-    Point3<N> multiply(Point3<N> point);
-
-    /// Multiplies `this` matrix by the provided [Vector3] treated as a [Vector4] with [Vector4#w()]` = 0`.
-    Vector3<N> multiply(Vector3<N> vector);
 }

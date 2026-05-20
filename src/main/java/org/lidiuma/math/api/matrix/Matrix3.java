@@ -16,11 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.geometry.point.Point2;
-import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.tuple.UnaryTuple3;
-import org.lidiuma.math.api.vector.Vector2;
-import org.lidiuma.math.api.vector.Vector3;
 
 /// Generic Matrix3 interface.
 public interface Matrix3<N> extends SquareMatrixOps<N, Matrix3<N>, UnaryTuple3<N>> {
@@ -53,10 +49,4 @@ public interface Matrix3<N> extends SquareMatrixOps<N, Matrix3<N>, UnaryTuple3<N
     N m20();
     N m21();
     N m22();
-
-    /// Multiplies `this` matrix by the provided [Point2] treated as a [Point3] with [Point3#z()]` = 1`.
-    Point2<N> multiply(Point2<N> point);
-
-    /// Multiplies `this` matrix by the provided [Vector2] treated as a [Vector3] with [Vector3#z()]` = 0`.
-    Vector2<N> multiply(Vector2<N> vector);
 }
