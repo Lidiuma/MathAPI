@@ -113,5 +113,5 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     /// @deprecated Java will eventually provide a mechanism in the language to get the Numerical witness of [N].\
     /// By providing it now, I can reduce massively the time needed to implement the APIs.
     @Deprecated // not for removal until the language provides an alternative.
-    Numerical<N> numericalWitness();
+    Numerical<N> _scalarWitness();
 }

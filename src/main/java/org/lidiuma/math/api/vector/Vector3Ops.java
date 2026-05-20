@@ -18,6 +18,9 @@ package org.lidiuma.math.api.vector;
 
 public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
 
+    /// Constructs a vector using the provided scalars.
+    V of(N x, N y, N z);
+
     /// Returns the cross product between `first` vector and the `other` vector.\
     /// The magnitude of the result is equal to `length() * other.length() * sin(theta)`, where theta is the angle between them.
     ///

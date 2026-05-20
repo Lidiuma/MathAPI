@@ -31,5 +31,5 @@ public interface UnaryTuple<N> {
     N component(int index) throws IndexOutOfBoundsException;
 
     /// @return true if all the components of `this` tuple are equal to the provided `value` within `epsilon`.
-    boolean componentEquals(N value, N epsilon);
+    boolean componentEquals(N value, N epsilon); // TODO Remove? Not all tuples require an epsilon.
 }

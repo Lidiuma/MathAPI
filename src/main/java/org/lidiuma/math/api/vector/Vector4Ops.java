@@ -16,14 +16,8 @@
 
 package org.lidiuma.math.api.vector;
 
-public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
+public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
 
     /// Constructs a vector using the provided scalars.
-    V of(N x);
-
-    // In 1D integers vector will always have an integer length.
-    N length(V vector);
-
-    // In 1D integers vector will always have an integer distance.
-    N distance(V first, V second);
+    V of(N x, N y, N z, N w);
 }

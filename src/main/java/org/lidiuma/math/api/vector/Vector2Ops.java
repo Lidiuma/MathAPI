@@ -18,6 +18,9 @@ package org.lidiuma.math.api.vector;
 
 public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
 
+    /// Constructs a vector using the provided scalars.
+    V of(N x, N y);
+
     /// Returns the 2D cross product of `first` vector and the `second` vector.\
     /// The result is equivalent to the Z component of the 3D cross product.
     /// @return the scalar result of the cross product.
