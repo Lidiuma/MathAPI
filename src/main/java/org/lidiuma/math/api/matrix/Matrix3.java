@@ -17,7 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 /// Generic Matrix3 interface.
-public interface Matrix3<N> extends SquaredMatrix<N> {
+public interface Matrix3<N> extends SquareMatrix<N> {
 
     int SIZE = 9;
 

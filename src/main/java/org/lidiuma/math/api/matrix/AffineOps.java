@@ -16,10 +16,23 @@
 
 package org.lidiuma.math.api.matrix;
 
-public interface SquaredMatrix<N> extends Matrix<N> {
+import org.lidiuma.math.api.rotation.Quaternion;
+import org.lidiuma.math.api.vector.Vector;
 
-    @Override
-    default int size() {
-        return rows();
-    }
+public interface AffineOps<
+        M extends SquareMatrix<N>,
+        V extends Vector<N>,
+        N> extends SquareMatrixOps<M, V, N> {
+
+    /// @return the translation part of this matrix.
+    V translation();
+
+    /// @return the rotation part of this matrix.
+    Quaternion<N> rotation();
+
+    /// @return the shearing component of this matrix.
+    V shear();
+
+    /// @return the scale components along each axis.
+    V scale();
 }

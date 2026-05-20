@@ -20,7 +20,7 @@ import org.lidiuma.math.api.vector.Vector;
 
 /// Matrix specialization where rows and columns are equal.
 public interface SquareMatrixOps<
-        M extends SquaredMatrix<N>,
+        M extends SquareMatrix<N>,
         V extends Vector<N>,
         N> extends MatrixOps<M, V, N> {
 

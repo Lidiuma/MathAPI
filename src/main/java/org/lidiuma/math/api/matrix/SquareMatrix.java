@@ -16,44 +16,10 @@
 
 package org.lidiuma.math.api.matrix;
 
-/// Generic Matrix4 interface.
-@SuppressWarnings("unused")
-public interface Matrix4<N> extends SquareMatrix<N> {
-
-    int SIZE = 16;
+public interface SquareMatrix<N> extends Matrix<N> {
 
     @Override
     default int size() {
-        return SIZE;
+        return rows();
     }
-
-    @Override
-    default int rows() {
-        return 4;
-    }
-
-    @Override
-    default int columns() {
-        return 4;
-    }
-
-    N m00();
-    N m01();
-    N m02();
-    N m03();
-
-    N m10();
-    N m11();
-    N m12();
-    N m13();
-
-    N m20();
-    N m21();
-    N m22();
-    N m23();
-
-    N m30();
-    N m31();
-    N m32();
-    N m33();
 }
