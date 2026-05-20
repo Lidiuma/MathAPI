@@ -32,7 +32,7 @@ public interface MatrixOps<
     M multiply(M matrix, N scalar);
 
     /// Multiplies `matrix` by the provided `vector`.
-    V multiply(V vector);
+    V multiply(M matrix, V vector);
 
     /// @return the component-wise addition of `left` and `right`.
     @Override

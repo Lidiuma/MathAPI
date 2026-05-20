@@ -33,10 +33,10 @@ public interface SquareMatrixOps<
     /// Inverts `matrix`, given that the determinant is != 0.
     /// @return The inverted matrix.
     /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
-    M inverted(M matrix) throws ArithmeticException;
+    M inverse(M matrix) throws ArithmeticException;
 
     /// @return a matrix with the translational part removed (set to 0) and transposed.
-    M toNormalMatrix(M matrix);
+    M toNormalMatrix(M matrix); // TODO Needed?
 
     /// @return true if the matrix is a singular squared matrix.
     boolean isSingular(M matrix);
