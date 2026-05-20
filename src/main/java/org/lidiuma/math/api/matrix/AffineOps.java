@@ -16,23 +16,19 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.vector.Vector;
 
 public interface AffineOps<
-        M extends SquareMatrix<N>,
+        A extends SquareMatrix<N>,
         V extends Vector<N>,
-        N> extends SquareMatrixOps<M, V, N> {
+        N> extends SquareMatrixOps<A, V, N> {
 
     /// @return the translation part of this matrix.
-    V translation();
-
-    /// @return the rotation part of this matrix.
-    Quaternion<N> rotation();
+    V translation(A affine);
 
     /// @return the shearing component of this matrix.
-    V shear();
+    V shear(A affine);
 
     /// @return the scale components along each axis.
-    V scale();
+    V scale(A affine);
 }

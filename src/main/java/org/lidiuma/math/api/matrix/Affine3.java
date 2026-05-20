@@ -16,9 +16,6 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.rotation.Quaternion;
-import org.lidiuma.math.api.vector.Vector3;
-
 /// Specialized [Matrix4] interface for 3D operations.
 public interface Affine3<N> extends Matrix4<N> {
 
@@ -37,21 +34,4 @@ public interface Affine3<N> extends Matrix4<N> {
     /// @return Always returns 1.
     @Override
     N m33();
-
-    /// Averages this matrix with another, using lerp for translation/scale and slerp for rotation.
-    /// @param other The other matrix.
-    /// @param weight Weight for this transform (other's weight is `1 - weight`)
-    Affine3<N> average(Affine3<N> other, N weight);
-
-    /// @return the translation part of this matrix.
-    Vector3<N> translation();
-
-    /// @return the rotation part of this matrix.
-    Quaternion<N> rotation();
-
-    /// @return the shearing component of this matrix.
-    Vector3<N> shear();
-
-    /// @return the scale components along each axis.
-    Vector3<N> scale();
 }

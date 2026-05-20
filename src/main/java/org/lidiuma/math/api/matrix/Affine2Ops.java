@@ -16,18 +16,14 @@
 
 package org.lidiuma.math.api.matrix;
 
-/// Specialized [Matrix3] interface for 2D operations.
-public interface Affine2<N> extends Matrix3<N> {
+import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.vector.Vector2;
 
-    /// @return Always returns 0.
-    @Override
-    N m20();
+public interface Affine2Ops<
+        A extends Affine2<N>,
+        V extends Vector2<N>,
+        N> extends AffineOps<A, V, N> {
 
-    /// @return Always returns 0.
-    @Override
-    N m21();
-
-    /// @return Always returns 1.
-    @Override
-    N m22();
+    /// @return the angle calculated from the rotation component of this matrix.
+    Angle<N> rotation(A affine);
 }

@@ -16,18 +16,14 @@
 
 package org.lidiuma.math.api.matrix;
 
-/// Specialized [Matrix3] interface for 2D operations.
-public interface Affine2<N> extends Matrix3<N> {
+import org.lidiuma.math.api.rotation.Quaternion;
+import org.lidiuma.math.api.vector.Vector3;
 
-    /// @return Always returns 0.
-    @Override
-    N m20();
+public interface Affine3Ops<
+        A extends Affine3<N>,
+        V extends Vector3<N>,
+        N> extends AffineOps<A, V, N> {
 
-    /// @return Always returns 0.
-    @Override
-    N m21();
-
-    /// @return Always returns 1.
-    @Override
-    N m22();
+    /// @return the rotation part of this matrix.
+    Quaternion<N> rotation(A affine);
 }
