@@ -16,10 +16,8 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.tuple.UnaryTuple3;
-
 /// Generic Matrix3 interface.
-public interface Matrix3<N> extends SquareMatrixOps<N, Matrix3<N>, UnaryTuple3<N>> {
+public interface Matrix3<N> extends Matrix<N> {
 
     int SIZE = 9;
 

@@ -16,15 +16,9 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.geometry.point.Point3;
-import org.lidiuma.math.api.geometry.point.Point4;
-import org.lidiuma.math.api.tuple.UnaryTuple4;
-import org.lidiuma.math.api.vector.Vector3;
-import org.lidiuma.math.api.vector.Vector4;
-
 /// Generic Matrix4 interface.
 @SuppressWarnings("unused")
-public interface Matrix4<N> extends SquareMatrixOps<N, Matrix4<N>, UnaryTuple4<N>> {
+public interface Matrix4<N> extends Matrix<N> {
 
     int SIZE = 16;
 

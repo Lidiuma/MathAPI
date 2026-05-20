@@ -18,14 +18,21 @@ package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.Numerical;
+import org.lidiuma.math.api.vector.Vector;
 
-public interface MatrixOps<M extends Matrix<M, ?, N>, N> extends Numerical<M>, Interpolatable<M, N> {
+public interface MatrixOps<
+        M extends Matrix<N>,
+        V extends Vector<N>,
+        N> extends Numerical<M>, Interpolatable<M, N> {
 
     /// @return the transposed version of `matrix`.
     M transposed(M matrix);
 
     /// @return a new matrix with each component multiplied by the provided scalar.
     M multiply(M matrix, N scalar);
+
+    /// Multiplies `matrix` by the provided `vector`.
+    V multiply(V vector);
 
     /// @return the component-wise addition of `left` and `right`.
     @Override

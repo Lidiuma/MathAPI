@@ -16,10 +16,13 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.tuple.UnaryTuple;
+import org.lidiuma.math.api.vector.Vector;
 
 /// Matrix specialization where rows and columns are equal.
-public interface SquareMatrixOps<M extends Matrix<M, T, N>, T extends UnaryTuple<N>, N> extends MatrixOps<M, N> {
+public interface SquareMatrixOps<
+        M extends Matrix<N>,
+        V extends Vector<N>,
+        N> extends MatrixOps<M, V, N> {
 
     /// @return The determinant of the squared `matrix`.
     N determinant(M matrix);
