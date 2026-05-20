@@ -22,8 +22,9 @@ import org.lidiuma.math.api.vector.Vector3;
 public interface Affine3Ops<
         A extends Affine3<N>,
         V extends Vector3<N>,
+        Q extends Quaternion<N>,
         N> extends AffineOps<A, V, N> {
 
     /// @return the rotation part of this matrix.
-    Quaternion<N> rotation(A affine);
+    Q rotation(A affine);
 }

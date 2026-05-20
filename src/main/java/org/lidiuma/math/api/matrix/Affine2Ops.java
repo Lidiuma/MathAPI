@@ -22,8 +22,9 @@ import org.lidiuma.math.api.vector.Vector2;
 public interface Affine2Ops<
         A extends Affine2<N>,
         V extends Vector2<N>,
+        AN extends Angle<N>,
         N> extends AffineOps<A, V, N> {
 
     /// @return the angle calculated from the rotation component of this matrix.
-    Angle<N> rotation(A affine);
+    AN rotation(A affine);
 }
