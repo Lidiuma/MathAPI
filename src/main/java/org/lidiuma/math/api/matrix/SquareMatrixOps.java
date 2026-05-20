@@ -35,8 +35,12 @@ public interface SquareMatrixOps<
     /// @throws ArithmeticException if the matrix cannot be inverted because it is singular.
     M inverse(M matrix) throws ArithmeticException;
 
-    /// @return a matrix with the translational part removed (set to 0) and transposed.
-    M toNormalMatrix(M matrix); // TODO Needed?
+    /// Computes the normal matrix of the provided `matrix`.
+    /// The normal matrix is defined as the inverse transpose of the input matrix,
+    /// and is used to correctly transform normal vectors under non-uniform scaling and shear.
+    ///
+    /// @return the inverse-transpose of the input matrix, (M⁻¹)ᵀ.
+    M normalMatrix(M matrix);
 
     /// @return true if the matrix is a singular squared matrix.
     boolean isSingular(M matrix);
