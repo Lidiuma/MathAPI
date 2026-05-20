@@ -24,6 +24,9 @@ public interface SquareMatrixOps<
         V extends Vector<N>,
         N> extends MatrixOps<M, V, N> {
 
+    /// @return the identity matrix.
+    M identity();
+
     /// @return The determinant of the squared `matrix`.
     N determinant(M matrix);
 
