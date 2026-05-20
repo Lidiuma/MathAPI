@@ -16,35 +16,10 @@
 
 package org.lidiuma.math.api.matrix;
 
-/// Generic Matrix3 interface.
-public interface Matrix3<N> extends SquaredMatrix<N> {
-
-    int SIZE = 9;
+public interface SquaredMatrix<N> extends Matrix<N> {
 
     @Override
     default int size() {
-        return SIZE;
+        return rows();
     }
-
-    @Override
-    default int rows() {
-        return 3;
-    }
-
-    @Override
-    default int columns() {
-        return 3;
-    }
-
-    N m00();
-    N m01();
-    N m02();
-
-    N m10();
-    N m11();
-    N m12();
-
-    N m20();
-    N m21();
-    N m22();
 }

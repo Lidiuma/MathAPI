@@ -18,7 +18,7 @@ package org.lidiuma.math.api.matrix;
 
 /// Generic Matrix4 interface.
 @SuppressWarnings("unused")
-public interface Matrix4<N> extends Matrix<N> {
+public interface Matrix4<N> extends SquaredMatrix<N> {
 
     int SIZE = 16;
 

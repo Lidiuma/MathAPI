@@ -22,7 +22,9 @@ package org.lidiuma.math.api.matrix;
 public interface Matrix<N> {
 
     /// @return the total number of components, equal to [#rows()]` * `[#columns()].
-    int size();
+    default int size() {
+        return rows() * columns();
+    }
 
     int rows();
 
