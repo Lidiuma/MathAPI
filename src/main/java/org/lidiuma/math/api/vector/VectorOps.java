@@ -109,9 +109,9 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     @Override
     V max(V left, V right);
 
+    /// Returns the scalar [N] implementation of [Numerical].\
+    /// Java will eventually provide a mechanism in the language to get the Numerical witness of [N].\
+    /// By providing it now, like this, I can implement most of the APIs.
     /// @return the [Numerical] witness for [N].
-    /// @deprecated Java will eventually provide a mechanism in the language to get the Numerical witness of [N].\
-    /// By providing it now, I can reduce massively the time needed to implement the APIs.
-    @Deprecated // not for removal until the language provides an alternative.
-    Numerical<N> _scalarWitness();
+    Numerical<N> scalarWitness();
 }
