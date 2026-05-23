@@ -22,17 +22,27 @@ public interface Orderable<T> {
     boolean lessThan(T left, T right);
 
     /// @return true if `left` is less than or equal to `right`.
-    boolean lessThanEqual(T left, T right);
+    default boolean lessThanEqual(T left, T right) {
+        return lessThan(left, right) || left.equals(right);
+    }
 
     /// @return true if `left` is greater than `right`.
-    boolean greaterThan(T left, T right);
+    default boolean greaterThan(T left, T right) {
+        return !lessThanEqual(left, right);
+    }
 
     /// @return true if `left` is greater than or equal to `right`.
-    boolean greaterThanEqual(T left, T right);
+    default boolean greaterThanEqual(T left, T right) {
+        return lessThan(left, right);
+    }
 
     /// @return the smaller number between `left` and `right`.
-    T min(T left, T right);
+    default T min(T left, T right) {
+        return lessThanEqual(left, right) ? left : right;
+    }
 
     /// @return the bigger number between `left` and `right`.
-    T max(T left, T right);
+    default T max(T left, T right) {
+        return greaterThanEqual(left, right) ? left : right;
+    }
 }

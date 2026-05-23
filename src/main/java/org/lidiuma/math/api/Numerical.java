@@ -23,7 +23,9 @@ public interface Numerical<T> {
     T add(T left, T right);
 
     /// Subtraction operation, same as `-`.
-    T subtract(T left, T right);
+    default T subtract(T left, T right) {
+        return add(left, negated(right));
+    }
 
     /// Multiplication operation, same as `*`.
     T multiply(T left, T right);
