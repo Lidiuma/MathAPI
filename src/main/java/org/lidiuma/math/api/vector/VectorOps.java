@@ -16,12 +16,9 @@
 
 package org.lidiuma.math.api.vector;
 
-import org.lidiuma.math.api.Clampable;
-import org.lidiuma.math.api.Interpolatable;
-import org.lidiuma.math.api.Numerical;
-import org.lidiuma.math.api.Orderable;
+import org.lidiuma.math.api.*;
 
-public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderable<V>, Interpolatable<V, N>, Clampable<V> {
+public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>, Interpolatable<V, N>, Clampable<V> {
 
     /// @return a vector containing the absolute value of each component of `vector`.
     V abs(V vector);
@@ -109,9 +106,9 @@ public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Orderab
     @Override
     V max(V left, V right);
 
-    /// Returns the scalar [N] implementation of [Numerical].\
-    /// Java will eventually provide a mechanism in the language to get the Numerical witness of [N].\
+    /// Returns the scalar [N] implementation of [OrderableNumerical].\
+    /// Java will eventually provide a mechanism in the language to get the [OrderableNumerical] witness of [N].\
     /// By providing it now, like this, I can implement most of the APIs.
-    /// @return the [Numerical] witness for [N].
-    Numerical<N> scalarWitness();
+    /// @return the [OrderableNumerical] witness for [N].
+    OrderableNumerical<N> scalarWitness();
 }
