@@ -18,7 +18,20 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.*;
 
+/// Standard Vector Operations.
+///
+/// All methods implemented from [OrderableNumerical] are implemented component-wise:
+/// ```
+/// Vector2 a, b;
+/// a.multiply(b) -> Vector2.of(a.x() * b.x(), a.y() * b.y());
+/// ```
 public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>, Interpolatable<V, N>, Clampable<V> {
+
+    /// @return a vector with all it's component set to zero.
+    V zero();
+
+    /// @return the sum of all components of this vector.
+    N sum(V vector);
 
     /// @return a vector containing the absolute value of each component of `vector`.
     V abs(V vector);
@@ -30,81 +43,34 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
     V signum(V vector);
 
     /// @return the Euclidean distance squared between `a` and `b`.
-    N distanceSquared(V a, V b);
+    default N distanceSquared(V a, V b) {
+        final V delta = subtract(a, b);
+        final V squared = multiply(delta, delta);
+        return sum(squared);
+    }
 
     /// @return the magnitude squared of `vector`.
-    N lengthSquared(V vector);
+    default N lengthSquared(V vector) {
+        return dot(vector, vector);
+    }
 
     /// Returns the dot product between `left` and `right` vector.\
     /// The magnitude of the result is equal to `length(left) * length(right) * cos(theta)`, where theta is the angle between them.
     /// @return the dot product.
-    N dot(V left, V right);
+    default N dot(V left, V right) {
+        return sum(multiply(left, right));
+    }
 
     /// @return a vector with each component multiplied by the provided scalar.
     V multiply(V vector, N scalar);
 
+    @Override
+    default V clamp(V value, V min, V max) {
+        return max(min, min(value, max));
+    }
+
     /// @return a vector with each component clamped between `min` and `max`.
-    V clamp(V point, N min, N max);
-
-    /// @return the component-wise addition of `left` and `right`.
-    @Override
-    V add(V left, V right);
-
-    /// @return the component-wise subtraction of `left` and `right`.
-    @Override
-    V subtract(V left, V right);
-
-    /// @return the Hadamard (component-wise) multiplication of `left` and `right`.
-    @Override
-    V multiply(V left, V right);
-
-    /// @return the component-wise division of `left` and `right`.
-    @Override
-    V divide(V left, V right);
-
-    @Override
-    V remainder(V left, V right);
-
-    /// @return a vector with all its components negated.
-    /// Equivalent to multiplying `vector` by the scalar `-1`.
-    @Override
-    V negated(V vector);
-
-    /// @return true if all the components of `first` are less than the corresponding components of `second`.
-    @Override
-    boolean lessThan(V left, V right);
-
-    /// @return true if all the components of `first` are less than or equal to the corresponding components of `second`.
-    @Override
-    boolean lessThanEqual(V left, V right);
-
-    /// @return true if all the components of `first` are greater than the corresponding components of `second`.
-    @Override
-    boolean greaterThan(V left, V right);
-
-    /// @return true if all the components of `first` are greater than or equal to the corresponding components of `second`.
-    @Override
-    boolean greaterThanEqual(V left, V right);
-
-    /// @return a vector containing the component-wise minimum between `first` and `second`.
-    /// ```java
-    /// var x = min(left.x(), right.x());
-    /// var y = min(left.y(), right.y());
-    /// ...
-    /// return vector(x, y, ...);
-    /// ```
-    @Override
-    V min(V left, V right);
-
-    /// @return a vector containing the component-wise maximum between `first` and `second`.
-    /// ```java
-    /// var x = max(left.x(), right.x());
-    /// var y = max(left.y(), right.y());
-    /// ...
-    /// return vector(x, y, ...);
-    /// ```
-    @Override
-    V max(V left, V right);
+    V clamp(V vector, N min, N max);
 
     /// Returns the scalar [N] implementation of [OrderableNumerical].\
     /// Java will eventually provide a mechanism in the language to get the [OrderableNumerical] witness of [N].\

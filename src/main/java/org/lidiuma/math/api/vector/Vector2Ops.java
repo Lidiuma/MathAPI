@@ -24,5 +24,56 @@ public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
     /// Returns the 2D cross product of `first` vector and the `second` vector.\
     /// The result is equivalent to the Z component of the 3D cross product.
     /// @return the scalar result of the cross product.
-    N cross(V first, V second);
+    default N cross(V first, V second) {
+        final var witness = scalarWitness();
+        final N a = witness.multiply(first.x(), second.y());
+        final N b = witness.multiply(first.y(), second.x());
+        return witness.subtract(a, b);
+    }
+
+    @Override
+    default N sum(V vector) {
+        final var witness = scalarWitness();
+        return witness.add(vector.x(), vector.y());
+    }
+
+    @Override
+    default V abs(V vector) {
+
+        final var witness = scalarWitness();
+
+        final V zero = zero();
+        final N x = vector.x();
+        final N y = vector.y();
+
+        final N newX = witness.lessThan(x, zero.x()) ? witness.negated(x) : x;
+        final N newY = witness.lessThan(y, zero.y()) ? witness.negated(y) : y;
+        return of(newX, newY);
+    }
+
+    @Override
+    default V multiply(V vector, N scalar) {
+        return multiply(vector, of(scalar, scalar));
+    }
+
+    @Override
+    default V clamp(V vector, N min, N max) {
+        return clamp(vector, of(min, min), of(max, max));
+    }
+
+    @Override
+    default V min(V left, V right) {
+        final var witness = scalarWitness();
+        final N x = witness.min(left.x(), right.x());
+        final N y = witness.min(left.y(), right.y());
+        return of(x, y);
+    }
+
+    @Override
+    default V max(V left, V right) {
+        final var witness = scalarWitness();
+        final N x = witness.max(left.x(), right.x());
+        final N y = witness.max(left.y(), right.y());
+        return of(x, y);
+    }
 }
