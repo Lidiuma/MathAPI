@@ -26,5 +26,53 @@ public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
     ///
     /// @return a vector perpendicular to both `first` and `other`.
     /// @apiNote the cross product is anti-commutative; `cross(first, other) = cross(-other, first)`.
-    V cross(V first, V second);
+    default V cross(V first, V second) {
+        final var witness = scalarWitness();
+        final N x = witness.subtract(
+                witness.multiply(first.y(), second.z()),
+                witness.multiply(first.z(), second.y())
+        );
+        final N y = witness.subtract(
+                witness.multiply(first.z(), second.x()),
+                witness.multiply(first.x(), second.z())
+        );
+        final N z = witness.subtract(
+                witness.multiply(first.x(), second.y()),
+                witness.multiply(first.y(), second.x())
+        );
+        return of(x, y, z);
+    }
+
+    @Override
+    default N sum(V vector) {
+        final var witness = scalarWitness();
+        final N xy = witness.add(vector.x(), vector.y());
+        return witness.add(xy, vector.z());
+    }
+
+    @Override
+    default V abs(V vector) {
+
+        final var witness = scalarWitness();
+
+        final V zero = zero();
+        final N x = vector.x();
+        final N y = vector.y();
+        final N z = vector.z();
+
+        final N newX = witness.lessThan(x, zero.x()) ? witness.negated(x) : x;
+        final N newY = witness.lessThan(y, zero.y()) ? witness.negated(y) : y;
+        final N newZ = witness.lessThan(z, zero.z()) ? witness.negated(z) : z;
+        return of(newX, newY, newZ);
+    }
+
+    @Override
+    default V multiply(V vector, N scalar) {
+        return multiply(vector, of(scalar, scalar, scalar));
+    }
+
+    @Override
+    default V clamp(V vector, N min, N max) {
+        return clamp(vector, of(min, min, min), of(max, max, max));
+    }
 }
