@@ -26,7 +26,7 @@ public interface FloatingVectorOps<
     /// @return the angle between the `first` vector and the `second` vector.
     A angle(V first, V second);
 
-    /// @return the Euclidean distance between `this` and `other`.
+    /// @return the Euclidean distance between `start` and `end`.
     N distance(V start, V end);
 
     /// @return a vector with each component rounded up to the nearest integer.
@@ -35,15 +35,15 @@ public interface FloatingVectorOps<
     /// @return a vector with each component rounded down to the nearest integer.
     V floor(V vector);
 
-    /// @return the length of `this` vector.
+    /// @return the length of `vector`.
     N length(V vector);
 
-    /// @return a vector with the same direction as `this` vector but scaled to the provided `length`.
+    /// @return a vector with the same direction as `vector` but scaled to the provided `length`.
     default V withLength(V vector, N length) {
         return withMagnitude(vector, length, length(vector));
     }
 
-    /// @return a vector with the same direction as `this` vector but scaled to the provided `length` squared.
+    /// @return a vector with the same direction as `vector` but scaled to the provided `length` squared.
     V withLengthSquared(V vector, N lengthSquared);
 
     /// @return a vector with its length limited to `limit`.
@@ -56,16 +56,16 @@ public interface FloatingVectorOps<
     /// @return a vector with its length squared limited to `limit` squared.
     V withLimitSquared(V vector, N limitSquared);
 
-    /// @return a normalized vector with length 1 in the same direction as `this`.
-    /// @apiNote This vector should be non-zero, otherwise division by zero occurs.
-    /// To handle this case [#normalized(Vector)] can be used.
+    /// @return a normalized vector with length 1 in the same direction as the provided `vector`.
+    /// @param vector should be non-zero, otherwise division by zero occurs.
+    /// To handle this case [#normalizedOrElse] can be used.
     V normalized(V vector);
 
-    /// Similar to [#normalized()] but when the length of `this` vector is close to or is zero,
-    /// the `orElse` vector is returned.
-    /// @param orElse the value to use when the vector is close to zero.
-    /// @return a normalized vector with length 1 in the same direction as `this`, or the `orElse` vector.
-    V normalized(V vector, V orElse);
+    /// Similar to [#normalized] but when the length of `vector` is close to or is zero,
+    /// the `fallback` vector is returned.
+    /// @param fallback the value to use when the vector is close to zero.
+    /// @return a normalized vector with length 1 in the same direction as `vector`, or the `fallback` vector.
+    V normalizedOrElse(V vector, V fallback);
 
     private V withMagnitude(V vector, N wanted, N current) {
         final N scalar = scalarWitness().divide(wanted, current);
