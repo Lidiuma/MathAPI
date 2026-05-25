@@ -42,7 +42,7 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
     /// @return a vector with the signum function applied to each component.
     V signum(V vector);
 
-    /// @return the Euclidean distance squared between `a` and `b`.
+    /// @return the squared Euclidean distance between `a` and `b`.
     default N distanceSquared(V a, V b) {
         final V delta = subtract(a, b);
         final V squared = multiply(delta, delta);

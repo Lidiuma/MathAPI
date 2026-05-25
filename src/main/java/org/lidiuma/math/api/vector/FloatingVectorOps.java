@@ -39,13 +39,19 @@ public interface FloatingVectorOps<
     N length(V vector);
 
     /// @return a vector with the same direction as `this` vector but scaled to the provided `length`.
-    V withLength(V vector, N length);
+    default V withLength(V vector, N length) {
+        return withMagnitude(vector, length, length(vector));
+    }
 
     /// @return a vector with the same direction as `this` vector but scaled to the provided `length` squared.
     V withLengthSquared(V vector, N lengthSquared);
 
     /// @return a vector with its length limited to `limit`.
-    V withLimit(V vector, N limit);
+    default V withLimit(V vector, N limit) {
+        final N current = length(vector);
+        if (scalarWitness().lessThanEqual(current, limit)) return vector;
+        return withMagnitude(vector, limit, current);
+    }
 
     /// @return a vector with its length squared limited to `limit` squared.
     V withLimitSquared(V vector, N limitSquared);
@@ -60,4 +66,9 @@ public interface FloatingVectorOps<
     /// @param orElse the value to use when the vector is close to zero.
     /// @return a normalized vector with length 1 in the same direction as `this`, or the `orElse` vector.
     V normalized(V vector, V orElse);
+
+    private V withMagnitude(V vector, N wanted, N current) {
+        final N scalar = scalarWitness().divide(wanted, current);
+        return multiply(vector, scalar);
+    }
 }
