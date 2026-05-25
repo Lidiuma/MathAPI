@@ -33,14 +33,16 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
     /// @return the sum of all components of this vector.
     N sum(V vector);
 
-    /// @return a vector containing the absolute value of each component of `vector`.
-    V abs(V vector);
-
     /// Returns the signum function for each component; zero if the component is zero,
     /// +1 if the component is greater than zero, -1 if the component is less than zero.
     /// @see Math#signum(float)
     /// @return a vector with the signum function applied to each component.
     V signum(V vector);
+
+    /// @return a vector containing the absolute value of each component of `vector`.
+    default V abs(V vector) {
+        return multiply(vector, signum(vector));
+    }
 
     /// @return the squared Euclidean distance between `a` and `b`.
     default N distanceSquared(V a, V b) {

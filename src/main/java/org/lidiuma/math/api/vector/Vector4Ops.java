@@ -30,24 +30,6 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
-    default V abs(V vector) {
-
-        final var witness = scalarWitness();
-
-        final V zero = zero();
-        final N x = vector.x();
-        final N y = vector.y();
-        final N z = vector.z();
-        final N w = vector.w();
-
-        final N newX = witness.lessThan(x, zero.x()) ? witness.negated(x) : x;
-        final N newY = witness.lessThan(y, zero.y()) ? witness.negated(y) : y;
-        final N newZ = witness.lessThan(z, zero.z()) ? witness.negated(z) : z;
-        final N newW = witness.lessThan(w, zero.w()) ? witness.negated(w) : w;
-        return of(newX, newY, newZ, newW);
-    }
-
-    @Override
     default V multiply(V vector, N scalar) {
         return multiply(vector, of(scalar, scalar, scalar, scalar));
     }

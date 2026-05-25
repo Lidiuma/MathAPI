@@ -51,22 +51,6 @@ public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
-    default V abs(V vector) {
-
-        final var witness = scalarWitness();
-
-        final V zero = zero();
-        final N x = vector.x();
-        final N y = vector.y();
-        final N z = vector.z();
-
-        final N newX = witness.lessThan(x, zero.x()) ? witness.negated(x) : x;
-        final N newY = witness.lessThan(y, zero.y()) ? witness.negated(y) : y;
-        final N newZ = witness.lessThan(z, zero.z()) ? witness.negated(z) : z;
-        return of(newX, newY, newZ);
-    }
-
-    @Override
     default V multiply(V vector, N scalar) {
         return multiply(vector, of(scalar, scalar, scalar));
     }

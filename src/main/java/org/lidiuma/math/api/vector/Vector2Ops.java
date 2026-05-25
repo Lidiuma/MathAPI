@@ -38,20 +38,6 @@ public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
-    default V abs(V vector) {
-
-        final var witness = scalarWitness();
-
-        final V zero = zero();
-        final N x = vector.x();
-        final N y = vector.y();
-
-        final N newX = witness.lessThan(x, zero.x()) ? witness.negated(x) : x;
-        final N newY = witness.lessThan(y, zero.y()) ? witness.negated(y) : y;
-        return of(newX, newY);
-    }
-
-    @Override
     default V multiply(V vector, N scalar) {
         return multiply(vector, of(scalar, scalar));
     }
