@@ -20,4 +20,42 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
 
     /// Constructs a vector using the provided scalars.
     V of(N x, N y, N z, N w);
+
+    @Override
+    default N sum(V vector) {
+        final var witness = scalarWitness();
+        final N xy = witness.add(vector.x(), vector.y());
+        final N zw = witness.add(vector.z(), vector.w());
+        return witness.add(xy, zw);
+    }
+
+    @Override
+    default V abs(V vector) {
+
+        final var witness = scalarWitness();
+
+        final V zero = zero();
+        final N x = vector.x();
+        final N y = vector.y();
+        final N z = vector.z();
+        final N w = vector.w();
+
+        final N newX = witness.lessThan(x, zero.x()) ? witness.negated(x) : x;
+        final N newY = witness.lessThan(y, zero.y()) ? witness.negated(y) : y;
+        final N newZ = witness.lessThan(z, zero.z()) ? witness.negated(z) : z;
+        final N newW = witness.lessThan(w, zero.w()) ? witness.negated(w) : w;
+        return of(newX, newY, newZ, newW);
+    }
+
+    @Override
+    default V multiply(V vector, N scalar) {
+        return multiply(vector, of(scalar, scalar, scalar, scalar));
+    }
+
+    @Override
+    default V clamp(V vector, N min, N max) {
+        final V minV = of(min, min, min, min);
+        final V maxV = of(max, max, max, max);
+        return clamp(vector, minV, maxV);
+    }
 }
