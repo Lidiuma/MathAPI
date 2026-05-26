@@ -21,13 +21,13 @@ public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
     /// Constructs a vector using the provided scalars.
     V of(N x, N y);
 
-    /// Returns the 2D cross product of `first` vector and the `second` vector.\
+    /// Returns the 2D cross product of `v1` vector and the `v2` vector.\
     /// The result is equivalent to the Z component of the 3D cross product.
     /// @return the scalar result of the cross product.
-    default N cross(V first, V second) {
+    default N cross(V v1, V v2) {
         final var witness = scalarWitness();
-        final N a = witness.multiply(first.x(), second.y());
-        final N b = witness.multiply(first.y(), second.x());
+        final N a = witness.multiply(v1.x(), v2.y());
+        final N b = witness.multiply(v1.y(), v2.x());
         return witness.subtract(a, b);
     }
 
@@ -48,18 +48,18 @@ public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
-    default V min(V left, V right) {
+    default V min(V op1, V op2) {
         final var witness = scalarWitness();
-        final N x = witness.min(left.x(), right.x());
-        final N y = witness.min(left.y(), right.y());
+        final N x = witness.min(op1.x(), op2.x());
+        final N y = witness.min(op1.y(), op2.y());
         return of(x, y);
     }
 
     @Override
-    default V max(V left, V right) {
+    default V max(V op1, V op2) {
         final var witness = scalarWitness();
-        final N x = witness.max(left.x(), right.x());
-        final N y = witness.max(left.y(), right.y());
+        final N x = witness.max(op1.x(), op2.x());
+        final N y = witness.max(op1.y(), op2.y());
         return of(x, y);
     }
 }

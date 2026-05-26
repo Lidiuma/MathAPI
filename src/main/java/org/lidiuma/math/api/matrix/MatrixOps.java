@@ -34,24 +34,24 @@ public interface MatrixOps<
     /// Multiplies `matrix` by the provided `vector`.
     V multiply(M matrix, V vector);
 
-    /// @return the component-wise addition of `left` and `right`.
+    /// @return the component-wise addition of `op1` and `op2`.
     @Override
-    M add(M left, M right);
+    M add(M op1, M op2);
 
-    /// @return the component-wise subtraction of `left` and `right`.
+    /// @return the component-wise subtraction of `op1` and `op2`.
     @Override
-    M subtract(M left, M right);
+    M subtract(M op1, M op2);
 
-    /// Multiplies the `left` matrix by `right`.
-    /// @return a new matrix equal to `left * right`.
-    /// @apiNote Matrix multiplication is **not** commutative; `left * right != right * left`.
+    /// Multiplies the `op1` matrix by `op2`.
+    /// @return a new matrix equal to `op1 * op2`.
+    /// @apiNote Matrix multiplication is **not** commutative; `op1 * op2 != op2 * op1`.
     @Override
-    M multiply(M left, M right);
+    M multiply(M op1, M op2);
 
-    /// Divides the `left` matrix by `right`.
-    /// This is equivalent to `left * right⁻¹`.
-    /// @return a new matrix equal to `left / right`.
-    /// @apiNote Matrix division is **not** commutative; `left / right != right / left`.
+    /// Divides the `op1` matrix by `op2`.
+    /// This is equivalent to `op1 * op2⁻¹`.
+    /// @return a new matrix equal to `op1 / op2`.
+    /// @apiNote Matrix division is **not** commutative; `op1 / op2 != op2 / op1`.
     @Override
-    M divide(M left, M right);
+    M divide(M op1, M op2);
 }

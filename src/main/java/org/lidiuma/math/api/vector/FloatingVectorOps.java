@@ -23,11 +23,11 @@ public interface FloatingVectorOps<
         A extends Angle<N>,
         N> extends VectorOps<V, N> {
 
-    /// @return the angle between the `first` vector and the `second` vector.
-    A angle(V first, V second);
+    /// @return the angle between the `v1` vector and the `v2` vector.
+    A angle(V v1, V v2);
 
-    /// @return the Euclidean distance between `start` and `end`.
-    N distance(V start, V end);
+    /// @return the Euclidean distance between `v1` and `v2`.
+    N distance(V v1, V v2);
 
     /// @return a vector with each component rounded up to the nearest integer.
     V ceil(V vector);

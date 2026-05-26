@@ -20,21 +20,21 @@ package org.lidiuma.math.api;
 public interface Numerical<T> {
 
     /// Addition operation, same as `+`.
-    T add(T left, T right);
+    T add(T op1, T op2);
 
     /// Subtraction operation, same as `-`.
-    default T subtract(T left, T right) {
-        return add(left, negated(right));
+    default T subtract(T op1, T op2) {
+        return add(op1, negated(op2));
     }
 
     /// Multiplication operation, same as `*`.
-    T multiply(T left, T right);
+    T multiply(T op1, T op2);
 
     /// Division operation, same as `/`.
-    T divide(T left, T right);
+    T divide(T op1, T op2);
 
     /// Remainder operation, same as `%`.
-    T remainder(T left, T right);
+    T remainder(T op1, T op2);
 
     /// Negation operation, same as `-` or multiplying by a scalar `-1`.
     T negated(T operand);

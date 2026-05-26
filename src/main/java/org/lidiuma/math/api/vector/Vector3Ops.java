@@ -21,24 +21,24 @@ public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
     /// Constructs a vector using the provided scalars.
     V of(N x, N y, N z);
 
-    /// Returns the cross product between `first` vector and the `other` vector.\
-    /// The magnitude of the result is equal to `length() * other.length() * sin(theta)`, where theta is the angle between them.
+    /// Returns the cross product between `v1` vector and the `v2` vector.\
+    /// The magnitude of the result is equal to `length(v1) * length(v2) * sin(theta)`, where theta is the angle between them.
     ///
-    /// @return a vector perpendicular to both `first` and `other`.
-    /// @apiNote the cross product is anti-commutative; `cross(first, other) = cross(-other, first)`.
-    default V cross(V first, V second) {
+    /// @return a vector perpendicular to both `v1` and `v2`.
+    /// @apiNote the cross product is anti-commutative; `cross(v1, v2) = cross(-v2, v1)`.
+    default V cross(V v1, V v2) {
         final var witness = scalarWitness();
         final N x = witness.subtract(
-                witness.multiply(first.y(), second.z()),
-                witness.multiply(first.z(), second.y())
+                witness.multiply(v1.y(), v2.z()),
+                witness.multiply(v1.z(), v2.y())
         );
         final N y = witness.subtract(
-                witness.multiply(first.z(), second.x()),
-                witness.multiply(first.x(), second.z())
+                witness.multiply(v1.z(), v2.x()),
+                witness.multiply(v1.x(), v2.z())
         );
         final N z = witness.subtract(
-                witness.multiply(first.x(), second.y()),
-                witness.multiply(first.y(), second.x())
+                witness.multiply(v1.x(), v2.y()),
+                witness.multiply(v1.y(), v2.x())
         );
         return of(x, y, z);
     }

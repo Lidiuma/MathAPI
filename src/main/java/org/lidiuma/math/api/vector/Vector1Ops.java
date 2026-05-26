@@ -25,5 +25,5 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     N length(V vector);
 
     // In 1D integers vector will always have an integer distance.
-    N distance(V first, V second);
+    N distance(V v1, V v2);
 }

@@ -56,11 +56,11 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
         return dot(vector, vector);
     }
 
-    /// Returns the dot product between `left` and `right` vector.\
-    /// The magnitude of the result is equal to `length(left) * length(right) * cos(theta)`, where theta is the angle between them.
+    /// Returns the dot product between `v1` and `v2` vector.\
+    /// The magnitude of the result is equal to `length(v1) * length(v2) * cos(theta)`, where theta is the angle between them.
     /// @return the dot product.
-    default N dot(V left, V right) {
-        return sum(multiply(left, right));
+    default N dot(V v1, V v2) {
+        return sum(multiply(v1, v2));
     }
 
     /// @return a vector with each component multiplied by the provided scalar.

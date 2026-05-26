@@ -144,27 +144,27 @@ public interface QuaternionOps<
     /// @return the multiplied quaternion.
     Q multiply(Q quaternion, N scalar);
 
-    /// @return the component-wise addition of the `left` and `right`.
+    /// @return the component-wise addition of the `op1` and `op2`.
     @Override
-    Q add(Q left, Q right);
+    Q add(Q op1, Q op2);
 
-    /// @return the component-wise subtraction of `left` and `right`.
+    /// @return the component-wise subtraction of `op1` and `op2`.
     @Override
-    Q subtract(Q left, Q right);
+    Q subtract(Q op1, Q op2);
 
-    /// Returns the Hamilton product of the `left` and `right`.\
+    /// Returns the Hamilton product of the `op1` and `op2`.\
     /// Can be used to compose the rotations of two quaternions.
-    /// @return a new quaternion equal to `left * right`
-    /// @apiNote Quaternion multiplication is **not** commutative; `left * right != right * left`.
+    /// @return a new quaternion equal to `op1 * op2`
+    /// @apiNote Quaternion multiplication is **not** commutative; `op1 * op2 != op2 * op1`.
     @Override
-    Q multiply(Q left, Q right);
+    Q multiply(Q op1, Q op2);
 
-    /// Divides `left` quaternion by `right`.
-    /// This is equivalent to `left * right⁻¹`.
-    /// @return a new quaternion equal to `left / right`.
-    /// @apiNote Quaternion division is **not** commutative; `left / right != right / left`.
+    /// Divides `op1` quaternion by `op2`.
+    /// This is equivalent to `op1 * op2⁻¹`.
+    /// @return a new quaternion equal to `op1 / op2`.
+    /// @apiNote Quaternion division is **not** commutative; `op1 / op2 != op2 / op1`.
     @Override
-    Q divide(Q left, Q right);
+    Q divide(Q op1, Q op2);
 
     /// @return a quaternion with all its components negated.
     /// Equivalent to multiplying `quaternion` by the scalar `-1`.
