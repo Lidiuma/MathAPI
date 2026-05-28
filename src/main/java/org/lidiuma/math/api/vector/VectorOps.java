@@ -27,9 +27,6 @@ import org.lidiuma.math.api.*;
 /// ```
 public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>, Interpolatable<V, N>, Clampable<V> {
 
-    /// @return a vector with all it's component set to zero.
-    V zero();
-
     /// @return the sum of all components of this vector.
     N sum(V vector);
 
