@@ -28,18 +28,19 @@ public interface FloatingVectorOps<
     A angle(V v1, V v2);
 
     /// @return the Euclidean distance between `v1` and `v2`.
-    N distance(V v1, V v2);
+    default N distance(V v1, V v2) {
+        return scalarWitness().sqrt(distanceSquared(v1, v2));
+    }
 
     /// @return the length of `vector`.
-    N length(V vector);
+    default N length(V vector) {
+        return scalarWitness().sqrt(lengthSquared(vector));
+    }
 
     /// @return a vector with the same direction as `vector` but scaled to the provided `length`.
     default V withLength(V vector, N length) {
         return withMagnitude(vector, length, length(vector));
     }
-
-    /// @return a vector with the same direction as `vector` but scaled to the provided `length` squared.
-    V withLengthSquared(V vector, N lengthSquared);
 
     /// @return a vector with its length limited to `limit`.
     default V withLimit(V vector, N limit) {
@@ -48,19 +49,16 @@ public interface FloatingVectorOps<
         return withMagnitude(vector, limit, current);
     }
 
-    /// @return a vector with its length squared limited to `limit` squared.
-    V withLimitSquared(V vector, N limitSquared);
-
     /// @return a normalized vector with length 1 in the same direction as the provided `vector`.
     /// @param vector should be non-zero, otherwise division by zero occurs.
-    /// To handle this case [#normalizedOrElse] can be used.
-    V normalized(V vector);
+    /// To handle this case [#normalizeOrElse] can be used.
+    V normalize(V vector);
 
-    /// Similar to [#normalized] but when the length of `vector` is close to or is zero,
+    /// Similar to [#normalize] but when the length of `vector` is close to or is zero,
     /// the `fallback` vector is returned.
     /// @param fallback the value to use when the vector is close to zero.
     /// @return a normalized vector with length 1 in the same direction as `vector`, or the `fallback` vector.
-    V normalizedOrElse(V vector, V fallback);
+    V normalizeOrElse(V vector, V fallback);
 
     private V withMagnitude(V vector, N wanted, N current) {
         final N scalar = scalarWitness().divide(wanted, current);
