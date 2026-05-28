@@ -16,24 +16,19 @@
 
 package org.lidiuma.math.api.vector;
 
+import org.lidiuma.math.api.FloatingNumerical;
 import org.lidiuma.math.api.rotation.Angle;
 
 public interface FloatingVectorOps<
         V extends Vector<N>,
         A extends Angle<N>,
-        N> extends VectorOps<V, N> {
+        N> extends VectorOps<V, N>, FloatingNumerical<V> {
 
     /// @return the angle between the `v1` vector and the `v2` vector.
     A angle(V v1, V v2);
 
     /// @return the Euclidean distance between `v1` and `v2`.
     N distance(V v1, V v2);
-
-    /// @return a vector with each component rounded up to the nearest integer.
-    V ceil(V vector);
-
-    /// @return a vector with each component rounded down to the nearest integer.
-    V floor(V vector);
 
     /// @return the length of `vector`.
     N length(V vector);
@@ -71,4 +66,12 @@ public interface FloatingVectorOps<
         final N scalar = scalarWitness().divide(wanted, current);
         return multiply(vector, scalar);
     }
+
+    @Override
+    default V abs(V vector) {
+        return VectorOps.super.abs(vector);
+    }
+
+    @Override
+    FloatingNumerical<N> scalarWitness();
 }
