@@ -22,10 +22,16 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     V of(N x);
 
     // In 1D integers vector will always have an integer length.
-    N length(V vector);
+    default N length(V vector) {
+        return abs(vector).x();
+    }
 
     // In 1D integers vector will always have an integer distance.
-    N distance(V v1, V v2);
+    default N distance(V v1, V v2) {
+        final var witness = scalarWitness();
+        final N delta = witness.subtract(v1.x(), v2.x());
+        return abs(of(delta)).x(); // A bit of a hack to use the abs method for the scalar.
+    }
 
     @Override
     default V add(V op1, V op2) {
