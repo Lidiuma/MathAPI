@@ -62,4 +62,50 @@ public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
         final N y = witness.max(op1.y(), op2.y());
         return of(x, y);
     }
+
+
+    @Override
+    default V add(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.add(op1.x(), op2.x()),
+                witness.add(op1.y(), op2.y())
+        );
+    }
+
+    @Override
+    default V multiply(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.multiply(op1.x(), op2.x()),
+                witness.multiply(op1.y(), op2.y())
+        );
+    }
+
+    @Override
+    default V divide(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.divide(op1.x(), op2.x()),
+                witness.divide(op1.y(), op2.y())
+        );
+    }
+
+    @Override
+    default V remainder(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.remainder(op1.x(), op2.x()),
+                witness.remainder(op1.y(), op2.y())
+        );
+    }
+
+    @Override
+    default V negated(V operand) {
+        final var witness = scalarWitness();
+        return of(
+                witness.negated(operand.x()),
+                witness.negated(operand.y())
+        );
+    }
 }

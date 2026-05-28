@@ -59,4 +59,54 @@ public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
     default V clamp(V vector, N min, N max) {
         return clamp(vector, of(min, min, min), of(max, max, max));
     }
+
+    @Override
+    default V add(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.add(op1.x(), op2.x()),
+                witness.add(op1.y(), op2.y()),
+                witness.add(op1.z(), op2.z())
+        );
+    }
+
+    @Override
+    default V multiply(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.multiply(op1.x(), op2.x()),
+                witness.multiply(op1.y(), op2.y()),
+                witness.multiply(op1.z(), op2.z())
+        );
+    }
+
+    @Override
+    default V divide(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.divide(op1.x(), op2.x()),
+                witness.divide(op1.y(), op2.y()),
+                witness.divide(op1.z(), op2.z())
+        );
+    }
+
+    @Override
+    default V remainder(V op1, V op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.remainder(op1.x(), op2.x()),
+                witness.remainder(op1.y(), op2.y()),
+                witness.remainder(op1.z(), op2.z())
+        );
+    }
+
+    @Override
+    default V negated(V operand) {
+        final var witness = scalarWitness();
+        return of(
+                witness.negated(operand.x()),
+                witness.negated(operand.y()),
+                witness.negated(operand.z())
+        );
+    }
 }
