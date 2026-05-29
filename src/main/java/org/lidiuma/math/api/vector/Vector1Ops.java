@@ -39,6 +39,11 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
+    default V clamp(V vector, N min, N max) {
+        return clamp(vector, of(min), of(max));
+    }
+
+    @Override
     default V add(V op1, V op2) {
         final var witness = scalarWitness();
         return of(witness.add(op1.x(), op2.x()));
