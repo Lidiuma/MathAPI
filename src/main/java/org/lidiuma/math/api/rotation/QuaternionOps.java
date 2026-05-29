@@ -71,14 +71,14 @@ public interface QuaternionOps<
 
     /// @return the normalized quaternion with length of 1.
     /// @apiNote The `quaternion` should be non-zero, otherwise division by zero occurs.
-    /// To handle this case [#normalized(Quaternion)] can be used.
-    Q normalized(Q quaternion);
+    /// To handle this case [#normalize(Quaternion)] can be used.
+    Q normalize(Q quaternion);
 
-    /// Similar to [#normalized()] but when the length of `quaternion` is close to or is zero,
+    /// Similar to [#normalize] but when the length of `quaternion` is close to or is zero,
     /// the `orElse` quaternion is returned.
     /// @param orElse the value to use when the quaternion is close to zero.
     /// @return a normalized quaternion with length 1, or the `orElse` quaternion.
-    Q normalized(Q quaternion, Q orElse);
+    Q normalize(Q quaternion, Q orElse);
 
     /// Spherical interpolation between the `start` and `end` normalized quaternions.
     ///
