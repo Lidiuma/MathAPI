@@ -51,6 +51,11 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
+    default V multiply(V vector, N scalar) {
+        return multiply(vector, of(scalar));
+    }
+
+    @Override
     default V divide(V op1, V op2) {
         final var witness = scalarWitness();
         return of(witness.divide(op1.x(), op2.x()));
