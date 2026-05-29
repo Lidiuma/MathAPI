@@ -70,6 +70,8 @@ public interface FloatingVectorOps<
         return VectorOps.super.abs(vector);
     }
 
+    boolean epsilonEquals(V vector, N epsilon);
+
     @Override
     FloatingNumerical<N> scalarWitness();
 }
