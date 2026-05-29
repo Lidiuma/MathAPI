@@ -20,7 +20,9 @@ public interface FloatingNumerical<N> extends OrderableNumerical<N> {
 
     N signum(N operand);
 
-    N abs(N operand);
+    default N abs(N operand) {
+        return multiply(operand, signum(operand));
+    }
 
     N sqrt(N operand);
 
