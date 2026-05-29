@@ -58,7 +58,7 @@ public interface FloatingVectorOps<
     /// the `fallback` vector is returned.
     /// @param fallback the value to use when the vector is close to zero.
     /// @return a normalized vector with length 1 in the same direction as `vector`, or the `fallback` vector.
-    V normalizeOrElse(V vector, V fallback);
+    V normalizeOrElse(V vector, N epsilon, V fallback);
 
     private V withMagnitude(V vector, N wanted, N current) {
         final N scalar = scalarWitness().divide(wanted, current);
