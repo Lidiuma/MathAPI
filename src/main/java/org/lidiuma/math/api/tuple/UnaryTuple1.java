@@ -21,9 +21,6 @@ public interface UnaryTuple1<N> extends UnaryTuple<N> {
 
     N x();
 
-    /// @return true if `this` tuple is component-wise equal to `other` within `epsilon`.
-    boolean equals(UnaryTuple1<N> other, N epsilon);
-
     /// @return 1.
     @Override
     default int dimension() {

@@ -31,9 +31,6 @@ public interface UnaryTuple4<N> extends UnaryTuple<N> {
     /// @return a lower dimension tuple without the w component.
     UnaryTuple3<N> withoutW();
 
-    /// @return true if `this` tuple is component-wise equal to `other` within `epsilon`.
-    boolean equals(UnaryTuple4<N> other, N epsilon);
-
     /// @return 4.
     @Override
     default int dimension() {
