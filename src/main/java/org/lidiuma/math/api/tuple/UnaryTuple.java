@@ -29,7 +29,4 @@ public interface UnaryTuple<N> {
     /// - While any other number throws {@link IndexOutOfBoundsException}.
     /// @return the component at the provided index.
     N component(int index) throws IndexOutOfBoundsException;
-
-    /// @return true if all the components of `this` tuple are equal to the provided `value` within `epsilon`.
-    boolean componentEquals(N value, N epsilon); // TODO Remove? Not all tuples require an epsilon.
 }

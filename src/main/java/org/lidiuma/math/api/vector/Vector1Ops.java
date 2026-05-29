@@ -21,6 +21,11 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     /// Constructs a vector using the provided scalars.
     V of(N x);
 
+    @Override
+    default N sum(V vector) {
+        return vector.x();
+    }
+
     // In 1D integers vector will always have an integer length.
     default N length(V vector) {
         return abs(vector).x();
