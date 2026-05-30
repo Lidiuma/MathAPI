@@ -52,13 +52,18 @@ public interface FloatingVectorOps<
     /// @return a normalized vector with length 1 in the same direction as the provided `vector`.
     /// @param vector should be non-zero, otherwise division by zero occurs.
     /// To handle this case [#normalizeOrElse] can be used.
-    V normalize(V vector);
+    default V normalize(V vector) {
+        return withLength(vector, scalarWitness().one());
+    }
 
     /// Similar to [#normalize] but when the length of `vector` is close to or is zero,
     /// the `fallback` vector is returned.
     /// @param fallback the value to use when the vector is close to zero.
     /// @return a normalized vector with length 1 in the same direction as `vector`, or the `fallback` vector.
-    V normalizeOrElse(V vector, N epsilon, V fallback);
+    default V normalizeOrElse(V vector, N epsilon, V fallback) {
+        if (epsilonEquals(vector, zero(), epsilon)) return fallback;
+        return normalize(vector);
+    }
 
     private V withMagnitude(V vector, N wanted, N current) {
         final N scalar = scalarWitness().divide(wanted, current);
