@@ -95,4 +95,13 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
                 witness.negated(operand.w())
         );
     }
+
+    @Override
+    default boolean lessThan(V op1, V op2) {
+        final var witness = scalarWitness();
+        return witness.lessThan(op1.x(), op2.x()) &&
+               witness.lessThan(op1.y(), op2.y()) &&
+               witness.lessThan(op1.z(), op2.z()) &&
+               witness.lessThan(op1.w(), op2.w());
+    }
 }
