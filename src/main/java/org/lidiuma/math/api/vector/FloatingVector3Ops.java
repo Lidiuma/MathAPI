@@ -70,4 +70,14 @@ public interface FloatingVector3Ops<
         final var abs = abs(subtract(v1, v2));
         return lessThanEqual(abs, of(epsilon, epsilon, epsilon));
     }
+
+    @Override
+    default V signum(V vector) {
+        final var witness = scalarWitness();
+        return of(
+                witness.signum(vector.x()),
+                witness.signum(vector.y()),
+                witness.signum(vector.z())
+        );
+    }
 }

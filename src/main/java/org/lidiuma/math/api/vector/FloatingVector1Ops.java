@@ -54,6 +54,11 @@ public interface FloatingVector1Ops<
         return lessThanEqual(abs, of(epsilon));
     }
 
+    @Override
+    default V signum(V vector) {
+        return of(scalarWitness().signum(vector.x()));
+    }
+
     /* Overrides to make the compiler happy and to use the more performance friendly version */
 
     @Override
