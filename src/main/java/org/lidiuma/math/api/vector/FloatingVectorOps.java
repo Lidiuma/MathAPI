@@ -18,6 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.FloatingNumerical;
 import org.lidiuma.math.api.rotation.Angle;
+import java.util.function.UnaryOperator;
 
 public interface FloatingVectorOps<
         V extends Vector<N>,
@@ -76,6 +77,19 @@ public interface FloatingVectorOps<
     }
 
     boolean epsilonEquals(V v1, V v2, N epsilon);
+
+    @Override
+    default V interpolate(V start, V end, N alpha, UnaryOperator<N> easing) {
+
+        final var witness = scalarWitness();
+        final N eased = easing.apply(alpha);
+        final N invAlpha = witness.subtract(witness.one(), eased);
+
+        final V invStart = multiply(start, invAlpha);
+        final V invEnd = multiply(end, invAlpha);
+
+        return add(invStart, invEnd);
+    }
 
     @Override
     FloatingNumerical<N> scalarWitness();
