@@ -16,8 +16,8 @@
 
 package org.lidiuma.math.api.rotation;
 
+import org.lidiuma.math.api.FloatingNumerical;
 import org.lidiuma.math.api.Interpolatable;
-import org.lidiuma.math.api.Numerical;
 import org.lidiuma.math.api.vector.Vector3;
 
 /// Quaternion Operations type-class.\
@@ -28,13 +28,39 @@ public interface QuaternionOps<
         Q extends Quaternion<N>,
         V extends Vector3<N>,
         A extends Angle<N>,
-        N> extends Numerical<Q>, Interpolatable<Q, N> {
+        N> extends FloatingNumerical<Q>, Interpolatable<Q, N> {
 
-    Q identity();
+    Q of(N x, N y, N z, N w);
+
+    @Override
+    default Q zero() {
+        final N zero = scalarWitness().zero();
+        return of(zero, zero, zero, zero);
+    }
+
+    @Override
+    default Q one() {
+        final N one = scalarWitness().one();
+        return of(one, one, one, one);
+    }
+
+    default Q identity() {
+        final N zero = scalarWitness().zero();
+        final N one = scalarWitness().one();
+        return of(zero, zero, zero, one);
+    }
 
     Q fromAxisAngle(V axis, A angle);
 
     Q fromEulerAngle(A yaw, A pitch, A roll);
+
+    /// @return the sum of all components of this quaternion.
+    default N sum(Q quaternion) {
+        final var witness = scalarWitness();
+        final N xy = witness.add(quaternion.x(), quaternion.y());
+        final N zw = witness.add(quaternion.z(), quaternion.w());
+        return witness.add(xy, zw);
+    }
 
     /// @return the exponential of `quaternion`.
     /// @apiNote If `quaternion` is not normalized,
@@ -53,32 +79,66 @@ public interface QuaternionOps<
     Q pow(Q quaternion, N alpha);
 
     /// @return The conjugated quaternion.
-    Q conjugated(Q quaternion);
+    default Q conjugate(Q quaternion) {
+        final var witness = scalarWitness();
+        return of(
+                witness.negated(quaternion.x()),
+                witness.negated(quaternion.y()),
+                witness.negated(quaternion.z()),
+                quaternion.w()
+        );
+    }
 
     /// @return the inverse of `quaternion`.
     /// @apiNote The quaternion should be non-zero, otherwise division by zero occurs.
-    Q inverted(Q quaternion);
+    default Q invert(Q quaternion) {
+        final var witness = scalarWitness();
+        final var length = lengthSquared(quaternion);
+        final var scalar = witness.divide(witness.one(), length);
+        return multiply(conjugate(quaternion), scalar);
+    }
 
     /// @return the Euclidean length of `quaternion`.
-    N length(Q quaternion);
+    default N length(Q quaternion) {
+        return scalarWitness().sqrt(lengthSquared(quaternion));
+    }
 
     /// @return the Euclidean length squared of `quaternion`.
-    N lengthSquared(Q quaternion);
+    default N lengthSquared(Q quaternion) {
+        return dot(quaternion, quaternion);
+    }
+
+    /// @return a quaternion scaled to the provided `length`.
+    default Q withLength(Q quaternion, N length) {
+        return withMagnitude(quaternion, length, length(quaternion));
+    }
+
+    /// @return a quaternion with its length limited to `limit`.
+    default Q withLimit(Q quaternion, N limit) {
+        final N current = length(quaternion);
+        if (scalarWitness().lessThanEqual(current, limit)) return quaternion;
+        return withMagnitude(quaternion, limit, current);
+    }
 
     /// @return the dot product of `first` and the `second` quaternion.
     /// @apiNote The operation is commutative.
-    N dot(Q first, Q second);
+    N dot(Q q1, Q q2);
 
     /// @return the normalized quaternion with length of 1.
     /// @apiNote The `quaternion` should be non-zero, otherwise division by zero occurs.
     /// To handle this case [#normalize(Quaternion)] can be used.
-    Q normalize(Q quaternion);
+    default Q normalize(Q quaternion) {
+        return withLength(quaternion, scalarWitness().one());
+    }
 
     /// Similar to [#normalize] but when the length of `quaternion` is close to or is zero,
-    /// the `orElse` quaternion is returned.
-    /// @param orElse the value to use when the quaternion is close to zero.
-    /// @return a normalized quaternion with length 1, or the `orElse` quaternion.
-    Q normalize(Q quaternion, Q orElse);
+    /// the `fallback` quaternion is returned.
+    /// @param fallback the value to use when the quaternion is close to zero.
+    /// @return a normalized quaternion with length 1, or the `fallback` quaternion.
+    default Q normalize(Q quaternion, N epsilon, Q fallback) {
+        if (epsilonEquals(quaternion, zero(), epsilon)) return fallback;
+        return normalize(quaternion);
+    }
 
     /// Spherical interpolation between the `start` and `end` normalized quaternions.
     ///
@@ -140,35 +200,113 @@ public interface QuaternionOps<
     /// otherwise a zero square root occurs.
     A angleAround(Q quaternion, V axis);
 
+    default boolean epsilonEquals(Q q1, Q q2, N epsilon) {
+        final var abs = abs(subtract(q1, q2));
+        return lessThanEqual(abs, of(epsilon, epsilon, epsilon, epsilon));
+    }
+
     /// Multiplies `quaternion` by the given `scalar`.
     /// @return the multiplied quaternion.
-    Q multiply(Q quaternion, N scalar);
+    default Q multiply(Q quaternion, N scalar) {
+        final var witness = scalarWitness();
+        return of(
+                witness.multiply(quaternion.x(), scalar),
+                witness.multiply(quaternion.y(), scalar),
+                witness.multiply(quaternion.z(), scalar),
+                witness.multiply(quaternion.w(), scalar)
+        );
+    }
 
     /// @return the component-wise addition of the `op1` and `op2`.
     @Override
-    Q add(Q op1, Q op2);
+    default Q add(Q op1, Q op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.add(op1.x(), op2.x()),
+                witness.add(op1.y(), op2.y()),
+                witness.add(op1.z(), op2.z()),
+                witness.add(op1.w(), op2.w())
+        );
+    }
 
     /// @return the component-wise subtraction of `op1` and `op2`.
     @Override
-    Q subtract(Q op1, Q op2);
+    default Q subtract(Q op1, Q op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.subtract(op1.x(), op2.x()),
+                witness.subtract(op1.y(), op2.y()),
+                witness.subtract(op1.z(), op2.z()),
+                witness.subtract(op1.w(), op2.w())
+        );
+    }
 
     /// Returns the Hamilton product of the `op1` and `op2`.\
     /// Can be used to compose the rotations of two quaternions.
     /// @return a new quaternion equal to `op1 * op2`
     /// @apiNote Quaternion multiplication is **not** commutative; `op1 * op2 != op2 * op1`.
     @Override
-    Q multiply(Q op1, Q op2);
+    default Q multiply(Q op1, Q op2) {
+
+        final var ws = scalarWitness();
+        final N wx = ws.multiply(op1.w(), op2.x());
+        final N wy = ws.multiply(op1.w(), op2.y());
+        final N wz = ws.multiply(op1.w(), op2.z());
+        final N ww = ws.multiply(op1.w(), op2.w());
+
+        final N xw = ws.multiply(op1.x(), op2.w());
+        final N yw = ws.multiply(op1.y(), op2.w());
+        final N zw = ws.multiply(op1.z(), op2.w());
+        final N xx = ws.multiply(op1.x(), op2.x());
+
+        final N yz = ws.multiply(op1.y(), op2.z());
+        final N zx = ws.multiply(op1.z(), op2.x());
+        final N xy = ws.multiply(op1.x(), op2.y());
+        final N yy = ws.multiply(op1.y(), op2.y());
+
+        final N zy = ws.multiply(op1.z(), op2.y());
+        final N xz = ws.multiply(op1.x(), op2.z());
+        final N yx = ws.multiply(op1.y(), op2.x());
+        final N zz = ws.multiply(op1.z(), op2.z());
+
+        final N newX = ws.add(ws.add(wx, xw), ws.subtract(yz, zy));
+        final N newY = ws.add(ws.add(wy, yw), ws.subtract(zx, xz));
+        final N newZ = ws.add(ws.add(wz, zw), ws.subtract(xy, yx));
+        final N newW = ws.add(ws.add(ww, xx), ws.subtract(yy, zz));
+        return of(newX, newY, newZ, newW);
+    }
 
     /// Divides `op1` quaternion by `op2`.
     /// This is equivalent to `op1 * op2⁻¹`.
     /// @return a new quaternion equal to `op1 / op2`.
     /// @apiNote Quaternion division is **not** commutative; `op1 / op2 != op2 / op1`.
     @Override
-    Q divide(Q op1, Q op2);
+    default Q divide(Q op1, Q op2) {
+        return multiply(op1, invert(op2));
+    }
 
     /// @return a quaternion with all its components negated.
     /// Equivalent to multiplying `quaternion` by the scalar `-1`.
     /// @apiNote The quaternion and its negation represent the same rotation.
     @Override
-    Q negated(Q quaternion);
+    default Q negated(Q quaternion) {
+        final var witness = scalarWitness();
+        return of(
+                witness.negated(quaternion.x()),
+                witness.negated(quaternion.y()),
+                witness.negated(quaternion.z()),
+                witness.negated(quaternion.w())
+        );
+    }
+
+    /// Returns the scalar [N] implementation of [FloatingNumerical].\
+    /// Java will eventually provide a mechanism in the language to get the [FloatingNumerical] witness of [N].\
+    /// By providing it now, like this, I can implement most of the APIs.
+    /// @return the [FloatingNumerical] witness for [N].
+    FloatingNumerical<N> scalarWitness();
+
+    private Q withMagnitude(Q quaternion, N wanted, N current) {
+        final N scalar = scalarWitness().divide(wanted, current);
+        return multiply(quaternion, scalar);
+    }
 }

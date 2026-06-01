@@ -66,11 +66,6 @@ public interface FloatingVectorOps<
         return normalize(vector);
     }
 
-    private V withMagnitude(V vector, N wanted, N current) {
-        final N scalar = scalarWitness().divide(wanted, current);
-        return multiply(vector, scalar);
-    }
-
     @Override
     default V abs(V vector) {
         return VectorOps.super.abs(vector);
@@ -93,4 +88,9 @@ public interface FloatingVectorOps<
 
     @Override
     FloatingNumerical<N> scalarWitness();
+
+    private V withMagnitude(V vector, N wanted, N current) {
+        final N scalar = scalarWitness().divide(wanted, current);
+        return multiply(vector, scalar);
+    }
 }
