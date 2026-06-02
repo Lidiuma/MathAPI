@@ -81,7 +81,7 @@ public interface FloatingVectorOps<
         final N invAlpha = witness.subtract(witness.one(), eased);
 
         final V invStart = multiply(start, invAlpha);
-        final V invEnd = multiply(end, invAlpha);
+        final V invEnd = multiply(end, eased);
 
         return add(invStart, invEnd);
     }

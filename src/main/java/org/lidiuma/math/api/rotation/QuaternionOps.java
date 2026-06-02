@@ -19,6 +19,7 @@ package org.lidiuma.math.api.rotation;
 import org.lidiuma.math.api.FloatingNumerical;
 import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.vector.Vector3;
+import java.util.function.UnaryOperator;
 
 /// Quaternion Operations type-class.\
 /// Most operations assume the quaternion [Q] is normalized.
@@ -206,6 +207,19 @@ public interface QuaternionOps<
     /// otherwise a zero square root occurs.
     A angleAround(Q quaternion, V axis);
 
+    @Override
+    default Q interpolate(Q start, Q end, N alpha, UnaryOperator<N> easing) {
+
+        final var witness = scalarWitness();
+        final N eased = easing.apply(alpha);
+        final N invAlpha = witness.subtract(witness.one(), eased);
+
+        final Q invStart = multiply(start, invAlpha);
+        final Q invEnd = multiply(end, eased);
+
+        return add(invStart, invEnd);
+    }
+
     default boolean epsilonEquals(Q q1, Q q2, N epsilon) {
         final var abs = abs(subtract(q1, q2));
         return lessThanEqual(abs, of(epsilon, epsilon, epsilon, epsilon));
@@ -225,6 +239,17 @@ public interface QuaternionOps<
                 witness.multiply(op1.y(), op2.y()),
                 witness.multiply(op1.z(), op2.z()),
                 witness.multiply(op1.w(), op2.w())
+        );
+    }
+
+    /// @return the component-wise multiplication of the `op1` and `op2`.
+    default Q divideHadamard(Q op1, Q op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.divide(op1.x(), op2.x()),
+                witness.divide(op1.y(), op2.y()),
+                witness.divide(op1.z(), op2.z()),
+                witness.divide(op1.w(), op2.w())
         );
     }
 
@@ -294,6 +319,17 @@ public interface QuaternionOps<
     @Override
     default Q divide(Q op1, Q op2) {
         return multiply(op1, invert(op2));
+    }
+
+    @Override
+    default Q remainder(Q op1, Q op2) {
+        final var witness = scalarWitness();
+        return of(
+                witness.remainder(op1.x(), op2.x()),
+                witness.remainder(op1.y(), op2.y()),
+                witness.remainder(op1.z(), op2.z()),
+                witness.remainder(op1.w(), op2.w())
+        );
     }
 
     /// @return a quaternion with all its components negated.
