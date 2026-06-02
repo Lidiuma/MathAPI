@@ -300,14 +300,67 @@ public interface QuaternionOps<
     /// Equivalent to multiplying `quaternion` by the scalar `-1`.
     /// @apiNote The quaternion and its negation represent the same rotation.
     @Override
-    default Q negated(Q quaternion) {
+    default Q negated(Q operand) {
         final var witness = scalarWitness();
         return of(
-                witness.negated(quaternion.x()),
-                witness.negated(quaternion.y()),
-                witness.negated(quaternion.z()),
-                witness.negated(quaternion.w())
+                witness.negated(operand.x()),
+                witness.negated(operand.y()),
+                witness.negated(operand.z()),
+                witness.negated(operand.w())
         );
+    }
+
+    @Override
+    default Q signum(Q operand) {
+        final var witness = scalarWitness();
+        return of(
+                witness.signum(operand.x()),
+                witness.signum(operand.y()),
+                witness.signum(operand.z()),
+                witness.signum(operand.w())
+        );
+    }
+
+    @Override
+    default Q sqrt(Q operand) {
+        final var witness = scalarWitness();
+        return of(
+                witness.sqrt(operand.x()),
+                witness.sqrt(operand.y()),
+                witness.sqrt(operand.z()),
+                witness.sqrt(operand.w())
+        );
+    }
+
+    @Override
+    default Q ceil(Q operand) {
+        final var witness = scalarWitness();
+        return of(
+                witness.ceil(operand.x()),
+                witness.ceil(operand.y()),
+                witness.ceil(operand.z()),
+                witness.ceil(operand.w())
+        );
+    }
+
+    @Override
+    default Q floor(Q operand) {
+        final var witness = scalarWitness();
+        return of(
+                witness.floor(operand.x()),
+                witness.floor(operand.y()),
+                witness.floor(operand.z()),
+                witness.floor(operand.w())
+        );
+    }
+
+    @Override
+    default boolean lessThan(Q op1, Q op2) {
+        final var witness = scalarWitness();
+        return witness.lessThan(op1.x(), op2.x()) &&
+               witness.lessThan(op1.y(), op2.y()) &&
+               witness.lessThan(op1.z(), op2.z()) &&
+               witness.lessThan(op1.w(), op2.w());
     }
 
     /// Returns the scalar [N] implementation of [FloatingNumerical].\
