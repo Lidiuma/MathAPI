@@ -152,13 +152,17 @@ public interface QuaternionOps<
 
     /// Normalized linearly interpolation between `start` and `end`.
     ///
-    /// Performs a linear interpolation followed by normalization.
+    /// Performs a linear interpolation followed by normalization, keeping the shortest path.
     /// This is a faster approximation of slerp and does not produce constant angular velocity.
     ///
     /// @param end the value to interpolate towards.
     /// @param alpha the interpolation factor, typically in the range `[0, 1]`.
     /// @return the new linearly interpolated and normalized quaternion between `start` and `end`.
-    Q nlerp(Q start, Q end, N alpha);
+    default Q nlerp(Q start, Q end, N alpha) {
+        final var ws = scalarWitness();
+        final Q correctEnd = ws.lessThan(dot(start, end), ws.zero()) ? negated(end) : end;
+        return normalize(lerp(start, correctEnd, alpha));
+    }
 
     /// Rotates the given vector using the provided `quaternion`.
     ///
