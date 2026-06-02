@@ -122,7 +122,9 @@ public interface QuaternionOps<
 
     /// @return the dot product of `first` and the `second` quaternion.
     /// @apiNote The operation is commutative.
-    N dot(Q q1, Q q2);
+    default N dot(Q q1, Q q2) {
+        return sum(multiplyHadamard(q1, q2));
+    }
 
     /// @return the normalized quaternion with length of 1.
     /// @apiNote The `quaternion` should be non-zero, otherwise division by zero occurs.
@@ -208,12 +210,17 @@ public interface QuaternionOps<
     /// Multiplies `quaternion` by the given `scalar`.
     /// @return the multiplied quaternion.
     default Q multiply(Q quaternion, N scalar) {
+        return multiplyHadamard(quaternion, of(scalar, scalar, scalar, scalar));
+    }
+
+    /// @return the component-wise multiplication of the `op1` and `op2`.
+    default Q multiplyHadamard(Q op1, Q op2) {
         final var witness = scalarWitness();
         return of(
-                witness.multiply(quaternion.x(), scalar),
-                witness.multiply(quaternion.y(), scalar),
-                witness.multiply(quaternion.z(), scalar),
-                witness.multiply(quaternion.w(), scalar)
+                witness.multiply(op1.x(), op2.x()),
+                witness.multiply(op1.y(), op2.y()),
+                witness.multiply(op1.z(), op2.z()),
+                witness.multiply(op1.w(), op2.w())
         );
     }
 
@@ -272,7 +279,7 @@ public interface QuaternionOps<
         final N newX = ws.add(ws.add(wx, xw), ws.subtract(yz, zy));
         final N newY = ws.add(ws.add(wy, yw), ws.subtract(zx, xz));
         final N newZ = ws.add(ws.add(wz, zw), ws.subtract(xy, yx));
-        final N newW = ws.add(ws.add(ww, xx), ws.subtract(yy, zz));
+        final N newW = ws.subtract(ws.subtract(ww, xx), ws.add(yy, zz));
         return of(newX, newY, newZ, newW);
     }
 
