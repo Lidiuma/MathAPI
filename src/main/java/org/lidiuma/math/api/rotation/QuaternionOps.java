@@ -184,7 +184,7 @@ public interface QuaternionOps<
 
     /// Returns the axis-angle representation of a normalized `quaternion`'s rotation.
     /// @return {@link AxisAngle} containing both the normalized axis and the angle.
-    AxisAngle<V, A, N> axisAngle(Q quaternion);
+    AxisAngle<V, A, N> axisAngle(Q quaternion, N epsilon);
 
     /// @return the rotation angle of the normalized `quaternion`.
     A angle(Q quaternion);
