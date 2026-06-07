@@ -29,4 +29,6 @@ public interface Matrix<N> {
     int rows();
 
     int columns();
+
+    // TODO a getter method that takes a row and column?
 }

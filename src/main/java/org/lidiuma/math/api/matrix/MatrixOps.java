@@ -26,7 +26,7 @@ public interface MatrixOps<
         N> extends Numerical<M>, Interpolatable<M, N> {
 
     /// @return the transposed version of `matrix`.
-    M transposed(M matrix);
+    M transpose(M matrix);
 
     /// @return a new matrix with each component multiplied by the provided scalar.
     M multiply(M matrix, N scalar);
