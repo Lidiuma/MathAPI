@@ -27,4 +27,9 @@ public interface Affine3Ops<
 
     /// @return the rotation part of this matrix.
     Q rotation(A affine);
+
+    /// Transposes the 3x3 sub-matrix (linear part) of this affine matrix, ignoring the translation part.
+    /// @return the transposed affine matrix.
+    @Override
+    A transpose(A affine);
 }

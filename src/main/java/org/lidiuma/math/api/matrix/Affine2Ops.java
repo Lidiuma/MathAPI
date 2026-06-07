@@ -27,4 +27,9 @@ public interface Affine2Ops<
 
     /// @return the angle calculated from the rotation component of this matrix.
     AN rotation(A affine);
+
+    /// Transposes the 2x2 sub-matrix (linear part) of this affine matrix, ignoring the translation part.
+    /// @return the transposed affine matrix.
+    @Override
+    A transpose(A affine);
 }
