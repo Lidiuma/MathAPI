@@ -1,6 +1,7 @@
 package org.lidiuma.math.api;
 
 import rife.bld.Project;
+import rife.bld.operations.CompileOperation;
 import rife.bld.operations.JavadocOperation;
 import rife.bld.operations.PublishOperation;
 import rife.bld.publish.PublishDeveloper;
@@ -84,6 +85,13 @@ public final class MathApiBuild extends Project {
                 property("sonatype.password")
         )).info(publishInfo());
         return op;
+    }
+
+    @Override
+    public CompileOperation compileOperation() {
+        final var options = super.compileOperation();
+        options.compileOptions().parameters();
+        return options;
     }
 
     @Override
