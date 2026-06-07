@@ -48,10 +48,15 @@ public interface MatrixOps<
     @Override
     M multiply(M op1, M op2);
 
-    /// Divides the `op1` matrix by `op2`.
-    /// This is equivalent to `op1 * op2⁻¹`.
-    /// @return a new matrix equal to `op1 / op2`.
-    /// @apiNote Matrix division is **not** commutative; `op1 / op2 != op2 / op1`.
+    /// @throws ArithmeticException cannot divide a matrix by another without the inverse.
     @Override
-    M divide(M op1, M op2);
+    default M divide(M op1, M op2) throws ArithmeticException {
+        throw new ArithmeticException("Division by non-square matrices is not possible.");
+    }
+
+    /// Returns the scalar [N] implementation of [Numerical].\
+    /// Java will eventually provide a mechanism in the language to get the [Numerical] witness of [N].\
+    /// By providing it now, like this, I can implement most of the APIs.
+    /// @return the [Numerical] witness for [N].
+    Numerical<N> scalarOps();
 }

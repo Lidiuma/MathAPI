@@ -40,8 +40,22 @@ public interface SquareMatrixOps<
     /// and is used to correctly transform normal vectors under non-uniform scaling and shear.
     ///
     /// @return the inverse-transpose of the input matrix, (M⁻¹)ᵀ.
-    M normalMatrix(M matrix);
+    /// @throws ArithmeticException if the matrix does not have an [#inverse].
+    default M normalMatrix(M matrix) throws ArithmeticException {
+        return transpose(inverse(matrix));
+    }
 
     /// @return true if the matrix is a singular squared matrix.
     boolean isSingular(M matrix);
+
+    /// Divides the `op1` matrix by `op2`.
+    /// This is equivalent to `op1 * op2⁻¹`.
+    /// @return a new matrix equal to `op1 / op2`.
+    /// @apiNote Matrix division is **not** commutative; `op1 / op2 != op2 / op1`.
+    /// @throws ArithmeticException if the matrix does not have an [#inverse].
+    @Override
+    default M divide(M op1, M op2) throws ArithmeticException {
+        final M inverse = inverse(op2);
+        return multiply(op1, inverse);
+    }
 }

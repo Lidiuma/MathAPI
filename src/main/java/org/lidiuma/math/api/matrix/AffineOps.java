@@ -16,6 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
+import org.lidiuma.math.api.FloatingNumerical;
 import org.lidiuma.math.api.vector.Vector;
 
 public interface AffineOps<
@@ -31,4 +32,7 @@ public interface AffineOps<
 
     /// @return the scale components along each axis.
     V scale(A affine);
+
+    @Override
+    FloatingNumerical<N> scalarOps();
 }
