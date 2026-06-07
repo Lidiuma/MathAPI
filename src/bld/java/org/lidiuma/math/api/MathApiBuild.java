@@ -90,6 +90,8 @@ public final class MathApiBuild extends Project {
     @Override
     public CompileOperation compileOperation() {
         final var options = super.compileOperation();
+        // By keeping the parameters names in the compiled classes,
+        // I make it easier by implementors and people reading the API to understand clearly what the variables are.
         options.compileOptions().parameters();
         return options;
     }
