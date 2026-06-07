@@ -75,5 +75,5 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
     /// Java will eventually provide a mechanism in the language to get the [OrderableNumerical] witness of [N].\
     /// By providing it now, like this, I can implement most of the APIs.
     /// @return the [OrderableNumerical] witness for [N].
-    OrderableNumerical<N> scalarWitness(); // TODO Rename to scalarOps
+    OrderableNumerical<N> scalarOps();
 }

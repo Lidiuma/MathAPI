@@ -25,19 +25,19 @@ public interface FloatingVector3Ops<
 
     @Override
     default V zero() {
-        final N zero = scalarWitness().zero();
+        final N zero = scalarOps().zero();
         return of(zero, zero, zero);
     }
 
     @Override
     default V one() {
-        final N one = scalarWitness().one();
+        final N one = scalarOps().one();
         return of(one, one, one);
     }
 
     @Override
     default V sqrt(V operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
             witness.sqrt(operand.x()),
             witness.sqrt(operand.y()),
@@ -47,7 +47,7 @@ public interface FloatingVector3Ops<
 
     @Override
     default V ceil(V operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
             witness.ceil(operand.x()),
             witness.ceil(operand.y()),
@@ -57,7 +57,7 @@ public interface FloatingVector3Ops<
 
     @Override
     default V floor(V operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
             witness.floor(operand.x()),
             witness.floor(operand.y()),
@@ -73,7 +73,7 @@ public interface FloatingVector3Ops<
 
     @Override
     default V signum(V vector) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.signum(vector.x()),
                 witness.signum(vector.y()),

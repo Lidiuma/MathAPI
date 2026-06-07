@@ -33,7 +33,7 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
 
     // In 1D integers vector will always have an integer distance.
     default N distance(V v1, V v2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         final N delta = witness.subtract(v1.x(), v2.x());
         return abs(of(delta)).x(); // A bit of a hack to use the abs method for the scalar.
     }
@@ -45,13 +45,13 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
 
     @Override
     default V add(V op1, V op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(witness.add(op1.x(), op2.x()));
     }
 
     @Override
     default V multiply(V op1, V op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(witness.multiply(op1.x(), op2.x()));
     }
 
@@ -62,25 +62,25 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
 
     @Override
     default V divide(V op1, V op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(witness.divide(op1.x(), op2.x()));
     }
 
     @Override
     default V remainder(V op1, V op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(witness.remainder(op1.x(), op2.x()));
     }
 
     @Override
     default V negated(V operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(witness.negated(operand.x()));
     }
 
     @Override
     default boolean lessThan(V op1, V op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return witness.lessThan(op1.x(), op2.x());
     }
 }

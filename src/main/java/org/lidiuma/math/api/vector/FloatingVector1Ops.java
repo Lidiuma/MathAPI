@@ -25,27 +25,27 @@ public interface FloatingVector1Ops<
 
     @Override
     default V zero() {
-        return of(scalarWitness().zero());
+        return of(scalarOps().zero());
     }
 
     @Override
     default V one() {
-        return of(scalarWitness().one());
+        return of(scalarOps().one());
     }
 
     @Override
     default V sqrt(V operand) {
-        return of(scalarWitness().sqrt(operand.x()));
+        return of(scalarOps().sqrt(operand.x()));
     }
 
     @Override
     default V ceil(V operand) {
-        return of(scalarWitness().ceil(operand.x()));
+        return of(scalarOps().ceil(operand.x()));
     }
 
     @Override
     default V floor(V operand) {
-        return of(scalarWitness().floor(operand.x()));
+        return of(scalarOps().floor(operand.x()));
     }
 
     @Override
@@ -56,7 +56,7 @@ public interface FloatingVector1Ops<
 
     @Override
     default V signum(V vector) {
-        return of(scalarWitness().signum(vector.x()));
+        return of(scalarOps().signum(vector.x()));
     }
 
     /* Overrides to make the compiler happy and to use the more performance friendly version */

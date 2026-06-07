@@ -30,12 +30,12 @@ public interface FloatingVectorOps<
 
     /// @return the Euclidean distance between `v1` and `v2`.
     default N distance(V v1, V v2) {
-        return scalarWitness().sqrt(distanceSquared(v1, v2));
+        return scalarOps().sqrt(distanceSquared(v1, v2));
     }
 
     /// @return the length of `vector`.
     default N length(V vector) {
-        return scalarWitness().sqrt(lengthSquared(vector));
+        return scalarOps().sqrt(lengthSquared(vector));
     }
 
     /// @return a vector with the same direction as `vector` but scaled to the provided `length`.
@@ -46,7 +46,7 @@ public interface FloatingVectorOps<
     /// @return a vector with its length limited to `limit`.
     default V withLimit(V vector, N limit) {
         final N current = length(vector);
-        if (scalarWitness().lessThanEqual(current, limit)) return vector;
+        if (scalarOps().lessThanEqual(current, limit)) return vector;
         return withMagnitude(vector, limit, current);
     }
 
@@ -54,7 +54,7 @@ public interface FloatingVectorOps<
     /// @param vector should be non-zero, otherwise division by zero occurs.
     /// To handle this case [#normalizeOrElse] can be used.
     default V normalize(V vector) {
-        return withLength(vector, scalarWitness().one());
+        return withLength(vector, scalarOps().one());
     }
 
     /// Similar to [#normalize] but when the length of `vector` is close to or is zero,
@@ -76,7 +76,7 @@ public interface FloatingVectorOps<
     @Override
     default V interpolate(V start, V end, N alpha, UnaryOperator<N> easing) {
 
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         final N eased = easing.apply(alpha);
         final N invAlpha = witness.subtract(witness.one(), eased);
 
@@ -87,10 +87,10 @@ public interface FloatingVectorOps<
     }
 
     @Override
-    FloatingNumerical<N> scalarWitness();
+    FloatingNumerical<N> scalarOps();
 
     private V withMagnitude(V vector, N wanted, N current) {
-        final N scalar = scalarWitness().divide(wanted, current);
+        final N scalar = scalarOps().divide(wanted, current);
         return multiply(vector, scalar);
     }
 }
