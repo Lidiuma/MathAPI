@@ -25,6 +25,9 @@ public interface Affine2Ops<
         AN extends Angle<N>,
         N> extends AffineOps<A, V, N> {
 
+    A of(N m00, N m01, N m02,
+         N m10, N m11, N m12);
+
     /// @return the angle calculated from the rotation component of this matrix.
     AN rotation(A affine);
 

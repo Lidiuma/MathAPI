@@ -25,6 +25,10 @@ public interface Affine3Ops<
         Q extends Quaternion<N>,
         N> extends AffineOps<A, V, N> {
 
+    A of(N m00, N m01, N m02, N m03,
+         N m10, N m11, N m12, N m13,
+         N m20, N m21, N m22, N m23);
+
     /// @return the rotation part of this matrix.
     Q rotation(A affine);
 
