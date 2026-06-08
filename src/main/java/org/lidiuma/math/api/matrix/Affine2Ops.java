@@ -28,6 +28,9 @@ public interface Affine2Ops<
     A of(N m00, N m01, N m02,
          N m10, N m11, N m12);
 
+    /// @return the angle calculated from the rotation component of this matrix.
+    AN rotation(A affine);
+
     @Override
     default A identity() {
         final var witness = scalarOps();
@@ -38,9 +41,6 @@ public interface Affine2Ops<
                 zero, one, zero
         );
     }
-
-    /// @return the angle calculated from the rotation component of this matrix.
-    AN rotation(A affine);
 
     /// Transposes the 2x2 sub-matrix (linear part) of this affine matrix, ignoring the translation part.
     /// @return the transposed affine matrix.
