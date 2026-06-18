@@ -25,7 +25,7 @@ import org.lidiuma.math.api.*;
 /// Vector2 a, b;
 /// a.multiply(b) -> Vector2.of(a.x() * b.x(), a.y() * b.y());
 /// ```
-public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>, Interpolatable<V, N>, Clampable<V> {
+public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>, Clampable<V> {
 
     /// @return the sum of all components of this vector.
     N sum(V vector);
@@ -35,6 +35,18 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
     /// @see Math#signum(float)
     /// @return a vector with the signum function applied to each component.
     V signum(V vector);
+
+    /// @return a vector with each component multiplied by the provided scalar.
+    V multiply(V vector, N scalar);
+
+    /// @return a vector with each component clamped between `min` and `max`.
+    V clamp(V vector, N min, N max);
+
+    /// Returns the scalar [N] implementation of [OrderableNumerical].\
+    /// Java will eventually provide a mechanism in the language to get the [OrderableNumerical] witness of [N].\
+    /// By providing it now, like this, I can implement most of the APIs.
+    /// @return the [OrderableNumerical] witness for [N].
+    OrderableNumerical<N> scalarOps();
 
     /// @return a vector containing the absolute value of each component of `vector`.
     default V abs(V vector) {
@@ -60,20 +72,8 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
         return sum(multiply(v1, v2));
     }
 
-    /// @return a vector with each component multiplied by the provided scalar.
-    V multiply(V vector, N scalar);
-
     @Override
     default V clamp(V value, V min, V max) {
         return max(min, min(value, max));
     }
-
-    /// @return a vector with each component clamped between `min` and `max`.
-    V clamp(V vector, N min, N max);
-
-    /// Returns the scalar [N] implementation of [OrderableNumerical].\
-    /// Java will eventually provide a mechanism in the language to get the [OrderableNumerical] witness of [N].\
-    /// By providing it now, like this, I can implement most of the APIs.
-    /// @return the [OrderableNumerical] witness for [N].
-    OrderableNumerical<N> scalarOps();
 }

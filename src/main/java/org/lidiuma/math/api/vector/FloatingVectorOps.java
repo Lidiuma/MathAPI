@@ -17,16 +17,22 @@
 package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.FloatingNumerical;
+import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.rotation.Angle;
 import java.util.function.UnaryOperator;
 
 public interface FloatingVectorOps<
         V extends Vector<N>,
         A extends Angle<N>,
-        N> extends VectorOps<V, N>, FloatingNumerical<V> {
+        N> extends VectorOps<V, N>, Interpolatable<V, N>, FloatingNumerical<V> {
 
     /// @return the angle between the `v1` vector and the `v2` vector.
     A angle(V v1, V v2);
+
+    boolean epsilonEquals(V v1, V v2, N epsilon);
+
+    @Override
+    FloatingNumerical<N> scalarOps();
 
     /// @return the Euclidean distance between `v1` and `v2`.
     default N distance(V v1, V v2) {
@@ -71,8 +77,6 @@ public interface FloatingVectorOps<
         return VectorOps.super.abs(vector);
     }
 
-    boolean epsilonEquals(V v1, V v2, N epsilon);
-
     @Override
     default V interpolate(V start, V end, N alpha, UnaryOperator<N> easing) {
 
@@ -85,9 +89,6 @@ public interface FloatingVectorOps<
 
         return add(invStart, invEnd);
     }
-
-    @Override
-    FloatingNumerical<N> scalarOps();
 
     private V withMagnitude(V vector, N wanted, N current) {
         final N scalar = scalarOps().divide(wanted, current);
