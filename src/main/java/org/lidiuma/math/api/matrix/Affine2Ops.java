@@ -16,8 +16,10 @@
 
 package org.lidiuma.math.api.matrix;
 
+import org.lidiuma.math.api.FloatingNumerical;
 import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
+import java.util.function.UnaryOperator;
 
 public interface Affine2Ops<
         A extends Affine2<N>,
@@ -87,6 +89,38 @@ public interface Affine2Ops<
     @Override
     default boolean isSingular(A matrix) {
         return determinant(matrix).equals(scalarOps().zero());
+    }
+
+    @Override
+    default A interpolate(A start, A end, N alpha, UnaryOperator<N> easing) {
+
+        final var ops = scalarOps();
+        final N eased = easing.apply(alpha);
+
+        final N m00 = interpolate(start.m00(), end.m00(), eased, ops);
+        final N m01 = interpolate(start.m01(), end.m01(), eased, ops);
+
+        final N m10 = interpolate(start.m10(), end.m10(), eased, ops);
+        final N m11 = interpolate(start.m11(), end.m11(), eased, ops);
+
+        final N m02  = interpolate(start.m02(), end.m02(),  eased, ops);
+        final N m12  = interpolate(start.m12(), end.m12(),  eased, ops);
+
+        return of(
+                m00, m01, m02,
+                m10, m11, m12
+        );
+    }
+
+    // Helper method for the interpolation.
+    private N interpolate(N start, N end, N eased, FloatingNumerical<N> ops) {
+
+        final N invAlpha = ops.subtract(ops.one(), eased);
+
+        final N invStart = ops.multiply(start, invAlpha);
+        final N invEnd = ops.multiply(end, eased);
+
+        return ops.add(invStart, invEnd);
     }
 
     @Override
