@@ -16,14 +16,13 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.Numerical;
 import org.lidiuma.math.api.vector.Vector;
 
 public interface MatrixOps<
         M extends Matrix<N>,
         V extends Vector<N>,
-        N> extends Numerical<M>, Interpolatable<M, N> {
+        N> extends Numerical<M> {
 
     /// @return the transposed version of `matrix`.
     M transpose(M matrix);
