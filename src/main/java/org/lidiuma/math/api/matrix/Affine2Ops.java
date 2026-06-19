@@ -17,21 +17,19 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.FloatingNumerical;
-import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
 import java.util.function.UnaryOperator;
 
 public interface Affine2Ops<
         A extends Affine2<N>,
         V extends Vector2<N>,
-        AN extends Angle<N>,
-        N> extends AffineOps<A, V, N> {
+        N> extends SquareMatrixOps<A, V, N> {
 
     A of(N m00, N m01, N m02,
          N m10, N m11, N m12);
 
-    /// @return the angle calculated from the rotation component of this matrix.
-    AN rotation(A affine);
+    @Override
+    FloatingNumerical<N> scalarOps();
 
     @Override
     default A identity() {
