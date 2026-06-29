@@ -16,7 +16,6 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.FloatingNumerical;
 import org.lidiuma.math.api.vector.Vector2;
 
 public interface Affine2Ops<
@@ -28,13 +27,24 @@ public interface Affine2Ops<
          N m10, N m11, N m12);
 
     @Override
-    FloatingNumerical<N> scalarOps();
+    default A zero() {
+        final var zero = scalarOps().zero();
+        return of(
+                zero, zero, zero,
+                zero, zero, zero
+        );
+    }
+
+    @Override
+    default A one() {
+        return identity();
+    }
 
     @Override
     default A identity() {
-        final var witness = scalarOps();
-        final var one = witness.one();
-        final var zero = witness.zero();
+        final var ops = scalarOps();
+        final var one = ops.one();
+        final var zero = ops.zero();
         return of(
                 one, zero, zero,
                 zero, one, zero
@@ -53,10 +63,10 @@ public interface Affine2Ops<
 
     @Override
     default N determinant(A matrix) {
-        final var witness = scalarOps();
-        final N m0011 = witness.multiply(matrix.m00(), matrix.m11());
-        final N m0110 = witness.multiply(matrix.m01(), matrix.m10());
-        return witness.subtract(m0011, m0110);
+        final var ops = scalarOps();
+        final N m0011 = ops.multiply(matrix.m00(), matrix.m11());
+        final N m0110 = ops.multiply(matrix.m01(), matrix.m10());
+        return ops.subtract(m0011, m0110);
     }
 
     @Override

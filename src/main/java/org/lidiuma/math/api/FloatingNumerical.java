@@ -18,10 +18,6 @@ package org.lidiuma.math.api;
 
 public interface FloatingNumerical<N> extends OrderableNumerical<N> {
 
-    N zero();
-
-    N one();
-
     N signum(N operand);
 
     default N abs(N operand) {
