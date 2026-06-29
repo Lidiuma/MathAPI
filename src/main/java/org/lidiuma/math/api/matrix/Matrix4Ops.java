@@ -64,36 +64,26 @@ public interface Matrix4Ops<
     }
 
     @Override
-    default N determinant(M matrix) {
+    default N determinant(M m) {
 
         final var ops = scalarOps();
-        final var m3Ops = matrix3Ops();
 
-        final N d00 = m3Ops.determinant(m3Ops.of(
-                matrix.m11(), matrix.m12(), matrix.m13(),
-                matrix.m21(), matrix.m22(), matrix.m23(),
-                matrix.m31(), matrix.m32(), matrix.m33()
-        ));
-        final N d01 = m3Ops.determinant(m3Ops.of(
-                matrix.m10(), matrix.m12(), matrix.m13(),
-                matrix.m20(), matrix.m22(), matrix.m23(),
-                matrix.m30(), matrix.m32(), matrix.m33()
-        ));
-        final N d02 = m3Ops.determinant(m3Ops.of(
-                matrix.m10(), matrix.m11(), matrix.m13(),
-                matrix.m20(), matrix.m21(), matrix.m23(),
-                matrix.m30(), matrix.m31(), matrix.m33()
-        ));
-        final N d03 = m3Ops.determinant(m3Ops.of(
-                matrix.m10(), matrix.m11(), matrix.m12(),
-                matrix.m20(), matrix.m21(), matrix.m22(),
-                matrix.m30(), matrix.m31(), matrix.m32()
-        ));
-        final N f0 = ops.multiply(matrix.m00(), d00);
-        final N f1 = ops.multiply(matrix.m01(), d01);
-        final N f2 = ops.multiply(matrix.m02(), d02);
-        final N f3 = ops.multiply(matrix.m03(), d03);
-        return ops.subtract(ops.add(ops.subtract(f0, f1), f2), f3);
+        // 2×2 minors
+        final N det22_23 = ops.subtract(ops.multiply(m.m22(), m.m33()), ops.multiply(m.m23(), m.m32())); // cols 2,3
+        final N det21_23 = ops.subtract(ops.multiply(m.m21(), m.m33()), ops.multiply(m.m23(), m.m31())); // cols 1,3
+        final N det21_22 = ops.subtract(ops.multiply(m.m21(), m.m32()), ops.multiply(m.m22(), m.m31())); // cols 1,2
+        final N det20_23 = ops.subtract(ops.multiply(m.m20(), m.m33()), ops.multiply(m.m23(), m.m30())); // cols 0,3
+        final N det20_22 = ops.subtract(ops.multiply(m.m20(), m.m32()), ops.multiply(m.m22(), m.m30())); // cols 0,2
+        final N det20_21 = ops.subtract(ops.multiply(m.m20(), m.m31()), ops.multiply(m.m21(), m.m30())); // cols 0,1
+
+        // 3×3 minors
+        final N minor00 = ops.add(ops.subtract(ops.multiply(m.m11(), det22_23), ops.multiply(m.m12(), det21_23)), ops.multiply(m.m13(), det21_22));
+        final N minor01 = ops.add(ops.subtract(ops.multiply(m.m10(), det22_23), ops.multiply(m.m12(), det20_23)), ops.multiply(m.m13(), det20_22));
+        final N minor02 = ops.add(ops.subtract(ops.multiply(m.m10(), det21_23), ops.multiply(m.m11(), det20_23)), ops.multiply(m.m13(), det20_21));
+        final N minor03 = ops.add(ops.subtract(ops.multiply(m.m10(), det21_22), ops.multiply(m.m11(), det20_22)), ops.multiply(m.m12(), det20_21));
+
+        // Cofactor expansion (+m00 * minor00 - m01 * minor01 + m02 * minor02 - m03 * minor03)
+        return ops.subtract(ops.add(ops.subtract(ops.multiply(m.m00(), minor00), ops.multiply(m.m01(), minor01)), ops.multiply(m.m02(), minor02)), ops.multiply(m.m03(), minor03));
     }
 
     @Override
