@@ -103,11 +103,6 @@ public interface Matrix3Ops<
     }
 
     @Override
-    default boolean isSingular(M matrix) {
-        return determinant(matrix).equals(scalarOps().zero());
-    }
-
-    @Override
     default M multiply(M matrix, N scalar) {
 
         final var ops = scalarOps();

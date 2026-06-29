@@ -107,11 +107,6 @@ public interface Affine3Ops<
     }
 
     @Override
-    default boolean isSingular(A matrix) {
-        return determinant(matrix).equals(scalarOps().zero());
-    }
-
-    @Override
     default A multiply(A matrix, N scalar) {
 
         final var ops = scalarOps();
