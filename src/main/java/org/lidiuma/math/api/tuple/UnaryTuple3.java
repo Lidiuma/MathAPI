@@ -25,10 +25,6 @@ public interface UnaryTuple3<N> extends UnaryTuple<N> {
 
     N z();
 
-    /// Returns all the components of this tuple without the z component.
-    /// @return a lower dimension tuple without the z component.
-    UnaryTuple2<N> withoutZ();
-
     /// @return 3.
     @Override
     default int dimension() {

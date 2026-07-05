@@ -23,10 +23,6 @@ public interface UnaryTuple2<N> extends UnaryTuple<N> {
 
     N y();
 
-    /// Returns all the components of this tuple without the y component.
-    /// @return a lower dimension tuple without the y component.
-    UnaryTuple1<N> withoutY();
-
     /// @return 2.
     @Override
     default int dimension() {
