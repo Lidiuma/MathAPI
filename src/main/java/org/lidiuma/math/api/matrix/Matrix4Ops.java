@@ -16,7 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
-import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.vector.Vector4Ops;
 import org.lidiuma.math.api.vector.Vector4;
 
 public interface Matrix4Ops<
@@ -24,15 +24,15 @@ public interface Matrix4Ops<
         V extends Vector4<N>,
         N> extends SquareMatrixOps<M, V, N> {
 
-    // Annoying dependency, but this really makes my life easier to implement Matrix4.
-    <M3 extends Matrix3<N>, V3 extends Vector3<N>> Matrix3Ops<M3, V3, N> matrix3Ops();
-
     M of(
             N m00, N m01, N m02, N m03,
             N m10, N m11, N m12, N m13,
             N m20, N m21, N m22, N m23,
             N m30, N m31, N m32, N m33
     );
+
+    @Override
+    Vector4Ops<V, N> vectorOps();
 
     @Override
     default M zero() {
@@ -90,101 +90,62 @@ public interface Matrix4Ops<
     }
 
     @Override
-    default M inverse(M matrix) throws ArithmeticException {
+    default M inverse(M m) throws ArithmeticException {
 
         final var ops = scalarOps();
-        final var m3Ops = matrix3Ops();
 
-        final N det = determinant(matrix);
+        final N det = determinant(m);
         if (det.equals(ops.zero())) throw new ArithmeticException("The matrix cannot be inverted since singular.");
         final N invDet = ops.divide(ops.one(), det);
 
-        final N d00 = m3Ops.determinant(m3Ops.of(
-                matrix.m11(), matrix.m12(), matrix.m13(),
-                matrix.m21(), matrix.m22(), matrix.m23(),
-                matrix.m31(), matrix.m32(), matrix.m33()
-        ));
-        final N d01 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m10(), matrix.m12(), matrix.m13(),
-                matrix.m20(), matrix.m22(), matrix.m23(),
-                matrix.m30(), matrix.m32(), matrix.m33()
-        )));
-        final N d02 = m3Ops.determinant(m3Ops.of(
-                matrix.m10(), matrix.m11(), matrix.m13(),
-                matrix.m20(), matrix.m21(), matrix.m23(),
-                matrix.m30(), matrix.m31(), matrix.m33()
-        ));
-        final N d03 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m10(), matrix.m11(), matrix.m12(),
-                matrix.m20(), matrix.m21(), matrix.m22(),
-                matrix.m30(), matrix.m31(), matrix.m32()
-        )));
-        final N d10 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m01(), matrix.m02(), matrix.m03(),
-                matrix.m21(), matrix.m22(), matrix.m23(),
-                matrix.m31(), matrix.m32(), matrix.m33()
-        )));
-        final N d11 = m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m02(), matrix.m03(),
-                matrix.m20(), matrix.m22(), matrix.m23(),
-                matrix.m30(), matrix.m32(), matrix.m33()
-        ));
-        final N d12 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m01(), matrix.m03(),
-                matrix.m20(), matrix.m21(), matrix.m23(),
-                matrix.m30(), matrix.m31(), matrix.m33()
-        )));
-        final N d13 = m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m01(), matrix.m02(),
-                matrix.m20(), matrix.m21(), matrix.m22(),
-                matrix.m30(), matrix.m31(), matrix.m32()
-        ));
-        final N d20 = m3Ops.determinant(m3Ops.of(
-                matrix.m01(), matrix.m02(), matrix.m03(),
-                matrix.m11(), matrix.m12(), matrix.m13(),
-                matrix.m31(), matrix.m32(), matrix.m33()
-        ));
-        final N d21 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m02(), matrix.m03(),
-                matrix.m10(), matrix.m12(), matrix.m13(),
-                matrix.m30(), matrix.m32(), matrix.m33()
-        )));
-        final N d22 = m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m01(), matrix.m03(),
-                matrix.m10(), matrix.m11(), matrix.m13(),
-                matrix.m30(), matrix.m31(), matrix.m33()
-        ));
-        final N d23 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m01(), matrix.m02(),
-                matrix.m10(), matrix.m11(), matrix.m12(),
-                matrix.m30(), matrix.m31(), matrix.m32()
-        )));
-        final N d30 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m01(), matrix.m02(), matrix.m03(),
-                matrix.m11(), matrix.m12(), matrix.m13(),
-                matrix.m21(), matrix.m22(), matrix.m23()
-        )));
-        final N d31 = m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m02(), matrix.m03(),
-                matrix.m10(), matrix.m12(), matrix.m13(),
-                matrix.m20(), matrix.m22(), matrix.m23()
-        ));
-        final N d32 = ops.negated(m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m01(), matrix.m03(),
-                matrix.m10(), matrix.m11(), matrix.m13(),
-                matrix.m20(), matrix.m21(), matrix.m23()
-        )));
-        final N d33 = m3Ops.determinant(m3Ops.of(
-                matrix.m00(), matrix.m01(), matrix.m02(),
-                matrix.m10(), matrix.m11(), matrix.m12(),
-                matrix.m20(), matrix.m21(), matrix.m22()
-        ));
-        return of(
-                ops.multiply(d00, invDet), ops.multiply(d10, invDet), ops.multiply(d20, invDet), ops.multiply(d30, invDet),
-                ops.multiply(d01, invDet), ops.multiply(d11, invDet), ops.multiply(d21, invDet), ops.multiply(d31, invDet),
-                ops.multiply(d02, invDet), ops.multiply(d12, invDet), ops.multiply(d22, invDet), ops.multiply(d32, invDet),
-                ops.multiply(d03, invDet), ops.multiply(d13, invDet), ops.multiply(d23, invDet), ops.multiply(d33, invDet)
-        );
+        final N n00 = invAdd(mul3(m.m12(), m.m23(), m.m31()), mul3(m.m13(), m.m22(), m.m31()), mul3(m.m13(), m.m21(), m.m32()), mul3(m.m11(), m.m23(), m.m32()), mul3(m.m12(), m.m21(), m.m33()), mul3(m.m11(), m.m22(), m.m33()));
+        final N n01 = invSub(mul3(m.m03(), m.m22(), m.m31()), mul3(m.m02(), m.m23(), m.m31()), mul3(m.m03(), m.m21(), m.m32()), mul3(m.m01(), m.m23(), m.m32()), mul3(m.m02(), m.m21(), m.m33()), mul3(m.m01(), m.m22(), m.m33()));
+        final N n02 = invAdd(mul3(m.m02(), m.m13(), m.m31()), mul3(m.m03(), m.m12(), m.m31()), mul3(m.m03(), m.m11(), m.m32()), mul3(m.m01(), m.m13(), m.m32()), mul3(m.m02(), m.m11(), m.m33()), mul3(m.m01(), m.m12(), m.m33()));
+        final N n03 = invSub(mul3(m.m03(), m.m12(), m.m21()), mul3(m.m02(), m.m13(), m.m21()), mul3(m.m03(), m.m11(), m.m22()), mul3(m.m01(), m.m13(), m.m22()), mul3(m.m02(), m.m11(), m.m23()), mul3(m.m01(), m.m12(), m.m23()));
+        final N n10 = invSub(mul3(m.m13(), m.m22(), m.m30()), mul3(m.m12(), m.m23(), m.m30()), mul3(m.m13(), m.m20(), m.m32()), mul3(m.m10(), m.m23(), m.m32()), mul3(m.m12(), m.m20(), m.m33()), mul3(m.m10(), m.m22(), m.m33()));
+        final N n11 = invAdd(mul3(m.m02(), m.m23(), m.m30()), mul3(m.m03(), m.m22(), m.m30()), mul3(m.m03(), m.m20(), m.m32()), mul3(m.m00(), m.m23(), m.m32()), mul3(m.m02(), m.m20(), m.m33()), mul3(m.m00(), m.m22(), m.m33()));
+        final N n12 = invSub(mul3(m.m03(), m.m12(), m.m30()), mul3(m.m02(), m.m13(), m.m30()), mul3(m.m03(), m.m10(), m.m32()), mul3(m.m00(), m.m13(), m.m32()), mul3(m.m02(), m.m10(), m.m33()), mul3(m.m00(), m.m12(), m.m33()));
+        final N n13 = invAdd(mul3(m.m02(), m.m13(), m.m20()), mul3(m.m03(), m.m12(), m.m20()), mul3(m.m03(), m.m10(), m.m22()), mul3(m.m00(), m.m13(), m.m22()), mul3(m.m02(), m.m10(), m.m23()), mul3(m.m00(), m.m12(), m.m23()));
+        final N n20 = invAdd(mul3(m.m11(), m.m23(), m.m30()), mul3(m.m13(), m.m21(), m.m30()), mul3(m.m13(), m.m20(), m.m31()), mul3(m.m10(), m.m23(), m.m31()), mul3(m.m11(), m.m20(), m.m33()), mul3(m.m10(), m.m21(), m.m33()));
+        final N n21 = invSub(mul3(m.m03(), m.m21(), m.m30()), mul3(m.m01(), m.m23(), m.m30()), mul3(m.m03(), m.m20(), m.m31()), mul3(m.m00(), m.m23(), m.m31()), mul3(m.m01(), m.m20(), m.m33()), mul3(m.m00(), m.m21(), m.m33()));
+        final N n22 = invAdd(mul3(m.m01(), m.m13(), m.m30()), mul3(m.m03(), m.m11(), m.m30()), mul3(m.m03(), m.m10(), m.m31()), mul3(m.m00(), m.m13(), m.m31()), mul3(m.m01(), m.m10(), m.m33()), mul3(m.m00(), m.m11(), m.m33()));
+        final N n23 = invSub(mul3(m.m03(), m.m11(), m.m20()), mul3(m.m01(), m.m13(), m.m20()), mul3(m.m03(), m.m10(), m.m21()), mul3(m.m00(), m.m13(), m.m21()), mul3(m.m01(), m.m10(), m.m23()), mul3(m.m00(), m.m11(), m.m23()));
+        final N n30 = invSub(mul3(m.m12(), m.m21(), m.m30()), mul3(m.m11(), m.m22(), m.m30()), mul3(m.m12(), m.m20(), m.m31()), mul3(m.m10(), m.m22(), m.m31()), mul3(m.m11(), m.m20(), m.m32()), mul3(m.m10(), m.m21(), m.m32()));
+        final N n31 = invAdd(mul3(m.m01(), m.m22(), m.m30()), mul3(m.m02(), m.m21(), m.m30()), mul3(m.m02(), m.m20(), m.m31()), mul3(m.m00(), m.m22(), m.m31()), mul3(m.m01(), m.m20(), m.m32()), mul3(m.m00(), m.m21(), m.m32()));
+        final N n32 = invSub(mul3(m.m02(), m.m11(), m.m30()), mul3(m.m01(), m.m12(), m.m30()), mul3(m.m02(), m.m10(), m.m31()), mul3(m.m00(), m.m12(), m.m31()), mul3(m.m01(), m.m10(), m.m32()), mul3(m.m00(), m.m11(), m.m32()));
+        final N n33 = invAdd(mul3(m.m01(), m.m12(), m.m20()), mul3(m.m02(), m.m11(), m.m20()), mul3(m.m02(), m.m10(), m.m21()), mul3(m.m00(), m.m12(), m.m21()), mul3(m.m01(), m.m10(), m.m22()), mul3(m.m00(), m.m11(), m.m22()));
+        return multiply(of(
+                n00, n01, n02, n03,
+                n10, n11, n12, n13,
+                n20, n21, n22, n23,
+                n30, n31, n32, n33
+        ), invDet);
+    }
+
+    /// Helper method for the inverse, it returns: `n1 - n2 + n3 - n4 - n5 + n6`.
+    private N invAdd(N n1, N n2, N n3, N n4, N n5, N n6) {
+        final var ops = scalarOps();
+        final N f1 = ops.subtract(n1, n2);
+        final N f2 = ops.add(f1, n3);
+        final N f3 = ops.subtract(f2, n4);
+        final N f4 = ops.subtract(f3, n5);
+        return ops.add(f4, n6);
+    }
+
+    /// Helper method for the inverse, it returns: `n1 - n2 - n3 + n4 + n5 - n6`.
+    private N invSub(N n1, N n2, N n3, N n4, N n5, N n6) {
+        final var ops = scalarOps();
+        final N f1 = ops.subtract(n1, n2);
+        final N f2 = ops.subtract(f1, n3);
+        final N f3 = ops.add(f2, n4);
+        final N f4 = ops.add(f3, n5);
+        return ops.subtract(f4, n6);
+    }
+
+    /// Helper that multiplicative 3 numbers together.
+    private N mul3(N n1, N n2, N n3) {
+        final var ops = scalarOps();
+        return ops.multiply(ops.multiply(n1, n2), n3);
     }
 
     @Override
@@ -195,6 +156,38 @@ public interface Matrix4Ops<
                 matrix.m02(), matrix.m12(), matrix.m22(), matrix.m32(),
                 matrix.m03(), matrix.m13(), matrix.m23(), matrix.m33()
         );
+    }
+
+    @Override
+    default V multiply(M matrix, V vector) {
+
+        final var ops = scalarOps();
+
+        final N m00 = ops.multiply(matrix.m00(), vector.x());
+        final N m01 = ops.multiply(matrix.m01(), vector.y());
+        final N m02 = ops.multiply(matrix.m02(), vector.z());
+        final N m03 = ops.multiply(matrix.m03(), vector.w());
+
+        final N m10 = ops.multiply(matrix.m10(), vector.x());
+        final N m11 = ops.multiply(matrix.m11(), vector.y());
+        final N m12 = ops.multiply(matrix.m12(), vector.z());
+        final N m13 = ops.multiply(matrix.m13(), vector.w());
+
+        final N m20 = ops.multiply(matrix.m20(), vector.x());
+        final N m21 = ops.multiply(matrix.m21(), vector.y());
+        final N m22 = ops.multiply(matrix.m22(), vector.z());
+        final N m23 = ops.multiply(matrix.m23(), vector.w());
+
+        final N m30 = ops.multiply(matrix.m30(), vector.x());
+        final N m31 = ops.multiply(matrix.m31(), vector.y());
+        final N m32 = ops.multiply(matrix.m32(), vector.z());
+        final N m33 = ops.multiply(matrix.m33(), vector.w());
+
+        final N x = ops.add(ops.add(m00, m01), ops.add(m02, m03));
+        final N y = ops.add(ops.add(m10, m11), ops.add(m12, m13));
+        final N z = ops.add(ops.add(m20, m21), ops.add(m22, m23));
+        final N w = ops.add(ops.add(m30, m31), ops.add(m32, m33));
+        return vectorOps().of(x, y, z, w);
     }
 
     @Override
@@ -298,76 +291,34 @@ public interface Matrix4Ops<
 
         final var ops = scalarOps();
 
-        final N m00 = ops.add(
-                ops.add(ops.multiply(op1.m00(), op2.m00()), ops.multiply(op1.m01(), op2.m10())),
-                ops.add(ops.multiply(op1.m02(), op2.m20()), ops.multiply(op1.m03(), op2.m30()))
-        );
-        final N m01 = ops.add(
-                ops.add(ops.multiply(op1.m00(), op2.m01()), ops.multiply(op1.m01(), op2.m11())),
-                ops.add(ops.multiply(op1.m02(), op2.m21()), ops.multiply(op1.m03(), op2.m31()))
-        );
-        final N m02 = ops.add(
-                ops.add(ops.multiply(op1.m00(), op2.m02()), ops.multiply(op1.m01(), op2.m12())),
-                ops.add(ops.multiply(op1.m02(), op2.m22()), ops.multiply(op1.m03(), op2.m32()))
-        );
-        final N m03 = ops.add(
-                ops.add(ops.multiply(op1.m00(), op2.m03()), ops.multiply(op1.m01(), op2.m13())),
-                ops.add(ops.multiply(op1.m02(), op2.m23()), ops.multiply(op1.m03(), op2.m33()))
-        );
-        final N m10 = ops.add(
-                ops.add(ops.multiply(op1.m10(), op2.m00()), ops.multiply(op1.m11(), op2.m10())),
-                ops.add(ops.multiply(op1.m12(), op2.m20()), ops.multiply(op1.m13(), op2.m30()))
-        );
-        final N m11 = ops.add(
-                ops.add(ops.multiply(op1.m10(), op2.m01()), ops.multiply(op1.m11(), op2.m11())),
-                ops.add(ops.multiply(op1.m12(), op2.m21()), ops.multiply(op1.m13(), op2.m31()))
-        );
-        final N m12 = ops.add(
-                ops.add(ops.multiply(op1.m10(), op2.m02()), ops.multiply(op1.m11(), op2.m12())),
-                ops.add(ops.multiply(op1.m12(), op2.m22()), ops.multiply(op1.m13(), op2.m32()))
-        );
-        final N m13 = ops.add(
-                ops.add(ops.multiply(op1.m10(), op2.m03()), ops.multiply(op1.m11(), op2.m13())),
-                ops.add(ops.multiply(op1.m12(), op2.m23()), ops.multiply(op1.m13(), op2.m33()))
-        );
-        final N m20 = ops.add(
-                ops.add(ops.multiply(op1.m20(), op2.m00()), ops.multiply(op1.m21(), op2.m10())),
-                ops.add(ops.multiply(op1.m22(), op2.m20()), ops.multiply(op1.m23(), op2.m30()))
-        );
-        final N m21 = ops.add(
-                ops.add(ops.multiply(op1.m20(), op2.m01()), ops.multiply(op1.m21(), op2.m11())),
-                ops.add(ops.multiply(op1.m22(), op2.m21()), ops.multiply(op1.m23(), op2.m31()))
-        );
-        final N m22 = ops.add(
-                ops.add(ops.multiply(op1.m20(), op2.m02()), ops.multiply(op1.m21(), op2.m12())),
-                ops.add(ops.multiply(op1.m22(), op2.m22()), ops.multiply(op1.m23(), op2.m32()))
-        );
-        final N m23 = ops.add(
-                ops.add(ops.multiply(op1.m20(), op2.m03()), ops.multiply(op1.m21(), op2.m13())),
-                ops.add(ops.multiply(op1.m22(), op2.m23()), ops.multiply(op1.m23(), op2.m33()))
-        );
-        final N m30 = ops.add(
-                ops.add(ops.multiply(op1.m30(), op2.m00()), ops.multiply(op1.m31(), op2.m10())),
-                ops.add(ops.multiply(op1.m32(), op2.m20()), ops.multiply(op1.m33(), op2.m30()))
-        );
-        final N m31 = ops.add(
-                ops.add(ops.multiply(op1.m30(), op2.m01()), ops.multiply(op1.m31(), op2.m11())),
-                ops.add(ops.multiply(op1.m32(), op2.m21()), ops.multiply(op1.m33(), op2.m31()))
-        );
-        final N m32 = ops.add(
-                ops.add(ops.multiply(op1.m30(), op2.m02()), ops.multiply(op1.m31(), op2.m12())),
-                ops.add(ops.multiply(op1.m32(), op2.m22()), ops.multiply(op1.m33(), op2.m32()))
-        );
-        final N m33 = ops.add(
-                ops.add(ops.multiply(op1.m30(), op2.m03()), ops.multiply(op1.m31(), op2.m13())),
-                ops.add(ops.multiply(op1.m32(), op2.m23()), ops.multiply(op1.m33(), op2.m33()))
-        );
+        final N m00 = ops.add(mulAdd(op1.m00(), op2.m00(), op1.m01(), op2.m10()), mulAdd(op1.m02(), op2.m20(), op1.m03(), op2.m30()));
+        final N m01 = ops.add(mulAdd(op1.m00(), op2.m01(), op1.m01(), op2.m11()), mulAdd(op1.m02(), op2.m21(), op1.m03(), op2.m31()));
+        final N m02 = ops.add(mulAdd(op1.m00(), op2.m02(), op1.m01(), op2.m12()), mulAdd(op1.m02(), op2.m22(), op1.m03(), op2.m32()));
+        final N m03 = ops.add(mulAdd(op1.m00(), op2.m03(), op1.m01(), op2.m13()), mulAdd(op1.m02(), op2.m23(), op1.m03(), op2.m33()));
+        final N m10 = ops.add(mulAdd(op1.m10(), op2.m00(), op1.m11(), op2.m10()), mulAdd(op1.m12(), op2.m20(), op1.m13(), op2.m30()));
+        final N m11 = ops.add(mulAdd(op1.m10(), op2.m01(), op1.m11(), op2.m11()), mulAdd(op1.m12(), op2.m21(), op1.m13(), op2.m31()));
+        final N m12 = ops.add(mulAdd(op1.m10(), op2.m02(), op1.m11(), op2.m12()), mulAdd(op1.m12(), op2.m22(), op1.m13(), op2.m32()));
+        final N m13 = ops.add(mulAdd(op1.m10(), op2.m03(), op1.m11(), op2.m13()), mulAdd(op1.m12(), op2.m23(), op1.m13(), op2.m33()));
+        final N m20 = ops.add(mulAdd(op1.m20(), op2.m00(), op1.m21(), op2.m10()), mulAdd(op1.m22(), op2.m20(), op1.m23(), op2.m30()));
+        final N m21 = ops.add(mulAdd(op1.m20(), op2.m01(), op1.m21(), op2.m11()), mulAdd(op1.m22(), op2.m21(), op1.m23(), op2.m31()));
+        final N m22 = ops.add(mulAdd(op1.m20(), op2.m02(), op1.m21(), op2.m12()), mulAdd(op1.m22(), op2.m22(), op1.m23(), op2.m32()));
+        final N m23 = ops.add(mulAdd(op1.m20(), op2.m03(), op1.m21(), op2.m13()), mulAdd(op1.m22(), op2.m23(), op1.m23(), op2.m33()));
+        final N m30 = ops.add(mulAdd(op1.m30(), op2.m00(), op1.m31(), op2.m10()), mulAdd(op1.m32(), op2.m20(), op1.m33(), op2.m30()));
+        final N m31 = ops.add(mulAdd(op1.m30(), op2.m01(), op1.m31(), op2.m11()), mulAdd(op1.m32(), op2.m21(), op1.m33(), op2.m31()));
+        final N m32 = ops.add(mulAdd(op1.m30(), op2.m02(), op1.m31(), op2.m12()), mulAdd(op1.m32(), op2.m22(), op1.m33(), op2.m32()));
+        final N m33 = ops.add(mulAdd(op1.m30(), op2.m03(), op1.m31(), op2.m13()), mulAdd(op1.m32(), op2.m23(), op1.m33(), op2.m33()));
         return of(
                 m00, m01, m02, m03,
                 m10, m11, m12, m13,
                 m20, m21, m22, m23,
                 m30, m31, m32, m33
         );
+    }
+
+    /// Helper for the matrix multiplication, it returns: `N1 * N2 + N3 * N4`
+    private N mulAdd(N n1, N n2, N n3, N n4) {
+        final var ops = scalarOps();
+        return ops.add(ops.multiply(n1, n2), ops.multiply(n3, n4));
     }
 
     @Override

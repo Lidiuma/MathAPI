@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.vector.Vector3Ops;
 
 public interface Matrix3Ops<
         M extends Matrix3<N>,
@@ -26,6 +27,9 @@ public interface Matrix3Ops<
     M of(N m00, N m01, N m02,
          N m10, N m11, N m12,
          N m20, N m21, N m22);
+
+    @Override
+    Vector3Ops<V, N> vectorOps();
 
     @Override
     default M zero() {
@@ -100,6 +104,29 @@ public interface Matrix3Ops<
                 n10, n11, n12,
                 n20, n21, n22
         );
+    }
+
+    @Override
+    default V multiply(M matrix, V vector) {
+
+        final var ops = scalarOps();
+
+        final N m00 = ops.multiply(matrix.m00(), vector.x());
+        final N m01 = ops.multiply(matrix.m01(), vector.y());
+        final N m02 = ops.multiply(matrix.m02(), vector.z());
+
+        final N m10 = ops.multiply(matrix.m10(), vector.x());
+        final N m11 = ops.multiply(matrix.m11(), vector.y());
+        final N m12 = ops.multiply(matrix.m12(), vector.z());
+
+        final N m20 = ops.multiply(matrix.m20(), vector.x());
+        final N m21 = ops.multiply(matrix.m21(), vector.y());
+        final N m22 = ops.multiply(matrix.m22(), vector.z());
+
+        final N x = ops.add(ops.add(m00, m01), m02);
+        final N y = ops.add(ops.add(m10, m11), m12);
+        final N z = ops.add(ops.add(m20, m21), m22);
+        return vectorOps().of(x, y, z);
     }
 
     @Override

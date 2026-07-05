@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.vector.Vector2;
+import org.lidiuma.math.api.vector.Vector2Ops;
 
 public interface Affine2Ops<
         A extends Affine2<N>,
@@ -25,6 +26,9 @@ public interface Affine2Ops<
 
     A of(N m00, N m01, N m02,
          N m10, N m11, N m12);
+
+    @Override
+    Vector2Ops<V, N> vectorOps();
 
     @Override
     default A zero() {
@@ -91,6 +95,23 @@ public interface Affine2Ops<
                 n00, n01, n02,
                 n10, n11, n12
         );
+    }
+
+    @Override
+    default V multiply(A matrix, V vector) {
+
+        final var ops = scalarOps();
+
+        final N m00 = ops.multiply(matrix.m00(), vector.x());
+        final N m01 = ops.multiply(matrix.m01(), vector.y());
+
+        final N m10 = ops.multiply(matrix.m10(), vector.x());
+        final N m11 = ops.multiply(matrix.m11(), vector.y());
+
+        final N x = ops.add(ops.add(m00, m01), matrix.m02());
+        final N y = ops.add(ops.add(m10, m11), matrix.m12());
+
+        return vectorOps().of(x, y);
     }
 
     @Override

@@ -18,6 +18,7 @@ package org.lidiuma.math.api.matrix;
 
 import org.lidiuma.math.api.Numerical;
 import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.vector.VectorOps;
 
 public interface MatrixOps<
         M extends Matrix<N>,
@@ -58,4 +59,7 @@ public interface MatrixOps<
     /// By providing it now, like this, I can implement most of the APIs.
     /// @return the [Numerical] witness for [N].
     Numerical<N> scalarOps();
+
+    /// Returns the vector [V] implementation of [VectorOps].
+    VectorOps<V, N> vectorOps();
 }

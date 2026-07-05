@@ -16,6 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
+import org.lidiuma.math.api.vector.Vector3Ops;
 import org.lidiuma.math.api.vector.Vector3;
 
 public interface Affine3Ops<
@@ -26,6 +27,9 @@ public interface Affine3Ops<
     A of(N m00, N m01, N m02, N m03,
          N m10, N m11, N m12, N m13,
          N m20, N m21, N m22, N m23);
+
+    @Override
+    Vector3Ops<V, N> vectorOps();
 
     @Override
     default A zero() {
@@ -104,6 +108,30 @@ public interface Affine3Ops<
                 n10, n11, n12, ops.negated(n13),
                 n20, n21, n22, ops.negated(n23)
         );
+    }
+
+    @Override
+    default V multiply(A matrix, V vector) {
+
+        final var ops = scalarOps();
+
+        final N m00 = ops.multiply(matrix.m00(), vector.x());
+        final N m01 = ops.multiply(matrix.m01(), vector.y());
+        final N m02 = ops.multiply(matrix.m02(), vector.z());
+
+        final N m10 = ops.multiply(matrix.m10(), vector.x());
+        final N m11 = ops.multiply(matrix.m11(), vector.y());
+        final N m12 = ops.multiply(matrix.m12(), vector.z());
+
+        final N m20 = ops.multiply(matrix.m20(), vector.x());
+        final N m21 = ops.multiply(matrix.m21(), vector.y());
+        final N m22 = ops.multiply(matrix.m22(), vector.z());
+
+        final var x = ops.add(ops.add(m00, m01), ops.add(m02, matrix.m03()));
+        final var y = ops.add(ops.add(m10, m11), ops.add(m12, matrix.m13()));
+        final var z = ops.add(ops.add(m20, m21), ops.add(m22, matrix.m23()));
+
+        return vectorOps().of(x, y, z);
     }
 
     @Override
