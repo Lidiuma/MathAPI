@@ -13,4 +13,5 @@ module lidiuma.math.api {
     exports org.lidiuma.math.api.geometry.point;
     exports org.lidiuma.math.api.geometry.rectangle;
     exports org.lidiuma.math.api.geometry.sphere;
+    exports org.lidiuma.math.api.geometry.triangle;
 }
