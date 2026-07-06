@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.line;
+package org.lidiuma.math.api.geometry.segment;
 
+import org.lidiuma.math.api.vector.Vector1;
 import org.lidiuma.math.api.geometry.point.Point1;
 
 /// Generic Line 1D interface.
-public interface Line1<N> extends Line<Point1<N>, N> {
+public interface Segment1<N> extends Segment<Vector1<N>, Point1<N>, N> {
 }

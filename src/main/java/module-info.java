@@ -9,7 +9,7 @@ module lidiuma.math.api {
     exports org.lidiuma.math.api.vector;
     exports org.lidiuma.math.api.matrix;
     exports org.lidiuma.math.api.color;
-    exports org.lidiuma.math.api.geometry.line;
+    exports org.lidiuma.math.api.geometry.segment;
     exports org.lidiuma.math.api.geometry.point;
     exports org.lidiuma.math.api.geometry.rectangle;
     exports org.lidiuma.math.api.geometry.sphere;
