@@ -19,6 +19,7 @@ package org.lidiuma.math.api.geometry.triangle;
 import org.lidiuma.math.api.geometry.point.Point2;
 import org.lidiuma.math.api.vector.Vector2;
 
-/// Generic Triangle 2D interface.
+/// 2D Triangle interface.
+/// @param <N> the numeric type.
 public interface Triangle2<N> extends Triangle<Vector2<N>, Point2<N>, N> {
 }

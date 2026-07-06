@@ -19,6 +19,7 @@ package org.lidiuma.math.api.geometry.triangle;
 import org.lidiuma.math.api.geometry.point.Point4;
 import org.lidiuma.math.api.vector.Vector4;
 
-/// Generic Triangle 4D interface.
+/// 4D Triangle interface.
+/// @param <N> the numeric type.
 public interface Triangle4<N> extends Triangle<Vector4<N>, Point4<N>, N> {
 }

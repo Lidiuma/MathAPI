@@ -18,7 +18,8 @@ package org.lidiuma.math.api.geometry.rectangle;
 
 import org.lidiuma.math.api.vector.Vector2;
 
-/// Generic Rectangle 2D interface.
+/// 2D Rectangle interface.
+/// @param <N> the numeric type.
 public interface Rectangle2<N> extends Rectangle<Vector2<N>, N> {
 
     default N width() {

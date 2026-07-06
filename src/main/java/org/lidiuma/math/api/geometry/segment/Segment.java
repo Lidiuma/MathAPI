@@ -20,6 +20,9 @@ import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.geometry.point.Point;
 
 /// Segment interface that represents a span from start to end.
+/// @param <V> the [Vector] type representing the segment [#span].
+/// @param <P> the [Point] type representing the segment [#start] and [#end] position.
+/// @param <N> the numeric type.
 public interface Segment<V extends Vector<N>, P extends Point<N>, N> {
 
     /// @return the span [Vector] of the segment.

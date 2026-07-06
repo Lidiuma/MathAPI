@@ -19,6 +19,7 @@ package org.lidiuma.math.api.geometry.segment;
 import org.lidiuma.math.api.vector.Vector1;
 import org.lidiuma.math.api.geometry.point.Point1;
 
-/// Generic Line 1D interface.
+/// 1D Segment interface.
+/// @param <N> the numeric type.
 public interface Segment1<N> extends Segment<Vector1<N>, Point1<N>, N> {
 }

@@ -18,6 +18,7 @@ package org.lidiuma.math.api.geometry.point;
 
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 
-/// Generic Point 4D interface.
+/// 4D Point interface.
+/// @param <N> the numeric type.
 public interface Point4<N> extends Point<N>, UnaryTuple4<N> {
 }

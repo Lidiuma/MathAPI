@@ -16,8 +16,8 @@
 
 package org.lidiuma.math.api.geometry.sphere;
 
-/// Generic Sphere interface.
-/// @apiNote The point is not provided to allow the sphere to be re-used with different points.
+/// Radius interface.
+/// @param <N> the numeric type.
 public interface Radius<N> {
 
     /// @return the radius of the sphere.

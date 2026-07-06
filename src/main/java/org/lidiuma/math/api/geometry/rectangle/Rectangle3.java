@@ -18,7 +18,8 @@ package org.lidiuma.math.api.geometry.rectangle;
 
 import org.lidiuma.math.api.vector.Vector3;
 
-/// Generic Rectangle 3D interface.
+/// 3D Rectangle interface.
+/// @param <N> the numeric type.
 public interface Rectangle3<N> extends Rectangle<Vector3<N>, N> {
 
     default N width() {

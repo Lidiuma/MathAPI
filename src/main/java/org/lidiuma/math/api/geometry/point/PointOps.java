@@ -19,6 +19,10 @@ package org.lidiuma.math.api.geometry.point;
 import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.vector.Vector;
 
+/// Point operations type-class.
+/// @param <P> the [Point] type for which operations are defined.
+/// @param <V> the [Vector] type required for defining [Point] operations.
+/// @param <N> the numeric type.
 public interface PointOps<
         P extends Point<N>,
         V extends Vector<N>,

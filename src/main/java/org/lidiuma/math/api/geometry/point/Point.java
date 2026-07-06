@@ -18,7 +18,7 @@ package org.lidiuma.math.api.geometry.point;
 
 import org.lidiuma.math.api.tuple.UnaryTuple;
 
-/// Generic Point interface representing a position.
+/// Interface representing a Position.
 /// @param <N> the numeric type.
 public interface Point<N> extends UnaryTuple<N> {
 }
