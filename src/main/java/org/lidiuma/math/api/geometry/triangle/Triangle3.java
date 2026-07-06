@@ -16,8 +16,9 @@
 
 package org.lidiuma.math.api.geometry.triangle;
 
+import org.lidiuma.math.api.geometry.point.Point3;
 import org.lidiuma.math.api.vector.Vector3;
 
 /// Generic Triangle 3D interface.
-public interface Triangle3<N> extends Triangle<Vector3<N>, N> {
+public interface Triangle3<N> extends Triangle<Vector3<N>, Point3<N>, N> {
 }
