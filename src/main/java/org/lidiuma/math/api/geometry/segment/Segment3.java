@@ -17,9 +17,8 @@
 package org.lidiuma.math.api.geometry.segment;
 
 import org.lidiuma.math.api.vector.Vector3;
-import org.lidiuma.math.api.geometry.point.Point3;
 
 /// 3D Segment interface.
 /// @param <N> the numeric type.
-public interface Segment3<N> extends Segment<Vector3<N>, Point3<N>, N> {
+public interface Segment3<N> extends Segment<Vector3<N>, N> {
 }

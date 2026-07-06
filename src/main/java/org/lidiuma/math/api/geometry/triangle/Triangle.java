@@ -16,7 +16,6 @@
 
 package org.lidiuma.math.api.geometry.triangle;
 
-import org.lidiuma.math.api.geometry.point.Point;
 import org.lidiuma.math.api.vector.Vector;
 
 /// Triangle Shape interface.
@@ -33,24 +32,12 @@ import org.lidiuma.math.api.vector.Vector;
 /// A = (0,0)
 ///```
 /// @param <V> the [Vector] type representing the triangle edges [#ab] and [#ac].
-/// @param <P> the [Point] type representing the position of the triangle vertex.
 /// @param <N> the numeric type.
-public interface Triangle<V extends Vector<N>, P extends Point<N>, N> {
+public interface Triangle<V extends Vector<N>, N> {
 
     /// @return the [Vector] starting from `A` (the origin) pointing towards `B`.
     V ab();
 
     /// @return the [Vector] starting from `A` (the origin) pointing towards `C`.
     V ac();
-
-    /// @return the [Point] of the vertex `A`, which is the origin.
-    default P vertexA(P origin) { // Added for completeness.
-        return origin;
-    }
-
-    /// @return the [Point] of the vertex `B`.
-    P vertexB(P origin);
-
-    /// @return the [Point] of the vertex `C`.
-    P vertexC(P origin);
 }
