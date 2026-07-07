@@ -7,6 +7,7 @@ import rife.bld.operations.PublishOperation;
 import rife.bld.publish.PublishDeveloper;
 import rife.bld.publish.PublishInfo;
 import rife.bld.publish.PublishLicense;
+import java.io.File;
 import java.util.List;
 import static java.lang.String.format;
 import static org.lidiuma.math.api.Util.GITHUB_URL;
@@ -25,11 +26,19 @@ public final class MathApiBuild extends Project {
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
+        assignSourcesDirectory();
 
         scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
+    }
+
+    private void assignSourcesDirectory() {
+        final var moduleDir = new File(srcDirectory(), "api");
+        srcMainDirectory = new File(moduleDir, "main");
+        srcTestDirectory = new File(moduleDir, "test");
+        buildMainDirectory = new File(buildDirectory(), "api");
     }
 
     public static void main(String[] args) {
