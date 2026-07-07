@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/build/traits" />
+    <output-test url="file://$MODULE_DIR$/build/traits" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/src/traits">
+      <sourceFolder url="file://$MODULE_DIR$/src/traits/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/traits/main/resources" type="java-resource" relativeOutputPath="resources" />
+      <sourceFolder url="file://$MODULE_DIR$/src/traits/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/traits/test/resources" type="java-test-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" scope="RUNTIME">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/src/traits/main/resources/templates" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="compile" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="runtime" level="project" />
+    <orderEntry type="library" scope="TEST" name="test" level="project" />
+    <orderEntry type="module" module-name="api" exported="" />
+  </component>
+</module>
