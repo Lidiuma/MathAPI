@@ -14,19 +14,30 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.shape.triangle;
 
 import org.lidiuma.math.api.vector.Vector;
 
-/// Point operations type-class for floating-point arithmetic.
-/// @param <P> the [Point] type for which operations are defined.
-/// @param <V> the [Vector] type required for defining [Point] operations.
+/// Triangle Shape interface.
+///
+/// The triangle uses local coordinates, with `A` being the `origin`.
+///
+/// Diagram to illustrate the relative position of the points:
+/// ```
+///   |
+///   | B
+///   |/ \
+/// --A---C----
+///   |
+/// A = (0,0)
+///```
+/// @param <V> the [Vector] type representing the triangle edges [#ab] and [#ac].
 /// @param <N> the numeric type.
-public interface FloatingPointOps<
-        P extends Point<N>,
-        V extends Vector<N>,
-        N> extends PointOps<P, V, N> {
+public interface Triangle<V extends Vector<N>, N> {
 
-    /// @return the Euclidean distance between `first` and `second`.
-    N distance(P first, P second);
+    /// @return the [Vector] starting from `A` (the origin) pointing towards `B`.
+    V ab();
+
+    /// @return the [Vector] starting from `A` (the origin) pointing towards `C`.
+    V ac();
 }

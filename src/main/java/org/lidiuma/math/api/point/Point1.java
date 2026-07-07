@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.segment;
+package org.lidiuma.math.api.point;
 
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.tuple.UnaryTuple1;
 
-/// Segment interface that represents a span from start to end.
-/// @param <V> the [Vector] type representing the segment [#span].
+/// 1D Point interface.
 /// @param <N> the numeric type.
-public interface Segment<V extends Vector<N>, N> {
-
-    /// @return the span [Vector] of the segment.
-    V span();
+public interface Point1<N> extends Point<N>, UnaryTuple1<N> {
 }

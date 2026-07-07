@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.point;
 
-import org.lidiuma.math.api.tuple.UnaryTuple1;
+import org.lidiuma.math.api.tuple.UnaryTuple2;
 
-/// 1D Point interface.
+/// 2D Point interface.
 /// @param <N> the numeric type.
-public interface Point1<N> extends Point<N>, UnaryTuple1<N> {
+public interface Point2<N> extends Point<N>, UnaryTuple2<N> {
 }

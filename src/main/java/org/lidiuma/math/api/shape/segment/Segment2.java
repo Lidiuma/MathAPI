@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.shape.segment;
 
-import org.lidiuma.math.api.tuple.UnaryTuple4;
+import org.lidiuma.math.api.vector.Vector2;
 
-/// 4D Point interface.
+/// 2D Segment interface.
 /// @param <N> the numeric type.
-public interface Point4<N> extends Point<N>, UnaryTuple4<N> {
+public interface Segment2<N> extends Segment<Vector2<N>, N> {
 }

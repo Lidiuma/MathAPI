@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.shape.triangle;
 
-import org.lidiuma.math.api.tuple.UnaryTuple2;
+import org.lidiuma.math.api.vector.Vector3;
 
-/// 2D Point interface.
+/// 3D Triangle interface.
 /// @param <N> the numeric type.
-public interface Point2<N> extends Point<N>, UnaryTuple2<N> {
+public interface Triangle3<N> extends Triangle<Vector3<N>, N> {
 }

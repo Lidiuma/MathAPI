@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.point;
 
-import org.lidiuma.math.api.tuple.UnaryTuple3;
+import org.lidiuma.math.api.tuple.UnaryTuple4;
 
-/// 3D Point interface.
+/// 4D Point interface.
 /// @param <N> the numeric type.
-public interface Point3<N> extends Point<N>, UnaryTuple3<N> {
+public interface Point4<N> extends Point<N>, UnaryTuple4<N> {
 }

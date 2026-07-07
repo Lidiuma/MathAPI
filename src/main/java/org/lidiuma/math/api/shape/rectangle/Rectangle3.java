@@ -14,15 +14,23 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.rectangle;
+package org.lidiuma.math.api.shape.rectangle;
 
-import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.vector.Vector3;
 
-/// Rectangle Shape interface.
-/// @param <V> the [Vector] type representing the rectangle [#size].
+/// 3D Rectangle interface.
 /// @param <N> the numeric type.
-public interface Rectangle<V extends Vector<N>, N> {
+public interface Rectangle3<N> extends Rectangle<Vector3<N>, N> {
 
-    /// The dimensions of the rectangle.
-    V size();
+    default N width() {
+        return size().x();
+    }
+
+    default N height() {
+        return size().y();
+    }
+
+    default N length() {
+        return size().z();
+    }
 }

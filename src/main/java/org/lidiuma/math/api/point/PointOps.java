@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.point;
+package org.lidiuma.math.api.point;
 
 import org.lidiuma.math.api.Interpolatable;
 import org.lidiuma.math.api.vector.Vector;

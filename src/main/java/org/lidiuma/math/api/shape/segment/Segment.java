@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.triangle;
+package org.lidiuma.math.api.shape.segment;
 
-import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.vector.Vector;
 
-/// 3D Triangle interface.
+/// Segment interface that represents a span from start to end.
+/// @param <V> the [Vector] type representing the segment [#span].
 /// @param <N> the numeric type.
-public interface Triangle3<N> extends Triangle<Vector3<N>, N> {
+public interface Segment<V extends Vector<N>, N> {
+
+    /// @return the span [Vector] of the segment.
+    V span();
 }

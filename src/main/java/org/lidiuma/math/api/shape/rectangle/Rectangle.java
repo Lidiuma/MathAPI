@@ -14,30 +14,15 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.triangle;
+package org.lidiuma.math.api.shape.rectangle;
 
 import org.lidiuma.math.api.vector.Vector;
 
-/// Triangle Shape interface.
-///
-/// The triangle uses local coordinates, with `A` being the `origin`.
-///
-/// Diagram to illustrate the relative position of the points:
-/// ```
-///   |
-///   | B
-///   |/ \
-/// --A---C----
-///   |
-/// A = (0,0)
-///```
-/// @param <V> the [Vector] type representing the triangle edges [#ab] and [#ac].
+/// Rectangle Shape interface.
+/// @param <V> the [Vector] type representing the rectangle [#size].
 /// @param <N> the numeric type.
-public interface Triangle<V extends Vector<N>, N> {
+public interface Rectangle<V extends Vector<N>, N> {
 
-    /// @return the [Vector] starting from `A` (the origin) pointing towards `B`.
-    V ab();
-
-    /// @return the [Vector] starting from `A` (the origin) pointing towards `C`.
-    V ac();
+    /// The dimensions of the rectangle.
+    V size();
 }

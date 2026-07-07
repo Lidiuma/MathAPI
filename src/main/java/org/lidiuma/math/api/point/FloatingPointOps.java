@@ -14,11 +14,19 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.triangle;
+package org.lidiuma.math.api.point;
 
-import org.lidiuma.math.api.vector.Vector4;
+import org.lidiuma.math.api.vector.Vector;
 
-/// 4D Triangle interface.
+/// Point operations type-class for floating-point arithmetic.
+/// @param <P> the [Point] type for which operations are defined.
+/// @param <V> the [Vector] type required for defining [Point] operations.
 /// @param <N> the numeric type.
-public interface Triangle4<N> extends Triangle<Vector4<N>, N> {
+public interface FloatingPointOps<
+        P extends Point<N>,
+        V extends Vector<N>,
+        N> extends PointOps<P, V, N> {
+
+    /// @return the Euclidean distance between `first` and `second`.
+    N distance(P first, P second);
 }

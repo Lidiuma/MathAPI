@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.sphere;
+package org.lidiuma.math.api.shape.rectangle;
 
-/// Radius interface.
+import org.lidiuma.math.api.vector.Vector2;
+
+/// 2D Rectangle interface.
 /// @param <N> the numeric type.
-public interface Radius<N> {
+public interface Rectangle2<N> extends Rectangle<Vector2<N>, N> {
 
-    /// @return the radius of the sphere.
-    N radius();
+    default N width() {
+        return size().x();
+    }
+
+    default N height() {
+        return size().y();
+    }
 }

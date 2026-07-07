@@ -14,19 +14,27 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.geometry.rectangle;
+package org.lidiuma.math.api.shape.rectangle;
 
-import org.lidiuma.math.api.vector.Vector2;
+import org.lidiuma.math.api.vector.Vector4;
 
-/// 2D Rectangle interface.
+/// 4D Rectangle interface.
 /// @param <N> the numeric type.
-public interface Rectangle2<N> extends Rectangle<Vector2<N>, N> {
+public interface Rectangle4<N> extends Rectangle<Vector4<N>, N> {
 
     default N width() {
-        return size().x();
+        return size().y();
     }
 
     default N height() {
-        return size().y();
+        return size().z();
+    }
+
+    default N length() {
+        return size().x();
+    }
+
+    default N depth() {
+        return size().w();
     }
 }
