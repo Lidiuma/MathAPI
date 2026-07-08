@@ -16,15 +16,17 @@
 
 package org.lidiuma.math.api;
 
+import org.lidiuma.math.api.modules.ApiModule;
+import org.lidiuma.math.api.modules.TraitsModule;
 import rife.bld.Project;
 import java.util.Arrays;
 
-public interface MathApiBuild {
+public interface MathApi {
 
     // Minor code re-use.
     String AVAILABLE = "(Available: \"api\", \"traits\")";
-    ApiBuild API = new ApiBuild();
-    TraitBuild TRAITS = new TraitBuild();
+    ApiModule API = new ApiModule();
+    TraitsModule TRAITS = new TraitsModule();
 
     static void main(String... args) {
 

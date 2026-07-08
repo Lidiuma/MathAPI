@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api;
+package org.lidiuma.math.api.modules;
 
+import org.lidiuma.math.api.MathApi;
 import rife.bld.Project;
 import java.io.File;
 import java.util.List;
@@ -24,9 +25,9 @@ import static rife.bld.dependencies.Repository.MAVEN_CENTRAL;
 import static rife.bld.dependencies.Repository.RIFE2_RELEASES;
 import static rife.bld.dependencies.Scope.compile;
 
-public final class TraitBuild extends Project {
+public final class TraitsModule extends Project {
 
-    public TraitBuild() {
+    public TraitsModule() {
 
         module = "lidiuma.math.api.traits";
         pkg = "org.lidiuma.math.api.traits";
@@ -38,11 +39,10 @@ public final class TraitBuild extends Project {
         assignSourcesDirectory();
 
         scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
-        compileOperation().compileOptions().modulePath(MathApiBuild.API.buildDistDirectory());
+        compileOperation().compileOptions().modulePath(MathApi.API.buildDistDirectory());
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
-        System.out.println(scope(compile).localModules());
     }
 
     private void assignSourcesDirectory() {
@@ -54,7 +54,7 @@ public final class TraitBuild extends Project {
 
     @Override
     public void compile() throws Exception {
-        MathApiBuild.API.jar(); // I compile the api module jar since a dependency.
+        MathApi.API.jar(); // I compile the api module jar since a dependency.
         super.compile();
     }
 }
