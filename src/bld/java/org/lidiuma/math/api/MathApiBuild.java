@@ -1,115 +1,52 @@
+/*
+ * Copyright (c) 2026 Xasmedy
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.lidiuma.math.api;
 
 import rife.bld.Project;
-import rife.bld.operations.CompileOperation;
-import rife.bld.operations.JavadocOperation;
-import rife.bld.operations.PublishOperation;
-import rife.bld.publish.PublishDeveloper;
-import rife.bld.publish.PublishInfo;
-import rife.bld.publish.PublishLicense;
-import java.io.File;
-import java.util.List;
-import static java.lang.String.format;
-import static org.lidiuma.math.api.Util.GITHUB_URL;
-import static org.lidiuma.math.api.Util.addAttributesToJar;
-import static rife.bld.dependencies.Repository.*;
-import static rife.bld.dependencies.Scope.compile;
+import java.util.Arrays;
 
-public final class MathApiBuild extends Project {
+public interface MathApiBuild {
 
-    public MathApiBuild() {
+    // Minor code re-use.
+    String AVAILABLE = "(Available: \"api\", \"traits\")";
+    ApiBuild API = new ApiBuild();
+    TraitBuild TRAITS = new TraitBuild();
 
-        module = "lidiuma.math.api";
-        pkg = "org.lidiuma.math.api";
-        name = "MathAPI";
-        version = snapshot(1,0,0);
-        javaRelease = 17;
-        downloadSources = true;
-        repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
-        assignSourcesDirectory();
+    static void main(String... args) {
 
-        scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
+        if (args.length == 0) {
+            System.err.println("Please provide the module in the arguments. " + AVAILABLE);
+            return;
+        }
 
-        addAttributesToJar(jarOperation(), version());
-        addAttributesToJar(jarSourcesOperation(), version());
-    }
+        final String module = args[0].toLowerCase();
+        final Project project = switch (module) {
+            case "api" -> API;
+            case "traits" -> TRAITS;
+            default -> null;
+        };
 
-    private void assignSourcesDirectory() {
-        final var moduleDir = new File(srcDirectory(), "api");
-        srcMainDirectory = new File(moduleDir, "main");
-        srcTestDirectory = new File(moduleDir, "test");
-        buildMainDirectory = new File(buildDirectory(), "api");
-    }
+        if (project == null) {
+            System.err.println("Unknown module name \"" + module + "\". " + AVAILABLE);
+            return;
+        }
 
-    public static void main(String[] args) {
-        new MathApiBuild().start(args);
-    }
-
-    private void patchPublishJSpecify() {
-        // Gradle does not support Maven 4 new types, so I'm forced to patch the type, making it `jar` instead of `modular-jar`.
-        scope(compile).clear();
-        scope(compile).include(dependency("org.jspecify", "jspecify", version(1, 0, 0)));
-    }
-
-    private PublishInfo publishInfo() {
-
-        final var projectInfo = ProjectInfo.github("Lidiuma", name());
-
-        final var license = new PublishLicense()
-                .name("The Apache License, Version 2.0")
-                .url("https://www.apache.org/licenses/LICENSE-2.0.txt");
-
-        final String devName = "Xasmedy";
-        final var developer = new PublishDeveloper()
-                .id(devName.toLowerCase())
-                .name(devName)
-                .email("xasmedy@pm.me")
-                .url(format("%s/%s", GITHUB_URL, devName));
-
-        return new PublishInfo()
-                .groupId("org.lidiuma.math")
-                .artifactId("math-api")
-                .version(version())
-                .name("Math API")
-                .description("Standard Math API for Libraries and Frameworks")
-                .url(projectInfo.url())
-                .developer(developer)
-                .license(license)
-                .scm(projectInfo.scm())
-                .signKey(property("sign.key"))
-                .signPassphrase(property("sign.passphrase"));
-    }
-
-    @Override
-    public void publish() throws Exception {
-        patchPublishJSpecify();
-        super.publish();
-    }
-
-    @Override
-    public PublishOperation publishOperation() {
-        final var op = super.publishOperation();
-        op.repositories(CENTRAL_SNAPSHOTS.withCredentials(
-                property("sonatype.username"),
-                property("sonatype.password")
-        )).info(publishInfo());
-        return op;
-    }
-
-    @Override
-    public CompileOperation compileOperation() {
-        final var options = super.compileOperation();
-        // By keeping the parameters names in the compiled classes,
-        // I make it easier by implementors and people reading the API to understand clearly what the variables are.
-        options.compileOptions().parameters();
-        return options;
-    }
-
-    @Override
-    public JavadocOperation javadocOperation() {
-        final var options = super.javadocOperation().javadocOptions();
-        options.tag("apiNote", "a", "API Note:");
-        options.tag("implNote", "a", "Implementation Note:");
-        return super.javadocOperation();
+        final String[] bldArgs = Arrays.copyOfRange(args, 1, args.length);
+        System.out.println("== \"" + module + "\" module selected ==");
+        project.start(bldArgs);
     }
 }
