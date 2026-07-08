@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.matrix;
+package org.lidiuma.math.api.traits.matrix;
 
+import org.lidiuma.math.api.matrix.Matrix3;
 import org.lidiuma.math.api.vector.Vector3;
-import org.lidiuma.math.api.vector.Vector3Ops;
+import org.lidiuma.math.api.traits.vector.Vector3Ops;
 
 public interface Matrix3Ops<
         M extends Matrix3<N>,

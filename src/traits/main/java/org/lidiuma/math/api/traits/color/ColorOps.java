@@ -14,19 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api;
+package org.lidiuma.math.api.traits.color;
 
-public interface FloatingNumerical<N> extends OrderableNumerical<N> {
+import org.lidiuma.math.api.traits.Clampable;
+import org.lidiuma.math.api.traits.Interpolatable;
+import org.lidiuma.math.api.color.Color;
 
-    N signum(N operand);
-
-    default N abs(N operand) {
-        return multiply(operand, signum(operand));
-    }
-
-    N sqrt(N operand);
-
-    N ceil(N operand);
-
-    N floor(N operand);
+public interface ColorOps<C extends Color<N>, N> extends Interpolatable<C, N>, Clampable<C> {
 }

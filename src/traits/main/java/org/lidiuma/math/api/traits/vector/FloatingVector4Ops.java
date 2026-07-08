@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.traits.vector;
 
 import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.vector.Vector4;
 
 public interface FloatingVector4Ops<
         V extends Vector4<N>,

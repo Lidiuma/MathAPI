@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api;
+package org.lidiuma.math.api.traits;
 
 /// Indicates a type that supports basic arithmetic operations.
 public interface Numerical<T> {

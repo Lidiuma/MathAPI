@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.matrix;
+package org.lidiuma.math.api.traits.matrix;
 
-import org.lidiuma.math.api.vector.Vector3Ops;
+import org.lidiuma.math.api.matrix.Affine3;
 import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.traits.vector.Vector3Ops;
 
 public interface Affine3Ops<
         A extends Affine3<N>,

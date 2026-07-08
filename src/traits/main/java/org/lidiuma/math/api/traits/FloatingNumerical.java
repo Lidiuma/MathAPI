@@ -14,7 +14,19 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api;
+package org.lidiuma.math.api.traits;
 
-public interface OrderableNumerical<N> extends Numerical<N>, Orderable<N> {
+public interface FloatingNumerical<N> extends OrderableNumerical<N> {
+
+    N signum(N operand);
+
+    default N abs(N operand) {
+        return multiply(operand, signum(operand));
+    }
+
+    N sqrt(N operand);
+
+    N ceil(N operand);
+
+    N floor(N operand);
 }

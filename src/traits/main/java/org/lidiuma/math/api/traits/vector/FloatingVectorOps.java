@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.traits.vector;
 
-import org.lidiuma.math.api.FloatingNumerical;
-import org.lidiuma.math.api.Interpolatable;
-import org.lidiuma.math.api.rotation.Angle;
 import java.util.function.UnaryOperator;
+import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.traits.FloatingNumerical;
+import org.lidiuma.math.api.traits.Interpolatable;
 
 public interface FloatingVectorOps<
         V extends Vector<N>,

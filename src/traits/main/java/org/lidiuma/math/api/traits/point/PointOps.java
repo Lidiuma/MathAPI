@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.point;
+package org.lidiuma.math.api.traits.point;
 
-import org.lidiuma.math.api.Interpolatable;
+import org.lidiuma.math.api.point.Point;
 import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.traits.Interpolatable;
 
 /// Point operations type-class.
 /// @param <P> the [Point] type for which operations are defined.

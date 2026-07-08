@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api;
+package org.lidiuma.math.api.traits;
 
-public interface Clampable<T> {
-
-    /// Clamps a value between `min` and `max`.
-    /// @return the clamped value.
-    T clamp(T value, T min, T max);
+public interface OrderableNumerical<N> extends Numerical<N>, Orderable<N> {
 }

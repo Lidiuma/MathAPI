@@ -14,10 +14,20 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.color;
+package org.lidiuma.math.api.traits.point;
 
-import org.lidiuma.math.api.Clampable;
-import org.lidiuma.math.api.Interpolatable;
+import org.lidiuma.math.api.point.Point;
+import org.lidiuma.math.api.vector.Vector;
 
-public interface ColorOps<C extends Color<N>, N> extends Interpolatable<C, N>, Clampable<C> {
+/// Point operations type-class for floating-point arithmetic.
+/// @param <P> the [Point] type for which operations are defined.
+/// @param <V> the [Vector] type required for defining [Point] operations.
+/// @param <N> the numeric type.
+public interface FloatingPointOps<
+        P extends Point<N>,
+        V extends Vector<N>,
+        N> extends PointOps<P, V, N> {
+
+    /// @return the Euclidean distance between `first` and `second`.
+    N distance(P first, P second);
 }

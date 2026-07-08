@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.traits.vector;
 
-import org.lidiuma.math.api.*;
+import org.lidiuma.math.api.vector.Vector;
+import org.lidiuma.math.api.traits.Clampable;
+import org.lidiuma.math.api.traits.OrderableNumerical;
 
 /// Standard Vector Operations.
 ///

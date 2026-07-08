@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.rotation;
+package org.lidiuma.math.api.traits.rotation;
 
-import org.lidiuma.math.api.FloatingNumerical;
-import org.lidiuma.math.api.Interpolatable;
-import org.lidiuma.math.api.vector.Vector3;
 import java.util.function.UnaryOperator;
+import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.rotation.AxisAngle;
+import org.lidiuma.math.api.rotation.Quaternion;
+import org.lidiuma.math.api.rotation.SwingTwist;
+import org.lidiuma.math.api.vector.Vector3;
+import org.lidiuma.math.api.traits.FloatingNumerical;
+import org.lidiuma.math.api.traits.Interpolatable;
 
 /// Quaternion Operations type-class.\
 /// Most operations assume the quaternion [Q] is normalized.

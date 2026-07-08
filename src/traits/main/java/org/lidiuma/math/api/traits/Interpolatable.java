@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api;
+package org.lidiuma.math.api.traits;
 
 import java.util.function.UnaryOperator;
 

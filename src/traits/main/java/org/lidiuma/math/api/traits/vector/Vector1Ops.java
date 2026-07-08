@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.traits.vector;
+
+import org.lidiuma.math.api.vector.Vector1;
 
 public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
 

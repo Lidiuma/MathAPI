@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.matrix;
+package org.lidiuma.math.api.traits.matrix;
 
+import org.lidiuma.math.api.matrix.Affine2;
 import org.lidiuma.math.api.vector.Vector2;
-import org.lidiuma.math.api.vector.Vector2Ops;
+import org.lidiuma.math.api.traits.vector.Vector2Ops;
 
 public interface Affine2Ops<
         A extends Affine2<N>,

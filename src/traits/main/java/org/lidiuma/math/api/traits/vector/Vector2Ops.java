@@ -14,41 +14,64 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.vector;
+package org.lidiuma.math.api.traits.vector;
 
-public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
+import org.lidiuma.math.api.vector.Vector2;
+
+public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
 
     /// Constructs a vector using the provided scalars.
-    V of(N x, N y, N z, N w);
+    V of(N x, N y);
+
+    /// Returns the 2D cross product of `v1` vector and the `v2` vector.\
+    /// The result is equivalent to the Z component of the 3D cross product.
+    /// @return the scalar result of the cross product.
+    default N cross(V v1, V v2) {
+        final var witness = scalarOps();
+        final N a = witness.multiply(v1.x(), v2.y());
+        final N b = witness.multiply(v1.y(), v2.x());
+        return witness.subtract(a, b);
+    }
 
     @Override
     default N sum(V vector) {
         final var witness = scalarOps();
-        final N xy = witness.add(vector.x(), vector.y());
-        final N zw = witness.add(vector.z(), vector.w());
-        return witness.add(xy, zw);
+        return witness.add(vector.x(), vector.y());
     }
 
     @Override
     default V multiply(V vector, N scalar) {
-        return multiply(vector, of(scalar, scalar, scalar, scalar));
+        return multiply(vector, of(scalar, scalar));
     }
 
     @Override
     default V clamp(V vector, N min, N max) {
-        final V minV = of(min, min, min, min);
-        final V maxV = of(max, max, max, max);
-        return clamp(vector, minV, maxV);
+        return clamp(vector, of(min, min), of(max, max));
     }
+
+    @Override
+    default V min(V op1, V op2) {
+        final var witness = scalarOps();
+        final N x = witness.min(op1.x(), op2.x());
+        final N y = witness.min(op1.y(), op2.y());
+        return of(x, y);
+    }
+
+    @Override
+    default V max(V op1, V op2) {
+        final var witness = scalarOps();
+        final N x = witness.max(op1.x(), op2.x());
+        final N y = witness.max(op1.y(), op2.y());
+        return of(x, y);
+    }
+
 
     @Override
     default V add(V op1, V op2) {
         final var witness = scalarOps();
         return of(
-               witness.add(op1.x(), op2.x()),
-               witness.add(op1.y(), op2.y()),
-               witness.add(op1.z(), op2.z()),
-               witness.add(op1.w(), op2.w())
+                witness.add(op1.x(), op2.x()),
+                witness.add(op1.y(), op2.y())
         );
     }
 
@@ -57,9 +80,7 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
         final var witness = scalarOps();
         return of(
                 witness.multiply(op1.x(), op2.x()),
-                witness.multiply(op1.y(), op2.y()),
-                witness.multiply(op1.z(), op2.z()),
-                witness.multiply(op1.w(), op2.w())
+                witness.multiply(op1.y(), op2.y())
         );
     }
 
@@ -68,9 +89,7 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
         final var witness = scalarOps();
         return of(
                 witness.divide(op1.x(), op2.x()),
-                witness.divide(op1.y(), op2.y()),
-                witness.divide(op1.z(), op2.z()),
-                witness.divide(op1.w(), op2.w())
+                witness.divide(op1.y(), op2.y())
         );
     }
 
@@ -79,9 +98,7 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
         final var witness = scalarOps();
         return of(
                 witness.remainder(op1.x(), op2.x()),
-                witness.remainder(op1.y(), op2.y()),
-                witness.remainder(op1.z(), op2.z()),
-                witness.remainder(op1.w(), op2.w())
+                witness.remainder(op1.y(), op2.y())
         );
     }
 
@@ -90,9 +107,7 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
         final var witness = scalarOps();
         return of(
                 witness.negated(operand.x()),
-                witness.negated(operand.y()),
-                witness.negated(operand.z()),
-                witness.negated(operand.w())
+                witness.negated(operand.y())
         );
     }
 
@@ -100,8 +115,6 @@ public interface Vector4Ops<V extends Vector4<N>, N> extends VectorOps<V, N> {
     default boolean lessThan(V op1, V op2) {
         final var witness = scalarOps();
         return witness.lessThan(op1.x(), op2.x()) &&
-               witness.lessThan(op1.y(), op2.y()) &&
-               witness.lessThan(op1.z(), op2.z()) &&
-               witness.lessThan(op1.w(), op2.w());
+               witness.lessThan(op1.y(), op2.y());
     }
 }

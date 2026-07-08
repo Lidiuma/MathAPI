@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.matrix;
+package org.lidiuma.math.api.traits.matrix;
 
+import org.lidiuma.math.api.matrix.SquareMatrix;
 import org.lidiuma.math.api.vector.Vector;
 
 /// Matrix specialization where rows and columns are equal.
