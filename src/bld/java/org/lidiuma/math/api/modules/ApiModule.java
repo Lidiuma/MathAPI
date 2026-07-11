@@ -56,6 +56,7 @@ public final class ApiModule extends Project {
         srcMainDirectory = new File(moduleDir, "main");
         srcTestDirectory = new File(moduleDir, "test");
         buildMainDirectory = new File(buildDirectory(), "api");
+        buildDistDirectory = new File(buildDirectory(), "dist/api");
     }
 
     private void patchPublishJSpecify() {

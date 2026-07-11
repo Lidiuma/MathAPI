@@ -54,6 +54,7 @@ public final class TraitsModule extends Project {
         srcMainDirectory = new File(moduleDir, "main");
         srcTestDirectory = new File(moduleDir, "test");
         buildMainDirectory = new File(buildDirectory(), "traits");
+        buildDistDirectory = new File(buildDirectory(), "dist/traits");
     }
 
     @Override
