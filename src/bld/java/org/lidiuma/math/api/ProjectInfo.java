@@ -18,8 +18,8 @@ package org.lidiuma.math.api;
 
 import rife.bld.publish.PublishScm;
 import static java.lang.String.format;
-import static org.lidiuma.math.api.Util.GITHUB_DOMAIN;
-import static org.lidiuma.math.api.Util.GITHUB_URL;
+import static org.lidiuma.math.api.PublishUtil.GITHUB_DOMAIN;
+import static org.lidiuma.math.api.PublishUtil.GITHUB_URL;
 
 public record ProjectInfo(String organization, String projectName, PublishScm scm) {
 

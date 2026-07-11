@@ -28,9 +28,6 @@ import java.util.jar.Attributes;
 
 public final class Util {
 
-    public static String GITHUB_DOMAIN = "github.com";
-    public static String GITHUB_URL = "https://" + GITHUB_DOMAIN;
-
     public static String nowUTC() {
         final var format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return ZonedDateTime.now(Clock.systemUTC()).format(format);

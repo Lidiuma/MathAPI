@@ -17,15 +17,14 @@
 package org.lidiuma.math.api.modules;
 
 import org.lidiuma.math.api.MathApi;
-import rife.bld.Project;
-import java.io.File;
+import org.lidiuma.math.api.MathApiModule;
 import java.util.List;
 import static org.lidiuma.math.api.Util.addAttributesToJar;
 import static rife.bld.dependencies.Repository.MAVEN_CENTRAL;
 import static rife.bld.dependencies.Repository.RIFE2_RELEASES;
 import static rife.bld.dependencies.Scope.compile;
 
-public final class TraitsModule extends Project {
+public final class TraitsModule extends MathApiModule {
 
     public TraitsModule() {
 
@@ -36,7 +35,7 @@ public final class TraitsModule extends Project {
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
-        assignSourcesDirectory();
+        assignModuleDirectories("traits");
 
         final var apiDir = workDirectory()
                 .toPath()
@@ -47,14 +46,6 @@ public final class TraitsModule extends Project {
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
-    }
-
-    private void assignSourcesDirectory() {
-        final var moduleDir = new File(srcDirectory(), "traits");
-        srcMainDirectory = new File(moduleDir, "main");
-        srcTestDirectory = new File(moduleDir, "test");
-        buildMainDirectory = new File(buildDirectory(), "traits");
-        buildDistDirectory = new File(buildDirectory(), "dist/traits");
     }
 
     @Override

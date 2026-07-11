@@ -16,23 +16,19 @@
 
 package org.lidiuma.math.api.modules;
 
+import org.lidiuma.math.api.MathApiModule;
 import org.lidiuma.math.api.ProjectInfo;
-import rife.bld.Project;
 import rife.bld.operations.CompileOperation;
 import rife.bld.operations.JavadocOperation;
 import rife.bld.operations.PublishOperation;
-import rife.bld.publish.PublishDeveloper;
 import rife.bld.publish.PublishInfo;
-import rife.bld.publish.PublishLicense;
-import java.io.File;
 import java.util.List;
-import static java.lang.String.format;
-import static org.lidiuma.math.api.Util.GITHUB_URL;
+import static org.lidiuma.math.api.PublishUtil.*;
 import static org.lidiuma.math.api.Util.addAttributesToJar;
 import static rife.bld.dependencies.Repository.*;
 import static rife.bld.dependencies.Scope.compile;
 
-public final class ApiModule extends Project {
+public final class ApiModule extends MathApiModule {
 
     public ApiModule() {
 
@@ -43,20 +39,12 @@ public final class ApiModule extends Project {
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
-        assignSourcesDirectory();
+        assignModuleDirectories("api");
 
         scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
-    }
-
-    private void assignSourcesDirectory() {
-        final var moduleDir = new File(srcDirectory(), "api");
-        srcMainDirectory = new File(moduleDir, "main");
-        srcTestDirectory = new File(moduleDir, "test");
-        buildMainDirectory = new File(buildDirectory(), "api");
-        buildDistDirectory = new File(buildDirectory(), "dist/api");
     }
 
     private void patchPublishJSpecify() {
@@ -66,20 +54,7 @@ public final class ApiModule extends Project {
     }
 
     private PublishInfo publishInfo() {
-
         final var projectInfo = ProjectInfo.github("Lidiuma", name());
-
-        final var license = new PublishLicense()
-                .name("The Apache License, Version 2.0")
-                .url("https://www.apache.org/licenses/LICENSE-2.0.txt");
-
-        final String devName = "Xasmedy";
-        final var developer = new PublishDeveloper()
-                .id(devName.toLowerCase())
-                .name(devName)
-                .email("xasmedy@pm.me")
-                .url(format("%s/%s", GITHUB_URL, devName));
-
         return new PublishInfo()
                 .groupId("org.lidiuma.math")
                 .artifactId("math-api")
@@ -87,8 +62,8 @@ public final class ApiModule extends Project {
                 .name("Math API")
                 .description("Standard Math API for Libraries and Frameworks")
                 .url(projectInfo.url())
-                .developer(developer)
-                .license(license)
+                .developer(XASMEDY_DEV)
+                .license(APACHE_V2_LICENSE)
                 .scm(projectInfo.scm())
                 .signKey(property("sign.key"))
                 .signPassphrase(property("sign.passphrase"));
