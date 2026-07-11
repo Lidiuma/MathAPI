@@ -18,6 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple3;
 
-/// Generic Vector 3D interface.
+/// Specialization of [UnaryTuple3] providing 3D Vector semantics.
+/// @param <N> the numeric type.
 public interface Vector3<N> extends Vector<N>, UnaryTuple3<N> {
 }
