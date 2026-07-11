@@ -14,11 +14,23 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.triangle;
+package org.lidiuma.math.api.shapes.rectangle;
 
-import org.lidiuma.math.api.vector.Vector2;
+import org.lidiuma.math.api.vector.Vector3;
 
-/// 2D Triangle interface.
+/// 3D Rectangle interface.
 /// @param <N> the numeric type.
-public interface Triangle2<N> extends Triangle<Vector2<N>, N> {
+public interface Rectangle3<N> extends Rectangle<Vector3<N>, N> {
+
+    default N width() {
+        return size().x();
+    }
+
+    default N height() {
+        return size().y();
+    }
+
+    default N length() {
+        return size().z();
+    }
 }

@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.rectangle;
+package org.lidiuma.math.api.shapes.sphere;
 
-import org.lidiuma.math.api.vector.Vector;
-
-/// Rectangle Shape interface.
-/// @param <V> the [Vector] type representing the rectangle [#size].
+/// Radius interface.
 /// @param <N> the numeric type.
-public interface Rectangle<V extends Vector<N>, N> {
+public interface Radius<N> {
 
-    /// The dimensions of the rectangle.
-    V size();
+    /// @return the radius of the sphere.
+    N radius();
 }

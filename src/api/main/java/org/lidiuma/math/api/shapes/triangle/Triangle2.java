@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.segment;
+package org.lidiuma.math.api.shapes.triangle;
 
 import org.lidiuma.math.api.vector.Vector2;
 
-/// 2D Segment interface.
+/// 2D Triangle interface.
 /// @param <N> the numeric type.
-public interface Segment2<N> extends Segment<Vector2<N>, N> {
+public interface Triangle2<N> extends Triangle<Vector2<N>, N> {
 }

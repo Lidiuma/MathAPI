@@ -14,11 +14,27 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.segment;
+package org.lidiuma.math.api.shapes.rectangle;
 
-import org.lidiuma.math.api.vector.Vector1;
+import org.lidiuma.math.api.vector.Vector4;
 
-/// 1D Segment interface.
+/// 4D Rectangle interface.
 /// @param <N> the numeric type.
-public interface Segment1<N> extends Segment<Vector1<N>, N> {
+public interface Rectangle4<N> extends Rectangle<Vector4<N>, N> {
+
+    default N width() {
+        return size().y();
+    }
+
+    default N height() {
+        return size().z();
+    }
+
+    default N length() {
+        return size().x();
+    }
+
+    default N depth() {
+        return size().w();
+    }
 }

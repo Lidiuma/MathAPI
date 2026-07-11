@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.sphere;
+package org.lidiuma.math.api.shapes.triangle;
 
-/// Radius interface.
+import org.lidiuma.math.api.vector.Vector3;
+
+/// 3D Triangle interface.
 /// @param <N> the numeric type.
-public interface Radius<N> {
-
-    /// @return the radius of the sphere.
-    N radius();
+public interface Triangle3<N> extends Triangle<Vector3<N>, N> {
 }

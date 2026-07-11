@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.segment;
+package org.lidiuma.math.api.shapes.segment;
 
 import org.lidiuma.math.api.vector.Vector3;
 

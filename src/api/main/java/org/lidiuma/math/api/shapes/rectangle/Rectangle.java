@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.triangle;
+package org.lidiuma.math.api.shapes.rectangle;
 
-import org.lidiuma.math.api.vector.Vector4;
+import org.lidiuma.math.api.vector.Vector;
 
-/// 4D Triangle interface.
+/// Rectangle Shape interface.
+/// @param <V> the [Vector] type representing the rectangle [#size].
 /// @param <N> the numeric type.
-public interface Triangle4<N> extends Triangle<Vector4<N>, N> {
+public interface Rectangle<V extends Vector<N>, N> {
+
+    /// The dimensions of the rectangle.
+    V size();
 }

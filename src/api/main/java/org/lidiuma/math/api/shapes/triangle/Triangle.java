@@ -14,15 +14,30 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.segment;
+package org.lidiuma.math.api.shapes.triangle;
 
 import org.lidiuma.math.api.vector.Vector;
 
-/// Segment interface that represents a span from start to end.
-/// @param <V> the [Vector] type representing the segment [#span].
+/// Triangle Shape interface.
+///
+/// The triangle uses local coordinates, with `A` being the `origin`.
+///
+/// Diagram to illustrate the relative position of the points:
+/// ```
+///   |
+///   | B
+///   |/ \
+/// --A---C----
+///   |
+/// A = (0,0)
+///```
+/// @param <V> the [Vector] type representing the triangle edges [#ab] and [#ac].
 /// @param <N> the numeric type.
-public interface Segment<V extends Vector<N>, N> {
+public interface Triangle<V extends Vector<N>, N> {
 
-    /// @return the span [Vector] of the segment.
-    V span();
+    /// @return the [Vector] starting from `A` (the origin) pointing towards `B`.
+    V ab();
+
+    /// @return the [Vector] starting from `A` (the origin) pointing towards `C`.
+    V ac();
 }

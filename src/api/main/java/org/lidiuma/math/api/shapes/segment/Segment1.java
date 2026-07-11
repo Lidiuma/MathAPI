@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.segment;
+package org.lidiuma.math.api.shapes.segment;
 
-import org.lidiuma.math.api.vector.Vector4;
+import org.lidiuma.math.api.vector.Vector1;
 
-/// 4D Segment interface.
+/// 1D Segment interface.
 /// @param <N> the numeric type.
-public interface Segment4<N> extends Segment<Vector4<N>, N> {
+public interface Segment1<N> extends Segment<Vector1<N>, N> {
 }

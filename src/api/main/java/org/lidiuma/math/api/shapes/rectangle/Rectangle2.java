@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.shape.rectangle;
+package org.lidiuma.math.api.shapes.rectangle;
 
 import org.lidiuma.math.api.vector.Vector2;
 
