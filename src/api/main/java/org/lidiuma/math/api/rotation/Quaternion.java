@@ -18,7 +18,9 @@ package org.lidiuma.math.api.rotation;
 
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 
-/// Generic Quaternion interface.
-/// @apiNote Most operations assume the quaternion is normalized.
+/// Specialization of [UnaryTuple4] providing Quaternion semantics.\
+/// Quaternions are the preferred representation for 3D rotations over Euler angles since they avoid Gimbal lock
+/// and are more efficient than rotation matrices.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Quaternion<N> extends UnaryTuple4<N> {
 }

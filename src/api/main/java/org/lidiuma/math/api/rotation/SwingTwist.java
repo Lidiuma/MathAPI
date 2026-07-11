@@ -19,8 +19,8 @@ package org.lidiuma.math.api.rotation;
 /// Represents the swing-twist decomposition of a rotation.
 ///
 /// A rotation can be decomposed into:
-/// - a *twist* rotation around a given axis.
-/// - a *swing* rotation that moves the axis into place.
+/// - a *[#swing]* rotation that moves the axis into place.
+/// - a *[#twist]* rotation around a given axis.
 ///
 /// The original quaternion can be reconstructed by doing `swing * twist`.
 public interface SwingTwist<Q extends Quaternion<N>, N> {
