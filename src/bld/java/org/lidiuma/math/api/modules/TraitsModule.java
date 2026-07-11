@@ -38,8 +38,12 @@ public final class TraitsModule extends Project {
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
         assignSourcesDirectory();
 
-        scope(compile).include(module("org.jspecify", "jspecify", version(1, 0, 0)));
-        compileOperation().compileOptions().modulePath(MathApi.API.buildDistDirectory());
+        final var apiDir = workDirectory()
+                .toPath()
+                .relativize(MathApi.API.buildDistDirectory().toPath()); // Use absolute when bld 2.3.1 releases.
+        scope(compile)
+                .include(module("org.jspecify", "jspecify", version(1, 0, 0)))
+                .include(localModule(apiDir.toString()));
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
