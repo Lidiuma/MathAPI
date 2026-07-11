@@ -18,10 +18,14 @@ package org.lidiuma.math.api.modules;
 
 import org.lidiuma.math.api.MathApi;
 import org.lidiuma.math.api.MathApiModule;
+import org.lidiuma.math.api.ProjectInfo;
+import rife.bld.operations.JavadocOperation;
+import rife.bld.operations.PublishOperation;
+import rife.bld.publish.PublishInfo;
 import java.util.List;
+import static org.lidiuma.math.api.PublishUtil.*;
 import static org.lidiuma.math.api.Util.addAttributesToJar;
-import static rife.bld.dependencies.Repository.MAVEN_CENTRAL;
-import static rife.bld.dependencies.Repository.RIFE2_RELEASES;
+import static rife.bld.dependencies.Repository.*;
 import static rife.bld.dependencies.Scope.compile;
 
 public final class TraitsModule extends MathApiModule {
@@ -48,9 +52,49 @@ public final class TraitsModule extends MathApiModule {
         addAttributesToJar(jarSourcesOperation(), version());
     }
 
+    private PublishInfo publishInfo() {
+        final var projectInfo = ProjectInfo.github("Lidiuma", name());
+        return new PublishInfo()
+                .groupId("org.lidiuma.math")
+                .artifactId("math-traits")
+                .version(version())
+                .name("Math Traits")
+                .description("Math Behaviors for Libraries and Frameworks")
+                .url(projectInfo.url())
+                .developer(XASMEDY_DEV)
+                .license(APACHE_V2_LICENSE)
+                .scm(projectInfo.scm())
+                .signKey(property("sign.key"))
+                .signPassphrase(property("sign.passphrase"));
+    }
+
+    @Override
+    public void publish() throws Exception {
+        patchPublishJSpecify(this);
+        super.publish();
+    }
+
+    @Override
+    public PublishOperation publishOperation() {
+        final var op = super.publishOperation();
+        op.repositories(CENTRAL_SNAPSHOTS.withCredentials(
+                property("sonatype.username"),
+                property("sonatype.password")
+        )).info(publishInfo());
+        return op;
+    }
+
     @Override
     public void compile() throws Exception {
         MathApi.API.jar(); // I compile the api module jar since a dependency.
         super.compile();
+    }
+
+    @Override
+    public JavadocOperation javadocOperation() {
+        final var options = super.javadocOperation().javadocOptions();
+        options.tag("apiNote", "a", "API Note:");
+        options.tag("implNote", "a", "Implementation Note:");
+        return super.javadocOperation();
     }
 }

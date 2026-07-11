@@ -47,12 +47,6 @@ public final class ApiModule extends MathApiModule {
         addAttributesToJar(jarSourcesOperation(), version());
     }
 
-    private void patchPublishJSpecify() {
-        // Gradle does not support Maven 4 new types, so I'm forced to patch the type, making it `jar` instead of `modular-jar`.
-        scope(compile).clear();
-        scope(compile).include(dependency("org.jspecify", "jspecify", version(1, 0, 0)));
-    }
-
     private PublishInfo publishInfo() {
         final var projectInfo = ProjectInfo.github("Lidiuma", name());
         return new PublishInfo()
@@ -71,7 +65,7 @@ public final class ApiModule extends MathApiModule {
 
     @Override
     public void publish() throws Exception {
-        patchPublishJSpecify();
+        patchPublishJSpecify(this);
         super.publish();
     }
 
