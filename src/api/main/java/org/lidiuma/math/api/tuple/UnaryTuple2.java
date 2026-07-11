@@ -25,7 +25,7 @@ public interface UnaryTuple2<N> extends UnaryTuple<N> {
 
     /// @return 2.
     @Override
-    default int dimension() {
+    default int size() {
         return 2;
     }
 
@@ -35,11 +35,11 @@ public interface UnaryTuple2<N> extends UnaryTuple<N> {
     /// - While any other number throws {@link IndexOutOfBoundsException}.
     /// @return the component at the provided index.
     @Override
-    default N component(int index) throws IndexOutOfBoundsException {
+    default N at(int index) throws IndexOutOfBoundsException {
         return switch (index) {
             case 0 -> x();
             case 1 -> y();
-            default -> throw new IndexOutOfBoundsException("Could not get component at index " + index + " since the dimension is " + dimension() + ".");
+            default -> throw new IndexOutOfBoundsException("Could not get component at index " + index + " since the dimension is " + size() + ".");
         };
     }
 }

@@ -20,7 +20,7 @@ package org.lidiuma.math.api.tuple;
 public interface UnaryTuple<N> {
 
     /// @return The amount of elements this tuple has.
-    int dimension();
+    int size();
 
     /// Gets the component of the tuple at the specified index.\
     /// Taking [UnaryTuple2] as an example:
@@ -28,5 +28,5 @@ public interface UnaryTuple<N> {
     /// - Index `1` returns `y()`
     /// - While any other number throws {@link IndexOutOfBoundsException}.
     /// @return the component at the provided index.
-    N component(int index) throws IndexOutOfBoundsException;
+    N at(int index) throws IndexOutOfBoundsException;
 }
