@@ -16,8 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
-/// Generic Matrix interface.
-/// @apiNote All operations use post-multiplication.
+/// Matrix interface.
 /// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
 public interface Matrix<N> {
 
@@ -30,5 +29,8 @@ public interface Matrix<N> {
 
     int columns();
 
-    // TODO a getter method that takes a row and column?
+    /// Gets the component of the matrix at the specified row and column.\
+    /// In case the provided row is bigger than [#rows()] or column bigger than [#columns()], [IndexOutOfBoundsException] will be thrown.
+    /// @return the component at the provided index.
+    N at(int row, int column);
 }

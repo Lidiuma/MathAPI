@@ -16,7 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
-/// Generic Matrix4 interface.
+/// Square Matrix4x4 interface.
 @SuppressWarnings("unused")
 public interface Matrix4<N> extends SquareMatrix<N> {
 
@@ -35,6 +35,21 @@ public interface Matrix4<N> extends SquareMatrix<N> {
     @Override
     default int columns() {
         return 4;
+    }
+
+    @Override
+    default N at(int row, int column) {
+
+        if (row < 0 || row >= rows()) throw new IndexOutOfBoundsException("Row " + row + " out of bounds, size is " + rows());
+        if (column < 0 || column >= columns()) throw new IndexOutOfBoundsException("Column " + column + " out of bounds, size is " + columns());
+
+        return switch (row * columns() + column) {
+            case  0 -> m00(); case  1 -> m01(); case  2 -> m02(); case  3 -> m03();
+            case  4 -> m10(); case  5 -> m11(); case  6 -> m12(); case  7 -> m13();
+            case  8 -> m20(); case  9 -> m21(); case 10 -> m22(); case 11 -> m23();
+            case 12 -> m30(); case 13 -> m31(); case 14 -> m32(); case 15 -> m33();
+            default -> throw new IllegalStateException("Validation failed.");
+        };
     }
 
     N m00();

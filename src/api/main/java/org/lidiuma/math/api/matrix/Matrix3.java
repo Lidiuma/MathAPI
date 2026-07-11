@@ -16,7 +16,7 @@
 
 package org.lidiuma.math.api.matrix;
 
-/// Generic Matrix3 interface.
+/// Square Matrix3x3 interface.
 public interface Matrix3<N> extends SquareMatrix<N> {
 
     int SIZE = 9;
@@ -34,6 +34,20 @@ public interface Matrix3<N> extends SquareMatrix<N> {
     @Override
     default int columns() {
         return 3;
+    }
+
+    @Override
+    default N at(int row, int column) {
+
+        if (row < 0 || row >= rows()) throw new IndexOutOfBoundsException("Row " + row + " out of bounds, size is " + rows());
+        if (column < 0 || column >= columns()) throw new IndexOutOfBoundsException("Column " + column + " out of bounds, size is " + columns());
+
+        return switch (row * columns() + column) {
+            case 0 -> m00(); case 1 -> m01(); case 2 -> m02();
+            case 3 -> m10(); case 4 -> m11(); case 5 -> m12();
+            case 6 -> m20(); case 7 -> m21(); case 8 -> m22();
+            default -> throw new IllegalStateException("Validation failed.");
+        };
     }
 
     N m00();

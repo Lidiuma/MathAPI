@@ -16,10 +16,11 @@
 
 package org.lidiuma.math.api.matrix;
 
+/// Matrix interface representing matrices having the numbers of [#rows()] and [#columns()] be the same.
 public interface SquareMatrix<N> extends Matrix<N> {
 
-    @Override
-    default int size() {
-        return rows();
+    /// @return the dimension of the Squared Matrix.
+    default int dimension() {
+        return rows(); // rows == column, so it doesn't matter which.
     }
 }
