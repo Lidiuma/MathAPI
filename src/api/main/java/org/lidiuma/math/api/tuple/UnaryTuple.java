@@ -16,10 +16,11 @@
 
 package org.lidiuma.math.api.tuple;
 
-/// Generic Tuple interface.
+/// Unary Tuple interface providing [#size()] components.
+/// @param <N> the type being held by the tuple.
 public interface UnaryTuple<N> {
 
-    /// @return The amount of elements this tuple has.
+    /// @return The amount of components this tuple has.
     int size();
 
     /// Gets the component of the tuple at the specified index.\
