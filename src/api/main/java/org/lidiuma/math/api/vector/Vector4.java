@@ -18,7 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 
-/// Specialization of [UnaryTuple4] providing 4D Vector semantics.
-/// @param <N> the numeric type.
+/// Specialization of [UnaryTuple4] representing a 4D Vector.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Vector4<N> extends Vector<N>, UnaryTuple4<N> {
 }

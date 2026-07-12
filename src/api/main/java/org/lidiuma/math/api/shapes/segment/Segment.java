@@ -20,7 +20,7 @@ import org.lidiuma.math.api.vector.Vector;
 
 /// Segment interface that represents a span from start to end.
 /// @param <V> the [Vector] type representing the segment [#span].
-/// @param <N> the numeric type.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Segment<V extends Vector<N>, N> {
 
     /// @return the span [Vector] of the segment.

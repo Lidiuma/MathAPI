@@ -17,7 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 /// Square Matrix4x4 interface.
-@SuppressWarnings("unused")
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Matrix4<N> extends SquareMatrix<N> {
 
     int SIZE = 16;

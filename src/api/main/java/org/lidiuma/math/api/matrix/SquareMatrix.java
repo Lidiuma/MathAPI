@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 /// Matrix interface representing matrices having the numbers of [#rows()] and [#columns()] be the same.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface SquareMatrix<N> extends Matrix<N> {
 
     /// @return the dimension of the Squared Matrix.

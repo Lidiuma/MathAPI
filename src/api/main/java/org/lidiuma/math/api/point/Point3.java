@@ -19,6 +19,6 @@ package org.lidiuma.math.api.point;
 import org.lidiuma.math.api.tuple.UnaryTuple3;
 
 /// 3D Point interface.
-/// @param <N> the numeric type.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Point3<N> extends Point<N>, UnaryTuple3<N> {
 }

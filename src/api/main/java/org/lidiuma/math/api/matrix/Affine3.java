@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 /// Specialized [Matrix4] interface for 3D operations.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Affine3<N> extends Matrix4<N> {
 
     /// @return Always returns 0.

@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 /// Square Matrix2x2 interface.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Matrix2<N> extends SquareMatrix<N> {
 
     int SIZE = 4;

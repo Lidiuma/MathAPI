@@ -18,7 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple1;
 
-/// Specialization of [UnaryTuple1] providing 1D Vector semantics.
-/// @param <N> the numeric type.
+/// Specialization of [UnaryTuple1] representing a 1D Vector.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Vector1<N> extends Vector<N>, UnaryTuple1<N> {
 }

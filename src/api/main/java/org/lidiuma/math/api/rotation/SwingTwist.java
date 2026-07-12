@@ -23,6 +23,8 @@ package org.lidiuma.math.api.rotation;
 /// - a *[#twist]* rotation around a given axis.
 ///
 /// The original quaternion can be reconstructed by doing `swing * twist`.
+/// @param <Q> the quaternion type representing the rotation.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface SwingTwist<Q extends Quaternion<N>, N> {
 
     /// @return the normalized swing component of the rotation.

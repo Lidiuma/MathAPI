@@ -19,6 +19,6 @@ package org.lidiuma.math.api.shapes.triangle;
 import org.lidiuma.math.api.vector.Vector2;
 
 /// 2D Triangle interface.
-/// @param <N> the numeric type.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Triangle2<N> extends Triangle<Vector2<N>, N> {
 }

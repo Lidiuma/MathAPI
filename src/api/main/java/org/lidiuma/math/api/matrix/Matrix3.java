@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 /// Square Matrix3x3 interface.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Matrix3<N> extends SquareMatrix<N> {
 
     int SIZE = 9;

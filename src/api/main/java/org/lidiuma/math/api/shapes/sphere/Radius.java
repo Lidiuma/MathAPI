@@ -17,7 +17,7 @@
 package org.lidiuma.math.api.shapes.sphere;
 
 /// Radius interface.
-/// @param <N> the numeric type.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Radius<N> {
 
     /// @return the radius of the sphere.

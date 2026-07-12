@@ -17,7 +17,7 @@
 package org.lidiuma.math.api.matrix;
 
 /// Matrix interface.
-/// @param <N> is the numerical type used for the matrix. (e.g., {@link Float}, {@link Double})
+/// @param <N> is the numerical type used for the matrix. (e.g., [Integer], [Double])
 public interface Matrix<N> {
 
     /// @return the total number of components, equal to [#rows()]` * `[#columns()].

@@ -19,7 +19,7 @@ package org.lidiuma.math.api.shapes.rectangle;
 import org.lidiuma.math.api.vector.Vector4;
 
 /// 4D Rectangle interface.
-/// @param <N> the numeric type.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Rectangle4<N> extends Rectangle<Vector4<N>, N> {
 
     default N width() {

@@ -32,7 +32,7 @@ import org.lidiuma.math.api.vector.Vector;
 /// A = (0,0)
 ///```
 /// @param <V> the [Vector] type representing the triangle edges [#ab] and [#ac].
-/// @param <N> the numeric type.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Triangle<V extends Vector<N>, N> {
 
     /// @return the [Vector] starting from `A` (the origin) pointing towards `B`.

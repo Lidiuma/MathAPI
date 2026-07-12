@@ -18,9 +18,9 @@ package org.lidiuma.math.api.color;
 
 import org.lidiuma.math.api.tuple.UnaryTuple4;
 
-/// Generic Color interface.
-/// @param <N> The floating type representing the color, usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).
-/// A different internal representation can be used, as long as it is converted to `N`.
+/// Specialization of [UnaryTuple4] representing a Color.\
+/// The internal representation does not have to be `N`, as long as it can be converted to `N`.
+/// @param <N> The numeric type representing the color (e.g., [Float], [Double]), usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).
 public interface Color<N> extends UnaryTuple4<N> {
 
     /// @return The red channel, usually in the range `[0,1]`, can be more for [HDR](https://en.wikipedia.org/wiki/High_dynamic_range).

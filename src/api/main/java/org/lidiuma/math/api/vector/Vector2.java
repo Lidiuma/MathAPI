@@ -18,7 +18,7 @@ package org.lidiuma.math.api.vector;
 
 import org.lidiuma.math.api.tuple.UnaryTuple2;
 
-/// Specialization of [UnaryTuple2] providing 2D Vector semantics.
-/// @param <N> the numeric type.
+/// Specialization of [UnaryTuple2] representing a 2D Vector.
+/// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Vector2<N> extends Vector<N>, UnaryTuple2<N> {
 }

@@ -19,6 +19,6 @@ package org.lidiuma.math.api.shapes.segment;
 import org.lidiuma.math.api.vector.Vector4;
 
 /// 4D Segment interface.
-/// @param <N> the numeric type.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Segment4<N> extends Segment<Vector4<N>, N> {
 }

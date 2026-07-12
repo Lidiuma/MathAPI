@@ -17,7 +17,7 @@
 package org.lidiuma.math.api.tuple;
 
 /// Unary Tuple interface providing [#size()] components.
-/// @param <N> the type being held by the tuple.
+/// @param <N> the type being held by the tuple (e.g., [String], [Double]).
 public interface UnaryTuple<N> {
 
     /// @return The amount of components this tuple has.

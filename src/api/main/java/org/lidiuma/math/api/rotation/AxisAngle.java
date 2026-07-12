@@ -20,6 +20,9 @@ import org.lidiuma.math.api.vector.Vector3;
 
 /// Axis-Angle interface representing a rotation as an [axis][Vector3] and an [angle][Angle].
 /// The rotation is around the given [axis][Vector3] by the specified [angle][Angle].
+/// @param <V> the vector type representing the rotation axis.
+/// @param <A> the angle type representing the rotation around the axis.
+/// @param <N> the numeric type (e.g., [Float], [Double]).
 /// @apiNote The axis is expected to be normalized.
 public interface AxisAngle<
         V extends Vector3<N>,
