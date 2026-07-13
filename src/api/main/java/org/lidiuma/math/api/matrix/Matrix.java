@@ -25,12 +25,14 @@ public interface Matrix<N> {
         return rows() * columns();
     }
 
+    /// @return the total number of rows for this matrix.
     int rows();
 
+    /// @return the total number of columns for this matrix.
     int columns();
 
     /// Gets the component of the matrix at the specified row and column.\
-    /// In case the provided row is bigger than [#rows()] or column bigger than [#columns()], [IndexOutOfBoundsException] will be thrown.
-    /// @return the component at the provided index.
+    /// @throws IndexOutOfBoundsException when `row` is outside `[0, `[#rows()]`]` or when `column` is outside `[0, `[#columns()]`]`.
+    /// @return the component at the provided row and column.
     N at(int row, int column);
 }
