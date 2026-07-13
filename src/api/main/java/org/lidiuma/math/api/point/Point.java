@@ -21,4 +21,9 @@ import org.lidiuma.math.api.tuple.UnaryTuple;
 /// Interface representing a Position.
 /// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Point<N> extends UnaryTuple<N> {
+
+    /// @return the dimension of this Point.
+    default int dimension() {
+        return size(); // Equivalent.
+    }
 }

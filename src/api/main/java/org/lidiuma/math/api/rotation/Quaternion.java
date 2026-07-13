@@ -23,4 +23,9 @@ import org.lidiuma.math.api.tuple.UnaryTuple4;
 /// and are more efficient than rotation matrices.
 /// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Quaternion<N> extends UnaryTuple4<N> {
+
+    /// @return the dimension of this Quaternion.
+    default int dimension() {
+        return size(); // Equivalent.
+    }
 }
