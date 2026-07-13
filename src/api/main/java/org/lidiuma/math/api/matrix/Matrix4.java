@@ -20,13 +20,6 @@ package org.lidiuma.math.api.matrix;
 /// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Matrix4<N> extends SquareMatrix<N> {
 
-    int SIZE = 16;
-
-    @Override
-    default int size() {
-        return SIZE;
-    }
-
     @Override
     default int rows() {
         return 4;
