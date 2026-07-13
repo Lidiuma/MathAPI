@@ -23,14 +23,14 @@ import org.lidiuma.math.api.vector.Vector3;
 public interface Rectangle3<N> extends Rectangle<Vector3<N>, N> {
 
     default N width() {
-        return size().x();
+        return dimensions().x();
     }
 
     default N height() {
-        return size().y();
+        return dimensions().y();
     }
 
     default N length() {
-        return size().z();
+        return dimensions().z();
     }
 }

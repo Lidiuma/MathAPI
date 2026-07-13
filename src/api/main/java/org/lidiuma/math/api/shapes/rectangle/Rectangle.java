@@ -19,10 +19,10 @@ package org.lidiuma.math.api.shapes.rectangle;
 import org.lidiuma.math.api.vector.Vector;
 
 /// Rectangle Shape interface.
-/// @param <V> the [Vector] type representing the rectangle [#size].
+/// @param <V> the [Vector] type representing the rectangle [#dimensions].
 /// @param <N> the numeric type (e.g., [Float], [Double]).
 public interface Rectangle<V extends Vector<N>, N> {
 
     /// The dimensions of the rectangle.
-    V size();
+    V dimensions();
 }

@@ -23,10 +23,10 @@ import org.lidiuma.math.api.vector.Vector2;
 public interface Rectangle2<N> extends Rectangle<Vector2<N>, N> {
 
     default N width() {
-        return size().x();
+        return dimensions().x();
     }
 
     default N height() {
-        return size().y();
+        return dimensions().y();
     }
 }

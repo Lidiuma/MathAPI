@@ -23,18 +23,18 @@ import org.lidiuma.math.api.vector.Vector4;
 public interface Rectangle4<N> extends Rectangle<Vector4<N>, N> {
 
     default N width() {
-        return size().y();
+        return dimensions().x();
     }
 
     default N height() {
-        return size().z();
+        return dimensions().y();
     }
 
     default N length() {
-        return size().x();
+        return dimensions().z();
     }
 
     default N depth() {
-        return size().w();
+        return dimensions().w();
     }
 }
