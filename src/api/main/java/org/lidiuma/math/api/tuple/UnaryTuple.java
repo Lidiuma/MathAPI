@@ -27,7 +27,7 @@ public interface UnaryTuple<N> {
     /// Taking [UnaryTuple2] as an example:
     /// - Index `0` returns `x()`
     /// - Index `1` returns `y()`
-    /// - While any other number throws {@link IndexOutOfBoundsException}.
+    /// @throws IndexOutOfBoundsException when `index` is outside `[0, `[#size()]`]`.
     /// @return the component at the provided index.
-    N at(int index) throws IndexOutOfBoundsException;
+    N at(int index);
 }
