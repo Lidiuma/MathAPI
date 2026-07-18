@@ -35,7 +35,7 @@ public final class ApiModule extends MathApiModule {
         module = "lidiuma.math.api";
         pkg = "org.lidiuma.math.api";
         name = "MathAPI";
-        version = snapshot(1,0,0);
+        version = version(1,0,0, "rc1");
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
@@ -72,7 +72,7 @@ public final class ApiModule extends MathApiModule {
     @Override
     public PublishOperation publishOperation() {
         final var op = super.publishOperation();
-        op.repositories(CENTRAL_SNAPSHOTS.withCredentials(
+        op.repositories(CENTRAL_RELEASES.withCredentials(
                 property("sonatype.username"),
                 property("sonatype.password")
         )).info(publishInfo());
