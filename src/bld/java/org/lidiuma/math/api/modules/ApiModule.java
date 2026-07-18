@@ -20,7 +20,6 @@ import org.lidiuma.math.api.MathApiModule;
 import org.lidiuma.math.api.ProjectInfo;
 import rife.bld.operations.CompileOperation;
 import rife.bld.operations.JavadocOperation;
-import rife.bld.operations.PublishOperation;
 import rife.bld.publish.PublishInfo;
 import java.util.List;
 import static org.lidiuma.math.api.PublishUtil.*;
@@ -45,6 +44,16 @@ public final class ApiModule extends MathApiModule {
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
+
+        publishConfiguration();
+    }
+
+    private void publishConfiguration() {
+        final var op = super.publishOperation();
+        op.repositories(CENTRAL_RELEASES.withCredentials(
+                property("sonatype.username"),
+                property("sonatype.password")
+        )).info(publishInfo());
     }
 
     private PublishInfo publishInfo() {
@@ -67,16 +76,6 @@ public final class ApiModule extends MathApiModule {
     public void publish() throws Exception {
         patchPublishJSpecify(this);
         super.publish();
-    }
-
-    @Override
-    public PublishOperation publishOperation() {
-        final var op = super.publishOperation();
-        op.repositories(CENTRAL_RELEASES.withCredentials(
-                property("sonatype.username"),
-                property("sonatype.password")
-        )).info(publishInfo());
-        return op;
     }
 
     @Override
