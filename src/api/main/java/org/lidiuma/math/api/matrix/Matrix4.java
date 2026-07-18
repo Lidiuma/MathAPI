@@ -33,8 +33,8 @@ public interface Matrix4<N> extends SquareMatrix<N> {
     @Override
     default N at(int row, int column) {
 
-        if (row < 0 || row >= rows()) throw new IndexOutOfBoundsException("Row " + row + " out of bounds, size is " + rows());
-        if (column < 0 || column >= columns()) throw new IndexOutOfBoundsException("Column " + column + " out of bounds, size is " + columns());
+        if (row < 0 || row >= rows()) throw new IndexOutOfBoundsException("Row " + row + " out of bounds, size is " + rows() + ".");
+        if (column < 0 || column >= columns()) throw new IndexOutOfBoundsException("Column " + column + " out of bounds, size is " + columns() + ".");
 
         return switch (row * columns() + column) {
             case  0 -> m00(); case  1 -> m01(); case  2 -> m02(); case  3 -> m03();
