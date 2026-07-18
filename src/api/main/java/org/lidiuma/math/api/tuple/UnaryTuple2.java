@@ -40,7 +40,7 @@ public interface UnaryTuple2<N> extends UnaryTuple<N> {
         return switch (index) {
             case 0 -> x();
             case 1 -> y();
-            default -> throw new IndexOutOfBoundsException("Could not get component at index " + index + " since the dimension is " + size() + ".");
+            default -> throw new IndexOutOfBoundsException("Index " + index + " out of bounds, size is " + size() + ".");
         };
     }
 }
