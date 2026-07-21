@@ -50,6 +50,10 @@ public final class TraitsModule extends MathApiModule {
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
+
+        // By keeping the parameters names in the compiled classes,
+        // I make it easier by implementors and people reading the API to understand clearly what the variables are.
+        compileOperation().compileOptions().parameters();
     }
 
     private PublishInfo publishInfo() {

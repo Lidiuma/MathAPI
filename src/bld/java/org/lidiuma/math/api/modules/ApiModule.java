@@ -18,7 +18,6 @@ package org.lidiuma.math.api.modules;
 
 import org.lidiuma.math.api.MathApiModule;
 import org.lidiuma.math.api.ProjectInfo;
-import rife.bld.operations.CompileOperation;
 import rife.bld.operations.JavadocOperation;
 import rife.bld.publish.PublishInfo;
 import java.util.List;
@@ -46,6 +45,10 @@ public final class ApiModule extends MathApiModule {
         addAttributesToJar(jarSourcesOperation(), version());
 
         publishConfiguration();
+
+        // By keeping the parameters names in the compiled classes,
+        // I make it easier by implementors and people reading the API to understand clearly what the variables are.
+        compileOperation().compileOptions().parameters();
     }
 
     private void publishConfiguration() {
@@ -76,15 +79,6 @@ public final class ApiModule extends MathApiModule {
     public void publish() throws Exception {
         patchPublishJSpecify(this);
         super.publish();
-    }
-
-    @Override
-    public CompileOperation compileOperation() {
-        final var options = super.compileOperation();
-        // By keeping the parameters names in the compiled classes,
-        // I make it easier by implementors and people reading the API to understand clearly what the variables are.
-        options.compileOptions().parameters();
-        return options;
     }
 
     @Override
