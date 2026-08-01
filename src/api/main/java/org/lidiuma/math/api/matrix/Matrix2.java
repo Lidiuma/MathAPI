@@ -39,7 +39,7 @@ public interface Matrix2<N> extends SquareMatrix<N> {
         return switch (row * columns() + column) {
             case 0 -> m00(); case 1 -> m01();
             case 2 -> m10(); case 3 -> m11();
-            default -> throw new IllegalStateException("Validation failed.");
+            default -> throw new AssertionError("Validation failed.");
         };
     }
 

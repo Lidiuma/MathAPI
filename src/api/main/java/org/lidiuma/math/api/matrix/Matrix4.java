@@ -41,7 +41,7 @@ public interface Matrix4<N> extends SquareMatrix<N> {
             case  4 -> m10(); case  5 -> m11(); case  6 -> m12(); case  7 -> m13();
             case  8 -> m20(); case  9 -> m21(); case 10 -> m22(); case 11 -> m23();
             case 12 -> m30(); case 13 -> m31(); case 14 -> m32(); case 15 -> m33();
-            default -> throw new IllegalStateException("Validation failed.");
+            default -> throw new AssertionError("Validation failed.");
         };
     }
 

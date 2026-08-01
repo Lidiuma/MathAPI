@@ -40,7 +40,7 @@ public interface Matrix3<N> extends SquareMatrix<N> {
             case 0 -> m00(); case 1 -> m01(); case 2 -> m02();
             case 3 -> m10(); case 4 -> m11(); case 5 -> m12();
             case 6 -> m20(); case 7 -> m21(); case 8 -> m22();
-            default -> throw new IllegalStateException("Validation failed.");
+            default -> throw new AssertionError("Validation failed.");
         };
     }
 
