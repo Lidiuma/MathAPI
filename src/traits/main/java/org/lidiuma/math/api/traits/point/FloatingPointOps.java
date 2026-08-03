@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.traits.point;
 
 import org.lidiuma.math.api.point.Point;
+import org.lidiuma.math.api.traits.vector.FloatingVectorOps;
 import org.lidiuma.math.api.vector.Vector;
 
 /// Point operations type-class for floating-point arithmetic.
@@ -30,4 +31,8 @@ public interface FloatingPointOps<
 
     /// @return the Euclidean distance between `first` and `second`.
     N distance(P first, P second);
+
+    /// Returns the vector [V] implementation of [FloatingVectorOps].
+    @Override
+    FloatingVectorOps<V, ?, N> vectorOps();
 }

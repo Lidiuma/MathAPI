@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.traits.point;
 
 import org.lidiuma.math.api.point.Point;
+import org.lidiuma.math.api.traits.vector.VectorOps;
 import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.Interpolatable;
 
@@ -42,4 +43,7 @@ public interface PointOps<
 
     /// @return a point with each component clamped between `min` and `max`.
     P clamp(P point, N min, N max);
+
+    /// Returns the vector [V] implementation of [VectorOps].
+    VectorOps<V, N> vectorOps();
 }
