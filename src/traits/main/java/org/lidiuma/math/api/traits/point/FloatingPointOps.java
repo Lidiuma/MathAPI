@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.traits.point;
 
 import org.lidiuma.math.api.point.Point;
+import org.lidiuma.math.api.traits.Interpolatable;
 import org.lidiuma.math.api.traits.vector.FloatingVectorOps;
 import org.lidiuma.math.api.vector.Vector;
 
@@ -27,12 +28,12 @@ import org.lidiuma.math.api.vector.Vector;
 public interface FloatingPointOps<
         P extends Point<N>,
         V extends Vector<N>,
-        N> extends PointOps<P, V, N> {
+        N> extends PointOps<P, V, N>, Interpolatable<P, N> {
 
     /// @return the Euclidean distance between `first` and `second`.
     N distance(P first, P second);
 
     /// Returns the vector [V] implementation of [FloatingVectorOps].
     @Override
-    FloatingVectorOps<V, ?, N> vectorOps();
+    FloatingVectorOps<V, ?, N> vectorOps(); // This interface doesn't care about the angle.
 }

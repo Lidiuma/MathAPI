@@ -17,10 +17,52 @@
 package org.lidiuma.math.api.traits.point;
 
 import org.lidiuma.math.api.point.Point1;
+import org.lidiuma.math.api.traits.vector.Vector1Ops;
 import org.lidiuma.math.api.vector.Vector1;
 
 public interface Point1Ops<
         P extends Point1<N>,
         V extends Vector1<N>,
         N> extends PointOps<P, V, N> {
+
+    P of(N x);
+
+    // To avoid re-defining the same calculation twice,
+    // I re-use the Vector math with the constraint of the vector used starting from the point [0,0].
+    @Override
+    Vector1Ops<V, N> vectorOps();
+
+    @Override
+    default P add(P point, V vector) {
+        final var vOps = vectorOps();
+        return p(vOps.add(v(point), vector));
+    }
+
+    @Override
+    default V subtract(P minuend, P subtrahend) {
+        final var vOps = vectorOps();
+        return vOps.subtract(v(minuend), v(subtrahend));
+    }
+
+    @Override
+    default N distanceSquared(P first, P second) {
+        final var vOps = vectorOps();
+        return vOps.distanceSquared(v(first), v(second));
+    }
+
+    @Override
+    default P clamp(P point, N min, N max) {
+        final var vOps = vectorOps();
+        return p(vOps.clamp(v(point), min, max));
+    }
+
+    /* Conversion methods */
+
+    private P p(V vector) {
+        return of(vector.x());
+    }
+
+    private V v(P point) {
+        return vectorOps().of(point.x());
+    }
 }

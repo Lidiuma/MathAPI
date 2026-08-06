@@ -19,7 +19,6 @@ package org.lidiuma.math.api.traits.point;
 import org.lidiuma.math.api.point.Point;
 import org.lidiuma.math.api.traits.vector.VectorOps;
 import org.lidiuma.math.api.vector.Vector;
-import org.lidiuma.math.api.traits.Interpolatable;
 
 /// Point operations type-class.
 /// @param <P> the [Point] type for which operations are defined.
@@ -28,7 +27,7 @@ import org.lidiuma.math.api.traits.Interpolatable;
 public interface PointOps<
         P extends Point<N>,
         V extends Vector<N>,
-        N> extends Interpolatable<P, N> {
+        N> {
 
     /// Translates the point by an offset vector.
     /// @return the translated point by `point + vector`.

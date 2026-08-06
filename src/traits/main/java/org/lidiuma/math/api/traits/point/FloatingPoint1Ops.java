@@ -17,10 +17,29 @@
 package org.lidiuma.math.api.traits.point;
 
 import org.lidiuma.math.api.point.Point1;
+import org.lidiuma.math.api.traits.vector.FloatingVector1Ops;
 import org.lidiuma.math.api.vector.Vector1;
 
 public interface FloatingPoint1Ops<
         P extends Point1<N>,
         V extends Vector1<N>,
         N> extends FloatingPointOps<P, V, N> {
+
+    P of(N x);
+
+    // To avoid re-defining the same calculation twice,
+    // I re-use the Vector math with the constraint of the vector used starting from the point [0,0].
+    @Override
+    FloatingVector1Ops<V, ?, N> vectorOps();
+
+    @Override
+    default N distance(P first, P second) {
+        final var vOps = vectorOps();
+        return vOps.distance(v(first), v(second));
+    }
+
+    // Conversion method
+    private V v(P point) {
+        return vectorOps().of(point.x());
+    }
 }
