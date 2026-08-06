@@ -21,6 +21,7 @@ import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.AxisAngle;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.rotation.SwingTwist;
+import org.lidiuma.math.api.traits.OrderableFloatingNumerical;
 import org.lidiuma.math.api.vector.Vector3;
 import org.lidiuma.math.api.traits.FloatingNumerical;
 import org.lidiuma.math.api.traits.Interpolatable;
@@ -39,19 +40,19 @@ public interface QuaternionOps<
 
     @Override
     default Q zero() {
-        final N zero = scalarWitness().zero();
+        final N zero = scalarOps().zero();
         return of(zero, zero, zero, zero);
     }
 
     @Override
     default Q one() {
-        final N one = scalarWitness().one();
+        final N one = scalarOps().one();
         return of(one, one, one, one);
     }
 
     default Q identity() {
-        final N zero = scalarWitness().zero();
-        final N one = scalarWitness().one();
+        final N zero = scalarOps().zero();
+        final N one = scalarOps().one();
         return of(zero, zero, zero, one);
     }
 
@@ -61,7 +62,7 @@ public interface QuaternionOps<
 
     /// @return the sum of all components of this quaternion.
     default N sum(Q quaternion) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         final N xy = witness.add(quaternion.x(), quaternion.y());
         final N zw = witness.add(quaternion.z(), quaternion.w());
         return witness.add(xy, zw);
@@ -85,7 +86,7 @@ public interface QuaternionOps<
 
     /// @return The conjugated quaternion.
     default Q conjugate(Q quaternion) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.negated(quaternion.x()),
                 witness.negated(quaternion.y()),
@@ -97,7 +98,7 @@ public interface QuaternionOps<
     /// @return the inverse of `quaternion`.
     /// @apiNote The quaternion should be non-zero, otherwise division by zero occurs.
     default Q invert(Q quaternion) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         final var length = lengthSquared(quaternion);
         final var scalar = witness.divide(witness.one(), length);
         return multiply(conjugate(quaternion), scalar);
@@ -105,7 +106,7 @@ public interface QuaternionOps<
 
     /// @return the Euclidean length of `quaternion`.
     default N length(Q quaternion) {
-        return scalarWitness().sqrt(lengthSquared(quaternion));
+        return scalarOps().sqrt(lengthSquared(quaternion));
     }
 
     /// @return the Euclidean length squared of `quaternion`.
@@ -121,7 +122,7 @@ public interface QuaternionOps<
     /// @return a quaternion with its length limited to `limit`.
     default Q withLimit(Q quaternion, N limit) {
         final N current = length(quaternion);
-        if (scalarWitness().lessThanEqual(current, limit)) return quaternion;
+        if (scalarOps().lessThanEqual(current, limit)) return quaternion;
         return withMagnitude(quaternion, limit, current);
     }
 
@@ -135,7 +136,7 @@ public interface QuaternionOps<
     /// @apiNote The `quaternion` should be non-zero, otherwise division by zero occurs.
     /// To handle this case [#normalize(Quaternion)] can be used.
     default Q normalize(Q quaternion) {
-        return withLength(quaternion, scalarWitness().one());
+        return withLength(quaternion, scalarOps().one());
     }
 
     /// Similar to [#normalize] but when the length of `quaternion` is close to or is zero,
@@ -164,7 +165,7 @@ public interface QuaternionOps<
     /// @param alpha the interpolation factor, typically in the range `[0, 1]`.
     /// @return the new linearly interpolated and normalized quaternion between `start` and `end`.
     default Q nlerp(Q start, Q end, N alpha) {
-        final var ws = scalarWitness();
+        final var ws = scalarOps();
         final Q correctEnd = ws.lessThan(dot(start, end), ws.zero()) ? negated(end) : end;
         return normalize(lerp(start, correctEnd, alpha));
     }
@@ -214,7 +215,7 @@ public interface QuaternionOps<
     @Override
     default Q interpolate(Q start, Q end, N alpha, UnaryOperator<N> easing) {
 
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         final N eased = easing.apply(alpha);
         final N invAlpha = witness.subtract(witness.one(), eased);
 
@@ -225,8 +226,12 @@ public interface QuaternionOps<
     }
 
     default boolean epsilonEquals(Q q1, Q q2, N epsilon) {
+        final var ops = scalarOps();
         final var abs = abs(subtract(q1, q2));
-        return lessThanEqual(abs, of(epsilon, epsilon, epsilon, epsilon));
+        if (ops.greaterThan(abs.x(), epsilon)) return false;
+        if (ops.greaterThan(abs.y(), epsilon)) return false;
+        if (ops.greaterThan(abs.z(), epsilon)) return false;
+        return ops.lessThanEqual(abs.w(), epsilon);
     }
 
     /// Multiplies `quaternion` by the given `scalar`.
@@ -237,7 +242,7 @@ public interface QuaternionOps<
 
     /// @return the component-wise multiplication of the `op1` and `op2`.
     default Q multiplyHadamard(Q op1, Q op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.multiply(op1.x(), op2.x()),
                 witness.multiply(op1.y(), op2.y()),
@@ -248,7 +253,7 @@ public interface QuaternionOps<
 
     /// @return the component-wise multiplication of the `op1` and `op2`.
     default Q divideHadamard(Q op1, Q op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.divide(op1.x(), op2.x()),
                 witness.divide(op1.y(), op2.y()),
@@ -260,7 +265,7 @@ public interface QuaternionOps<
     /// @return the component-wise addition of the `op1` and `op2`.
     @Override
     default Q add(Q op1, Q op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.add(op1.x(), op2.x()),
                 witness.add(op1.y(), op2.y()),
@@ -272,7 +277,7 @@ public interface QuaternionOps<
     /// @return the component-wise subtraction of `op1` and `op2`.
     @Override
     default Q subtract(Q op1, Q op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.subtract(op1.x(), op2.x()),
                 witness.subtract(op1.y(), op2.y()),
@@ -288,7 +293,7 @@ public interface QuaternionOps<
     @Override
     default Q multiply(Q op1, Q op2) {
 
-        final var ws = scalarWitness();
+        final var ws = scalarOps();
         final N wx = ws.multiply(op1.w(), op2.x());
         final N wy = ws.multiply(op1.w(), op2.y());
         final N wz = ws.multiply(op1.w(), op2.z());
@@ -327,7 +332,7 @@ public interface QuaternionOps<
 
     @Override
     default Q remainder(Q op1, Q op2) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.remainder(op1.x(), op2.x()),
                 witness.remainder(op1.y(), op2.y()),
@@ -341,7 +346,7 @@ public interface QuaternionOps<
     /// @apiNote The quaternion and its negation represent the same rotation.
     @Override
     default Q negated(Q operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.negated(operand.x()),
                 witness.negated(operand.y()),
@@ -352,7 +357,7 @@ public interface QuaternionOps<
 
     @Override
     default Q signum(Q operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.signum(operand.x()),
                 witness.signum(operand.y()),
@@ -363,7 +368,7 @@ public interface QuaternionOps<
 
     @Override
     default Q sqrt(Q operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.sqrt(operand.x()),
                 witness.sqrt(operand.y()),
@@ -374,7 +379,7 @@ public interface QuaternionOps<
 
     @Override
     default Q ceil(Q operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.ceil(operand.x()),
                 witness.ceil(operand.y()),
@@ -385,7 +390,7 @@ public interface QuaternionOps<
 
     @Override
     default Q floor(Q operand) {
-        final var witness = scalarWitness();
+        final var witness = scalarOps();
         return of(
                 witness.floor(operand.x()),
                 witness.floor(operand.y()),
@@ -394,23 +399,14 @@ public interface QuaternionOps<
         );
     }
 
-    @Override
-    default boolean lessThan(Q op1, Q op2) {
-        final var witness = scalarWitness();
-        return witness.lessThan(op1.x(), op2.x()) &&
-               witness.lessThan(op1.y(), op2.y()) &&
-               witness.lessThan(op1.z(), op2.z()) &&
-               witness.lessThan(op1.w(), op2.w());
-    }
-
-    /// Returns the scalar [N] implementation of [FloatingNumerical].\
-    /// Java will eventually provide a mechanism in the language to get the [FloatingNumerical] witness of [N].\
+    /// Returns the scalar [N] implementation of [OrderableFloatingNumerical].\
+    /// Java will eventually provide a mechanism in the language to get the [OrderableFloatingNumerical] witness of [N].\
     /// By providing it now, like this, I can implement most of the APIs.
-    /// @return the [FloatingNumerical] witness for [N].
-    FloatingNumerical<N> scalarWitness();
+    /// @return the [OrderableFloatingNumerical] witness for [N].
+    OrderableFloatingNumerical<N> scalarOps();
 
     private Q withMagnitude(Q quaternion, N wanted, N current) {
-        final N scalar = scalarWitness().divide(wanted, current);
+        final N scalar = scalarOps().divide(wanted, current);
         return multiply(quaternion, scalar);
     }
 }
