@@ -68,8 +68,11 @@ public interface FloatingVector3Ops<
 
     @Override
     default boolean epsilonEquals(V v1, V v2, N epsilon) {
+        final var ops = scalarOps();
         final var abs = abs(subtract(v1, v2));
-        return lessThanEqual(abs, of(epsilon, epsilon, epsilon));
+        if (ops.greaterThan(abs.x(), epsilon)) return false;
+        if (ops.greaterThan(abs.y(), epsilon)) return false;
+        return ops.lessThanEqual(abs.z(), epsilon);
     }
 
     @Override

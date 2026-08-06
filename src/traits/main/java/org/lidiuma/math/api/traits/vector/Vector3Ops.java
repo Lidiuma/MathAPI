@@ -63,6 +63,15 @@ public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
+    default V clamp(V value, V min, V max) {
+        final var ops = scalarOps();
+        final var x = ops.max(min.x(), ops.min(value.x(), max.x()));
+        final var y = ops.max(min.y(), ops.min(value.y(), max.y()));
+        final var z = ops.max(min.z(), ops.min(value.z(), max.z()));
+        return of(x, y, z);
+    }
+
+    @Override
     default V add(V op1, V op2) {
         final var witness = scalarOps();
         return of(
@@ -110,13 +119,5 @@ public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
                 witness.negated(operand.y()),
                 witness.negated(operand.z())
         );
-    }
-
-    @Override
-    default boolean lessThan(V op1, V op2) {
-        final var witness = scalarOps();
-        return witness.lessThan(op1.x(), op2.x()) &&
-               witness.lessThan(op1.y(), op2.y()) &&
-               witness.lessThan(op1.z(), op2.z());
     }
 }

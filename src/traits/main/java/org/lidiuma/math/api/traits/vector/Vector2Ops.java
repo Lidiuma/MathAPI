@@ -50,21 +50,12 @@ public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
-    default V min(V op1, V op2) {
-        final var witness = scalarOps();
-        final N x = witness.min(op1.x(), op2.x());
-        final N y = witness.min(op1.y(), op2.y());
+    default V clamp(V value, V min, V max) {
+        final var ops = scalarOps();
+        final var x = ops.max(min.x(), ops.min(value.x(), max.x()));
+        final var y = ops.max(min.y(), ops.min(value.y(), max.y()));
         return of(x, y);
     }
-
-    @Override
-    default V max(V op1, V op2) {
-        final var witness = scalarOps();
-        final N x = witness.max(op1.x(), op2.x());
-        final N y = witness.max(op1.y(), op2.y());
-        return of(x, y);
-    }
-
 
     @Override
     default V add(V op1, V op2) {
@@ -109,12 +100,5 @@ public interface Vector2Ops<V extends Vector2<N>, N> extends VectorOps<V, N> {
                 witness.negated(operand.x()),
                 witness.negated(operand.y())
         );
-    }
-
-    @Override
-    default boolean lessThan(V op1, V op2) {
-        final var witness = scalarOps();
-        return witness.lessThan(op1.x(), op2.x()) &&
-               witness.lessThan(op1.y(), op2.y());
     }
 }

@@ -46,6 +46,13 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
+    default V clamp(V value, V min, V max) {
+        final var ops = scalarOps();
+        final var x = ops.max(min.x(), ops.min(value.x(), max.x()));
+        return of(x);
+    }
+
+    @Override
     default V add(V op1, V op2) {
         final var witness = scalarOps();
         return of(witness.add(op1.x(), op2.x()));
@@ -78,11 +85,5 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     default V negated(V operand) {
         final var witness = scalarOps();
         return of(witness.negated(operand.x()));
-    }
-
-    @Override
-    default boolean lessThan(V op1, V op2) {
-        final var witness = scalarOps();
-        return witness.lessThan(op1.x(), op2.x());
     }
 }

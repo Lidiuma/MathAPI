@@ -18,6 +18,7 @@ package org.lidiuma.math.api.traits.vector;
 
 import java.util.function.UnaryOperator;
 import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.traits.OrderableFloatingNumerical;
 import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.FloatingNumerical;
 import org.lidiuma.math.api.traits.Interpolatable;
@@ -33,7 +34,7 @@ public interface FloatingVectorOps<
     boolean epsilonEquals(V v1, V v2, N epsilon);
 
     @Override
-    FloatingNumerical<N> scalarOps();
+    OrderableFloatingNumerical<N> scalarOps();
 
     /// @return the Euclidean distance between `v1` and `v2`.
     default N distance(V v1, V v2) {

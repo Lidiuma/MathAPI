@@ -51,8 +51,9 @@ public interface FloatingVector1Ops<
 
     @Override
     default boolean epsilonEquals(V v1, V v2, N epsilon) {
+        final var ops = scalarOps();
         final var abs = abs(subtract(v1, v2));
-        return lessThanEqual(abs, of(epsilon));
+        return ops.lessThanEqual(abs.x(), epsilon);
     }
 
     @Override

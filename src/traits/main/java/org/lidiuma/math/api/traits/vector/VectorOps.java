@@ -16,18 +16,19 @@
 
 package org.lidiuma.math.api.traits.vector;
 
+import org.lidiuma.math.api.traits.OrderableNumerical;
 import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.Clampable;
-import org.lidiuma.math.api.traits.OrderableNumerical;
+import org.lidiuma.math.api.traits.Numerical;
 
 /// Standard Vector Operations.
 ///
-/// All methods implemented from [OrderableNumerical] are implemented component-wise:
+/// All methods implemented from [Numerical] are implemented component-wise:
 /// ```
 /// Vector2 a, b;
 /// a.multiply(b) -> Vector2.of(a.x() * b.x(), a.y() * b.y());
 /// ```
-public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>, Clampable<V> {
+public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Clampable<V> {
 
     /// @return the sum of all components of this vector.
     N sum(V vector);
@@ -72,10 +73,5 @@ public interface VectorOps<V extends Vector<N>, N> extends OrderableNumerical<V>
     /// @return the dot product.
     default N dot(V v1, V v2) {
         return sum(multiply(v1, v2));
-    }
-
-    @Override
-    default V clamp(V value, V min, V max) {
-        return max(min, min(value, max));
     }
 }
