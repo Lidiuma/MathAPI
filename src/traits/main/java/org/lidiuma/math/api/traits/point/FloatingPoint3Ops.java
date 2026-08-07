@@ -23,9 +23,7 @@ import org.lidiuma.math.api.vector.Vector3;
 public interface FloatingPoint3Ops<
         P extends Point3<N>,
         V extends Vector3<N>,
-        N> extends FloatingPointOps<P, V, N> {
-
-    P of(N x, N y, N z);
+        N> extends Point3Ops<P, V, N>, FloatingPointOps<P, V, N> {
 
     // To avoid re-defining the same calculation twice,
     // I re-use the Vector math with the constraint of the vector used starting from the point [0,0].
