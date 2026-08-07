@@ -25,18 +25,6 @@ public interface FloatingVector2Ops<
         N> extends Vector2Ops<V, N>, FloatingVectorOps<V, A, N> {
 
     @Override
-    default V zero() {
-        final N zero = scalarOps().zero();
-        return of(zero, zero);
-    }
-
-    @Override
-    default V one() {
-        final N one = scalarOps().one();
-        return of(one, one);
-    }
-
-    @Override
     default V sqrt(V operand) {
         final var witness = scalarOps();
         return of(

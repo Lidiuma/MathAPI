@@ -53,6 +53,18 @@ public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
     }
 
     @Override
+    default V zero() {
+        final var zero = scalarOps().zero();
+        return of(zero);
+    }
+
+    @Override
+    default V one() {
+        final var one = scalarOps().one();
+        return of(one);
+    }
+
+    @Override
     default V add(V op1, V op2) {
         final var witness = scalarOps();
         return of(witness.add(op1.x(), op2.x()));

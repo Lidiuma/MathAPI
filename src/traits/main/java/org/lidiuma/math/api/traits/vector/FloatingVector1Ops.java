@@ -25,16 +25,6 @@ public interface FloatingVector1Ops<
         N> extends Vector1Ops<V, N>, FloatingVectorOps<V, A, N> {
 
     @Override
-    default V zero() {
-        return of(scalarOps().zero());
-    }
-
-    @Override
-    default V one() {
-        return of(scalarOps().one());
-    }
-
-    @Override
     default V sqrt(V operand) {
         return of(scalarOps().sqrt(operand.x()));
     }
