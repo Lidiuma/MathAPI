@@ -19,6 +19,7 @@ package org.lidiuma.math.api.traits.point;
 import org.lidiuma.math.api.point.Point4;
 import org.lidiuma.math.api.traits.vector.FloatingVector4Ops;
 import org.lidiuma.math.api.vector.Vector4;
+import java.util.function.UnaryOperator;
 
 public interface FloatingPoint4Ops<
         P extends Point4<N>,
@@ -36,7 +37,18 @@ public interface FloatingPoint4Ops<
         return vOps.distance(v(first), v(second));
     }
 
-    // Conversion method
+    @Override
+    default P interpolate(P start, P end, N alpha, UnaryOperator<N> easing) {
+        final var vOps = vectorOps();
+        return p(vOps.interpolate(v(start), v(end), alpha, easing));
+    }
+
+    /* Conversion methods */
+
+    private P p(V vector) {
+        return of(vector.x(), vector.y(), vector.z(), vector.w());
+    }
+
     private V v(P point) {
         return vectorOps().of(point.x(), point.y(), point.z(), point.w());
     }
