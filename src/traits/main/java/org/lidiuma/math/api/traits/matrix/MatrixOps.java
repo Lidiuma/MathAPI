@@ -18,7 +18,7 @@ package org.lidiuma.math.api.traits.matrix;
 
 import org.lidiuma.math.api.matrix.Matrix;
 import org.lidiuma.math.api.vector.Vector;
-import org.lidiuma.math.api.traits.Numerical;
+import org.lidiuma.math.api.traits.numeric.Numerical;
 import org.lidiuma.math.api.traits.vector.VectorOps;
 
 public interface MatrixOps<

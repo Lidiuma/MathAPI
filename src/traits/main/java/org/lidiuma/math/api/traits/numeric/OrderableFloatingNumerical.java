@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.traits;
+package org.lidiuma.math.api.traits.numeric;
 
+// What a long class name that people will absolutely not use to hate on the language.
 public interface OrderableFloatingNumerical<N> extends OrderableNumerical<N>, FloatingNumerical<N> {}

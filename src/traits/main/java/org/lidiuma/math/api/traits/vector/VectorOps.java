@@ -16,10 +16,10 @@
 
 package org.lidiuma.math.api.traits.vector;
 
-import org.lidiuma.math.api.traits.OrderableNumerical;
+import org.lidiuma.math.api.traits.numeric.OrderableNumerical;
 import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.Clampable;
-import org.lidiuma.math.api.traits.Numerical;
+import org.lidiuma.math.api.traits.numeric.Numerical;
 
 /// Standard Vector Operations.
 ///

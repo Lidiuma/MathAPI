@@ -21,9 +21,9 @@ import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.rotation.AxisAngle;
 import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.rotation.SwingTwist;
-import org.lidiuma.math.api.traits.OrderableFloatingNumerical;
+import org.lidiuma.math.api.traits.numeric.OrderableFloatingNumerical;
 import org.lidiuma.math.api.vector.Vector3;
-import org.lidiuma.math.api.traits.FloatingNumerical;
+import org.lidiuma.math.api.traits.numeric.FloatingNumerical;
 import org.lidiuma.math.api.traits.Interpolatable;
 
 /// Quaternion Operations type-class.\

@@ -18,9 +18,9 @@ package org.lidiuma.math.api.traits.vector;
 
 import java.util.function.UnaryOperator;
 import org.lidiuma.math.api.rotation.Angle;
-import org.lidiuma.math.api.traits.OrderableFloatingNumerical;
+import org.lidiuma.math.api.traits.numeric.OrderableFloatingNumerical;
 import org.lidiuma.math.api.vector.Vector;
-import org.lidiuma.math.api.traits.FloatingNumerical;
+import org.lidiuma.math.api.traits.numeric.FloatingNumerical;
 import org.lidiuma.math.api.traits.Interpolatable;
 
 public interface FloatingVectorOps<

@@ -10,4 +10,5 @@ module lidiuma.math.api.traits {
     exports org.lidiuma.math.api.traits.point;
     exports org.lidiuma.math.api.traits.rotation;
     exports org.lidiuma.math.api.traits.vector;
+    exports org.lidiuma.math.api.traits.numeric;
 }

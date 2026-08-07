@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lidiuma.math.api.traits;
+package org.lidiuma.math.api.traits.numeric;
 
 public interface Orderable<T> {
 
