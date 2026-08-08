@@ -17,23 +17,44 @@
 package org.lidiuma.math.api.traits.matrix;
 
 import org.lidiuma.math.api.matrix.Affine3;
+import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.vector.Vector3;
 import org.lidiuma.math.api.traits.vector.Vector3Ops;
 
 public interface Affine3Ops<
-        A extends Affine3<N>,
+        M extends Affine3<N>,
         V extends Vector3<N>,
-        N> extends SquareMatrixOps<A, V, N> {
+        Q extends Quaternion<N>,
+        N> extends SquareMatrixOps<M, V, N> {
 
-    A of(N m00, N m01, N m02, N m03,
+    M of(N m00, N m01, N m02, N m03,
          N m10, N m11, N m12, N m13,
          N m20, N m21, N m22, N m23);
 
-    @Override
-    Vector3Ops<V, N> vectorOps();
+    default M fromTranslation(V translation) {
+        final var ops = vectorOps().scalarOps();
+        final var zero = ops.zero();
+        final var one = ops.one();
+        return of(
+                one, zero, zero, translation.x(),
+                zero, one, zero, translation.y(),
+                zero, zero, one, translation.z()
+        );
+    }
+
+    M fromRotation(Q quaternion);
+
+    default M fromScale(V scale) {
+        final var zero = vectorOps().scalarOps().zero();
+        return of(
+                scale.x(), zero, zero, zero,
+                zero, scale.y(), zero, zero,
+                zero, zero, scale.z(), zero
+        );
+    }
 
     @Override
-    default A zero() {
+    default M zero() {
         final var zero = scalarOps().zero();
         return of(
                 zero, zero, zero, zero,
@@ -43,12 +64,12 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A one() {
+    default M one() {
         return identity();
     }
 
     @Override
-    default A identity() {
+    default M identity() {
         final var ops = scalarOps();
         final var one = ops.one();
         final var zero = ops.zero();
@@ -62,7 +83,7 @@ public interface Affine3Ops<
     /// Transposes the 3x3 sub-matrix (linear part) of this affine matrix, ignoring the translation part.
     /// @return the transposed affine matrix.
     @Override
-    default A transpose(A affine) {
+    default M transpose(M affine) {
         return of(
                 affine.m00(), affine.m10(), affine.m20(), affine.m03(),
                 affine.m01(), affine.m11(), affine.m21(), affine.m13(),
@@ -71,7 +92,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default N determinant(A matrix) {
+    default N determinant(M matrix) {
         final var ops = scalarOps();
         final N m00 = ops.multiply(matrix.m00(), ops.subtract(ops.multiply(matrix.m11(), matrix.m22()), ops.multiply(matrix.m12(), matrix.m21())));
         final N m01 = ops.multiply(matrix.m01(), ops.subtract(ops.multiply(matrix.m10(), matrix.m22()), ops.multiply(matrix.m12(), matrix.m20())));
@@ -80,7 +101,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A inverse(A matrix) throws ArithmeticException {
+    default M inverse(M matrix) throws ArithmeticException {
 
         final var ops = scalarOps();
         final N det = determinant(matrix);
@@ -112,7 +133,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default V multiply(A matrix, V vector) {
+    default V multiply(M matrix, V vector) {
 
         final var ops = scalarOps();
 
@@ -136,7 +157,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A multiply(A matrix, N scalar) {
+    default M multiply(M matrix, N scalar) {
 
         final var ops = scalarOps();
         final N m00 = ops.multiply(matrix.m00(), scalar);
@@ -161,7 +182,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A add(A op1, A op2) {
+    default M add(M op1, M op2) {
 
         final var ops = scalarOps();
         final N m00 = ops.add(op1.m00(), op2.m00());
@@ -186,7 +207,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A subtract(A op1, A op2) {
+    default M subtract(M op1, M op2) {
 
         final var ops = scalarOps();
         final N m00 = ops.subtract(op1.m00(), op2.m00());
@@ -211,7 +232,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A multiply(A op1, A op2) {
+    default M multiply(M op1, M op2) {
         final var ops = scalarOps();
         final N n00 = ops.add(ops.add(ops.multiply(op1.m00(), op2.m00()), ops.multiply(op1.m01(), op2.m10())), ops.multiply(op1.m02(), op2.m20()));
         final N n01 = ops.add(ops.add(ops.multiply(op1.m00(), op2.m01()), ops.multiply(op1.m01(), op2.m11())), ops.multiply(op1.m02(), op2.m21()));
@@ -233,7 +254,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A remainder(A op1, A op2) {
+    default M remainder(M op1, M op2) {
 
         final var ops = scalarOps();
         final N m00 = ops.remainder(op1.m00(), op2.m00());
@@ -258,7 +279,7 @@ public interface Affine3Ops<
     }
 
     @Override
-    default A negated(A operand) {
+    default M negated(M operand) {
 
         final var ops = scalarOps();
         final N m00 = ops.negated(operand.m00());
@@ -281,4 +302,7 @@ public interface Affine3Ops<
                 m20, m21, m22, m23
         );
     }
+
+    @Override
+    Vector3Ops<V, N> vectorOps();
 }
