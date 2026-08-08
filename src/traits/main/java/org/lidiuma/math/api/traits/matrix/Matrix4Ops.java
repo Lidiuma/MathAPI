@@ -33,9 +33,6 @@ public interface Matrix4Ops<
     );
 
     @Override
-    Vector4Ops<V, N> vectorOps();
-
-    @Override
     default M zero() {
         final var ops = scalarOps();
         return of(
@@ -385,4 +382,7 @@ public interface Matrix4Ops<
                 m30, m31, m32, m33
         );
     }
+
+    @Override
+    Vector4Ops<V, N> vectorOps();
 }

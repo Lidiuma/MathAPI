@@ -51,9 +51,6 @@ public interface Affine2Ops<
     }
 
     @Override
-    Vector2Ops<V, N> vectorOps();
-
-    @Override
     default M zero() {
         final var zero = scalarOps().zero();
         return of(
@@ -226,4 +223,7 @@ public interface Affine2Ops<
                 m10, m11, m12
         );
     }
+
+    @Override
+    Vector2Ops<V, N> vectorOps();
 }

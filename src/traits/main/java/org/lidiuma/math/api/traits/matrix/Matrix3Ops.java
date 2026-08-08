@@ -30,9 +30,6 @@ public interface Matrix3Ops<
          N m20, N m21, N m22);
 
     @Override
-    Vector3Ops<V, N> vectorOps();
-
-    @Override
     default M zero() {
         final var zero = scalarOps().zero();
         return of(
@@ -259,4 +256,7 @@ public interface Matrix3Ops<
                 m20, m21, m22
         );
     }
+
+    @Override
+    Vector3Ops<V, N> vectorOps();
 }
