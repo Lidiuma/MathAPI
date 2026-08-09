@@ -50,15 +50,31 @@ public interface QuaternionOps<
         return of(one, one, one, one);
     }
 
+    /// @return a new identity quaternion representing no rotation.
     default Q identity() {
         final N zero = scalarOps().zero();
         final N one = scalarOps().one();
         return of(zero, zero, zero, one);
     }
 
+    /// Creates a quaternion from an axis and a rotation angle in radians.
+    /// @param axis the rotation axis.
+    /// @param angle the rotation angle in radians.
+    /// @return a new quaternion representing the rotation.
+    /// @apiNote The axis is normalized automatically.
     Q fromAxisAngle(V axis, A angle);
 
+    /// Creates a new quaternion from the given Euler angles in radians.
+    ///
+    /// @param yaw   rotation around the y-axis in radians.
+    /// @param pitch rotation around the x-axis in radians.
+    /// @param roll  rotation around the z-axis in radians.
+    /// @return a new quaternion representing the rotation.
+    /// @apiNote Euler angles are applied in y (yaw), x (pitch), z (roll) order.
     Q fromEulerAngle(A yaw, A pitch, A roll);
+
+    /// @return a new rotation matrix that aligns `vector1` direction with `vector2` direction.
+    Q fromRotationBetween(V vector1, V vector2);
 
     /// @return the sum of all components of this quaternion.
     default N sum(Q quaternion) {
