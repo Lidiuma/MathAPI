@@ -58,10 +58,9 @@ public interface QuaternionOps<
     }
 
     /// Creates a quaternion from an axis and a rotation angle in radians.
-    /// @param axis the rotation axis.
+    /// @param axis the normalized rotation axis.
     /// @param angle the rotation angle in radians.
     /// @return a new quaternion representing the rotation.
-    /// @apiNote The axis is normalized automatically.
     Q fromAxisAngle(V axis, A angle);
 
     /// Creates a new quaternion from the given Euler angles in radians.
@@ -73,7 +72,10 @@ public interface QuaternionOps<
     /// @apiNote Euler angles are applied in y (yaw), x (pitch), z (roll) order.
     Q fromEulerAngle(A yaw, A pitch, A roll);
 
-    /// @return a new rotation matrix that aligns `vector1` direction with `vector2` direction.
+    /// Creates a rotation that aligns `vector1` direction with `vector2` direction.
+    /// @param vector1 the normalized vector1.
+    /// @param vector2 the normalized vector2.
+    /// @return the rotation between `vector1` and `vector2`.
     Q fromRotationBetween(V vector1, V vector2);
 
     /// @return the sum of all components of this quaternion.
