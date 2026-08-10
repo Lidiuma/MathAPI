@@ -17,6 +17,7 @@
 package org.lidiuma.math.api.traits.matrix;
 
 import org.lidiuma.math.api.matrix.Matrix;
+import org.lidiuma.math.api.traits.numeric.OrderableNumerical;
 import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.numeric.Numerical;
 import org.lidiuma.math.api.traits.vector.VectorOps;
@@ -59,7 +60,7 @@ public interface MatrixOps<
     /// Java will eventually provide a mechanism in the language to get the [Numerical] witness of [N].\
     /// By providing it now, like this, I can implement most of the APIs.
     /// @return the [Numerical] witness for [N].
-    Numerical<N> scalarOps();
+    OrderableNumerical<N> scalarOps();
 
     /// Returns the vector [V] implementation of [VectorOps].
     VectorOps<V, N> vectorOps();
