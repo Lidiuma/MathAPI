@@ -25,12 +25,23 @@ public interface Affine3Ops<
         M extends Affine3<N>,
         V extends Vector3<N>,
         Q extends Quaternion<N>,
-        N> extends SquareMatrixOps<M, V, N> {
+        N> extends AffineOps<M, V, Q, N> {
 
     M of(N m00, N m01, N m02, N m03,
          N m10, N m11, N m12, N m13,
          N m20, N m21, N m22, N m23);
 
+    /// Creates an affine matrix from three axes and a translation vector.
+    /// @return an affine matrix representing the given axes and translation.
+    default M fromAxes(V xAxis, V yAxis, V zAxis, V translation) {
+        return of(
+                xAxis.x(), xAxis.y(), xAxis.z(), translation.x(),
+                yAxis.x(), yAxis.y(), yAxis.z(), translation.y(),
+                zAxis.x(), zAxis.y(), zAxis.z(), translation.z()
+        );
+    }
+
+    @Override
     default M fromTranslation(V translation) {
         final var ops = vectorOps().scalarOps();
         final var zero = ops.zero();
@@ -42,8 +53,7 @@ public interface Affine3Ops<
         );
     }
 
-    M fromRotation(Q quaternion);
-
+    @Override
     default M fromScale(V scale) {
         final var zero = vectorOps().scalarOps().zero();
         return of(

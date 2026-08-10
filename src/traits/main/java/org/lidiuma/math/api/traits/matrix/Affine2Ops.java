@@ -25,11 +25,21 @@ public interface Affine2Ops<
         M extends Affine2<N>,
         V extends Vector2<N>,
         A extends Angle<N>,
-        N> extends SquareMatrixOps<M, V, N> {
+        N> extends AffineOps<M, V, A, N> {
 
     M of(N m00, N m01, N m02,
          N m10, N m11, N m12);
 
+    /// Creates an affine matrix from two axes and a translation vector.
+    /// @return an affine matrix representing the given axes and translation.
+    default M fromAxes(V xAxis, V yAxis, V translation) {
+        return of(
+                xAxis.x(), xAxis.y(), translation.x(),
+                yAxis.x(), yAxis.y(), translation.y()
+        );
+    }
+
+    @Override
     default M fromTranslation(V translation) {
         final var ops = vectorOps().scalarOps();
         final var zero = ops.zero();
@@ -40,8 +50,7 @@ public interface Affine2Ops<
         );
     }
 
-    M fromRotation(A angle);
-
+    @Override
     default M fromScale(V scale) {
         final var zero = vectorOps().scalarOps().zero();
         return of(
