@@ -62,7 +62,7 @@ public interface Affine2Ops<
 
     @Override
     default M zero() {
-        final var zero = scalarOps().zero();
+        final var zero = vectorOps().scalarOps().zero();
         return of(
                 zero, zero, zero,
                 zero, zero, zero
@@ -76,7 +76,7 @@ public interface Affine2Ops<
 
     @Override
     default M identity() {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final var one = ops.one();
         final var zero = ops.zero();
         return of(
@@ -97,7 +97,7 @@ public interface Affine2Ops<
 
     @Override
     default N determinant(M matrix) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N m0011 = ops.multiply(matrix.m00(), matrix.m11());
         final N m0110 = ops.multiply(matrix.m01(), matrix.m10());
         return ops.subtract(m0011, m0110);
@@ -106,7 +106,7 @@ public interface Affine2Ops<
     @Override
     default M inverse(M matrix) throws ArithmeticException {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N det = determinant(matrix);
         if (det.equals(ops.zero())) throw new ArithmeticException("The matrix cannot be inverted since singular.");
 
@@ -130,7 +130,7 @@ public interface Affine2Ops<
     @Override
     default V multiply(M matrix, V vector) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.multiply(matrix.m00(), vector.x());
         final N m01 = ops.multiply(matrix.m01(), vector.y());
@@ -146,7 +146,7 @@ public interface Affine2Ops<
 
     @Override
     default M multiply(M matrix, N scalar) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N m00 = ops.multiply(matrix.m00(), scalar);
         final N m10 = ops.multiply(matrix.m10(), scalar);
         final N m01 = ops.multiply(matrix.m01(), scalar);
@@ -161,7 +161,7 @@ public interface Affine2Ops<
 
     @Override
     default M add(M op1, M op2) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N m00 = ops.add(op1.m00(), op2.m00());
         final N m10 = ops.add(op1.m10(), op2.m10());
         final N m01 = ops.add(op1.m01(), op2.m01());
@@ -176,7 +176,7 @@ public interface Affine2Ops<
 
     @Override
     default M subtract(M op1, M op2) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N m00 = ops.subtract(op1.m00(), op2.m00());
         final N m10 = ops.subtract(op1.m10(), op2.m10());
         final N m01 = ops.subtract(op1.m01(), op2.m01());
@@ -191,7 +191,7 @@ public interface Affine2Ops<
 
     @Override
     default M multiply(M op1, M op2) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N m00 = ops.add(ops.multiply(op1.m00(), op2.m00()), ops.multiply(op1.m01(), op2.m10()));
         final N m01 = ops.add(ops.multiply(op1.m00(), op2.m01()), ops.multiply(op1.m01(), op2.m11()));
         final N m02 = ops.add(ops.multiply(op1.m00(), op2.m02()), ops.multiply(op1.m01(), op2.m12()));
@@ -206,7 +206,7 @@ public interface Affine2Ops<
 
     @Override
     default M remainder(M op1, M op2) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N m00 = ops.remainder(op1.m00(), op2.m00());
         final N m10 = ops.remainder(op1.m10(), op2.m10());
         final N m01 = ops.remainder(op1.m01(), op2.m01());
@@ -221,7 +221,7 @@ public interface Affine2Ops<
 
     @Override
     default M negated(M operand) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N m00 = ops.negated(operand.m00());
         final N m10 = ops.negated(operand.m10());
         final N m01 = ops.negated(operand.m01());

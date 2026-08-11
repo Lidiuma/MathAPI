@@ -49,7 +49,7 @@ public interface Matrix4Ops<
 
     @Override
     default M zero() {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         return of(
                 ops.zero(), ops.zero(), ops.zero(), ops.zero(),
                 ops.zero(), ops.zero(), ops.zero(), ops.zero(),
@@ -65,7 +65,7 @@ public interface Matrix4Ops<
 
     @Override
     default M identity() {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final var zero = ops.zero();
         final var one = ops.one();
         return of(
@@ -79,7 +79,7 @@ public interface Matrix4Ops<
     @Override
     default N determinant(M matrix) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         // 2×2 minors
         final N det22_23 = ops.subtract(ops.multiply(matrix.m22(), matrix.m33()), ops.multiply(matrix.m23(), matrix.m32()));
@@ -105,7 +105,7 @@ public interface Matrix4Ops<
     @Override
     default M inverse(M m) throws ArithmeticException {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N det = determinant(m);
         if (det.equals(ops.zero())) throw new ArithmeticException("The matrix cannot be inverted since singular.");
@@ -137,7 +137,7 @@ public interface Matrix4Ops<
 
     /// Helper method for the inverse, it returns: `n1 - n2 + n3 - n4 - n5 + n6`.
     private N invAdd(N n1, N n2, N n3, N n4, N n5, N n6) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N f1 = ops.subtract(n1, n2);
         final N f2 = ops.add(f1, n3);
         final N f3 = ops.subtract(f2, n4);
@@ -147,7 +147,7 @@ public interface Matrix4Ops<
 
     /// Helper method for the inverse, it returns: `n1 - n2 - n3 + n4 + n5 - n6`.
     private N invSub(N n1, N n2, N n3, N n4, N n5, N n6) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         final N f1 = ops.subtract(n1, n2);
         final N f2 = ops.subtract(f1, n3);
         final N f3 = ops.add(f2, n4);
@@ -157,7 +157,7 @@ public interface Matrix4Ops<
 
     /// Helper that multiplicative 3 numbers together.
     private N mul3(N n1, N n2, N n3) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         return ops.multiply(ops.multiply(n1, n2), n3);
     }
 
@@ -174,7 +174,7 @@ public interface Matrix4Ops<
     @Override
     default V multiply(M matrix, V vector) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.multiply(matrix.m00(), vector.x());
         final N m01 = ops.multiply(matrix.m01(), vector.y());
@@ -206,7 +206,7 @@ public interface Matrix4Ops<
     @Override
     default M multiply(M matrix, N scalar) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.multiply(matrix.m00(), scalar);
         final N m01 = ops.multiply(matrix.m01(), scalar);
@@ -238,7 +238,7 @@ public interface Matrix4Ops<
     @Override
     default M add(M op1, M op2) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.add(op1.m00(), op2.m00());
         final N m01 = ops.add(op1.m01(), op2.m01());
@@ -270,7 +270,7 @@ public interface Matrix4Ops<
     @Override
     default M subtract(M op1, M op2) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.subtract(op1.m00(), op2.m00());
         final N m01 = ops.subtract(op1.m01(), op2.m01());
@@ -302,7 +302,7 @@ public interface Matrix4Ops<
     @Override
     default M multiply(M op1, M op2) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.add(mulAdd(op1.m00(), op2.m00(), op1.m01(), op2.m10()), mulAdd(op1.m02(), op2.m20(), op1.m03(), op2.m30()));
         final N m01 = ops.add(mulAdd(op1.m00(), op2.m01(), op1.m01(), op2.m11()), mulAdd(op1.m02(), op2.m21(), op1.m03(), op2.m31()));
@@ -330,14 +330,14 @@ public interface Matrix4Ops<
 
     /// Helper for the matrix multiplication, it returns: `N1 * N2 + N3 * N4`
     private N mulAdd(N n1, N n2, N n3, N n4) {
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
         return ops.add(ops.multiply(n1, n2), ops.multiply(n3, n4));
     }
 
     @Override
     default M remainder(M op1, M op2) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.remainder(op1.m00(), op2.m00());
         final N m01 = ops.remainder(op1.m01(), op2.m01());
@@ -369,7 +369,7 @@ public interface Matrix4Ops<
     @Override
     default M negated(M operand) {
 
-        final var ops = scalarOps();
+        final var ops = vectorOps().scalarOps();
 
         final N m00 = ops.negated(operand.m00());
         final N m01 = ops.negated(operand.m01());

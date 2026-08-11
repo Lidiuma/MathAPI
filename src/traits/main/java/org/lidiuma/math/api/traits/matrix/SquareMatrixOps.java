@@ -48,7 +48,7 @@ public interface SquareMatrixOps<
 
     /// @return true if the matrix is a singular squared matrix.
     default boolean isSingular(M matrix) {
-        return determinant(matrix).equals(scalarOps().zero());
+        return determinant(matrix).equals(vectorOps().scalarOps().zero());
     }
 
     /// Divides the `op1` matrix by `op2`.

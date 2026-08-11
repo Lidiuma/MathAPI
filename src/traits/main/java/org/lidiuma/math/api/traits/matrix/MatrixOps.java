@@ -17,7 +17,6 @@
 package org.lidiuma.math.api.traits.matrix;
 
 import org.lidiuma.math.api.matrix.Matrix;
-import org.lidiuma.math.api.traits.numeric.OrderableNumerical;
 import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.numeric.Numerical;
 import org.lidiuma.math.api.traits.vector.VectorOps;
@@ -55,12 +54,6 @@ public interface MatrixOps<
     default M divide(M op1, M op2) throws ArithmeticException {
         throw new ArithmeticException("Division by non-square matrices is not possible.");
     }
-
-    /// Returns the scalar [N] implementation of [Numerical].\
-    /// Java will eventually provide a mechanism in the language to get the [Numerical] witness of [N].\
-    /// By providing it now, like this, I can implement most of the APIs.
-    /// @return the [Numerical] witness for [N].
-    OrderableNumerical<N> scalarOps();
 
     /// Returns the vector [V] implementation of [VectorOps].
     VectorOps<V, N> vectorOps();
