@@ -17,14 +17,17 @@
 package org.lidiuma.math.api.traits.matrix;
 
 import org.lidiuma.math.api.matrix.SquareMatrix;
+import org.lidiuma.math.api.traits.vector.FloatingVectorOps;
 import org.lidiuma.math.api.vector.Vector;
 
-public interface AffineOps<
+public interface FloatingAffineOps<
         M extends SquareMatrix<N>,
         V extends Vector<N>,
-        N> extends SquareMatrixOps<M, V, N> {
+        R,
+        N> extends AffineOps<M, V, N> {
 
-    M fromTranslation(V translation);
+    M fromRotation(R rotation);
 
-    M fromScale(V scale);
+    @Override
+    FloatingVectorOps<V, ?, N> vectorOps();
 }

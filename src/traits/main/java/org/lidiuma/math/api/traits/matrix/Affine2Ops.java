@@ -17,15 +17,13 @@
 package org.lidiuma.math.api.traits.matrix;
 
 import org.lidiuma.math.api.matrix.Affine2;
-import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector2;
 import org.lidiuma.math.api.traits.vector.Vector2Ops;
 
 public interface Affine2Ops<
         M extends Affine2<N>,
         V extends Vector2<N>,
-        A extends Angle<N>,
-        N> extends AffineOps<M, V, A, N> {
+        N> extends AffineOps<M, V, N> {
 
     M of(N m00, N m01, N m02,
          N m10, N m11, N m12);

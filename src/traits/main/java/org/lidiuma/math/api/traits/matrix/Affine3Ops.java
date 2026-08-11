@@ -17,15 +17,13 @@
 package org.lidiuma.math.api.traits.matrix;
 
 import org.lidiuma.math.api.matrix.Affine3;
-import org.lidiuma.math.api.rotation.Quaternion;
 import org.lidiuma.math.api.vector.Vector3;
 import org.lidiuma.math.api.traits.vector.Vector3Ops;
 
 public interface Affine3Ops<
         M extends Affine3<N>,
         V extends Vector3<N>,
-        Q extends Quaternion<N>,
-        N> extends AffineOps<M, V, Q, N> {
+        N> extends AffineOps<M, V, N> {
 
     M of(N m00, N m01, N m02, N m03,
          N m10, N m11, N m12, N m13,
