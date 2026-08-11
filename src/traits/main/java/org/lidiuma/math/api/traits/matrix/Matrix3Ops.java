@@ -29,6 +29,19 @@ public interface Matrix3Ops<
          N m10, N m11, N m12,
          N m20, N m21, N m22);
 
+    /// Constructs the matrix from four basis vectors, treating them as the columns of the matrix.
+    /// @param x The first column of the matrix.
+    /// @param y The second column of the matrix.
+    /// @param z The third column of the matrix.
+    /// @return A new matrix with the given vectors as its columns.
+    default M fromBasis(V x, V y, V z) {
+        return of(
+                x.x(), x.y(), x.z(),
+                y.x(), y.y(), y.z(),
+                z.x(), z.y(), z.z()
+        );
+    }
+
     @Override
     default M zero() {
         final var zero = scalarOps().zero();

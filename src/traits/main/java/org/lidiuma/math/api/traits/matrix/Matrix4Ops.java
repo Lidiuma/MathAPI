@@ -32,6 +32,21 @@ public interface Matrix4Ops<
             N m30, N m31, N m32, N m33
     );
 
+    /// Constructs the matrix from four basis vectors, treating them as the columns of the matrix.
+    /// @param x The first column of the matrix.
+    /// @param y The second column of the matrix.
+    /// @param z The third column of the matrix.
+    /// @param w The fourth column of the matrix.
+    /// @return A new matrix with the given vectors as its columns.
+    default M fromBasis(V x, V y, V z, V w) {
+        return of(
+                x.x(), x.y(), x.z(), x.w(),
+                y.x(), y.y(), y.z(), y.w(),
+                z.x(), z.y(), z.z(), z.w(),
+                w.x(), w.y(), w.z(), w.w()
+        );
+    }
+
     @Override
     default M zero() {
         final var ops = scalarOps();

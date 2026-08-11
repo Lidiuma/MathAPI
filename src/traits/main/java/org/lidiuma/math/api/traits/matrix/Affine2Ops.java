@@ -29,6 +29,9 @@ public interface Affine2Ops<
          N m10, N m11, N m12);
 
     /// Creates an affine matrix from two axes and a translation vector.
+    /// @param xAxis The x-axis of the linear part (first column).
+    /// @param yAxis The y-axis of the linear part (second column).
+    /// @param translation The translation vector (last column).
     /// @return an affine matrix representing the given axes and translation.
     default M fromAxes(V xAxis, V yAxis, V translation) {
         return of(

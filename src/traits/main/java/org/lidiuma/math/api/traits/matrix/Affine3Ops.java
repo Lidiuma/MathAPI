@@ -30,6 +30,10 @@ public interface Affine3Ops<
          N m20, N m21, N m22, N m23);
 
     /// Creates an affine matrix from three axes and a translation vector.
+    /// @param xAxis The x-axis of the linear part (first column).
+    /// @param yAxis The y-axis of the linear part (second column).
+    /// @param zAxis The z-axis of the linear part (third column).
+    /// @param translation The translation vector (last column).
     /// @return an affine matrix representing the given axes and translation.
     default M fromAxes(V xAxis, V yAxis, V zAxis, V translation) {
         return of(
