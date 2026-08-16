@@ -49,18 +49,24 @@ public interface Matrix4Ops<
 
     @Override
     default M zero() {
-        final var ops = vectorOps().scalarOps();
+        final var zero = vectorOps().scalarOps().zero();
         return of(
-                ops.zero(), ops.zero(), ops.zero(), ops.zero(),
-                ops.zero(), ops.zero(), ops.zero(), ops.zero(),
-                ops.zero(), ops.zero(), ops.zero(), ops.zero(),
-                ops.zero(), ops.zero(), ops.zero(), ops.zero()
+                zero, zero, zero, zero,
+                zero, zero, zero, zero,
+                zero, zero, zero, zero,
+                zero, zero, zero, zero
         );
     }
 
     @Override
     default M one() {
-        return identity();
+        final var one = vectorOps().scalarOps().one();
+        return of(
+                one, one, one, one,
+                one, one, one, one,
+                one, one, one, one,
+                one, one, one, one
+        );
     }
 
     @Override

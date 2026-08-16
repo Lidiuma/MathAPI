@@ -77,7 +77,12 @@ public interface Affine3Ops<
 
     @Override
     default M one() {
-        return identity();
+        final var one = vectorOps().scalarOps().one();
+        return of(
+                one, one, one, one,
+                one, one, one, one,
+                one, one, one, one
+        );
     }
 
     @Override
