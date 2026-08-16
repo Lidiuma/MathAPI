@@ -35,5 +35,5 @@ public interface FloatingPointOps<
 
     /// Returns the vector [V] implementation of [FloatingVectorOps].
     @Override
-    FloatingVectorOps<V, ?, N> vectorOps(); // This interface doesn't care about the angle.
+    FloatingVectorOps<V, N> vectorOps(); // This interface doesn't care about the angle.
 }

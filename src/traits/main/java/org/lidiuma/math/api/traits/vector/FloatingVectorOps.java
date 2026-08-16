@@ -16,20 +16,15 @@
 
 package org.lidiuma.math.api.traits.vector;
 
-import java.util.function.UnaryOperator;
-import org.lidiuma.math.api.rotation.Angle;
+import org.lidiuma.math.api.traits.Interpolatable;
+import org.lidiuma.math.api.traits.numeric.FloatingNumerical;
 import org.lidiuma.math.api.traits.numeric.OrderableFloatingNumerical;
 import org.lidiuma.math.api.vector.Vector;
-import org.lidiuma.math.api.traits.numeric.FloatingNumerical;
-import org.lidiuma.math.api.traits.Interpolatable;
+import java.util.function.UnaryOperator;
 
 public interface FloatingVectorOps<
         V extends Vector<N>,
-        A extends Angle<N>,
         N> extends VectorOps<V, N>, Interpolatable<V, N>, FloatingNumerical<V> {
-
-    /// @return the angle between the `v1` vector and the `v2` vector.
-    A angle(V v1, V v2);
 
     boolean epsilonEquals(V v1, V v2, N epsilon);
 

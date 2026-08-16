@@ -29,7 +29,7 @@ public interface FloatingPoint3Ops<
     // To avoid re-defining the same calculation twice,
     // I re-use the Vector math with the constraint of the vector used starting from the point [0,0].
     @Override
-    FloatingVector3Ops<V, ?, N> vectorOps();
+    FloatingVector3Ops<V, N> vectorOps();
 
     @Override
     default N distance(P first, P second) {

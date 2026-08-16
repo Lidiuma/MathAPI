@@ -29,5 +29,5 @@ public interface FloatingAffineOps<
     M fromRotation(R rotation);
 
     @Override
-    FloatingVectorOps<V, ?, N> vectorOps();
+    FloatingVectorOps<V, N> vectorOps();
 }

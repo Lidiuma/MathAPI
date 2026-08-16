@@ -16,13 +16,11 @@
 
 package org.lidiuma.math.api.traits.vector;
 
-import org.lidiuma.math.api.rotation.Angle;
 import org.lidiuma.math.api.vector.Vector1;
 
 public interface FloatingVector1Ops<
         V extends Vector1<N>,
-        A extends Angle<N>,
-        N> extends Vector1Ops<V, N>, FloatingVectorOps<V, A, N> {
+        N> extends Vector1Ops<V, N>, FloatingVectorOps<V, N> {
 
     @Override
     default V sqrt(V operand) {
