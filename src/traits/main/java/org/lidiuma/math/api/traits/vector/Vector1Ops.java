@@ -18,6 +18,7 @@ package org.lidiuma.math.api.traits.vector;
 
 import org.lidiuma.math.api.vector.Vector1;
 
+/// Operations for [Vector1].
 public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
 
     /// Constructs a vector using the provided scalars.

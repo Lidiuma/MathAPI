@@ -22,6 +22,9 @@ import org.lidiuma.math.api.traits.numeric.OrderableFloatingNumerical;
 import org.lidiuma.math.api.vector.Vector;
 import java.util.function.UnaryOperator;
 
+/// Operations for [Vector] specialized in floating numeric.
+/// @param <V> the [Vector] type for which operations are defined.
+/// @param <N> the numeric type.
 public interface FloatingVectorOps<
         V extends Vector<N>,
         N> extends VectorOps<V, N>, Interpolatable<V, N>, FloatingNumerical<V> {

@@ -21,13 +21,9 @@ import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.Clampable;
 import org.lidiuma.math.api.traits.numeric.Numerical;
 
-/// Standard Vector Operations.
-///
-/// All methods implemented from [Numerical] are implemented component-wise:
-/// ```
-/// Vector2 a, b;
-/// a.multiply(b) -> Vector2.of(a.x() * b.x(), a.y() * b.y());
-/// ```
+/// Operations for [Vector].
+/// @param <V> the [Vector] type for which operations are defined.
+/// @param <N> the numeric type.
 public interface VectorOps<V extends Vector<N>, N> extends Numerical<V>, Clampable<V> {
 
     /// @return the sum of all components of this vector.

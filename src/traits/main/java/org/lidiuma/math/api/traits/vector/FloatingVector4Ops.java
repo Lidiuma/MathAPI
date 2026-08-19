@@ -18,6 +18,7 @@ package org.lidiuma.math.api.traits.vector;
 
 import org.lidiuma.math.api.vector.Vector4;
 
+/// Operations for [Vector4] specialized in floating numeric.
 public interface FloatingVector4Ops<
         V extends Vector4<N>,
         N> extends Vector4Ops<V, N>, FloatingVectorOps<V, N> {
