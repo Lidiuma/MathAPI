@@ -19,8 +19,12 @@ package org.lidiuma.math.api.traits.numeric;
 /// Indicates a type that supports basic arithmetic operations.
 public interface Numerical<T> {
 
+    /// Returns the zero value for the type `T`.
+    /// @return the zero value of type `T`.
     T zero();
 
+    /// Returns the one value for the type `T`.
+    /// @return the one value of type `T`.
     T one();
 
     /// Addition operation, same as `+`.
