@@ -16,17 +16,35 @@
 
 package org.lidiuma.math.api.traits.numeric;
 
+/// Numerical operations for floating points.
 public interface FloatingNumerical<N> extends Numerical<N> {
 
+    /// Returns the sign of the provided operand.
+    /// @param operand the operand to get the signum from.
+    /// @return `+1` if `operand > 0`, `-1` if `operand < 0`, or `0` if `operand == 0`.
     N signum(N operand);
 
+    /// Returns the absolute value of the provided operand.
+    /// @param operand the operand to get the absolute value from.
+    /// @return the non-negative value of `operand`.
     default N abs(N operand) {
         return multiply(operand, signum(operand));
     }
 
+    /// Returns the square root of the provided operand.
+    /// @param operand the operand to compute the square root from.
+    /// @return the square root of `operand`.
     N sqrt(N operand);
 
+    /// Returns the smallest integer value that is greater than or equal to the provided operand.
+    /// This operation rounds the operand up to the nearest integer.
+    /// @param operand the operand to round up.
+    /// @return the ceiling of `operand`.
     N ceil(N operand);
 
+    /// Returns the largest integer value that is less than or equal to the provided operand.
+    /// This operation rounds the operand down to the nearest integer.
+    /// @param operand the operand to round down.
+    /// @return the floor of `operand`.
     N floor(N operand);
 }

@@ -20,6 +20,7 @@ import org.lidiuma.math.api.matrix.Affine3;
 import org.lidiuma.math.api.vector.Vector3;
 import org.lidiuma.math.api.traits.vector.Vector3Ops;
 
+/// Operations for [Affine3], specialized for 3D transformation.
 public interface Affine3Ops<
         M extends Affine3<N>,
         V extends Vector3<N>,

@@ -16,10 +16,11 @@
 
 package org.lidiuma.math.api.traits.matrix;
 
+import org.lidiuma.math.api.matrix.Matrix;
 import org.lidiuma.math.api.matrix.SquareMatrix;
 import org.lidiuma.math.api.vector.Vector;
 
-/// Matrix specialization where rows and columns are equal.
+/// Standard operations for [Matrix] where rows and columns are equal ([SquareMatrix]).
 public interface SquareMatrixOps<
         M extends SquareMatrix<N>,
         V extends Vector<N>,

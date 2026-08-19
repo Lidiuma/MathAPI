@@ -20,6 +20,7 @@ import org.lidiuma.math.api.matrix.Affine2;
 import org.lidiuma.math.api.vector.Vector2;
 import org.lidiuma.math.api.traits.vector.Vector2Ops;
 
+/// Operations for [Affine2], specialized for 2D transformation.
 public interface Affine2Ops<
         M extends Affine2<N>,
         V extends Vector2<N>,

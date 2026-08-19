@@ -20,6 +20,7 @@ import org.lidiuma.math.api.matrix.Matrix4;
 import org.lidiuma.math.api.vector.Vector4;
 import org.lidiuma.math.api.traits.vector.Vector4Ops;
 
+/// Operations for [Matrix4]
 public interface Matrix4Ops<
         M extends Matrix4<N>,
         V extends Vector4<N>,

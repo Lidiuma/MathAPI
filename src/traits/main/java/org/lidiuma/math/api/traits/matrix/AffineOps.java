@@ -19,12 +19,19 @@ package org.lidiuma.math.api.traits.matrix;
 import org.lidiuma.math.api.matrix.SquareMatrix;
 import org.lidiuma.math.api.vector.Vector;
 
+/// Common operations for Affine matrices.
 public interface AffineOps<
         M extends SquareMatrix<N>,
         V extends Vector<N>,
         N> extends SquareMatrixOps<M, V, N> {
 
+    /// Creates a translation affine matrix from the provided translation.
+    /// @param translation how much translation to apply.
+    /// @return the translation matrix.
     M fromTranslation(V translation);
 
+    /// Creates a scaling affine matrix from the provided scale.
+    /// @param scale how much scaling to apply.
+    /// @return the scale matrix.
     M fromScale(V scale);
 }

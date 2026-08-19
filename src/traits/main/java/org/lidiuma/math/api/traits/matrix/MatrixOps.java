@@ -21,6 +21,7 @@ import org.lidiuma.math.api.vector.Vector;
 import org.lidiuma.math.api.traits.numeric.Numerical;
 import org.lidiuma.math.api.traits.vector.VectorOps;
 
+/// Standard [Matrix] operations.
 public interface MatrixOps<
         M extends Matrix<N>,
         V extends Vector<N>,

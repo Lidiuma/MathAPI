@@ -20,12 +20,16 @@ import org.lidiuma.math.api.matrix.SquareMatrix;
 import org.lidiuma.math.api.traits.vector.FloatingVectorOps;
 import org.lidiuma.math.api.vector.Vector;
 
+/// Common operations for Affine matrices specialized in floating numeric.
 public interface FloatingAffineOps<
         M extends SquareMatrix<N>,
         V extends Vector<N>,
         R,
         N> extends AffineOps<M, V, N> {
 
+    /// Creates a rotation affine matrix from the provided rotation.
+    /// @param rotation how much rotation to apply.
+    /// @return the rotation matrix.
     M fromRotation(R rotation);
 
     @Override

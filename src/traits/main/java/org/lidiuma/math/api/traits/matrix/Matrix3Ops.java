@@ -20,6 +20,7 @@ import org.lidiuma.math.api.matrix.Matrix3;
 import org.lidiuma.math.api.vector.Vector3;
 import org.lidiuma.math.api.traits.vector.Vector3Ops;
 
+/// Operations for [Matrix3].
 public interface Matrix3Ops<
         M extends Matrix3<N>,
         V extends Vector3<N>,
