@@ -20,5 +20,6 @@ import org.lidiuma.math.api.traits.Clampable;
 import org.lidiuma.math.api.traits.Interpolatable;
 import org.lidiuma.math.api.color.Color;
 
+/// Operations for [Color].
 public interface ColorOps<C extends Color<N>, N> extends Interpolatable<C, N>, Clampable<C> {
 }
