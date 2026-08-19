@@ -19,6 +19,7 @@ package org.lidiuma.math.api;
 import rife.bld.Project;
 import rife.bld.publish.PublishDeveloper;
 import rife.bld.publish.PublishLicense;
+import java.util.ArrayList;
 import static java.lang.String.format;
 import static rife.bld.dependencies.Scope.compile;
 
@@ -41,10 +42,15 @@ public final class PublishUtil {
                 .url(format("%s/%s", GITHUB_URL, developerName));
     }
 
-    public static void patchPublishJSpecify(Project project) {
-        // Gradle does not support Maven 4 new types, so I'm forced to patch the type, making it `jar` instead of `modular-jar`.
+    /// Gradle does not support Maven 4 new types, so I'm forced to patch the dependencies to make them Maven 3 compatible.\
+    /// This means making the dependency type `jar` instead of `modular-jar`.
+    public static void patchDependencies(Project project) {
+        final var dependencies = new ArrayList<>(project.scope(compile));
         project.scope(compile).clear();
-        project.scope(compile).include(project.dependency("org.jspecify", "jspecify", project.version(1, 0, 0)));
+        for (var dependency : dependencies) {
+            final var fixed = project.dependency(dependency.groupId(), dependency.artifactId(), dependency.version(), dependency.classifier(), null);
+            project.scope(compile).include(fixed);
+        }
     }
 
     private PublishUtil() {}

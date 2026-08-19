@@ -16,7 +16,6 @@
 
 package org.lidiuma.math.api.modules;
 
-import org.lidiuma.math.api.MathApi;
 import org.lidiuma.math.api.MathApiModule;
 import org.lidiuma.math.api.ProjectInfo;
 import rife.bld.operations.JavadocOperation;
@@ -41,12 +40,9 @@ public final class TraitsModule extends MathApiModule {
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
         assignModuleDirectories("traits");
 
-        final var apiDir = workDirectory()
-                .toPath()
-                .relativize(MathApi.API.buildDistDirectory().toPath()); // Use absolute when bld 2.3.1 releases.
         scope(compile)
                 .include(module("org.jspecify", "jspecify", version(1, 0, 0)))
-                .include(localModule(apiDir.toString()));
+                .include(module("org.lidiuma.math", "math-api", version(1, 0, 0, "rc1")));
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
@@ -74,7 +70,7 @@ public final class TraitsModule extends MathApiModule {
 
     @Override
     public void publish() throws Exception {
-        patchPublishJSpecify(this);
+        patchDependencies(this);
         super.publish();
     }
 
@@ -86,12 +82,6 @@ public final class TraitsModule extends MathApiModule {
                 property("sonatype.password")
         )).info(publishInfo());
         return op;
-    }
-
-    @Override
-    public void compile() throws Exception {
-        MathApi.API.jar(); // I compile the api module jar since a dependency.
-        super.compile();
     }
 
     @Override

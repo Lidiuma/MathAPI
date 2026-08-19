@@ -77,7 +77,7 @@ public final class ApiModule extends MathApiModule {
 
     @Override
     public void publish() throws Exception {
-        patchPublishJSpecify(this);
+        patchDependencies(this);
         super.publish();
     }
 
