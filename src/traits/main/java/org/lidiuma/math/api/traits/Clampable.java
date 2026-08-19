@@ -16,6 +16,8 @@
 
 package org.lidiuma.math.api.traits;
 
+/// Indicates a type that supports clamping.
+/// @param <T> the type of the object to clamp.
 public interface Clampable<T> {
 
     /// Clamps a value between `min` and `max`.
