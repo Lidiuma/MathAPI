@@ -21,7 +21,7 @@ import org.lidiuma.math.api.traits.Interpolatable;
 import org.lidiuma.math.api.traits.vector.FloatingVectorOps;
 import org.lidiuma.math.api.vector.Vector;
 
-/// Point operations type-class for floating-point arithmetic.
+/// Operations for [Point] specialized in floating numeric.
 /// @param <P> the [Point] type for which operations are defined.
 /// @param <V> the [Vector] type required for defining [Point] operations.
 /// @param <N> the numeric type.

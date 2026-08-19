@@ -26,6 +26,7 @@ public interface Point4Ops<
         V extends Vector4<N>,
         N> extends PointOps<P, V, N> {
 
+    /// Constructs [P] using the provided scalars.
     P of(N x, N y, N z, N w);
 
     // To avoid re-defining the same calculation twice,

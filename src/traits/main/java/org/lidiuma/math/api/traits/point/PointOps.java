@@ -20,7 +20,7 @@ import org.lidiuma.math.api.point.Point;
 import org.lidiuma.math.api.traits.vector.VectorOps;
 import org.lidiuma.math.api.vector.Vector;
 
-/// Point operations type-class.
+/// Operations for [Point].
 /// @param <P> the [Point] type for which operations are defined.
 /// @param <V> the [Vector] type required for defining [Point] operations.
 /// @param <N> the numeric type.
