@@ -21,7 +21,7 @@ import org.lidiuma.math.api.vector.Vector1;
 /// Operations for [Vector1].
 public interface Vector1Ops<V extends Vector1<N>, N> extends VectorOps<V, N> {
 
-    /// Constructs a vector using the provided scalars.
+    /// Constructs [V] using the provided scalars.
     V of(N x);
 
     @Override

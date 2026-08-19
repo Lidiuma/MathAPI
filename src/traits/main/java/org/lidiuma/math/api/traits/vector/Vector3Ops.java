@@ -21,7 +21,7 @@ import org.lidiuma.math.api.vector.Vector3;
 /// Operations for [Vector3].
 public interface Vector3Ops<V extends Vector3<N>, N> extends VectorOps<V, N> {
 
-    /// Constructs a vector using the provided scalars.
+    /// Constructs [V] using the provided scalars.
     V of(N x, N y, N z);
 
     /// Returns the cross product between `v1` vector and the `v2` vector.\
