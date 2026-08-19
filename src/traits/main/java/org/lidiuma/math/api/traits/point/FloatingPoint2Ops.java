@@ -21,6 +21,7 @@ import org.lidiuma.math.api.traits.vector.FloatingVector2Ops;
 import org.lidiuma.math.api.vector.Vector2;
 import java.util.function.UnaryOperator;
 
+/// Operations for [Point2] specialized in floating numeric.
 public interface FloatingPoint2Ops<
         P extends Point2<N>,
         V extends Vector2<N>,

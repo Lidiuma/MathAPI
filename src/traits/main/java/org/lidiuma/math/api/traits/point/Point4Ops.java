@@ -20,6 +20,7 @@ import org.lidiuma.math.api.point.Point4;
 import org.lidiuma.math.api.traits.vector.Vector4Ops;
 import org.lidiuma.math.api.vector.Vector4;
 
+/// Operations for [Point4].
 public interface Point4Ops<
         P extends Point4<N>,
         V extends Vector4<N>,

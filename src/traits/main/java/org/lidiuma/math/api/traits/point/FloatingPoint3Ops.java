@@ -21,6 +21,7 @@ import org.lidiuma.math.api.traits.vector.FloatingVector3Ops;
 import org.lidiuma.math.api.vector.Vector3;
 import java.util.function.UnaryOperator;
 
+/// Operations for [Point3] specialized in floating numeric.
 public interface FloatingPoint3Ops<
         P extends Point3<N>,
         V extends Vector3<N>,

@@ -20,6 +20,7 @@ import org.lidiuma.math.api.point.Point3;
 import org.lidiuma.math.api.traits.vector.Vector3Ops;
 import org.lidiuma.math.api.vector.Vector3;
 
+/// Operations for [Point3].
 public interface Point3Ops <
         P extends Point3<N>,
         V extends Vector3<N>,
