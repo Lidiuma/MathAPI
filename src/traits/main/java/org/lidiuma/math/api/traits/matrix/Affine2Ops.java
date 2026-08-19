@@ -26,6 +26,7 @@ public interface Affine2Ops<
         V extends Vector2<N>,
         N> extends AffineOps<M, V, N> {
 
+    /// Constructs [M] using the provided scalars.
     M of(N m00, N m01, N m02,
          N m10, N m11, N m12);
 

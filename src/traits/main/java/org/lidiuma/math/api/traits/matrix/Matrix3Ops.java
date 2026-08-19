@@ -26,6 +26,7 @@ public interface Matrix3Ops<
         V extends Vector3<N>,
         N> extends SquareMatrixOps<M, V, N> {
 
+    /// Constructs [M] using the provided scalars.
     M of(N m00, N m01, N m02,
          N m10, N m11, N m12,
          N m20, N m21, N m22);
