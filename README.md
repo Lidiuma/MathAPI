@@ -1,28 +1,30 @@
+[![api](https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-api/badge.svg?style=flat&subject=api&color=blue)]([https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-api](https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-api))
 # MathAPI
-Standard set of interfaces that represent mathematical classes like `Vector`, `Matrix`, `Quaternion`, etc.\
-With a main focus on game development and immutability.
+This project provides set of interfaces that represent mathematical classes like `Vector`, `Matrix`, `Quaternion`, `VectorOps`, etc.
+Allowing integration between different libraries and frameworks (mainly focused on game development).
 
-## Objective
-The objective for this project is to provide a lingua franca for different libraries and frameworks,
-allowing any implementations that respects the API to be used anywhere, facilitating development.
+The project is split in two modules; `api`, `traits`.
+- The `api` module provides a Standard read-only set of interfaces for values. For example `Vector3` having only `x()`, `y()`, `z()`.
+- While the `traits` module provided operations for the values present in `api`. For example `Vector3Ops` has methods like `dot()`, `cross()`, etc.
+
+This split allows the `api` to have different implementations, allowing mutable, immutable, OOP, or FP, not forcing any specific standard,
+while still retaining compatibility with different libraries.\
+While `traits` follows the Java language evolution towards Functional Programming/Data Oriented Programming and immutability,
+and hopefully in the future getting new language features like operator overloading.
 
 ## Java Version
-**Java 17**
-###### I think that anybody making a new Java project should not even think about using Java 11 or lower.
-I decided for this version since I want to have at least a few of the minimum Modern Java features, and because I want to modularize this project.
+**Java 17**\
+I could not go lower since I wanted to offer modularity support and I wanted to have the nullability guarantees provided by `JSpecify` (this being the only dependency).
 
 ## Current Work
-The current objective is to gather as much feedback as possible and have the first early access release.\
-I think the current set of interfaces is good enough, only slight cleaning should be done and add missing documentation.
-Once all of this is done, I can start working on a first implementation that can be used as a reference.
+The current objective is to gather as much feedback as possible and have the `1.0` release for `api`, early access is already available on maven to experiment with.\
+Mainly I'd like to get feedback about the `shapes` package, I'm unsure if I should split it into its own thing, but the interfaces inside are too useful to keep separated.
 
-## Future Work
-There are types, like `Vector` and `FloatingVector` that I cannot represent nicely with the current Java features,
-so I'm considering a future version (v2 or something along the lines) that can take advantage of future Type-Classes.\
-The only issue is these are still a few years away.
+For the `traits` module, the idea is to release `0.1`, and wait for Project Valhalla to evolve before commiting to a `1.0` release,
+since the Java implementation of type-classes could vary greatly impacting the code greatly.\
+Also this is the module that likely requires the most feedback, there might be useful methods I'm not aware of,
+or people might not agree with the currently implemented ones, so please, you are welcomed to give feedback!
 
-## Feedback
-Since no standard can be made alone, please provide as much feedback as possible, don't like something? Let me know!
-
-## Contact
-For any feedback or questions, you can write to [contact@lidiuma.org]().
+## Feedback & Contact
+Since no standard can be made alone, please provide as much feedback as possible, don't like something? Let me know!\
+And if you want to contact me privately for any feedback or questions, you can write me at [contact@lidiuma.org]().
