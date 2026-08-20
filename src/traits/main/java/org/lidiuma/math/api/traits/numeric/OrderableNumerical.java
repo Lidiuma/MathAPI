@@ -16,5 +16,6 @@
 
 package org.lidiuma.math.api.traits.numeric;
 
+/// Combination of the [Numerical] & [Orderable] type-classes.
 public interface OrderableNumerical<N> extends Numerical<N>, Orderable<N> {
 }

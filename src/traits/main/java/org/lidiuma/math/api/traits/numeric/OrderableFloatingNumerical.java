@@ -17,4 +17,5 @@
 package org.lidiuma.math.api.traits.numeric;
 
 // What a long class name that people will absolutely not use to hate on the language.
+/// Combination of the [OrderableNumerical] & [FloatingNumerical] type-classes.
 public interface OrderableFloatingNumerical<N> extends OrderableNumerical<N>, FloatingNumerical<N> {}

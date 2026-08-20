@@ -36,6 +36,7 @@ public interface QuaternionOps<
         A extends Angle<N>,
         N> extends FloatingNumerical<Q>, Interpolatable<Q, N> {
 
+    /// Constructs [Q] using the provided scalars.
     Q of(N x, N y, N z, N w);
 
     @Override

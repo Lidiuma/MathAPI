@@ -31,9 +31,6 @@ public interface FloatingVectorOps<
 
     boolean epsilonEquals(V v1, V v2, N epsilon);
 
-    @Override
-    OrderableFloatingNumerical<N> scalarOps();
-
     /// @return the Euclidean distance between `v1` and `v2`.
     default N distance(V v1, V v2) {
         return scalarOps().sqrt(distanceSquared(v1, v2));
@@ -94,4 +91,7 @@ public interface FloatingVectorOps<
         final N scalar = scalarOps().divide(wanted, current);
         return multiply(vector, scalar);
     }
+
+    @Override
+    OrderableFloatingNumerical<N> scalarOps();
 }

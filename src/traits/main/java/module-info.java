@@ -1,6 +1,6 @@
 import org.jspecify.annotations.NullMarked;
 
-@NullMarked
+@NullMarked // Tells that the whole project does not use null by default.
 module lidiuma.math.api.traits {
     requires org.jspecify;
     requires transitive lidiuma.math.api;
