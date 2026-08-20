@@ -63,6 +63,7 @@ public final class ApiModule extends MathApiModule {
         final var projectInfo = ProjectInfo.github("Lidiuma", name());
         return new PublishInfo()
                 .groupId("org.lidiuma.math")
+                // I prefer the prefix since the final jar will be math-api.jar instead of api.jar.
                 .artifactId("math-api")
                 .version(version())
                 .name("Math API")

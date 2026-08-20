@@ -20,6 +20,7 @@ import org.lidiuma.math.api.MathApiModule;
 import org.lidiuma.math.api.ProjectInfo;
 import rife.bld.publish.PublishInfo;
 import java.util.List;
+import static org.lidiuma.math.api.MathApi.API;
 import static org.lidiuma.math.api.PublishUtil.*;
 import static org.lidiuma.math.api.Util.addAttributesToJar;
 import static rife.bld.dependencies.Repository.*;
@@ -50,7 +51,7 @@ public final class TraitsModule extends MathApiModule {
         compileOperation().compileOptions().parameters();
 
         // The credentials for publishing.
-        publishOperation().repositories(MAVEN_CENTRAL.withCredentials(
+        publishOperation().repositories(CENTRAL_RELEASES.withCredentials(
                 property("sonatype.username"),
                 property("sonatype.password")
         )).info(publishInfo());
@@ -61,9 +62,10 @@ public final class TraitsModule extends MathApiModule {
     }
 
     private PublishInfo publishInfo() {
-        final var projectInfo = ProjectInfo.github("Lidiuma", name());
+        final var projectInfo = ProjectInfo.github("Lidiuma", API.name());
         return new PublishInfo()
                 .groupId("org.lidiuma.math")
+                // I prefer the prefix since the final jar will be math-traits.jar instead of traits.jar.
                 .artifactId("math-traits")
                 .version(version())
                 .name("Math Traits")
