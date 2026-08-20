@@ -18,7 +18,6 @@ package org.lidiuma.math.api.modules;
 
 import org.lidiuma.math.api.MathApiModule;
 import org.lidiuma.math.api.ProjectInfo;
-import rife.bld.operations.JavadocOperation;
 import rife.bld.publish.PublishInfo;
 import java.util.List;
 import static org.lidiuma.math.api.PublishUtil.*;
@@ -33,7 +32,7 @@ public final class ApiModule extends MathApiModule {
         module = "lidiuma.math.api";
         pkg = "org.lidiuma.math.api";
         name = "MathAPI";
-        version = version(1,0,0, "rc1");
+        version = version(1,0,0, "rc2");
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
@@ -44,19 +43,19 @@ public final class ApiModule extends MathApiModule {
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
 
-        publishConfiguration();
-
         // By keeping the parameters names in the compiled classes,
         // I make it easier by implementors and people reading the API to understand clearly what the variables are.
         compileOperation().compileOptions().parameters();
-    }
 
-    private void publishConfiguration() {
-        final var op = super.publishOperation();
-        op.repositories(CENTRAL_RELEASES.withCredentials(
+        // The credentials for publishing.
+        publishOperation().repositories(CENTRAL_RELEASES.withCredentials(
                 property("sonatype.username"),
                 property("sonatype.password")
         )).info(publishInfo());
+        // These are not standard tags, so I need to tell the compiler to use them.
+        javadocOperation().javadocOptions()
+                .tag("apiNote", "a", "API Note:")
+                .tag("implNote", "a", "Implementation Note:");
     }
 
     private PublishInfo publishInfo() {
@@ -80,13 +79,5 @@ public final class ApiModule extends MathApiModule {
     public void publish() throws Exception {
         patchDependencies(this);
         super.publish();
-    }
-
-    @Override
-    public JavadocOperation javadocOperation() {
-        final var options = super.javadocOperation().javadocOptions();
-        options.tag("apiNote", "a", "API Note:");
-        options.tag("implNote", "a", "Implementation Note:");
-        return super.javadocOperation();
     }
 }
