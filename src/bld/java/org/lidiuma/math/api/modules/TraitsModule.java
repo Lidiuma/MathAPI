@@ -33,7 +33,7 @@ public final class TraitsModule extends MathApiModule {
         module = "lidiuma.math.api.traits";
         pkg = "org.lidiuma.math.api.traits";
         name = "MathTraits";
-        version = version(0,1,0);
+        version = version(0,1,1);
         javaRelease = 17;
         downloadSources = true;
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
@@ -41,7 +41,7 @@ public final class TraitsModule extends MathApiModule {
 
         scope(compile)
                 .include(module("org.jspecify", "jspecify", version(1, 0, 0)))
-                .include(module("org.lidiuma.math", "math-api", version(1, 0, 0, "rc1")));
+                .include(module("org.lidiuma.math", "math-api", version(1, 0, 0, "rc2")));
 
         addAttributesToJar(jarOperation(), version());
         addAttributesToJar(jarSourcesOperation(), version());
