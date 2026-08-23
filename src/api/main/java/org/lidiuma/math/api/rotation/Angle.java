@@ -16,10 +16,12 @@
 
 package org.lidiuma.math.api.rotation;
 
-/// Angle interface representing the angle in a unit-agnostic way.
-/// Values can be converted to/from radians, degrees, or turns.
+import org.lidiuma.math.api.vector.Vector2;
+
+/// Angle interface representing the angle in a unit-agnostic way.\
+/// The implementation can decide the best unit to save internally,
+/// and then declare conversion from/to other units.
 /// @param <N> the numeric type (e.g., [Float], [Double]).
-/// @implNote Most implementations should internally store `radians` since it is the standard unit for rotation, and all math libraries use it.
 public interface Angle<N> {
 
     /// @return the angle in radians.
@@ -30,4 +32,7 @@ public interface Angle<N> {
 
     /// @return the angle in turns. (1 turn = 360 degrees)
     N turn();
+
+    /// @return the angle as a unit vector.
+    Vector2<N> vector();
 }
