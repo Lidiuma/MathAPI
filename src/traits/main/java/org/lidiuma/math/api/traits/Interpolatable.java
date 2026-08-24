@@ -29,14 +29,14 @@ public interface Interpolatable<T, N> {
     /// @param end the value to interpolate towards.
     /// @param alpha the interpolation factor, typically in the range `[0, 1]`.
     /// @param easing a function to adjust the interpolation curve ([identity][UnaryOperator#identity()] for linear).
-    /// @return the new interpolated value between `start` and the `target`.
+    /// @return the new interpolated value between `start` and the `end`.
     T interpolate(T start, T end, N alpha, UnaryOperator<N> easing);
 
-    /// Linearly interpolates between `start` and `target`.
+    /// Linearly interpolates between `start` and `end`.
     /// @param start the value to interpolate from.
     /// @param end the value to interpolate towards.
     /// @param alpha the interpolation factor, typically in the range `[0, 1]`.
-    /// @return the new linearly interpolated value between `start` and the `target`.
+    /// @return the new linearly interpolated value between `start` and the `end`.
     default T lerp(T start, T end, N alpha) {
         return interpolate(start, end, alpha, UnaryOperator.identity());
     }
