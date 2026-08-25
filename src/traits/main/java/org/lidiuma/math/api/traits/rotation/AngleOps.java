@@ -33,15 +33,15 @@ public interface AngleOps<
 
     /// Constructs an angle from radians.
     /// @return the angle.
-    A fromRadian(N radians);
+    A fromRadians(N radians);
 
     /// Constructs an angle from degrees.
     /// @return the angle.
-    A fromDegree(N degrees);
+    A fromDegrees(N degrees);
 
     /// Constructs an angle from turns.
     /// @return the angle.
-    A fromTurn(N turns);
+    A fromTurns(N turns);
 
     /// Constructs an angle from a unit vector.
     /// @return the angle represented by the vector's direction.
@@ -59,7 +59,9 @@ public interface AngleOps<
     /// @return the tangent.
     N tan(A angle);
 
-    /// Normalizes the angle between 0 and 1 turn.
+    /// Normalizes an angle into the range `[0,2π)`.
+    /// Negative angles are wrapped into the positive range.
+    /// @param angle the angle to normalize.
     /// @return the normalized angle.
     A normalize(A angle);
 
