@@ -25,13 +25,13 @@ import org.lidiuma.math.api.vector.Vector2;
 public interface Angle<N> {
 
     /// @return the angle in radians.
-    N radian();
+    N radians();
 
     /// @return the angle in degrees.
-    N degree();
+    N degrees();
 
     /// @return the angle in turns. (1 turn = 360 degrees)
-    N turn();
+    N turns();
 
     /// @return the angle as a unit vector.
     Vector2<N> vector();
