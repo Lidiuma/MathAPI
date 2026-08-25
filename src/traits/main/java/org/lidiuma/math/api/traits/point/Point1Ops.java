@@ -46,6 +46,12 @@ public interface Point1Ops<
         return vOps.subtract(v(minuend), v(subtrahend));
     }
 
+    // In 1D integers points will always have an integer distance.
+    default N distance(P first, P second) {
+        final var vOps = vectorOps();
+        return vOps.distance(v(first), v(second));
+    }
+
     @Override
     default N distanceSquared(P first, P second) {
         final var vOps = vectorOps();

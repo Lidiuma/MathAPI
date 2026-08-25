@@ -34,8 +34,7 @@ public interface FloatingPoint1Ops<
 
     @Override
     default N distance(P first, P second) {
-        final var vOps = vectorOps();
-        return vOps.distance(v(first), v(second));
+        return Point1Ops.super.distance(first, second);
     }
 
     @Override
