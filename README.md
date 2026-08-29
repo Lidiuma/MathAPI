@@ -28,4 +28,4 @@ or people might not agree with the currently implemented ones, so please, you ar
 
 ## Feedback & Contact
 Since no standard can be made alone, please provide as much feedback as possible, don't like something? Let me know!\
-And if you want to contact me privately for any feedback or questions, you can write me at [contact@lidiuma.org]().
+And if you want to contact me privately for any feedback or questions, you can write me at [contact@lidiuma.org](mailto:contact@lidiuma.org).
