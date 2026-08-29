@@ -48,7 +48,7 @@ public final class ApiModule extends MathApiModule {
         compileOperation().compileOptions().parameters();
 
         // The credentials for publishing.
-        publishOperation().repositories(MAVEN_CENTRAL.withCredentials(
+        publishOperation().repositories(CENTRAL_RELEASES.withCredentials(
                 property("sonatype.username"),
                 property("sonatype.password")
         )).info(publishInfo());
