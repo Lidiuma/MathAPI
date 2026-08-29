@@ -33,6 +33,7 @@ public interface Angle<N> {
     /// @return the angle in turns. (1 turn = 360 degrees)
     N turns();
 
+    /// Returns this angle as a **unit** vector with **y-up** convention (e.g., `90°` -> `(x=0, y=1)`).
     /// @return the angle as a unit vector.
     Vector2<N> vector();
 }
