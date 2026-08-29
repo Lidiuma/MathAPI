@@ -1,4 +1,5 @@
 [![api](https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-api/badge.svg?style=flat&subject=api&color=blue)]([https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-api](https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-api))
+[![traits](https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-traits/badge.svg?style=flat&subject=traits&color=blue)]([https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-traits](https://maven-badges.sml.io/sonatype-central/org.lidiuma.math/math-traits))
 # MathAPI
 This project provides set of interfaces that represent mathematical classes like `Vector`, `Matrix`, `Quaternion`, `VectorOps`, etc.
 Allowing integration between different libraries and frameworks (mainly focused on game development).
