@@ -20,14 +20,17 @@ package org.lidiuma.math.api.matrix;
 /// @param <N> the numeric type (e.g., [Integer], [Double]).
 public interface Affine2<N> extends Matrix3<N> {
 
+    /// Row 2, Column 0 accessor.
     /// @return Always returns 0.
     @Override
     N m20();
 
+    /// Row 2, Column 1 accessor.
     /// @return Always returns 0.
     @Override
     N m21();
 
+    /// Row 2, Column 2 accessor.
     /// @return Always returns 1.
     @Override
     N m22();

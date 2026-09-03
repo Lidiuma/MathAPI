@@ -44,15 +44,24 @@ public interface Matrix3<N> extends SquareMatrix<N> {
         };
     }
 
+    /// Row 0, Column 0 accessor.
     N m00();
+    /// Row 0, Column 1 accessor.
     N m01();
+    /// Row 0, Column 2 accessor.
     N m02();
 
+    /// Row 1, Column 0 accessor.
     N m10();
+    /// Row 1, Column 1 accessor.
     N m11();
+    /// Row 1, Column 2 accessor.
     N m12();
 
+    /// Row 2, Column 0 accessor.
     N m20();
+    /// Row 2, Column 1 accessor.
     N m21();
+    /// Row 2, Column 2 accessor.
     N m22();
 }
