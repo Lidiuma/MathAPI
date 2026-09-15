@@ -38,9 +38,9 @@ public interface Matrix3Ops<
     /// @return A new matrix with the given vectors as its columns.
     default M fromBasis(V x, V y, V z) {
         return of(
-                x.x(), x.y(), x.z(),
-                y.x(), y.y(), y.z(),
-                z.x(), z.y(), z.z()
+                x.x(), y.x(), z.x(),
+                x.y(), y.y(), z.y(),
+                x.z(), y.z(), z.z()
         );
     }
 

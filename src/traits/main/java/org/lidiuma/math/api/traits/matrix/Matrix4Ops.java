@@ -42,10 +42,10 @@ public interface Matrix4Ops<
     /// @return A new matrix with the given vectors as its columns.
     default M fromBasis(V x, V y, V z, V w) {
         return of(
-                x.x(), x.y(), x.z(), x.w(),
-                y.x(), y.y(), y.z(), y.w(),
-                z.x(), z.y(), z.z(), z.w(),
-                w.x(), w.y(), w.z(), w.w()
+                x.x(), y.x(), z.x(), w.x(),
+                x.y(), y.y(), z.y(), w.y(),
+                x.z(), y.z(), z.z(), w.z(),
+                x.w(), y.w(), z.w(), w.w()
         );
     }
 

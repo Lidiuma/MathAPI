@@ -39,9 +39,9 @@ public interface Affine3Ops<
     /// @return an affine matrix representing the given axes and translation.
     default M fromAxes(V xAxis, V yAxis, V zAxis, V translation) {
         return of(
-                xAxis.x(), xAxis.y(), xAxis.z(), translation.x(),
-                yAxis.x(), yAxis.y(), yAxis.z(), translation.y(),
-                zAxis.x(), zAxis.y(), zAxis.z(), translation.z()
+                xAxis.x(), yAxis.x(), zAxis.x(), translation.x(),
+                xAxis.y(), yAxis.y(), zAxis.y(), translation.y(),
+                xAxis.z(), yAxis.z(), zAxis.z(), translation.z()
         );
     }
 

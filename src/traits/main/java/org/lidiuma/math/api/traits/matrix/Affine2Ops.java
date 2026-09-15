@@ -37,8 +37,8 @@ public interface Affine2Ops<
     /// @return an affine matrix representing the given axes and translation.
     default M fromAxes(V xAxis, V yAxis, V translation) {
         return of(
-                xAxis.x(), xAxis.y(), translation.x(),
-                yAxis.x(), yAxis.y(), translation.y()
+                xAxis.x(), yAxis.x(), translation.x(),
+                xAxis.y(), yAxis.y(), translation.y()
         );
     }
 
