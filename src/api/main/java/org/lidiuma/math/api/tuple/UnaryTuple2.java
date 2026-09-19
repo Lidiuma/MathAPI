@@ -43,4 +43,11 @@ public interface UnaryTuple2<N> extends UnaryTuple<N> {
             default -> throw new IndexOutOfBoundsException("Index " + index + " out of bounds, size is " + size() + ".");
         };
     }
+
+    /// Factory for creating instances of [T].
+    @FunctionalInterface
+    interface Factory<T extends UnaryTuple2<N>, N> {
+        /// @return an instance of [T].
+        T create(N x, N y);
+    }
 }
