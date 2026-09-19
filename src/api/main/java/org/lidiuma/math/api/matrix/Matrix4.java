@@ -80,4 +80,16 @@ public interface Matrix4<N> extends SquareMatrix<N> {
     N m32();
     /// Row 3, Column 3 accessor.
     N m33();
+
+    /// Factory for creating instances of [M] using a row-major view.
+    @FunctionalInterface
+    interface Factory<M extends Matrix4<N>, N> {
+        /// @return an instance of [M].
+        M create(
+                N m00, N m01, N m02, N m03,
+                N m10, N m11, N m12, N m13,
+                N m20, N m21, N m22, N m23,
+                N m30, N m31, N m32, N m33
+        );
+    }
 }
