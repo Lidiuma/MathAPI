@@ -34,4 +34,14 @@ public interface Affine2<N> extends Matrix3<N> {
     /// @return Always returns 1.
     @Override
     N m22();
+
+    /// Factory for creating instances of [A] using a row-major view.
+    @FunctionalInterface
+    interface Factory<A extends Affine2<N>, N> {
+        /// @return an instance of [A].
+        A create(
+                N m00, N m01, N m02,
+                N m10, N m11, N m12
+        );
+    }
 }

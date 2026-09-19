@@ -52,4 +52,14 @@ public interface Matrix2<N> extends SquareMatrix<N> {
     N m10();
     /// Row 1, Column 1 accessor.
     N m11();
+
+    /// Factory for creating instances of [M] using a row-major view.
+    @FunctionalInterface
+    interface Factory<M extends Matrix2<N>, N> {
+        /// @return an instance of [M].
+        M create(
+                N m00, N m01,
+                N m10, N m11
+        );
+    }
 }
