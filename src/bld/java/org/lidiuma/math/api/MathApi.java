@@ -17,6 +17,7 @@
 package org.lidiuma.math.api;
 
 import org.lidiuma.math.api.modules.ApiModule;
+import org.lidiuma.math.api.modules.ReferenceModule;
 import org.lidiuma.math.api.modules.TraitsModule;
 import rife.bld.Project;
 import java.util.Arrays;
@@ -24,9 +25,10 @@ import java.util.Arrays;
 public interface MathApi {
 
     // Minor code re-use.
-    String AVAILABLE = "(Available: \"api\", \"traits\")";
+    String AVAILABLE = "(Available: \"api\", \"traits\", \"reference\")";
     ApiModule API = new ApiModule();
     TraitsModule TRAITS = new TraitsModule();
+    ReferenceModule REF = new ReferenceModule();
 
     static void main(String... args) {
 
@@ -37,8 +39,9 @@ public interface MathApi {
 
         final String module = args[0].toLowerCase();
         final Project project = switch (module) {
-            case "api" -> API;
-            case "traits" -> TRAITS;
+            case "a", "api" -> API;
+            case "t", "traits" -> TRAITS;
+            case "r", "ref", "reference" -> REF;
             default -> null;
         };
 
